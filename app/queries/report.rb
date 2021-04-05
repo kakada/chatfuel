@@ -5,11 +5,10 @@ class Report
   end
 
   def chart_options
-    {
-      colors: colors,
-      dataset: dataset
-    }
+    { colors: colors, dataset: dataset }
   end
+
+  def dataset; raise 'must be implemented in subclass' end
 
   private
 
@@ -35,6 +34,10 @@ class Report
     @location_filter = Filters::LocationFilter.new(province, districts)
   end
 
+  def colors
+    Color.generate(dataset&.count.to_i)
+  end
+
   def province
     Pumi::Province.find_by_id(@query.options['province_id']) 
   end
@@ -42,10 +45,4 @@ class Report
   def districts
     @query.options['district_id'].map { |code| Pumi::District.find_by_id(code) }
   end
-
-  def colors
-    Color.generate(dataset&.count.to_i)
-  end
-
-  def dataset; raise 'must be implemented in subclass' end
 end
