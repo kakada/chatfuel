@@ -44,14 +44,17 @@ en:
   female: Female
   other: Other
   all: All
-  location: "%{district} in %{province}"
-  location_no_district: "%{province}"
+  location: "%{location} selected"
+  location_no_district: "%{provinces}"
   district_count: "%{count} districts"
+  selected_districts: "%{count} districts selected"
+  selected_provinces: "%{count} provinces selected"
   repeated: Finish and restart session
   loading: Loading...
   download_chart: Download Chart
   feedback_like: Like
   feedback_dislike: Dislike
+  visitor_count: Visitor count
   signin: Sign in
   not_authorized: "You are not authorized to perform this action."
   created:
@@ -68,6 +71,7 @@ en:
     success: "Successfully imported!"
     fail: "Failed to import!"
   required:
+    string: required
     file: "File required!"
   new_dictionary: "New Dictionary"
   new_site: "New Site"
