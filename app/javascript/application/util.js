@@ -17,6 +17,7 @@ OWSO.Util = {
   chartReg() {
     let thiz = this;
 
+    Chart.defaults.global.datasets.bar.maxBarThickness = 50;
     Chart.plugins.register({
       beforeInit: function (chart) {
         chart.data.labels.forEach(function (label, index, labelsArr) {

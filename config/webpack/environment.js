@@ -1,4 +1,6 @@
 const { environment } = require("@rails/webpacker");
+const coffee = require("./loaders/coffee");
+const erb = require("./loaders/erb");
 const webpack = require("webpack");
 const fileLoader = environment.loaders.get("file");
 fileLoader.exclude = /node_modules[\\/]quill/;
@@ -18,4 +20,6 @@ const svgLoader = {
 };
 
 environment.loaders.prepend("svg", svgLoader);
+environment.loaders.prepend("erb", erb);
+environment.loaders.prepend("coffee", coffee);
 module.exports = environment;

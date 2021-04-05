@@ -131,4 +131,14 @@ RSpec.describe Session, type: :model do
       }.to change { StepValue.count }
     end
   end
+
+  describe "set_province_id" do
+    let(:session) { create(:session, district_id: "03122345") }
+
+    it "extracts province_id from district_id before update" do
+      session.update(district_id: "01234567")
+
+      expect(session.reload.province_id).to eq("01")
+    end
+  end
 end

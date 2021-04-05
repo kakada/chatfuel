@@ -6,11 +6,13 @@ en:
     access_info: OWSO Information Accessed
     citizen_feedback: Citizen Feedback
     province: Province
+    provinces: Provinces
     districts: Districts
     time_period: Time period
     multi_districts: You can select more than one districts
     most_requested_services: Most Requested Service by OWSO
     most_requested_services_subheading_html: "Located in <strong>%{province_name}</strong>"
+    multi_provinces: You can select more than one provinces
     information_access_by_gender: Total Feedback By Gender
     information_access_by: Information Access by
     number_access_by_main_services: Most popular service information requested by OWSO
@@ -19,8 +21,10 @@ en:
     overall_rating_by_owso: Overall Rating by OWSO
     owso_feedback_trend: OWSO Feedback Trend
     feedback_by_sub_categories: Feedback by Sub Categories in %{name}
+    feedback_trend: Feedback trends in %{name}
     feedback_by_sub_categories_title: Feedback by Sub Categories
     overall_citizen_feedback: Total User Feedback - Overall Rating
     feedback_by_gender: Feedback by Gender
     total_user_feedback: Total User Feedback
     chat_with_us: Please chat with us!
+    feedback_by_sub_category: Feedback by Sub Category

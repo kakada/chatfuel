@@ -1,0 +1,16 @@
+.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "popupModal", :role => "dialog", :tabindex => "-1", "class": "feedback_trend_#{province_id}" }
+  .modal-dialog.modal-lg{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5.modal-title
+          = t("sites.feedback_trend_detail", province: province(province_id).send(t_name))
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        - @query.district_codes_without_other.each do |district_id|
+          - if district_id[0...2] == province_id
+            = render( ChartComponent.new(name: t("welcomes.feedback_trend", name: district(district_id).send(t_name) )) ) do |c|
+              - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_trend_#{district_id}", class: "chart_feedback_trend", "data-id": district_id, "data-provinceid": province_id) }
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button", role: "button", value: "canceled"}
+          = t("shared.cancel")

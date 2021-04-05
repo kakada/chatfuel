@@ -1,4 +1,4 @@
-class TemplatesController < ApplicationController
+class TemplatesController < PrivateAccessController
   before_action :set_template, only: [:edit, :update, :destroy]
 
   def index
