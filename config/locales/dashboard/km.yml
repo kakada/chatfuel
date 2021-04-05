@@ -20,9 +20,14 @@ km:
     like: ពេញចិត្ត
     acceptable: អាចទទួលយកបាន
     dislike: មិនពេញចិត្ត
-    owso_info: ពត៍មានអំពីច្រក
+    owso_info: ព័ត៌មានអំពីច្រក
     feedback: ការវាយតម្លៃ
     ticket_tracking: ការតាមដានឯកសារ
+    overview: ការប្រើប្រាស់របស់ប្រជាជន
+    accessed: ចំនួនអ្នកប្រើប្រាស់ប្រព័ន្ធផ្តល់ព័ត៌មាន
+    accessed_explain: ចំនួនអ្នកប្រើប្រាស់ប្រព័ន្ធផ្តល់ព័ត៌មានពីឧបករណ៍បច្ចេកវិទ្យារបស់គម្រោង OW4C
+    submitted: ចំនួនអ្នកទទួលសេវាច្រក (កំរៀង)
+    submitted_explain: ចំនួនអ្នកទទួលសេវាច្រកចេញចូលតែមួយ​នៅស្រុកកំរៀង
     delivered: Delivered
     completed: ការបញ្ចប់
     choose_dictionary_name: ជ្រើសរើសពាក្យគន្លឹះ
@@ -30,12 +35,6 @@ km:
     type_search: វាយពាក្យស្វែងរករបស់អ្នក...
     district: ស្រុក
     all_province: គ្រប់ខេត្ត
-    all_district: គ្រប់ស្រុក
+    all_district: គ្រប់ស្រុក/ក្រុង
     all: គ្រប់ខេត្ត/ក្រុង
     location: ទីតាំង
-
-    overview: ការប្រើប្រាស់របស់ប្រជាជន
-    accessed: ចំនួនអ្នកប្រើប្រាស់ប្រព័ន្ធផ្តល់ព័ត៌មាន
-    accessed_explain: ចំនួនអ្នកប្រើប្រាស់ប្រព័ន្ធផ្តល់ព័ត៌មានពីឧបករណ៍បច្ចេកវិទ្យារបស់គម្រោង OW4C
-    submitted: ចំនួនអ្នកទទួលសេវាច្រក (%{site_name})
-    submitted_explain: ចំនួនអ្នកទទួលសេវាច្រកចេញចូលតែមួយ​នៅស្រុក%{site_name}

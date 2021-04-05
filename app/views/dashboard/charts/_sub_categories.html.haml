@@ -1,6 +1,6 @@
 = render_component( ChartComponent.new(name: title) ) do |c|
   - c.with(:subheader) do
-    %span{ data: { toggle: "tooltip", title: full_district_list_name } }
+    %span{ data: { toggle: "tooltip", title: described_name } }
       = show_location_detail
     &middot;
     = link_to t("sites.view_detail"), "#", id: "link-view-detail", name: "link_view_detail", role: "link", data: { toggle: "modal", target: ".sub_categories_#{province_id}", provinceid: province_id, callback: "loadSubCategories" }
