@@ -8,7 +8,7 @@ module Filterable
   def filter_options
     platform = Session::PLATFORM_DICT[params[:platform].to_sym] if params[:platform].present?
     {
-      province_id: province_codes_params,
+      province_id: compact_province_codes,
       district_id: compact_district_codes,
       start_date: @start_date,
       end_date: @end_date,
@@ -18,13 +18,14 @@ module Filterable
     }.with_indifferent_access
   end
 
-  # The reason to split: becuase store
-  # in hidden input text values separated by comma
-  # refactors : store in input that can store 
-  # multiple values such as checkboxes.
-  def province_codes_params
-    province_codes = Array.wrap(params['province_code']).compact_blank
-    province_codes.map { |code| code.split(",") }.flatten
+  def compact_province_codes
+    Array.wrap(params_province_code).compact_blank
+  end
+
+  def params_province_code
+    return [] unless params['province_code'].present?
+
+    Array.wrap(params['province_code']).map { |code| code.split(",") }.flatten
   end
 
   def compact_district_codes
