@@ -8,7 +8,7 @@
             %span{"aria-hidden" => "true"} ×
 
         .modal-body
-          = f.input :filter, label: false, class: "form-control variable-filter", placeholder: t("dashboard.type_search")
+          = f.input :filter, label: false, class: "form-control variable-filter", placeholder: t("dashboard.type_search"), input_html: { id: false }
 
           #accordionExample.accordion
             = body
