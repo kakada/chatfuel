@@ -12,19 +12,10 @@ module WelcomeHelper
   end
 
   def show_location_detail
-    @location_filter.provinces.one? && described_name ? @location_filter.display_name : I18n.
-t("dashboard.all_district")
+    @location_filter.provinces.one? && described_name ? @location_filter.display_name : I18n.t("dashboard.all_district")
   end
 
   def described_name
     @location_filter.described_name.presence
-  end
-
-  def any_dataset?(dataset)
-    return false if dataset.nil?
-
-    dataset[:dataset].any? do |ds|
-      ds[:data].count > 0
-    end
   end
 end
