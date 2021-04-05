@@ -45,6 +45,8 @@ services:
       - VIRTUAL_PORT=80
       - LETSENCRYPT_HOST=owso.ilabsea.org
       - LETSENCRYPT_EMAIL=kakada@instedd.org
+      - FACEBOOK_PAGE_ID=
+      - FACEBOOK_APP_ID=
     logging:
       driver: json-file
       options:

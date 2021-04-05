@@ -81,18 +81,6 @@ class Variable < ApplicationRecord
     values.any? { |value| value.is_criteria? }
   end
 
-  def self.feedback_like
-    find_by(name: 'feedback_like')
-  end
-
-  def self.feedback_dislike
-    find_by(name: 'feedback_dislike')
-  end
-
-  def self.feedback_rating
-    find_by(name: 'feedback_rating')
-  end
-
   def raw_values
     values.map &:raw_value
   end
