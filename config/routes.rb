@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   scope "(:locale)", locale: /en|km/ do
-    root "home#index"
+    root "welcomes#index"
     get :dashboard, to: "dashboard#show"
     
     namespace :dashboard do
@@ -43,6 +43,8 @@ Rails.application.routes.draw do
     end
 
     get :home, to: "home#index"
+
+    get "welcomes/filter"
     get "welcomes/q/access-info", to: "welcomes#access_info"
     get "welcomes/q/service-tracked", to: "welcomes#service_tracked"
     get "welcomes/q/feedback-trend", to: "welcomes#feedback_trend"
@@ -52,6 +54,11 @@ Rails.application.routes.draw do
     resources :tickets, only: [:index]
     resources :templates
     resources :quotas, only: [:index]
+
+    # public static website
+    get 'provinces', to: "provinces#index"
+    get 'districts', to: "districts#index"
+
     resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
       collection do
         post :set_most_request
@@ -141,6 +148,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       put :me, controller: "sites", action: "check"
       concerns :api_base
+      resources :social_providers, only: [:create]
     end
   end
 

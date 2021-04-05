@@ -1,4 +1,4 @@
-class UserVisitEachFunction < Report
+class UserVisitEachFunction < BasicReport
   def dataset
     total_visits.each_with_object({}) do |(key, count), hash|
       service_name, variable_value_id = key

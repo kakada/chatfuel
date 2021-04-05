@@ -1,4 +1,4 @@
-class RolesController < ApplicationController
+class RolesController < PrivateAccessController
   def update
     @variable = Variable.find(params[:dictionary_id])
     @role = Role.find(params[:id])

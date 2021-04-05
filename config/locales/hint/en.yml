@@ -1,14 +1,14 @@
 en:
   hint:
-    total_user_by_gender: This chart represents the total number of citizens by gender that  accessed for OWSO information by the OW4C tech tools.
-    total_user_by_category: This chart represents the total visits of citizens accessing the  3 different services offered by the  OW4C’s tech tools.
+    total_user_by_gender: This chart represents the total number of citizens by gender that accessed for OWSO information by the OW4C tech tools.
+    total_user_by_category: This chart represents the total visits of citizens accessing the 3 different services offered by the OW4C’s tech tools.
     total_user_feedback: This chart represents a summary of the total feedback submitted by citizens via the OW4C’s tech tools.
     total_user_feedback_groupby_gender: This chart represents the total number of users using the OW4C’s feedback feature filtered by gender.
     user_access: n/a
     ticket_tracking: n/a
     # static website
     most_requested_services: This chart represents the most asked for service by citizens using the OW4C’s tech tools.
-    information_access_by_gender: This chart represents the total number of users using the OW4C’s feedback feature filtered by gender.
+    information_access_by_gender: This chart represents the total number of citizens by gender that accessed for OWSO information by the OW4C tech tools.
     information_access_by_period: This chart represents the number of citizens that accessed OWSO information on OW4C tech tools filtered by month/quarter/year.
     number_access_by_main_services: This chart represents, by the most popular OWSO service information is requested for on the OW4C tech tools, by OWSO.
     most_service_tracked_by_periodic: This chart represents the selected OWSO services that the citizens track the most using our OW4C’s tech tools ticket tracking features. The data is filtered by month/quarter/year

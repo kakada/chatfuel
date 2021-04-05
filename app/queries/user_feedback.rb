@@ -1,4 +1,4 @@
-class UserFeedback < Report
+class UserFeedback < BasicReport
   def dataset
     raw = Session.filter(@query.options)\
             .joins(step_values: [:variable, :variable_value])\

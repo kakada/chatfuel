@@ -51,3 +51,5 @@ pdfs/*.pdf
 
 chatfuel_*.gz
 chatfuel_*.sql
+# Log from migration empty session's gender, location to other
+db/datasources
