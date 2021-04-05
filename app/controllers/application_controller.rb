@@ -1,26 +1,19 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   include Pagy::Backend
   include Localization
   include Pundit
 
-  before_action :authenticate_user_with_guisso!
   before_action :set_raven_context
+  after_action :track_action
 
   private
-
-    def redirect_to_guisso
-      redirect_to user_instedd_omniauth_authorize_path(signup: true, origin: request.url), status: :found
+    def track_action
+      ahoy.track "track visitor", request.path_parameters
     end
-
-    def user_not_authorized
-      flash[:alert] = t("not_authorized")
-      redirect_to(request.referrer || dashboard_path)
-    end
-
+    
     def set_raven_context
       Raven.user_context(id: session[:current_user_id])
       Raven.extra_context(params: params.to_unsafe_h, url: request.url)

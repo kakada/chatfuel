@@ -1,6 +1,7 @@
 #dashboard-show,
 #provincial_usages-index,
 #home-index,
+#welcomes-index,
 #dashboard-ivr_dashboard-show,
 #dashboard-chatbot_dashboard-show {
   .platform-list {
@@ -201,6 +202,9 @@
   }
 
   .fa-other {
+    &::before {
+      content: "";
+    }
     width: 12px;
     height: 12px;
     border-radius: 50%;
