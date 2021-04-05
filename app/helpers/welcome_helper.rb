@@ -19,4 +19,12 @@ t("dashboard.all_district")
   def described_name
     @location_filter.described_name.presence
   end
+
+  def any_dataset?(dataset)
+    return false if dataset.nil?
+
+    dataset[:dataset].any? do |ds|
+      ds[:data].count > 0
+    end
+  end
 end
