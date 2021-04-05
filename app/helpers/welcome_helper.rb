@@ -12,10 +12,11 @@ module WelcomeHelper
   end
 
   def show_location_detail
-    full_district_list_name ? @location_filter.display_name : I18n.t("dashboard.all_district")
+    @location_filter.provinces.one? && described_name ? @location_filter.display_name : I18n.
+t("dashboard.all_district")
   end
 
-  def full_district_list_name
-    @location_filter.full_district_list_name.presence
+  def described_name
+    @location_filter.described_name.presence
   end
 end

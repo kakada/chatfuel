@@ -8,7 +8,7 @@
 #  updated_at :datetime         not null
 #
 class Role < ApplicationRecord
-  ROLE_NAMES = %w(site_ombudsman site_admin system_admin)
+  ROLE_NAMES = %w(guest site_ombudsman site_admin system_admin)
 
   # associations
   has_many :users

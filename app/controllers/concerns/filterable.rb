@@ -8,7 +8,7 @@ module Filterable
   def filter_options
     platform = Session::PLATFORM_DICT[params[:platform].to_sym] if params[:platform].present?
     {
-      province_id: params['province_code'],
+      province_id: province_codes_params,
       district_id: compact_district_codes,
       start_date: @start_date,
       end_date: @end_date,
@@ -16,6 +16,15 @@ module Filterable
       gender: params[:gender],
       period: params[:period]
     }.with_indifferent_access
+  end
+
+  # The reason to split: becuase store
+  # in hidden input text values separated by comma
+  # refactors : store in input that can store 
+  # multiple values such as checkboxes.
+  def province_codes_params
+    province_codes = Array.wrap(params['province_code']).compact_blank
+    province_codes.map { |code| code.split(",") }.flatten
   end
 
   def compact_district_codes
@@ -30,8 +39,8 @@ module Filterable
   end
 
   def set_location_filter
-    province = Pumi::Province.find_by_id(params['province_code']) if params['province_code'].present?
-    districts = compact_district_codes.map { |code| Pumi::District.find_by_id(code) } if params['district_code'].present?
-    @location_filter = Filters::LocationFilter.new(province, districts)
+    provinces = compact_province_codes.map { |code| Pumi::Province.find_by_id(code) }
+    districts = compact_district_codes.map { |code| Pumi::District.find_by_id(code) }
+    @location_filter = Filters::LocationFilter.new(provinces, districts)
   end
 end

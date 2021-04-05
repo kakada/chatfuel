@@ -1,4 +1,4 @@
-var pumi;
+window.pumi;
 
 pumi = {
   dataAttributeTag: function(attribute, selector) {

@@ -1,4 +1,4 @@
-class QuotasController < ApplicationController
+class QuotasController < PrivateAccessController
   def index
     @quota = Quotum.last
     @queue = Sidekiq::ScheduledSet.new
