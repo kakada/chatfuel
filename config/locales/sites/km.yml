@@ -19,6 +19,7 @@ km:
     detail: ពត៌មានលំអិត
     view_detail: មើលព័ត៌មានលំអិត
     sub_category_detail: មតិយោបល់លំអិតតាមប្រភេទរងនៅក្នុង%{province}
+    feedback_trend_detail: និន្នាការមតិយោបល់លំអិតនៅក្នុង%{province}
     province: ខេត្ត
     code: លេខកូដ
     track_count: ចំនួនតាមដាន

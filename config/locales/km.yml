@@ -45,14 +45,17 @@ km:
   female: ស្រី
   other: ផ្សេងៗ
   all: ទាំងអស់
-  location: "%{district} នៅក្នុង %{province}"
-  location_no_district: "%{province}"
+  location: "បានជ្រើសយក %{location}"
+  location_no_district: "%{provinces}"
   district_count: "ស្រុកចំនួន %{count}"
+  selected_districts: "ស្រុកចំនួន %{count} បានជ្រើសយក"
+  selected_provinces: "ខេត្តចំនួន %{count} បានជ្រើសយក"
   repeated: បញ្ចប់ និងចាប់ផ្ដើមសារជាថ្មី
   loading: ដំណើការ...
   download_chart: ទាញយកក្រាប
   feedback_like: ចូលចិត្ត
   feedback_dislike: មិនចូលចិត្ត
+  visitor_count: ចំនួនអ្នកចូលទស្សនា
   signin: ចូលប្រើ
   not_authorized: អ្នកមិនត្រូវបានអនុញ្ញាតទេ
   created:
@@ -69,6 +72,7 @@ km:
     success: បាននាំចូលដោយជោគជ័យ
     fail: បានបរាជ័យក្នុងការនាំចូល
   required:
+    string: តំរូវការ
     file: ឯកសារចាំបាច់
   new_dictionary: ពាក្យគន្លឹះថ្មី
   new_site: ការិយាល័យថ្មី
