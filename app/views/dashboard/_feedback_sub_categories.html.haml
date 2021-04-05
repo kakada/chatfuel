@@ -10,3 +10,7 @@
       .col-lg-6
         - sub_categories_locals = { title: t("welcomes.feedback_by_sub_categories_title"), province_id: province_id }
         = render partial: "dashboard/charts/sub_categories", locals: sub_categories_locals
+
+      .col-lg-6
+        - feedback_trend_locals = { title: t("welcomes.owso_feedback_trend"), province_id: province_id }
+        = render partial: "dashboard/charts/feedback_trend", locals: feedback_trend_locals
