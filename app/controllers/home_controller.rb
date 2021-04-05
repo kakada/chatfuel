@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomeController < PrivateAccessController
   include Filterable
   
   before_action :default_start_date

@@ -1,79 +1,43 @@
 #tab
   .container
-    #menuContent.tab-content.pt-5
-      #summary.tab-pane.fade{"aria-labelledby" => "summary-tab", :role => "tabpanel", class: toggle_class_name("active show", (active_tab.blank? || active_tab == '#summary'))}
-        = render "dashboard/earnings"
-
-        .row
-          .col-xl-6.col-lg-5
-            = render "dashboard/total_user_visit"
-          .col-xl-6.col-lg-5
-            = render partial: "dashboard/total_user_feedback", locals: { id: "total_summary_feedback", title: t("welcomes.total_user_feedback") }
-          
-      #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel", class: toggle_class_name("active show", active_tab == '#access-information')}
-        = render "dashboard/earnings"
-
-        .row
-          -# Information Access
-          .col-xl-6.col-lg-5
-            = render_component( ChartComponent.new(name: t("welcomes.most_requested_services")) ) do |c|
-              - c.with(:body) { content_tag(:canvas, nil, id: "chart_most_requested_services") }
-
-          .col-xl-6.col-lg-5
-            = render_component( ChartComponent.new(name: t("welcomes.information_access_by_gender")) ) do |c|
-              - c.with(:body) { content_tag(:canvas, nil, id: "chart_information_access_by_gender") }
-
-          .col-xl-6.col-lg-5
-            = render_component( ChartComponent.new(name: t("welcomes.information_access_by"), filterable: true) ) do |c|
-              - c.with(:addon) do
-                %select.access-period
-                  %option{ value: "month" }= t("period.monthly")
-                  %option{ value: "quarter" }= t("period.quarterly")
-                  %option{ value: "year" }= t("period.yearly")
-              - c.with(:body) { content_tag(:canvas, nil, id: "chart_information_access_by_period") }
-
-          .col-xl-6.col-lg-5
-            = render_component( ChartComponent.new(name: t("welcomes.number_access_by_main_services")) ) do |c|
-              - c.with(:body) { content_tag(:canvas, nil, id: "chart_number_access_by_main_services") }
-
-          .col-xl-6.col-lg-5
-            - name = t("welcomes.most_service_tracked_by_periodic")
-            = render_component( ChartComponent.new(name: name, filterable: true) ) do |c|
-              - c.with(:addon) do
-                %select.track-period
-                  %option{ value: "month" }= t("period.monthly")
-                  %option{ value: "quarter" }= t("period.quarterly")
-                  %option{ value: "year" }= t("period.yearly")
-              - c.with(:body) do
-                %canvas#chart_most_service_tracked_periodically
-
-          .col-xl-6.col-lg-5
-            = render_component( ChartComponent.new(name: t("welcomes.ticket_tracking_by_gender")) ) do |c|
-              - c.with(:body) { content_tag(:canvas, nil, id: "chart_ticket_tracking_by_gender") }
-
-      #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel", class: toggle_class_name("active show", active_tab == '#citizen-feedback')}
-        = render "dashboard/earnings"
-
-        .row
-          -# citizen feedback
-          .col-xl-6.col-lg-5
-            = render partial: "dashboard/gender", locals: { title: t("welcomes.feedback_by_gender") }
-
-          .col-xl-6.col-lg-5
-            = render partial: "dashboard/total_user_feedback", locals: { id: "total_citizen_feedback", title: t("welcomes.overall_citizen_feedback") }
-
-          .col-xl-6.col-lg-5
-            = render_component( ChartComponent.new(name: t("welcomes.overall_rating_by_owso")) ) do |c|
-              - c.with(:body) { content_tag(:canvas, nil, id: "chart_overall_rating_by_owso") }
-
-          .col-xl-6.col-lg-5
-            = render_component( ChartComponent.new(name: t("welcomes.owso_feedback_trend")) ) do |c|
-              - c.with(:body) { content_tag(:canvas, nil, id: "chart_owso_feedback_trend") }
-
-          .col-xl-6.col-lg-5
-            = render_component( ChartComponent.new(name: t("welcomes.feedback_by_sub_categories", name: @location_filter.province_name(:short))) ) do |c|
-              - c.with(:subheader) do
-                = "(#{ @location_filter.full_district_list_name.presence || I18n.t("dashboard.all") })"
-                = link_to t("sites.view_detail"), "#", data: { toggle: "modal", target: "#popup", size: "modal-lg", title: t("sites.detail"), element: ".sub_categories", callback: "loadSubCategories" }
-              - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_by_sub_category") }
-      
+    .row
+      .col-12
+        #menuContent.tab-content.pt-5
+          #summary.tab-pane.fade{"aria-labelledby" => "summary-tab", :role => "tabpanel", class: toggle_class_name("active show", (active_tab.blank? || active_tab == '#summary'))}
+            = render "dashboard/earnings"
+            .row
+              .col-lg-6
+                = render partial: "dashboard/total_user_visit", locals: { id: "chart_total_user_visit", title: t("dashboard.total_user_visit") }
+              .col-lg-6
+                = render partial: "dashboard/total_user_feedback", locals: { id: "total_summary_feedback", title: t("welcomes.total_user_feedback") }
+              
+          #access-information.tab-pane.fade{"aria-labelledby" => "access-information-tab", :role => "tabpanel", class: toggle_class_name("active show", active_tab == '#access-information')}
+            = render "dashboard/earnings"
+            .row
+              -# Information Access
+              = render partial: "dashboard/charts/most_requested_services", collection: @query.province_codes_without_other, as: :province_id
+              .col-lg-6
+                = render partial: "dashboard/gender", locals: { title: t("welcomes.feedback_by_gender"), id: "total_user_gender" }
+              .col-lg-6
+                = render partial: "dashboard/charts/information_access", locals: { title: t("welcomes.information_access_by"), id: "chart_information_access_by_period" }
+              .col-lg-6
+                = render( ChartComponent.new(name: t("welcomes.number_access_by_main_services")) ) do |c|
+                  - c.with(:body) { content_tag(:canvas, nil, id: "chart_number_access_by_main_services") }
+                  - c.with(:hint) { t("hint.number_access_by_main_services") }
+              .col-lg-6
+                = render partial: "dashboard/charts/service_tracked", locals: { title: t("welcomes.most_service_tracked_by_periodic"), id: "chart_most_service_tracked_periodically" }
+              .col-lg-6
+                = render( ChartComponent.new(name: t("welcomes.ticket_tracking_by_gender")) ) do |c|
+                  - c.with(:body) { content_tag(:canvas, nil, id: "chart_ticket_tracking_by_gender") }
+                  - c.with(:hint) { t("hint.ticket_tracking_by_gender") }
+          #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel", class: toggle_class_name("active show", active_tab == '#citizen-feedback')}
+            = render "dashboard/earnings"
+            .row
+              -# citizen feedback
+              .col-lg-6
+                = render( ChartComponent.new(name: t("welcomes.information_access_by_gender")) ) do |c|
+                  - c.with(:body) { content_tag(:canvas, nil, id: "gender_feedback") }
+                  - c.with(:hint) { t("hint.information_access_by_gender") }
+              .col-lg-6
+                = render partial: "dashboard/total_user_feedback", locals: { id: "total_citizen_feedback", title: t("welcomes.overall_citizen_feedback") }
+              = render partial: "dashboard/feedback_sub_categories", collection: @query.province_codes_without_other, as: :province_id

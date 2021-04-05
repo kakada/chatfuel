@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < PrivateAccessController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def index
