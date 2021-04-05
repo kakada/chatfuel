@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Sites
-  class ApiKeysController < ApplicationController
+  class ApiKeysController < PrivateAccessController
     before_action :set_site
 
     def show

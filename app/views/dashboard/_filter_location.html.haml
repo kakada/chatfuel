@@ -1,7 +1,7 @@
 .filter-label.mr-2
   =t("dashboard.location")
 .province__select-option{ "data-target" => "#locationModal", "data-toggle" => "modal" }
-  %span.d-block{ data: { toggle: "tooltip", title: @location_filter.district_list_name } }
+  %span.d-block{ data: { toggle: "tooltip", title: @location_filter.described_name } }
     = @location_filter.display_name
 
 #locationModal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
@@ -11,20 +11,17 @@
         %h5#exampleModalLabel.modal-title= t('dashboard.location')
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
-
       .modal-body
         .form-group
           %label= t('dashboard.province')
           %input{type: 'hidden', name: :province_code, value: params[:province_code]}
-          %select.form-control.select#province{"data-pumi-select-collection-label-method" => @location_filter.field_name, "data-pumi-select-collection-url" => "/pumi/provinces", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-populate-on-load" => "true", "data-pumi-select-target" => "district", name: :province_code, 'data-pumi-select-has-hidden-value' => true}
+          %select.form-control.select#province{"data-pumi-select-collection-label-method" => @location_filter.name_i18n, "data-pumi-select-collection-url" => "/pumi/provinces", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-populate-on-load" => "true", "data-pumi-select-target" => "district", name: :province_code, 'data-pumi-select-has-hidden-value' => true}
             %option{value: ""}= t('dashboard.all_province')
-
         .form-group
           %label= t('dashboard.district')
-
           - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
           %input#district-hidden{type: 'hidden', name: "district_code[]", value: district_codes}
-          %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.field_full_name, "data-pumi-select-collection-url" => "/pumi/districts?province_id=FILTER", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
+          %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.name_i18n, "data-pumi-select-collection-url" => "/pumi/districts?province_id=FILTER", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
             %option{value: ""}= t('dashboard.all_district')
 
       .modal-footer

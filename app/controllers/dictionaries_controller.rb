@@ -1,4 +1,4 @@
-class DictionariesController < ApplicationController
+class DictionariesController < PrivateAccessController
   before_action :set_roles, only: [:index, :edit, :create, :update]
   before_action :set_new_variable, only: [:index, :search]
   before_action :set_variables, only: [:index, :edit]

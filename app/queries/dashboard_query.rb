@@ -144,6 +144,12 @@ class DashboardQuery
     district_codes - ["0000"]
   end
 
+  def selected_district_codes
+    district_codes_without_other.select do |code|
+      code.starts_with?(*province_codes_without_other)
+    end
+  end
+
   private
 
     def all_province_codes
