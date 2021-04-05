@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   scope "(:locale)", locale: /en|km/ do
-    root "home#index"
+    root "welcomes#index"
     get :dashboard, to: "dashboard#show"
     
     namespace :dashboard do
@@ -43,6 +43,8 @@ Rails.application.routes.draw do
     end
 
     get :home, to: "home#index"
+
+    get "welcomes/filter"
     get "welcomes/q/access-info", to: "welcomes#access_info"
     get "welcomes/q/service-tracked", to: "welcomes#service_tracked"
     get "welcomes/q/feedback-trend", to: "welcomes#feedback_trend"
@@ -54,7 +56,8 @@ Rails.application.routes.draw do
     resources :quotas, only: [:index]
 
     # override pumi controller
-    get "districts", to: "districts#index", format: 'json'
+    get "provinces", to: "provinces#index", format: "json"
+    get "districts", to: "districts#index", format: "json"
 
     resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
       collection do
@@ -145,6 +148,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       put :me, controller: "sites", action: "check"
       concerns :api_base
+      resources :social_providers, only: [:create]
     end
   end
 

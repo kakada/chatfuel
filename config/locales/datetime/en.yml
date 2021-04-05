@@ -3,6 +3,21 @@ en:
     monthly: monthly
     quarterly: quarterly
     yearly: yearly
+  date:
+    abbr_month_names:
+      - 
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
   datetime:
     distance_in_words:
       about_x_hours:

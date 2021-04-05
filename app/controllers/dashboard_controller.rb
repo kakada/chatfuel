@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class DashboardController < PrivateAccessController
   include ActionView::Helpers::NumberHelper
   include Filterable
 

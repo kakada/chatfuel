@@ -40,4 +40,19 @@ RSpec.describe VariableValue, type: :model do
     it { expect(variable_value.destroy).to be_falsey }
     it { expect(variable_value2.destroy).to be_truthy }
   end
+
+  describe ".type_of_user_feedback" do
+    let!(:feedback1) { create(:variable_value, raw_value: '1', mapping_value_en: 'user feedback', mapping_value_km: 'វាយតម្លៃ') }
+    let!(:feedback2) { create(:variable_value, raw_value: 'feedback', mapping_value_en: 'user feedback', mapping_value_km: 'វាយតម្លៃ') }
+    let!(:non_feedback) { create(:variable_value, raw_value: 'test', mapping_value_en: 'test', mapping_value_km: 'តេស') }
+
+    it 'returns empty' do
+      expect(VariableValue.type_of_user_feedback).to eq []
+    end
+
+    it 'returns its type' do
+      allow(VariableValue).to receive(:user_feedback).and_return(feedback1)
+      expect(VariableValue.type_of_user_feedback).to eq [feedback1, feedback2]
+    end
+  end
 end

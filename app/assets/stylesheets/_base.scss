@@ -109,3 +109,21 @@ body {
   font-size: 0.8em;
   font-weight: 200;
 }
+
+.break-word {
+  display: inline-block;
+  max-width: 100px;
+  vertical-align: middle;
+}
+
+.fa-male {
+  @extend .fa-mars !optional;
+}
+
+.fa-female {
+  @extend .fa-venus !optional;
+}
+
+.fa-other {
+  @extend .fa-genderless !optional;
+}
