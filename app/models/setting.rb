@@ -66,4 +66,12 @@ class Setting < RailsSettings::Base
   def self.default_date_format
     ENV['DEFAULT_DATE_FORMAT'] || '%d/%m/%Y'
   end
+  
+  def self.pilot_province_codes
+    ENV["PILOT_PROVINCE_CODES"].to_s.split(",")
+  end
+
+  def self.visit_duration
+    (ENV["VISIT_DURATION_MINUTE"].to_i || 30).minutes
+  end
 end

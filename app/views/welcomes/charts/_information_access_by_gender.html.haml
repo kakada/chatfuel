@@ -1,0 +1,8 @@
+.card.shadow.mb-4
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between.position-relative
+    .h5.m-0.font-weight-bold.text-primary
+      = t("welcomes.information_access_by_gender")
+
+  .card-body
+    #users_visited_by_genders.pt-4.d-flex.justify-content-around.align-items-center
+      %canvas#chart_information_access_by_gender
