@@ -6,11 +6,13 @@ km:
     access_info: ការទទួលព័ត៌មានរបស់ប្រជាពលរដ្ឋ
     citizen_feedback: មតិយោបល់ប្រជាពលរដ្ឋលើការផ្តល់សេវាច្រក
     province: ខេត្ត
+    provinces: ខេត្ត
     districts: ស្រុក
     time_period: ពេលវេលា
     multi_districts: អ្នកអាចជ្រើសរើសស្រុកច្រើនជាងមួយ
     most_requested_services: សេវាច្រកដែលប្រជាពលរដ្ឋស្វែងរកច្រើនជាងគេ
     most_requested_services_subheading_html: "ស្ថិតក្នុង <strong>%{province_name}</strong>"
+    multi_provinces: អ្នកអាចជ្រើសរើសខេត្តច្រើនជាងមួយ
     information_access_by_gender: ចំនួនមតិយោបល់បែងចែកតាមភេទ
     information_access_by: ការទទួលបានព័ត៌មានតាម
     number_access_by_main_services: ការទទួលព័ត៌មានរបស់ប្រជាពលរដ្ឋ បែងចែកតាមសេវារបស់ច្រក
@@ -18,9 +20,11 @@ km:
     ticket_tracking_by_gender: ការតាមដានសំបុត្រដោយភេទ
     overall_rating_by_owso: មតិយោបល់របស់ប្រជាពលរដ្ឋ បែងចែកតាមច្រក
     owso_feedback_trend: មតិយោបល់ប្រជាពលរដ្ឋប្រៀបធៀបតាមខែ ត្រីមាស និងឆ្នាំ
+    feedback_trend: និន្នាការមតិយោបល់ប្រជាពលរដ្ឋក្នុង %{name}
     feedback_by_sub_categories: មតិយោបល់ប្រជាពលរដ្ឋតាមផ្នែកតូចៗក្នុង %{name}
     feedback_by_sub_categories_title: មតិយោបល់ប្រជាពលរដ្ឋតាមផ្នែកតូចៗ
     overall_citizen_feedback: ចំនួនមតិយោបល់របស់ប្រជាពលរដ្ឋ
     feedback_by_gender: មតិយោបល់តាមភេទ
     total_user_feedback: មតិយោបល់អ្នកប្រើសរុប
     chat_with_us: សូមជជែកជាមួយយើងខ្ញុំ!
+    feedback_by_sub_category: មតិយោបល់តាមប្រភេទរង

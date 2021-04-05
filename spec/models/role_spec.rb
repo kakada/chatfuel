@@ -15,7 +15,7 @@ RSpec.describe Role, type: :model do
   it { is_expected.to have_many(:variables).through(:role_variables) }
 
   describe "constants" do
-    let(:role_names) { %w(site_ombudsman site_admin system_admin) }
+    let(:role_names) { %w(guest site_ombudsman site_admin system_admin) }
 
     it "defines ROLE_NAMES" do
       expect(described_class::ROLE_NAMES).to eq role_names

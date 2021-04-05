@@ -19,6 +19,7 @@ en:
     detail: Detail
     view_detail: view detail
     sub_category_detail: Detail Feedback by sub-category in %{province}
+    feedback_trend_detail: Detail Feedback trends in %{province}
     province: Province
     code: Code
     track_count: Track Count

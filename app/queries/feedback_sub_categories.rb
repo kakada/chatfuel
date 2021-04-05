@@ -15,6 +15,10 @@ class FeedbackSubCategories < FeedbackReport
     end
   end
 
+  def colors
+    Color.generate(values.count)
+  end
+
   private
     def result_set_mapping
       @result_set_mapping ||= accumulate_rating_each_variable(result_set)
