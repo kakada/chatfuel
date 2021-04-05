@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class DashboardController < PrivateAccessController
   include Filterable
 
   before_action :default_start_date

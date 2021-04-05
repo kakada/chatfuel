@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SettingsController < ApplicationController
+class SettingsController < PrivateAccessController
   before_action :authorize_setting
 
   def index

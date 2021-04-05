@@ -98,3 +98,21 @@ body {
   font-size: 12.8px;
   color: #e74a3b;
 }
+
+.break-word {
+  display: inline-block;
+  max-width: 100px;
+  vertical-align: middle;
+}
+
+.fa-male {
+  @extend .fa-mars !optional;
+}
+
+.fa-female {
+  @extend .fa-venus !optional;
+}
+
+.fa-other {
+  @extend .fa-genderless !optional;
+}

@@ -47,11 +47,6 @@ class DashboardQuery
     Session.filter(@options)
   end
 
-  def total_users_visit_by_category
-    user_visit_report = ::UserVisitEachFunction.new(nil, self)
-    user_visit_report.chart_options
-  end
-
   def total_users_visit_each_functions
     variable = Variable.user_visit
 
@@ -62,11 +57,6 @@ class DashboardQuery
     return {} if result.blank?
 
     default_chartjs_color_mapping.merge(result).transform_keys(&:humanize)
-  end
-
-  def users_by_genders
-    users_gender_report = ::UserByGender.new(nil, self)
-    users_gender_report.chart_options
   end
 
   def users_visited_by_each_genders
@@ -98,11 +88,6 @@ class DashboardQuery
     key = "mapping_value_#{ I18n.locale }".to_sym
     user_visit.values.each { |val| default[val.send(key)] = 0 }
     default
-  end
-
-  def ticket_tracking
-    ticket_tracking_report = ::TicketTracking.new(nil, self)
-    ticket_tracking_report.chart_options
   end
 
   def number_of_tracking_tickets
@@ -168,6 +153,12 @@ class DashboardQuery
 
   def district_codes_without_other
     district_codes - ["0000"]
+  end
+
+  def selected_district_codes
+    district_codes_without_other.select do |code|
+      code.starts_with?(*province_codes_without_other)
+    end
   end
 
   private

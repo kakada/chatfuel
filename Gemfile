@@ -13,7 +13,14 @@ gem "jbuilder", "~> 2.7"
 gem "alto_guisso", github: "instedd/alto_guisso", branch: "master"
 gem "alto_guisso_rails", github: "instedd/alto_guisso_rails", branch: "rails-5.1"
 gem "bootsnap", ">= 1.4.2", require: false
+
+# Lock omniauth* version
+# cause break authentication with guisso
+# happen when devise update to 4.7.3
+gem "omniauth", "1.9.1"
+gem "omniauth-openid", "1.0.1"
 gem "devise", "~> 4.7.1"
+
 gem "jquery-rails", "~> 4.3.5"
 gem "verboice", "~> 0.7.0"
 gem "pagy", "~> 3.5"
@@ -36,6 +43,7 @@ gem 'pumi', github: 'radinreth/pumi', branch: 'other-districts', require: 'pumi/
 gem "telegram-bot", "~> 0.15.4"
 gem "sidekiq-scheduler", "~> 3.0.1"
 gem "strip_attributes", "~> 1.11.0"
+
 # api
 gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
@@ -61,6 +69,12 @@ gem 'draper', '~> 4.0.2'
 
 # Explain cron
 gem 'cronex', '~> 0.11.1'
+
+# Gems for dashboard
+gem "social-share-button", "~> 1.2", ">= 1.2.3"
+gem "ahoy_matey", "~> 3.0", ">= 3.0.5"
+gem "meta-tags", "~> 2.13"
+gem "recaptcha", "~> 5.6"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

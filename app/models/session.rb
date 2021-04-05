@@ -19,6 +19,7 @@
 class Session < ApplicationRecord
   include CsvConcern
   include Session::FilterableConcern
+  include Session::TaskableConcern
 
   enum status: %i[incomplete completed]
 

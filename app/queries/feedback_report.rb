@@ -20,11 +20,11 @@ class FeedbackReport < GenericReport
   end
 
   def like
-    Variable.find_by(name: 'feedback_like')
+    Variable.feedback_like
   end
 
   def dislike
-    Variable.find_by(name: 'feedback_dislike')
+    Variable.feedback_dislike
   end
 
   def accumulate_rating_each_variable(rs)
