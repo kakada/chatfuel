@@ -1,0 +1,9 @@
+.card.shadow.mb-4{ role: "figure" }
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    .h5.m-0.font-weight-bold.text-primary
+      = t("welcomes.feedback_by_sub_categories")
+
+  .card-body
+    #feedback_by_sub_category.pt-4.d-flex.justify-content-around.align-items-center
+      %canvas.w-75.chart_feedback_by_sub_category{ "data-id": label }
+      %p.label.m-0

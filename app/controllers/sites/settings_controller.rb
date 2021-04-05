@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Sites
-  class SettingsController < ApplicationController
+  class SettingsController < PrivateAccessController
     before_action :set_site
     before_action :set_site_setting
     

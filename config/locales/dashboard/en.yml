@@ -23,19 +23,18 @@ en:
     owso_info: OWSO Info
     feedback: Feedback
     ticket_tracking: Ticket Tracking
+    overview: User Access
+    accessed: "# Access to OWSO Info"
+    accessed_explain: Number of user access to OWSO Information from Civic Tech Tools
+    submitted: "# Access to OWSO Service(Kamrieng)"
+    submitted_explain: Number of citizen access to OWSO services in Kamrieng district
     delivered: Delivered
     completed: Completed
     choose_dictionary_name: Choose dictionary name
     choose_dictionary_name_to_agg_gender: Choose dictionary name for aggregate gender
     type_search: Type your search...
     district: District
-    all_province: All
-    all_district: All
+    all_province: All Provinces
+    all_district: All Districts
     all: All
     location: Location
-
-    overview: User Access
-    accessed: "# Access to OWSO Info"
-    accessed_explain: Number of user access to OWSO Information from Civic Tech Tools
-    submitted: "# Access to OWSO Service(%{site_name})"
-    submitted_explain: Number of citizen access to OWSO services in %{site_name} district
