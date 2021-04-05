@@ -163,6 +163,7 @@ class DashboardQuery
 
   private
 
+    # All provinces include in piloting areas
     def all_province_codes
       Filters::PumiFilter.pilot_province_codes
     end

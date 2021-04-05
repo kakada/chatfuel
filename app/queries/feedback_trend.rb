@@ -59,6 +59,7 @@ class FeedbackTrend < Feedback
       scope = StepValue.filter(@query.options, @variable.step_values)
       scope = scope.joins(:session)
       scope = scope.where(sessions: { province_id: @query.province_codes })
+      scope = scope.where(sessions: { district_id: @query.district_codes })
       scope = scope.group(location)
       scope = scope.group_by_period(period, "sessions.created_at", format: "%b/%y,%Y")
       scope = scope.group(:variable_value_id)
