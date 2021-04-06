@@ -17,7 +17,7 @@
               -# Information Access
               = render partial: "dashboard/charts/most_requested_services", collection: @query.province_codes_without_other, as: :province_id
               .col-lg-6
-                = render partial: "dashboard/gender", locals: { title: t("welcomes.feedback_by_gender"), id: "total_user_gender" }
+                = render partial: "dashboard/gender", locals: { title: t("dashboard.total_user_gender"), id: "total_user_gender" }
               .col-lg-6
                 = render partial: "dashboard/charts/information_access", locals: { title: t("welcomes.information_access_by"), id: "chart_information_access_by_period" }
               .col-lg-6
