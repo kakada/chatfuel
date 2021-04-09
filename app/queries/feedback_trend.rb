@@ -45,7 +45,6 @@ class FeedbackTrend < Feedback
       collection.each_with_object({}) do |(key, count), hash|
         province_code, duration, value_id = key
         variable_value = VariableValue.find(value_id)
-        month = month = format_label(date)
 
         format_duration = format_label(duration)
         hash[province_code] ||= {}
