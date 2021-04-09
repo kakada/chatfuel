@@ -8,8 +8,6 @@ class ProvincesController < Pumi::ProvincesController
   private
 
   def pilot_provinces
-    Setting.pilot_province_codes.map do |id|
-      Pumi::Province.find_by_id(id)
-    end
+    Pumi::Province.pilots
   end
 end
