@@ -33,14 +33,17 @@ const onProvinceModalSave = function() {
 
     if( provinceCode.length == 0 ) {
       resetProvince();
+      disableDistrict();
       resetDistrict();
     } else  {
       $.get("/welcomes/filter", params, function(result) {
         updateProvince(result, provinceCode);
 
         if ( provinceCode.length == 1 ) {
+          resetDistrict();
           pullDistricts(provinceCode);
         } else if ( provinceCode.length > 1 ) {
+          disableDistrict();
           resetDistrict();
         }
       });
@@ -77,7 +80,6 @@ function resetProvince() {
 }
 
 function resetDistrict() {
-  disableDistrict();
   $("#q_districts").val("");
   $("#show-districts").text(gon.all);
   $(".tooltip-district").attr("data-original-title", "");
