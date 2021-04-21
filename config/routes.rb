@@ -55,7 +55,20 @@ Rails.application.routes.draw do
     resources :templates
     resources :quotas, only: [:index]
 
-    # override pumi controller
+    # always view by default
+    # listview => show the whole frame
+    # listview/showcase => only showcase detail
+    # listview/summary => only summary tab
+    # listview/summary?view=total-visit => only total visit in summary tab
+    # listview/info-access?view=most-request[:bat],ticket-tracking
+    # listview=citizen-feedback
+    resources :listview, only: [:index], as: :listview do
+      collection do
+        get 'showcase'
+      end
+    end
+
+    # public static website
     get "provinces", to: "provinces#index", format: "json"
     get "districts", to: "districts#index", format: "json"
 
