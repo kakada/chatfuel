@@ -9,7 +9,7 @@ OWSO.ListviewIndex = (() => {
   }
 
   function loadform() {
-    Rails.fire(document.getElementById("q"), "submit");
+    $.rails.fire(document.getElementById("q"), "submit");
   }
 
   return { init }
