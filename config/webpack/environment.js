@@ -12,6 +12,7 @@ environment.plugins.prepend(
     moment: "moment/moment",
     toastr: "toastr/toastr",
     Popper: ["popper.js", "default"],
+    Rails: ["@rails/ujs"],
   })
 );
 const svgLoader = {
