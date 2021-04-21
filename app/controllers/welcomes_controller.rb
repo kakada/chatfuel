@@ -1,7 +1,6 @@
 class WelcomesController < PublicAccessController
   include Filterable
-  before_action QueryFilter,  except: :filter, 
-                              if: -> { request.xhr? }
+  before_action QueryFilter,  except: :filter
 
   def index
     respond_to do |format|
