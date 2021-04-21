@@ -99,6 +99,7 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function scrollToForm() {
+    let formQuery = $("#form-query");
     $([document.documentElement, document.body]).animate({
       scrollTop: (formQuery.outerHeight() + formQuery.offset().top)
     }, 500);
