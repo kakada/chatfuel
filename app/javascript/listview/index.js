@@ -2,6 +2,7 @@ import { onDistrictModalSave, onProvinceModalSave } from '../welcomes/locationSa
 
 OWSO.ListviewIndex = (() => {
   function init() {
+    OWSO.DashboardShow.attachEventClickToChartDownloadButton();
 
     loadform()
     onDistrictModalSave()
