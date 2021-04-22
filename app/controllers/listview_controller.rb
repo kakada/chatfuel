@@ -5,11 +5,5 @@ class ListviewController < WelcomesController
   end
 
   def developer
-    respond_to do |format|
-      format.html { render layout: false }
-    end
-  end
-
-  def showcase
   end
 end
