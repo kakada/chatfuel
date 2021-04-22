@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     # listview=citizen-feedback
     resources :listview, only: [:index], as: :listview do
       collection do
+        get 'developer'
         get 'showcase'
       end
     end
