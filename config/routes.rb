@@ -55,7 +55,6 @@ Rails.application.routes.draw do
     resources :templates
     resources :quotas, only: [:index]
 
-    # always view by default
     # listview => show the whole frame
     # listview/showcase => only showcase detail
     # listview/summary => only summary tab
@@ -65,7 +64,6 @@ Rails.application.routes.draw do
     resources :listview, only: [:index], as: :listview do
       collection do
         get 'developer'
-        get 'showcase'
       end
     end
 
