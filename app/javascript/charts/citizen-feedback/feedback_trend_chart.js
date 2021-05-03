@@ -4,7 +4,7 @@ class TrendingFeedbackChart extends GroupBarChart {
   chartId = 'chart_owso_feedback_trend';
 
   format = () => {
-    let { labels, dataset } = gon.feedbackTrend;
+    let { labels, dataset } = this.ds;
     return { labels, datasets: _.map(dataset, (el) => el) };
   }
 }
