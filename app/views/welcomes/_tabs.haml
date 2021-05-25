@@ -25,7 +25,7 @@
                   - c.with(:body) { content_tag(:canvas, nil, id: "chart_number_access_by_main_services") }
                   - c.with(:hint) { t("hint.number_access_by_main_services") }
               .col-lg-6
-                = render partial: "dashboard/charts/service_tracked", locals: { title: t("welcomes.most_service_tracked_by_periodic"), id: "chart_most_service_tracked_periodically", collection: @query.most_tracked_periodic }
+                = render partial: "dashboard/charts/service_tracked", locals: { title: t("welcomes.most_service_tracked_by_periodic"), id: "chart_most_service_tracked_periodically", collection: @query.most_tracked_periodic[:dataset] }
               .col-lg-6
                 = render( ChartComponent.new(name: t("welcomes.ticket_tracking_by_gender")) ) do |c|
                   - c.with(:body) { content_tag(:canvas, nil, id: "chart_ticket_tracking_by_gender") }

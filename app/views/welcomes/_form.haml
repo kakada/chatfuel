@@ -19,7 +19,7 @@
                   = t("welcomes.provinces")
                   %abbr{ title: t("required.string") } *
                 %span.d-block.tooltip-province{ title: "", "data-toggle": "tooltip" }
-                  #show-provinces.form-control{tabindex: 5, "data-toggle": "modal", "data-target" => "#provincesModal"}
+                  #show-provinces.form-control.text-truncate{tabindex: 5, "data-toggle": "modal", "data-target" => "#provincesModal"}
                     = t("all")
                   - province_codes = Array.wrap(params[:province_code]).select(&:present?)
                   = f.input_field :provinces, as: :hidden, name: "province_code[]", multiple: true, class: "form-control text-truncate", value: province_codes, role: "listbox"
@@ -30,7 +30,7 @@
                   = t("welcomes.districts")
                   %abbr{ title: t("required.string") } *
                 %span.d-block.tooltip-district{ title: "", "data-toggle": "tooltip" }
-                  #show-districts.form-control{tabindex: 5, "data-toggle": "modal", "data-target" => "#districtsModal"} 
+                  #show-districts.form-control.text-truncate{tabindex: 5, "data-toggle": "modal", "data-target" => "#districtsModal"} 
                     = t("all")
                   - district_codes = Array.wrap(params[:district_code]).select(&:present?)
                   = f.input_field :districts, as: :hidden, name: "district_code[]", multiple: true, class: "form-control text-truncate", value: district_codes, role: "listbox"
