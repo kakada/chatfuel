@@ -52,7 +52,6 @@ class BarChart extends BaseChart {
               suggestedMax: this._suggestedMax(),
               maxRotation: 0,
               minRotation: 0,
-              ...this.ticksOptions,
             },
           },
         ],
