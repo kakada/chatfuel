@@ -34,6 +34,7 @@ require("dashboard/show");
 require("home/index");
 require("welcomes/index");
 require("listview/index");
+require("developer_guides/index");
 require("dictionaries/edit");
 require("dictionaries/index");
 
