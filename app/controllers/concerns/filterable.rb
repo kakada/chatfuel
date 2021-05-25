@@ -39,7 +39,7 @@ module Filterable
   end
 
   def set_location_filter
-    provinces = compact_province_codes.map { |code| Pumi::Province.find_by_id(code) }
+    provinces = province_codes_params.map { |code| Pumi::Province.find_by_id(code) }
     districts = compact_district_codes.map { |code| Pumi::District.find_by_id(code) }
     @location_filter = Filters::LocationFilter.new(provinces, districts)
   end
