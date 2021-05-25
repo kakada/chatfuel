@@ -18,10 +18,6 @@ module Filterable
     }.with_indifferent_access
   end
 
-  # The reason to split: becuase store
-  # in hidden input text values separated by comma
-  # refactors : store in input that can store 
-  # multiple values such as checkboxes.
   def province_codes_params
     province_codes = Array.wrap(params['province_code']).compact_blank
     province_codes.map { |code| code.split(",") }.flatten
