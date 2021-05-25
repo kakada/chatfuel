@@ -59,10 +59,6 @@ class Setting < RailsSettings::Base
     (ENV["FB_REACHABLE_DAY"] || 1).to_i
   end
 
-  def self.pilot_province_codes
-    ENV["PILOT_PROVINCE_CODES"].to_s.split(",")
-  end
-
   def self.visit_duration
     (ENV["VISIT_DURATION_MINUTE"].to_i || 30).minutes
   end

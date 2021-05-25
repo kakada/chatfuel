@@ -55,12 +55,6 @@ Rails.application.routes.draw do
     resources :templates
     resources :quotas, only: [:index]
 
-    # listview => show the whole frame
-    # listview/showcase => only showcase detail
-    # listview/summary => only summary tab
-    # listview/summary?view=total-visit => only total visit in summary tab
-    # listview/info-access?view=most-request[:bat],ticket-tracking
-    # listview=citizen-feedback
     resources :listview, only: [:index], as: :listview do
       collection do
         get 'developer'
