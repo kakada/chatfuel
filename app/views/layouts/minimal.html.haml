@@ -1,0 +1,14 @@
+!!!
+%html{lang: I18n.locale}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{ name: "turbolinks-visit-control", content: "reload" }
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body{ id: css_class_name, style: 'overflow-y: scroll' }
+    = yield
+    
+    
