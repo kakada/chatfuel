@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :templates
     resources :quotas, only: [:index]
 
+    get 'developer_guides', to: 'developer_guides#index'
     resources :listview, only: [:index], as: :listview do
       collection do
         get 'developer'
