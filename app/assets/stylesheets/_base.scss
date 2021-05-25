@@ -116,3 +116,8 @@ body {
 .fa-other {
   @extend .fa-genderless !optional;
 }
+
+.code {
+  color: #e83e8c;
+  font-family: 'Courier New', Courier, monospace;
+}
