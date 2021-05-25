@@ -22,6 +22,8 @@ class ScatterChart extends LineChart {
           {
             ticks: {
               autoSkip: false,
+              maxRotation: 0,
+              minRotation: 0,
             },
           },
         ],
