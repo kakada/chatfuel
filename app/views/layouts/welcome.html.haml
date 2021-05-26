@@ -22,7 +22,8 @@
     - if Rails.env.production?
       = render "welcomes/chatbot_short_into"
     :javascript
-      if( !OWSO.Util.dev() ) {
+      let { dev, isEmbed } = OWSO.Util
+      if( !dev() && !isEmbed() ) {
         if( $(".fb-customerchat").length == 0 ) {
           var div = document.createElement('div');
           div.className = 'fb-customerchat';
