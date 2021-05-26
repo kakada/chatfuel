@@ -76,4 +76,8 @@ module ApplicationHelper
     roles[role_name.to_sym]
   end
 
+  def embed
+    controller_name == 'reports'
+  end
+
 end
