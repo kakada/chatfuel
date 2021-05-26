@@ -98,10 +98,6 @@
     line-height: 3em;
   }
 
-  .tabs-container {
-    min-height: 300px;
-  }
-
   .secondary-branding-color {
     background-color: #ba0d2f;
     border-color: #ba0d2f;
@@ -118,8 +114,9 @@
     z-index: 996;
     background: white;
 
-    @media (max-width: 992px) {
-      top: 415px;
+    @include media-breakpoint-down(xs) {
+      top: 0;
+      position: relative !important;
     }
   }
 
