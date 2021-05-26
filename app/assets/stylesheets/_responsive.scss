@@ -1,5 +1,11 @@
 @import "responsive_grid_system";
 
+@include media-breakpoint-down(sm) {
+  .w-sm-25 {
+    width: 25%;
+  }
+}
+
 @media (max-width: $large-screen) {
   .filter-options {
     flex-direction: column;
