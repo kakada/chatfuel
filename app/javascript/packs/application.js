@@ -12,6 +12,7 @@ require("startbootstrap-sb-admin-2/js/sb-admin-2.min");
 require("toastr");
 require("select2");
 require("packs/social-share-button.js.erb");
+window.hljs = require("highlight.js");
 
 require("application/pumi");
 window._ = require("underscore");
@@ -33,7 +34,7 @@ require("templates/index");
 require("dashboard/show");
 require("home/index");
 require("welcomes/index");
-require("listview/index");
+require("reports/index");
 require("developer_guides/index");
 require("dictionaries/edit");
 require("dictionaries/index");
