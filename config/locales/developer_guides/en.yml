@@ -1,0 +1,9 @@
+en:
+  developer_guides:
+    title: Developer Guide
+    intro: OWSO provides you many UI style that you can use to embed into your website.
+    code: Embeded Code
+    preview: Sample preview
+    copy: Copy to clipboard
+    view:
+      desktop: Desktop view
