@@ -19,7 +19,7 @@
             = render partial: "welcomes/logo", locals: { tabindex: 1, id: "link-to-usaid-logo" }
       = yield
     
-    - if Rails.env.production?
+    - if Rails.env.production? && !embed
       = render "welcomes/chatbot_short_into"
     :javascript
       let { dev, isEmbed } = OWSO.Util
