@@ -76,7 +76,7 @@ OWSO.WelcomesIndex = (() => {
       decreaseFormControlWidth();
     } 
 
-    if(window.pageYOffset < (pilotHeader.offset().top - scroll.DOWN)) {
+    if(window.pageYOffset == 0 || window.pageYOffset < (pilotHeader.offset().top - scroll.DOWN)) {
       $(".logo-inline").hide();
       formQuery.removeClass('highlight');
       $(".switch-lang").removeClass('inc-top');
