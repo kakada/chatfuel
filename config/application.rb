@@ -56,6 +56,9 @@ module Chatfuel
     # 1. add this option
     config.view_component.render_monkey_patch_enabled = false
     # 2. views: change `render` to `render_component`
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'ALLOWALL'
+    }
   end
 end
 
