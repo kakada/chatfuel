@@ -10,12 +10,13 @@
         .row
           .col-xs-12.col-md-7.mb-3
             %h5 Embeded Code
-            .input-group
-              - code = "<iframe src=\"#{ENV['BASE_URL']}/reports\" style='width: 100%; height: 600px; border: 0;'></iframe>"
-              %input.code.form-control{ type: 'text', value: code }
-              .input-group-append
-                .input-group-text.js-copy{ data: { copy: code, toggle: 'tooltip', placement: 'bottom' }, title: 'Copy to clipboard'}
-                  %i.fa.fa-copy
+            - code = "<iframe src=\"#{ENV['BASE_URL']}/reports\" style='width: 100%; height: 600px; border: 0;'></iframe>"
+
+            .code-block.d-flex
+              %pre.m-0.mr-3
+                %code.html= code
+              %button.btn.btn-sm.btn-primary.align-self-center.js-copy{ data: { copy: code, toggle: 'tooltip', placement: 'bottom' }, title: 'Copy to clipboard'}
+                %i.fa.fa-copy
 
           .col-xs-12.col-md-5
             %h5 Sample preview
