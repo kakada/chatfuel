@@ -1,5 +1,6 @@
 OWSO.Developer_guidesIndex = (() => {
   function init() {
+    hljs.highlightAll();
   }
 
   $(document).on('click', '.js-copy', function() {
