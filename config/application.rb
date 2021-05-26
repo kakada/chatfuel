@@ -60,6 +60,9 @@ module Chatfuel
     # Rotate Logstasher's log for 30 files with 1Mb each
     logstasher_file = Rails.root.join('log', "logstash_#{Rails.env}.log")
     config.logstasher.logger = Logger.new(logstasher_file, 30, 1.megabyte) if File.exists?(logstasher_file)
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'ALLOWALL'
+    }
   end
 end
 
