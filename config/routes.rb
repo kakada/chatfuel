@@ -56,11 +56,7 @@ Rails.application.routes.draw do
     resources :quotas, only: [:index]
 
     get 'developer_guides', to: 'developer_guides#index'
-    resources :listview, only: [:index], as: :listview do
-      collection do
-        get 'developer'
-      end
-    end
+    resources :reports, only: :index
 
     # public static website
     get "provinces", to: "provinces#index", format: "json"
