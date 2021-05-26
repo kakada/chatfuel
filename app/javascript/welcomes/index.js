@@ -99,10 +99,12 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function scrollToForm() {
-    let formQuery = $("#form-query");
-    $([document.documentElement, document.body]).animate({
-      scrollTop: (formQuery.outerHeight() + formQuery.offset().top)
-    }, 500);
+    if(window.matchMedia("(min-width: 767px)").matches) {
+      let formQuery = $("#form-query");
+      $([document.documentElement, document.body]).animate({
+        scrollTop: (formQuery.outerHeight() + formQuery.offset().top)
+      }, 500);
+    }
   }
 
   return { init, renderChart, scrollToForm }
