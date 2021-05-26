@@ -81,4 +81,8 @@ module ApplicationHelper
     { icon: 'fas fa-user-alt', color: '#4e73df' }
   end
 
+  def embed
+    controller_name == 'reports'
+  end
+
 end
