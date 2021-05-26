@@ -1,4 +1,4 @@
-OWSO.ListviewIndex = (() => {
+OWSO.ReportsIndex = (() => {
   function init() {
     autoSubmit()
     OWSO.WelcomesIndex.init();
