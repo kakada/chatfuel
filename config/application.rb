@@ -59,6 +59,9 @@ module Chatfuel
 
     # Rotate Logstasher's log for 30 files with 1Mb each
     config.logstasher.logger = Logger.new(Rails.root.join('log', "logstash_#{Rails.env}.log"), 30, 1.megabyte)
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'ALLOWALL'
+    }
   end
 end
 
