@@ -1,4 +1,4 @@
-#form-query
+#form-query.collapse.show
   = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3", id: "q", role: "search" } do |f|
     = invisible_recaptcha_tags ui: :invisible, "data-badge": "bottomleft"
 
