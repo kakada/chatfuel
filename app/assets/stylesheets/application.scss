@@ -3,6 +3,8 @@
 @import "select2/dist/css/select2.min";
 @import "select2-bootstrap-theme/dist/select2-bootstrap.min";
 @import "highlight.js/scss/a11y-light";
+@import "lightbox2/src/css/lightbox.css";
+@import "custom/lightbox2";
 
 @import "startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min";
 @import "sb-admin-webfonts-override";
@@ -38,3 +40,4 @@
 @import "provincial_usages";
 @import "welcome";
 @import "reports";
+@import "developer_guides";
