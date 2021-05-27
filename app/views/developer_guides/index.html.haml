@@ -1,6 +1,6 @@
 .container
   .row
-    .col-12
+    .col-12.mb-5
       %section.card.p-3.mt-5
         %h1= t('developer_guides.title') 
         %p= t('developer_guides.intro') 
@@ -20,4 +20,25 @@
 
           .col-xs-12.col-md-5
             %h6= t('developer_guides.preview')
-            = image_tag 'desktop-view.png', alt: 'Desktop Preview', class: 'img-fluid img-thumbnail'
+            .preview-container
+              = link_to asset_path('desktop-view.png'), data: { lightbox: 'Desktop view' } do
+                = image_tag 'desktop-view.png', alt: 'Desktop Preview', class: 'img-fluid img-thumbnail'
+
+      %section.card.p-3.mt-3
+        %h4.mb-4= t('developer_guides.view.mobile')
+        .row
+          .col-xs-12.col-md-7.mb-3
+            %h6= t('developer_guides.code')
+            - code = "<iframe src=\"#{ENV['BASE_URL']}/reports\" width=\"500\" height=\"600\" frameborder=\"0\"></iframe>"
+
+            .code-block.d-flex
+              %pre.m-0.mr-3
+                %code.html= code
+              %button.btn.btn-sm.btn-primary.align-self-center.js-copy{ data: { copy: code, toggle: 'tooltip', placement: 'bottom' }, title: t('developer_guides.copy')}
+                %i.fa.fa-copy
+
+          .col-xs-12.col-md-5
+            %h6= t('developer_guides.preview')
+            .preview-container
+              = link_to asset_path('mobile-view.png'), data: { lightbox: 'Mobile view' } do
+                = image_tag 'mobile-view.png', alt: 'Mobile Preview', height: 300, class: 'img-fluid img-thumbnail'
