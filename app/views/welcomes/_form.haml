@@ -45,7 +45,7 @@
                   %abbr{ title: t("required.string") } *
 
                 .input-group.datepicker_date
-                  = f.input_field :time_period, class: "form-control string required input-daterange", tabindex: 6, value: "#{@start_date} - #{@end_date}", name: "q[time_period]", id: "q_time_period", role: "textbox"
+                  = f.input_field :time_period, class: "form-control string required input-daterange", tabindex: 6, value: "#{@start_date} - #{@end_date}", name: "q[time_period]", id: "q_time_period"
                   .input-group-append
                     .input-group-text
                       %i.fas.fa-calendar-alt.fa-sm
@@ -54,7 +54,7 @@
 
               -# submit
               .form-group.col-lg-1.d-flex.align-items-center.justify-content-end
-                = f.button :button, t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, role: "button", id: "btn-search", value: "submitted", data: { disable_with: "<small>#{t("loading")}</small>" }
+                = f.button :button, t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, id: "btn-search", value: "submitted", data: { disable_with: "<small>#{t("loading")}</small>" }
 
 -# modal
 = render( LocationModalComponent.new(component: 'province') ) do |c|
