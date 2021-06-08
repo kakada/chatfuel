@@ -4,3 +4,8 @@
       .col-12
         %h6 &copy; 2020 ONE WINDOW FOR CITIZENS PROJECT ALL RIGHTS RESERVED.
         %p= render "welcomes/disclaimer"
+
+        .separator
+
+        .terms-privacy.text-center
+          = link_to t('welcomes.privacy_policy'), privacy_policy_path, class: 'text-footer-sm'
