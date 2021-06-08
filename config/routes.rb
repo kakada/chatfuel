@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     get "welcomes/q/service-tracked", to: "welcomes#service_tracked"
     get "welcomes/q/feedback-trend", to: "welcomes#feedback_trend"
     get 'provincial-usages', to: 'provincial_usages#index'
-    get 'privacy', to: 'privacy#index'
+    get 'privacy_policy', to: 'privacy_policy#index'
 
     resources :users
     resources :tickets, only: [:index]
