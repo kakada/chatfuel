@@ -25,6 +25,7 @@ OWSO.WelcomesIndex = (() => {
     onClickTabNavigation();
     ssbInterceptor();
     loadCookieConsent();
+    onLocationKeyEnterPress();
   }
 
   function loadCookieConsent() {
@@ -37,9 +38,20 @@ OWSO.WelcomesIndex = (() => {
           "background": "#f1d600"
         }
       },
-      "position": "bottom-right",
+      "position": "bottom-left",
       "content": {
         "href": gon.cookiePolicyPath
+      }
+    });
+  }
+
+  function onLocationKeyEnterPress() {
+    $('#show-provinces, #show-districts').keydown(function(event) {
+      let keyCode = (event.keyCode ? event.keyCode : event.which);
+      const KEY_ENTER = 13;
+
+      if (keyCode == KEY_ENTER) {
+        $(this).trigger('click');
       }
     });
   }
