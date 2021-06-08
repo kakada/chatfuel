@@ -36,8 +36,6 @@ class WelcomesController < PublicAccessController
 
     def set_gon
       @gon_data = Gonify.new(@query).chart_data
-      @gon_data.merge!(t_gon)
-
       gon.push(@gon_data)
     end
 
@@ -46,13 +44,13 @@ class WelcomesController < PublicAccessController
     end
 
     def t_gon
-      {
+      gon.push({
         all: I18n.t("all"),
         no_data: I18n.t("no_data"),
         locale: I18n.locale,
         cookiePolicyPath: cookie_policy_path,
         most_tracked_label: I18n.t("welcomes.most_service_tracked_by_periodic"),
         most_requested_label: I18n.t("welcomes.most_requested_services")
-      }
+      })
     end
 end
