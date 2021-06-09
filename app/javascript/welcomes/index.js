@@ -24,6 +24,24 @@ OWSO.WelcomesIndex = (() => {
     onProvinceModalSave();
     onClickTabNavigation();
     ssbInterceptor();
+    loadCookieConsent();
+  }
+
+  function loadCookieConsent() {
+    cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#000"
+        },
+        "button": {
+          "background": "#f1d600"
+        }
+      },
+      "position": "bottom-right",
+      "content": {
+        "href": "localhost:3000/cookies-policy"
+      }
+    });
   }
 
   function ssbInterceptor() {
