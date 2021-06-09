@@ -39,7 +39,7 @@ OWSO.WelcomesIndex = (() => {
       },
       "position": "bottom-right",
       "content": {
-        "href": "localhost:3000/cookies-policy"
+        "href": gon.cookiePolicyPath
       }
     });
   }
