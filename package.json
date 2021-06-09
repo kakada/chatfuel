@@ -19,6 +19,7 @@
     "chartjs-plugin-datalabels": "^0.7.0",
     "coffee-loader": "^1.0.1",
     "coffeescript": "1.12.7",
+    "cookieconsent": "3",
     "dot-prop": "^5.1.1",
     "downloadjs": "^1.4.7",
     "expose-loader": "^0.7.5",
