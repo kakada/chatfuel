@@ -57,6 +57,7 @@ Rails.application.routes.draw do
 
     get 'developer_guides', to: 'developer_guides#index'
     resources :reports, only: :index
+    get 'cookie-policy', to: 'cookie_policy#index'
 
     # public static website
     get "provinces", to: "provinces#index", format: "json"
