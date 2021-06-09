@@ -50,6 +50,7 @@ class WelcomesController < PublicAccessController
         all: I18n.t("all"),
         no_data: I18n.t("no_data"),
         locale: I18n.locale,
+        cookiePolicyPath: cookie_policy_path,
         most_tracked_label: I18n.t("welcomes.most_service_tracked_by_periodic"),
         most_requested_label: I18n.t("welcomes.most_requested_services")
       }
