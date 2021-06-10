@@ -15,6 +15,7 @@ km:
     items_selector_js: "បង្ហាញ %{items_input} %{item_name} ក្នុង ១ ទំព័រ"
   "0110": ប៉ោយប៉ែត
   "0212": កំរៀង
+  title: សូមស្វាគមន៍មកកាន់ប្រព័ន្ធមើលទិន្នន័យសាធារណៈ
   copyright: បង្កើតឡើងនៅឆ្នាំ ២០២០ InSTEDD
   role: "តួនាទី៖ %{name}"
   login_as: "បានចូលជា៖ %{as}"
