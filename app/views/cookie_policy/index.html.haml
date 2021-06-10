@@ -78,7 +78,7 @@
       %ul.mb-5
         %li
           By phone number: 
-          = link_to ENV['PHONE_NUMBER'], "tel:#{ENV['PHONE_NUMBER']}"
+          = link_to ENV['CONTACT_PHONE_NUMBER'], "tel:#{ENV['CONTACT_PHONE_NUMBER']}"
         %li
           By email: 
-          = mail_to ENV['EMAIL']
+          = mail_to ENV['CONTACT_EMAIL']
