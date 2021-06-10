@@ -1,17 +1,17 @@
 .container
   .row
     .col-xs-12
-      %h1.mt-5.mb-3 Cookies Policy
-      %p.mb-5 Last updated: June 09, 2021
+      %h1.my-5.text-center Cookies Policy
+      %p.mb-3 Last updated: June 09, 2021
 
       %p
         This Cookies Policy explains what Cookies are and how We use them. You should read this policy so You can understand what type of cookies We use, or the information We collect using Cookies and how that information is used.
       %p Cookies do not typically contain any information that personally identifies a user, but personal information that we store about You may be linked to the information stored in and obtained from Cookies. For further information on how We use, store and keep your personal data secure, see our Privacy Policy.
       %p We do not store sensitive personal information, such as mailing addresses, account passwords, etc. in the Cookies We use.
-      %h1 Interpretation and Definitions
-      %h2 Interpretation
+      %h3.mt-5 Interpretation and Definitions
+      %h4.section-header Interpretation
       %p The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.
-      %h2 Definitions
+      %h4.section-header Definitions
       %p For the purposes of this Cookies Policy:
       %ul
         %li
@@ -30,7 +30,7 @@
           %strong You
           means the individual accessing or using the Website, or a company, or any legal entity on behalf of which such individual is accessing or using the Website, as applicable.
       %h1 The use of the Cookies
-      %h2 Type of Cookies We Use
+      %h4.section-header Type of Cookies We Use
       %p Cookies can be "Persistent" or "Session" Cookies. Persistent Cookies remain on your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close your web browser.
       %p We use both session and persistent Cookies for the purposes set out below:
       %ul
@@ -46,7 +46,7 @@
           %p Type: Persistent Cookies
           %p Administered by: Us
           %p Purpose: These Cookies allow us to remember choices You make when You use the Website, such as remembering your login details or language preference. The purpose of these Cookies is to provide You with a more personal experience and to avoid You having to re-enter your preferences every time You use the Website.
-      %h2 Your Choices Regarding Cookies
+      %h4.section-header Your Choices Regarding Cookies
       %p If You prefer to avoid the use of Cookies on the Website, first You must disable the use of Cookies in your browser and then delete the Cookies saved in your browser associated with this website. You may use this option for preventing the use of Cookies at any time.
       %p If You do not accept Our Cookies, You may experience some inconvenience in your use of the Website and some features may not function properly.
       %p If You'd like to delete Cookies or instruct your web browser to delete or refuse Cookies, please visit the help pages of your web browser.
@@ -68,16 +68,17 @@
             For the Safari web browser, please visit this page from Apple:
             %a{:href => "https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac", :rel => "external nofollow noopener", :target => "_blank"} https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac
       %p For any other web browser, please visit your web browser's official web pages.
-      %h2 More Information about Cookies
+      %h4.section-header More Information about Cookies
       %p
         You can learn more about cookies:
         = succeed "." do
           %a{:href => "http://www.aboutcookies.org/", :target => "_blank"} What Are Cookies?
-      %h2 Contact Us
+      %h4.section-header Contact Us
       %p If you have any questions about this Cookies Policy, You can contact us:
       %ul.mb-5
-        %li= "By phone number: #{ENV['PHONE_NUMBER']}"
-        %li= "By email: #{ENV['EMAIL']}"
         %li
-          By visiting this page on our website: 
-          = link_to ENV['SITE_NAME'], ENV['CONTACT_URL'], rel: "external nofollow noopener"
+          By phone number: 
+          = link_to ENV['PHONE_NUMBER'], "tel:#{ENV['PHONE_NUMBER']}"
+        %li
+          By email: 
+          = mail_to ENV['EMAIL']
