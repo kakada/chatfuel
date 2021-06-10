@@ -2,56 +2,97 @@
   .row
     .col-12
       
-      %h1.my-4.text-center
+      %h1.my-5.text-center
+        OW4C Dashboard Website’s
+        %br
         Privacy Policy
 
       .main-content.p-3
-        %p 
-          At OW4C, accessible from 
-          = link_to ENV['BASE_URL'], ENV['BASE_URL'], target: "_blank"
-          , one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by OW4C and how we use it.
-        %p If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.
-        
-        %h4 Consent
-        %p By using our website, you hereby consent to our Privacy Policy and agree to its terms.
-        %h4 Information we collect
-        %p The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.
-        %p If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.
-        %p When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.
-        %h4 How we use your information
-        %p We use the information we collect in various ways, including to:
+        %p This document is intended to inform website visitors about the policy regarding the collection, use, and disclosure of Personal Information for those who utilize this website.
+        %p If you choose to use our website, then you agree to the collection and use of information as set forth in this policy. Your identification will remain anonymous though the Personal Information that we collect is used for providing and improving our website. We will not use or share your Personal Information with anyone except as described in this Privacy Policy.        
+        %p The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which are accessible at OW4C Dashboard unless otherwise defined in this Privacy Policy.
+
+        %h4.section-header Information Collection and Usages
+        %p Please be aware that we do not collect personal information when you visit our website, unless you choose to provide that information. However, we do collect some technical information about your visit to our website.
+        %p When you visit our website, we may store some or all of the following:
         %ul
-          %li Provide, operate, and maintain our website
-          %li Improve, personalize, and expand our website
-          %li Understand and analyze how you use our website
-          %li Develop new products, services, features, and functionality
-          %li Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes
-          %li Send you emails
-          %li Find and prevent fraud
-        %h4 Log Files
-        %p OW4C follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.
-        %h4 Advertising Partners Privacy Policies
-        %p You may consult this list to find the Privacy Policy for each of the advertising partners of OW4C.
-        %p Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on OW4C, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.
-        %p Note that OW4C has no access to or control over these cookies that are used by third-party advertisers.
-        %h4 Third Party Privacy Policies
-        %p OW4C's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.
-        %p You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.
-        %h4 CCPA Privacy Rights (Do Not Sell My Personal Information)
-        %p Under the CCPA, among other rights, California consumers have the right to:
-        %p Request that a business that collects a consumer's personal data disclose the categories and specific pieces of personal data that a business has collected about consumers.
-        %p Request that a business delete any personal data about the consumer that a business has collected.
-        %p Request that a business that sells a consumer's personal data, not sell the consumer's personal data.
-        %p If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.
-        %h4 GDPR Data Protection Rights
-        %p We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:
-        %p The right to access – You have the right to request copies of your personal data. We may charge you a small fee for this service.
-        %p The right to rectification – You have the right to request that we correct any information you believe is inaccurate. You also have the right to request that we complete the information you believe is incomplete.
-        %p The right to erasure – You have the right to request that we erase your personal data, under certain conditions.
-        %p The right to restrict processing – You have the right to request that we restrict the processing of your personal data, under certain conditions.
-        %p The right to object to processing – You have the right to object to our processing of your personal data, under certain conditions.
-        %p The right to data portability – You have the right to request that we transfer the data that we have collected to another organization, or directly to you, under certain conditions.
-        %p If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.
-        %h4 Children's Information
-        %p Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.
-        %p OW4C does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.
+          %li the IP address from which you accessed our site
+          %li the date and time
+          %li the URL of the website from which you linked to our site
+          %li the name of the file or words you searched for
+          %li the pages you visited on our site
+          %li the items clicked on a page
+          %li the browser and operating system used
+        %p We do not collect or track any personal information through these processes. We use this information, in the aggregate, to make our website more useful to visitors - to learn about the number of visitors to our site and the types of technology used, to detect operational problems, and to improve the website's overall security.
+        %p The OW4C Dashboard Website does use third-party services that may collect information used to identify you.
+        %p Below is a link to the privacy policy of third-party service providers used by the website
+        %ul
+          %li= link_to "Google Analytics Privacy Policy", "https://policies.google.com/privacy?hl=en-US", target: "_blank"
+          %li= link_to "Facebook Data Policy", "https://www.facebook.com/policy.php", target: "_blank"
+          %li= link_to "Twitter Privacy Policy", "https://twitter.com/en/privacy", target: "_blank"
+          %li= link_to "LinkedIn Privacy Policy", "https://www.linkedin.com/legal/privacy-policy", target: "_blank"
+
+        %h4.section-header Cookies
+        %p When you visit some websites, their web servers generate pieces of information known as cookies. Cookies are commonly used to recognize your computer in the future.
+        %p OW4C Dashboard website uses single-session cookies to serve technical purposes, like providing seamless navigation through our site. These cookies do not permanently record data, and they are not stored on your computer's hard drive. OW4C Dashboard website session cookies are only available during an active browser session. When you close your browser, the session cookie disappears.
+        %p OW4C Dashboard website also uses multi-session cookies to help us understand how people use the site, and how we can make it better. Traffic statistics are collected anonymously and aggregated, and no information is traceable to any specific individual. OW4C Dashboard website does not collect PII (personally identifiable information) such as social security numbers, date or place of birth.
+        %p Cookies may also be set by the following third-party providers on OW4C Dashboard website
+        %ul
+          %li
+            = link_to "Google Analytics: ", "http://www.google.com/intl/en/privacy/", class: "font-italic", target: "_blank"
+            A tier 2 cookie sets when the page is loaded - used to improve web metrics capabilities.
+          %li
+            = link_to "Messenger: ", "https://www.messenger.com/privacy", class: "font-italic", target: "_blank"
+            A tier 2 cookie sets when the Messenger is interacted - used to maintain the integrity of Messenger statistics.
+        %p Usage of a cookie is in no way linked to any personally identifiable information. You can remove or block cookies by changing the settings of your browser. For Opt-out instructions relating to cookies, please visit:
+        %ul
+          %li 
+            For Chrome browser: 
+            = link_to "https://support.google.com/accounts/answer/61416", "https://support.google.com/accounts/answer/61416", class: "font-italic", target: "_blank"
+          %li
+            For Mozilla Firefox browser: 
+            = link_to "https://support.mozilla.org/en-US/kb/block-websites-storing-cookies-site-data-firefox", "https://support.mozilla.org/en-US/kb/block-websites-storing-cookies-site-data-firefox", class: "font-italic", target: "_blank"
+            
+          %li
+            For Safari browser: 
+            = link_to "https://support.apple.com/en-gb/guide/safari/sfri11471/mac", "https://support.apple.com/en-gb/guide/safari/sfri11471/mac", class: "font-italic", target: "_blank"
+            
+
+        %h4.section-header Service Providers
+        %p We may employ third-party companies and individuals to:
+        %ul
+          %li Facilitate our Service;
+          %li Provide the Service on our behalf;
+          %li Assist us in analyzing how our Service is used.
+
+        %p We want users of this Service to know that these third parties may have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
+
+        %h4.section-header Security
+        %p For site security purposes and to ensure that this service remains available to all users, this computer system employs software programs to monitor network traffic to identify unauthorized attempts to access any inappropriate information or activities, or otherwise cause damage.
+
+        %h4.section-header General Disclaimer & Copyright Notice
+        %p Information presented on this Web site is considered public information and may be distributed or copied freely unless identified as being subject to copyright protection. In return, we request only that OW4C be cited as the source of any information from this site. 
+        %p We strongly recommend that OW4C data be acquired directly from this website and not through other sources that may change the information in some way or exclude material crucial to the understanding of that information. While we make every effort to provide accurate and complete information, some information may change between site updates.
+
+        %h4.section-header Disclaimer of Liability
+        %p Every effort is made to provide accurate and complete information. However, we cannot guarantee that there will be no errors. We make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the contents of this Web site and expressly disclaim liability for errors and omissions in the contents of this Web site. 
+        %p With respect to the content of this site, neither the OW4C employees and contractors make any warranty, expressed or implied or statutorily, including but not limited to the warranties of non-infringement of third party rights, title, and the warranties of merchantability and fitness for a particular purpose with respect to content available from this OW4C website or other internet resources linked to or from it. 
+        %p Additionally, OW4C does not assume any legal liability for the accuracy, completeness, or usefulness of any information, product, or process disclosed herein, nor freedom from computer virus; and does not represent that use of such information, product, or process would not infringe on privately owned rights.
+
+        %h4.section-header Links to Other Sites
+        %p This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by OW4C. Therefore, we strongly advise you to review the Privacy Policy of these websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+
+        %h4.section-header Children’s Privacy
+        %p These Services do not address anyone under the age of 15, unless, there is consent from their parents. We do not knowingly collect personally identifiable information from children under 15 without the consent of their biological parents. In the event we discover that a child under 15 has provided us with personal information without parent’s consent, we immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we can take the necessary actions.
+
+        %h4.section-header Changes to This Privacy Policy
+        %p We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted on this page.
+
+        %h4.section-header Contact Us
+        %p 
+          If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at 
+          != "(#{mail_to("lfoan@nickolglobal.com")}), " 
+          %span.text-nowrap
+            Tel: 
+            = link_to "(+855) 012-907-806", "tel:012907806"
+        .mb-5
