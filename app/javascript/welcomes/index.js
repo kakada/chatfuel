@@ -12,7 +12,6 @@ OWSO.WelcomesIndex = (() => {
   ];
 
   function init() {
-    OWSO.DashboardShow.renderDatetimepicker();
     OWSO.DashboardShow.multiSelectDistricts();
     OWSO.DashboardShow.attachEventClickToChartDownloadButton();
     OWSO.DashboardShow.tooltipChart();
@@ -26,6 +25,13 @@ OWSO.WelcomesIndex = (() => {
     ssbInterceptor();
     loadCookieConsent();
     onLocationKeyEnterPress();
+    renderDatePicker();
+  }
+
+  function renderDatePicker() {
+    $(".input-daterange").datepicker({
+      format: "yyyy/mm/dd",
+    });
   }
 
   function loadCookieConsent() {
