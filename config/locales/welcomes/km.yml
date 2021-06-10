@@ -1,5 +1,7 @@
 km:
   welcomes:
+    daterange:
+      to: ដល់
     header: តំបន់សាកល្បងរបស់យើង
     search: ស្វែងរក
     summary: ទិន្នន័យសង្ខេប
