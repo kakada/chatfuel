@@ -15,6 +15,7 @@ en:
     items_selector_js: "Show %{items_input} %{item_name} per page"
   "0110": Poipet
   "0212": Kamrieng
+  title: Welcome to OW4C's Public Dashboard
   copyright: Developed by 2020 InSTEDD
   role: "Role: %{name}"
   login_as: "Logged in as: %{as}"

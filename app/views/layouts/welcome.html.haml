@@ -4,6 +4,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     = Gon::Base.render_data
     %meta{ name: "turbolinks-visit-control", content: "reload" }
+    %title= t(:title)
     = display_meta_tags SocialMetaTag.to_meta_tags
     = csrf_meta_tags
     = csp_meta_tag
