@@ -1,5 +1,7 @@
 en:
   welcomes:
+    daterange:
+      to: to
     header: Our piloting areas
     search: Search
     summary: Summary
