@@ -2,9 +2,7 @@
   %span.share-icon
     = t("social_share_button.share_on")
 
-  - title = "ទិន្នន័យការិយាល័យច្រកចេញចូលតែមួយ"
-  - image = image_url("fb-sample-share-photo.png")
-  = social_share_button_tag title, url: root_url, image: image, "data-type": "photo"
+  = social_share_button_tag t("meta_tags.site"), url: root_url, image: image_url("fb-sample-share-photo.png"), "data-type": "photo"
 
   .visitor-counter
     %span.badge.badge-pill.badge-info{ data: { toggle: "tooltip" }, title: t("visitor_count") }
