@@ -17,7 +17,6 @@ class SocialMetaTag
         creator: I18n.t('meta_tags.site'),
         image: "#{ helper.image_url("fb-sample-share-photo.png", host: ENV['ENDPOINT_URL']) }",
       },
-      site: I18n.t('meta_tags.site')
     }
   end
 
