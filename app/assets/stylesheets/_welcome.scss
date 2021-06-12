@@ -238,10 +238,4 @@
     padding: 5px 15px;
     border-radius: 10px;
   }
-
-  // override recaptcha position
-  .grecaptcha-badge {
-    bottom: 24px !important;
-    z-index: 9;
-  }
 }
