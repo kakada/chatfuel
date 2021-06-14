@@ -145,9 +145,10 @@ OWSO.WelcomesIndex = (() => {
   function scrollToForm() {
     if (window.matchMedia("(min-width: 767px)").matches) {
       let formQuery = $("#form-query");
+      const PADDING = 40;
       $([document.documentElement, document.body]).animate(
         {
-          scrollTop: formQuery.outerHeight() + formQuery.offset().top,
+          scrollTop: formQuery.offset().top + PADDING,
         },
         500
       );
