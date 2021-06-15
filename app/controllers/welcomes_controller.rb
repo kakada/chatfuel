@@ -50,6 +50,7 @@ class WelcomesController < PublicAccessController
         no_data: I18n.t("no_data"),
         locale: I18n.locale,
         cookiePolicyPath: cookie_policy_path,
+        not_available: I18n.t(:not_available),
         most_tracked_label: I18n.t("welcomes.most_service_tracked_by_periodic"),
         most_requested_label: I18n.t("welcomes.most_requested_services"),
         startDate: @start_date
