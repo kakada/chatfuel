@@ -18,6 +18,7 @@ OWSO.Util = {
     let thiz = this;
 
     Chart.defaults.global.datasets.bar.maxBarThickness = 50;
+    Chart.defaults.global.datasets.horizontalBar.maxBarThickness = 50;
     Chart.plugins.register({
       beforeInit: function (chart) {
         chart.data.labels.forEach(function (label, index, labelsArr) {
@@ -47,7 +48,9 @@ OWSO.Util = {
     });
   },
 
-  isEmbed() { return !!location.pathname.match(/^\/reports$/) },
+  isEmbed() {
+    return !!location.pathname.match(/^\/reports$/);
+  },
 
   preferMultilinesLabel(chart) {
     return (
