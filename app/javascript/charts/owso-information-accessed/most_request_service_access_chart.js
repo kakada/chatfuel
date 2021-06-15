@@ -4,7 +4,7 @@ import { suggestedMax } from "../../utils/bar_chart";
 class MostRequestServiceAccessChart extends FilteredBarChart {
   chartId = "chart_most_requested_services";
 
-  suggestedMax = (data) => suggestedMax(data, 1.5);
+  suggestedMax = (data) => suggestedMax(data, 1.75);
   dataset = () => this.format(this.ds);
 }
 
