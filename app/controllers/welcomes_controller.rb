@@ -50,7 +50,8 @@ class WelcomesController < PublicAccessController
         locale: I18n.locale,
         cookiePolicyPath: cookie_policy_path,
         most_tracked_label: I18n.t("welcomes.most_service_tracked_by_periodic"),
-        most_requested_label: I18n.t("welcomes.most_requested_services")
+        most_requested_label: I18n.t("welcomes.most_requested_services"),
+        startDate: @start_date
       })
     end
 end
