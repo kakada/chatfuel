@@ -21,9 +21,7 @@
               .col-lg-6
                 = render partial: "dashboard/charts/information_access", locals: { title: t("welcomes.information_access_by"), id: "chart_information_access_by_period", collection: @query.access_info }
               .col-lg-6
-                = render( ChartComponent.new(name: t("welcomes.number_access_by_main_services")) ) do |c|
-                  - c.with(:body) { content_tag(:canvas, nil, id: "chart_number_access_by_main_services") }
-                  - c.with(:hint) { t("hint.number_access_by_main_services") }
+                = render partial: "dashboard/charts/main_services_access", locals: { title: t("welcomes.number_access_by_main_services"), id: "chart_number_access_by_main_services" }
               .col-lg-6
                 = render partial: "dashboard/charts/service_tracked", locals: { title: t("welcomes.most_service_tracked_by_periodic"), id: "chart_most_service_tracked_periodically", collection: @query.most_tracked_periodic[:dataset] }
               .col-lg-6
