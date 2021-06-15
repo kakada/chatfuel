@@ -31,6 +31,8 @@ OWSO.WelcomesIndex = (() => {
   function renderDatePicker() {
     $(".input-daterange").datepicker({
       format: "yyyy/mm/dd",
+      endDate: "0d",
+      startDate: gon.startDate,
     });
   }
 
