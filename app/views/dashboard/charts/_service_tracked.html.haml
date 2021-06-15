@@ -2,4 +2,6 @@
   - c.with(:addon) do
     = render_component ChartAddonComponent.new(visibility:collection.blank?, path:"service-tracked", formater: "mostServiceTracked", canvasid: id)
   - c.with(:hint) { t("hint.most_service_tracked_by_periodic") }
-  - c.with(:body) { content_tag(:canvas, nil, id: id) }
+  - c.with(:body) do
+    .w-100{ style: "height: 400px" }
+      = content_tag(:canvas, nil, id: id)

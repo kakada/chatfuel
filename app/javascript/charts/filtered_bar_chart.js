@@ -5,6 +5,11 @@ class FilteredBarChart extends BarChart {
   type = "horizontalBar";
   ancestor = new BarChart();
 
+  childOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+  };
+
   dataTitles = (data) => _.map(data.values, (el) => el.value);
   dataCounts = (data) => _.map(data.values, (el) => el.count);
   format = (ds) => {
