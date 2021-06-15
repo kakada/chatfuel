@@ -2,5 +2,7 @@
   = render_component( ChartComponent.new(name: t("welcomes.most_requested_services")) ) do |c|
     - province_name = province(province_id).send(t_name('name'))
     - c.with(:subheader) { content_tag(:span, t("welcomes.most_requested_services_subheading_html", province_name: province_name)) }
-    - c.with(:body) { content_tag(:canvas, nil, id: "chart_most_requested_services_#{province_id}", class: "chart_most_requested_services", "data-provinceid": province_id) }
+    - c.with(:body) do
+      .w-100{ style: "height: 400px" }
+        = content_tag(:canvas, nil, id: "chart_most_requested_services_#{province_id}", class: "chart_most_requested_services", "data-provinceid": province_id)
     - c.with(:hint) { t("hint.most_requested_services") }
