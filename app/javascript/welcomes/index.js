@@ -26,6 +26,13 @@ OWSO.WelcomesIndex = (() => {
     loadCookieConsent();
     onLocationKeyEnterPress();
     renderDatePicker();
+    onLoadLocationPopup();
+  }
+
+  function onLoadLocationPopup() {
+    $(document).on("shown.bs.modal", ".modal", function (event) {
+      $(event.target).find("select").select2("open");
+    });
   }
 
   function renderDatePicker() {
