@@ -1,5 +1,3 @@
 = render_component( ChartComponent.new(name: title) ) do |c|
-  - c.with(:body) do
-    .w-100.d-flex.align-items-center{ style: "height: 400px" }
-      = content_tag(:canvas, nil, id: id)
+  - c.with(:body) { content_tag(:canvas, nil, id: id) }
   - c.with(:hint) { t("hint.number_access_by_main_services") }
