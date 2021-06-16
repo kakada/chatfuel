@@ -15,19 +15,19 @@
             = render "dashboard/earnings"
             .row
               -# Information Access
-              = render partial: "dashboard/charts/most_requested_services", collection: @query.province_codes_without_other, as: :province_id
               .col-lg-6
                 = render partial: "dashboard/gender", locals: { title: t("dashboard.total_user_gender"), id: "total_user_gender" }
               .col-lg-6
-                = render partial: "dashboard/charts/information_access", locals: { title: t("welcomes.information_access_by"), id: "chart_information_access_by_period", collection: @query.access_info }
+                = render partial: "dashboard/charts/ticket_tracking", locals: { title: t("welcomes.ticket_tracking_by_gender"), id: "chart_ticket_tracking_by_gender" }
               .col-lg-6
                 = render partial: "dashboard/charts/main_services_access", locals: { title: t("welcomes.number_access_by_main_services"), id: "chart_number_access_by_main_services" }
               .col-lg-6
-                = render partial: "dashboard/charts/service_tracked", locals: { title: t("welcomes.most_service_tracked_by_periodic"), id: "chart_most_service_tracked_periodically", collection: @query.most_tracked_periodic[:dataset] }
+                = render partial: "dashboard/charts/information_access", locals: { title: t("welcomes.information_access_by"), id: "chart_information_access_by_period", collection: @query.access_info }
+              = render partial: "dashboard/charts/most_requested_services", collection: @query.province_codes_without_other, as: :province_id
               .col-lg-6
-                = render( ChartComponent.new(name: t("welcomes.ticket_tracking_by_gender")) ) do |c|
-                  - c.with(:body) { content_tag(:canvas, nil, id: "chart_ticket_tracking_by_gender") }
-                  - c.with(:hint) { t("hint.ticket_tracking_by_gender") }
+                = render partial: "dashboard/charts/service_tracked", locals: { title: t("welcomes.most_service_tracked_by_periodic"), id: "chart_most_service_tracked_periodically", collection: @query.most_tracked_periodic[:dataset] }
+
+              
           #citizen-feedback.tab-pane.fade{"aria-labelledby" => "citizen-feedback-tab", :role => "tabpanel", class: toggle_class_name("active show", active_tab == '#citizen-feedback')}
             = render "dashboard/earnings"
             .row
