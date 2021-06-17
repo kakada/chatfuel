@@ -102,19 +102,50 @@ OWSO.DashboardShow = (() => {
         if (proCode.match(/^\d{2}$/)) result = response[proCode];
 
         chart.data = extractor(result);
-        let max = _.max(OWSO.Util.flattenDataset(chart.data.datasets));
-        let padding = chart.config.type == "horizontalBar" ? 1.75 : 1.4;
-        let suggestedMax = Math.round(max * padding);
-
-        chart.options.scales.yAxes[0].ticks.suggestedMax = suggestedMax;
-        chart.options.scales.xAxes[0].ticks.suggestedMax = suggestedMax;
-
+        updateChartOption(chart);
         chart.update();
 
         loaded($spin);
       },
       "json"
     );
+  }
+
+  function updateChartOption(chart) {
+    let max = _.max(flatten(chart.data.datasets));
+    let padding = chart.config.type == "horizontalBar" ? 1.75 : 1.4;
+    let suggestedMax = Math.round(max * padding);
+    let labelsLength = 0,
+      maxRotation = 0,
+      minRotation = 0;
+
+    let yTicks = chart.options.scales.yAxes[0].ticks;
+    let xTicks = chart.options.scales.xAxes[0].ticks;
+
+    if (
+      chart.canvas.id.match(
+        /^chart_owso_feedback_trend|chart_information_access_by_period/
+      )
+    ) {
+      labelsLength = chart.data.labels.length;
+      maxRotation = minRotation = labelsLength < 7 ? 0 : 45;
+    }
+
+    chart.options.scales.yAxes[0].ticks = {
+      ...yTicks,
+      suggestedMax,
+    };
+
+    chart.options.scales.xAxes[0].ticks = {
+      ...xTicks,
+      suggestedMax,
+      maxRotation,
+      minRotation,
+    };
+  }
+
+  function flatten(ds) {
+    return _.flatten(_.map(ds, (d) => d.data));
   }
 
   function loading(spin) {
