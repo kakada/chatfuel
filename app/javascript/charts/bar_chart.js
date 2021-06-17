@@ -2,6 +2,7 @@ import BaseChart from "./base_chart";
 
 class BarChart extends BaseChart {
   type = "bar";
+  rotateOption = {};
 
   dataFormat = () => ({
     minBarLength: 2,
@@ -52,6 +53,7 @@ class BarChart extends BaseChart {
               suggestedMax: this._suggestedMax(),
               maxRotation: 0,
               minRotation: 0,
+              ...this.rotateOption,
             },
           },
         ],
