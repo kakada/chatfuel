@@ -121,6 +121,7 @@ OWSO.DashboardShow = (() => {
 
     let yTicks = chart.options.scales.yAxes[0].ticks;
     let xTicks = chart.options.scales.xAxes[0].ticks;
+    const MAX_LABELS_LENGTH = 7;
 
     if (
       chart.canvas.id.match(
@@ -128,7 +129,7 @@ OWSO.DashboardShow = (() => {
       )
     ) {
       labelsLength = chart.data.labels.length;
-      maxRotation = minRotation = labelsLength < 7 ? 0 : 45;
+      maxRotation = minRotation = labelsLength < MAX_LABELS_LENGTH ? 0 : 45;
     }
 
     chart.options.scales.yAxes[0].ticks = {
