@@ -39,10 +39,9 @@
                   = t("welcomes.time_period")
                   %abbr{ title: t("required.string") } *
 
-                .input-group.input-daterange
-                  = f.input_field :start_date, class: "form-control string required datepicker", tabindex: 6, value: @start_date, name: "start_date", id: "q_start_date"
-                  .input-group-addon= t("welcomes.daterange.to")
-                  = f.input_field :end_date, class: "form-control string required datepicker", tabindex: 6, value: @end_date, name: "end_date", id: "q_end_date"
+                .welcome.date-filter__choose-option
+                  .input-group.date-group.justify-content-between
+                    = render "input_date_range"
 
               -# tab
               = f.input :active_tab, as: :hidden
