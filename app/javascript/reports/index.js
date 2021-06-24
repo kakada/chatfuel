@@ -1,6 +1,6 @@
 OWSO.ReportsIndex = (() => {
   function init() {
-    autoSubmit()
+    autoSubmit();
     OWSO.WelcomesIndex.init();
   }
 
@@ -8,5 +8,5 @@ OWSO.ReportsIndex = (() => {
     $.rails.fire(document.getElementById("q"), "submit");
   }
 
-  return { init }
+  return { init };
 })();
