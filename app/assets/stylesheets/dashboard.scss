@@ -1,6 +1,7 @@
 #dashboard-show,
 #provincial_usages-index,
 #home-index,
+#reports-index,
 #welcomes-index,
 #dashboard-ivr_dashboard-show,
 #dashboard-chatbot_dashboard-show {
@@ -111,8 +112,9 @@
     border: 0;
     background-color: #fff;
     outline: none;
-    min-width: 190px;
+    width: 100%;
     padding: 6px 10px;
+    color: #6e707e;
   }
   .date-filter__choose-option .input-group-text {
     border: 0;
@@ -129,6 +131,10 @@
     padding: 0 10px;
     background-color: white;
     border-radius: 7px;
+  }
+
+  .welcome.date-filter__choose-option {
+    border-color: #d1d3e2;
   }
 
   .daterange-container {
