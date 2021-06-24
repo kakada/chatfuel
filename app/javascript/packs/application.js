@@ -8,7 +8,6 @@ window.$ = require("jquery");
 require("bootstrap");
 require("moment");
 window.chartDataLabels = require("chartjs-plugin-datalabels");
-require("daterangepicker");
 require("startbootstrap-sb-admin-2/js/sb-admin-2.min");
 require("toastr");
 require("select2");
@@ -43,7 +42,6 @@ require("dictionaries/index");
 
 require("shared/sidebar");
 require("view/ticket");
-require("view/chart");
 require("view/sidebar_toggle");
 require("view/users");
 require("provincial_usages");
