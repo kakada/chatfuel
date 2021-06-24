@@ -53,7 +53,8 @@ class WelcomesController < PublicAccessController
         not_available: I18n.t(:not_available),
         most_tracked_label: I18n.t("welcomes.most_service_tracked_by_periodic"),
         most_requested_label: I18n.t("welcomes.most_requested_services"),
-        startDate: @start_date
+        start_date: @start_date,
+        end_date: @end_date
       })
     end
 end
