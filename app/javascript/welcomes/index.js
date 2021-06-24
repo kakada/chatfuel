@@ -13,6 +13,7 @@ OWSO.WelcomesIndex = (() => {
 
   function init() {
     OWSO.DashboardShow.multiSelectDistricts();
+    OWSO.DashboardShow.renderDatetimepicker();
     OWSO.DashboardShow.attachEventClickToChartDownloadButton();
     OWSO.DashboardShow.tooltipChart();
     OWSO.DashboardShow.onChangePeriod();
@@ -25,21 +26,12 @@ OWSO.WelcomesIndex = (() => {
     ssbInterceptor();
     loadCookieConsent();
     onLocationKeyEnterPress();
-    renderDatePicker();
     onLoadLocationPopup();
   }
 
   function onLoadLocationPopup() {
     $(document).on("shown.bs.modal", ".modal", function (event) {
       $(event.target).find("select").select2("open");
-    });
-  }
-
-  function renderDatePicker() {
-    $(".input-daterange").datepicker({
-      format: "yyyy/mm/dd",
-      endDate: "0d",
-      startDate: gon.startDate,
     });
   }
 
