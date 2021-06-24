@@ -212,7 +212,7 @@ OWSO.DashboardShow = (() => {
   }
 
   function multiSelectDistricts() {
-    $(".select:not(.no-select2)")
+    $("select:not(.no-select2,.flatpickr-monthDropdown-months)")
       .select2({
         theme: "bootstrap",
         dropdownAutoWidth: true,
