@@ -2,6 +2,7 @@
 
 module Sites
   class PdfTemplatesController < ApplicationController
+    skip_before_action :authenticate_user_with_guisso!
     include Filterable
 
     before_action :default_start_date
@@ -15,6 +16,7 @@ module Sites
       respond_to do |format|
         format.html { render template: template_path, layout: 'pdf' }
         format.pdf do
+          # send_file Rails.root.join('public/DO-report-20210707144536.pdf'), disposition: 'inline'
           render pdf: pdf_name,
                   template: template_path,
                   layout: 'pdf',
