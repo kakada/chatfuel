@@ -13,6 +13,8 @@
 class Schedule < ApplicationRecord
   include Schedule::WorkerConcern
 
+  validate :ensure_valid_cron
+
   after_save :run!
   after_destroy :remove_schedule
 
@@ -24,5 +26,9 @@ class Schedule < ApplicationRecord
 
   def remove_schedule
     Sidekiq.remove_schedule worker
+  end
+
+  def ensure_valid_cron
+    errors.add(:cron, I18n.t('schedules.invalid_cron_html')) if Fugit.parse(cron).nil?
   end
 end

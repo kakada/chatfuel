@@ -2,3 +2,4 @@ en:
   schedules:
     save: Save
     cancel: Cancel
+    invalid_cron_html: Invalid cron, more detail check <a href="http://www.nncron.ru/help/EN/working/cron-format.htm" target="_blank">cron notation</a>
