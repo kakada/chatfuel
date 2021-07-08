@@ -13,7 +13,10 @@
 class Schedule < ApplicationRecord
   include Schedule::WorkerConcern
 
+  validates :name, :cron, :worker, presence: true
+
   validate :ensure_valid_cron
+  validate :ensure_worker_defined, if: -> { worker.present? }
 
   after_save :run!
   after_destroy :remove_schedule
@@ -29,6 +32,10 @@ class Schedule < ApplicationRecord
   end
 
   def ensure_valid_cron
-    errors.add(:cron, I18n.t('schedules.invalid_cron_html')) if Fugit.parse(cron).nil?
+    errors.add(:cron) if Fugit.parse(cron).nil?
+  end
+
+  def ensure_worker_defined
+    errors.add(:worker, I18n.t('schedules.empty_worker')) if worker.to_s.safe_constantize.nil?
   end
 end
