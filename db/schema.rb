@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_084412) do
+ActiveRecord::Schema.define(version: 2021_07_08_041519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -35,6 +35,48 @@ ActiveRecord::Schema.define(version: 2021_06_25_084412) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "ahoy_events", force: :cascade do |t|
+    t.bigint "visit_id"
+    t.bigint "user_id"
+    t.string "name"
+    t.jsonb "properties"
+    t.datetime "time"
+    t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
+    t.index ["properties"], name: "index_ahoy_events_on_properties", opclass: :jsonb_path_ops, using: :gin
+    t.index ["user_id"], name: "index_ahoy_events_on_user_id"
+    t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
+  end
+
+  create_table "ahoy_visits", force: :cascade do |t|
+    t.string "visit_token"
+    t.string "visitor_token"
+    t.bigint "user_id"
+    t.string "ip"
+    t.text "user_agent"
+    t.text "referrer"
+    t.string "referring_domain"
+    t.text "landing_page"
+    t.string "browser"
+    t.string "os"
+    t.string "device_type"
+    t.string "country"
+    t.string "region"
+    t.string "city"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "utm_source"
+    t.string "utm_medium"
+    t.string "utm_term"
+    t.string "utm_content"
+    t.string "utm_campaign"
+    t.string "app_version"
+    t.string "os_version"
+    t.string "platform"
+    t.datetime "started_at"
+    t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
+    t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
   create_table "identities", force: :cascade do |t|
@@ -90,6 +132,15 @@ ActiveRecord::Schema.define(version: 2021_06_25_084412) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "cron", null: false
+    t.boolean "enabled", default: false
+    t.string "worker", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -150,6 +201,12 @@ ActiveRecord::Schema.define(version: 2021_06_25_084412) do
     t.string "name_km"
     t.index ["deleted_at"], name: "index_sites_on_deleted_at"
     t.index ["name_en"], name: "index_sites_on_name_en"
+  end
+
+  create_table "social_providers", force: :cascade do |t|
+    t.string "provider_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "step_values", force: :cascade do |t|
@@ -301,6 +358,7 @@ ActiveRecord::Schema.define(version: 2021_06_25_084412) do
     t.string "hint", limit: 255, default: ""
     t.string "mapping_value_km", default: ""
     t.boolean "is_criteria", default: false
+    t.string "type_of", default: ""
     t.index ["variable_id"], name: "index_variable_values_on_variable_id"
   end
 

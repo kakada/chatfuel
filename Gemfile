@@ -35,6 +35,7 @@ gem 'pumi', github: 'radinreth/pumi', branch: 'other-districts', require: 'pumi/
 
 gem "telegram-bot", "~> 0.15.4"
 gem "sidekiq-scheduler", "~> 3.0.1"
+# https://github.com/floraison/fugit
 gem "strip_attributes", "~> 1.11.0"
 # api
 gem 'rack-cors'

@@ -4,6 +4,7 @@ require "sidekiq/web"
 require_relative "whitelist"
 
 Rails.application.routes.draw do
+  get 'schedules/index'
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   guisso_for :user
 
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
 
     resources :pdf_templates
     get '/sites/:site_code/pdf_templates/:id/preview', to: 'sites/pdf_templates#show'
+    resources :schedules
 
     resources :sites do
       collection do

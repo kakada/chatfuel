@@ -1,0 +1,35 @@
+telegram
+  bot {
+      username: 
+      token: 
+    }
+
+  group
+
+
+send document to telegram
+  issue filename must start with character
+  timeout
+
+Telegram.bots[:do_report].send_document chat_id:-1001546781560, document: "http://860db6b208d2.ngrok.io/sites/0212/pdf_templates/1-dfsdfsdfssadfadsfsd/preview.pdf", timeout: 50000
+
+. admin create BOT {:username,:token}
+. admin create NEW GROUP for each site ( chat.id )
+. admin add member BOT to EACH NEW GROUP
+. admin promote BOT to send document to groups
+. schedule send the report
+
+TelegramBot.rb -> stand alone bot
+Site -> one SiteSetting
+SiteSetting <- m to m -> telegram_chat_groups
+
+# send report
+  bot = TelegramBot.find_by(username: "OWSO_stg_bot")
+  client = Telegram::Bot::Client.new(bot.token, bot.username)
+  client.set_webhook(url)
+
+  SiteSetting.all.each do |setting|
+    setting.telegram_chat_groups.each do |group|
+      client.send_message(chat_id: group.chat_id, text: "#{setting.site.code} message")
+    end
+  end

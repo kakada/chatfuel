@@ -1,0 +1,9 @@
+.card.shadow.mb-4
+  .card-body
+    = simple_form_for @schedule do |f|
+      = f.input :name
+      = f.input :cron
+      = f.input :worker
+      = f.input :enabled
+      = f.submit t("schedules.save"), class: "btn btn-primary"
+      = link_to t("schedules.cancel"), schedules_path, class: "btn btn-secondary"
