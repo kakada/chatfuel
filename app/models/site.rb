@@ -43,9 +43,6 @@ class Site < ApplicationRecord
   accepts_nested_attributes_for :tickets
 
   has_many :site_settings, dependent: :destroy
-  # site.settings.feedbacks
-  # site.settings.reports
-  # site.settings.first.feedback?
 
   # validations
   validates :name_en, presence: { message: I18n.t("presence") }

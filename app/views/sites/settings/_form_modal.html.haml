@@ -12,17 +12,17 @@
             %label.flex-grow-1= t('site_setting.enable_notification')
             = f.input :enable_notification, label: false, input_html: { id: 'toggle-notification' }
 
-          = f.input :message_frequency, collection: SiteSetting.message_frequencies, selected: @setting.message_frequency_before_type_cast.to_s, :label_method => lambda { |obj| "#{obj[0].titlecase}" }
+          = f.input :message_frequency, collection: SiteFeedbackSetting.message_frequencies, selected: @setting.message_frequency_before_type_cast.to_s, :label_method => lambda { |obj| "#{obj[0].titlecase}" }
 
           = f.input :message_template, wrapper_html: { class: "mb-1"}
-          .mb-3.site_setting_message_template
-            - @setting.message_variables.each do |variable|
-              %small.d-inline-flex.form-text.text-muted.message-setting-variable.pointer= variable
+          -# .mb-3.site_setting_message_template
+          -#   - @setting.message_variables.each do |variable|
+          -#     %small.d-inline-flex.form-text.text-muted.message-setting-variable.pointer= variable
 
           = f.input :digest_message_template, wrapper_html: { class: "mb-1"}
-          .mb-3.site_setting_digest_message_template
-            - @setting.digest_message_variables.each do |variable|
-              %small.d-inline-flex.form-text.text-muted.digest-message-setting-variable.pointer= variable
+          -# .mb-3.site_setting_digest_message_template
+          -#   - @setting.digest_message_variables.each do |variable|
+          -#     %small.d-inline-flex.form-text.text-muted.digest-message-setting-variable.pointer= variable
 
           .form-group
             = hidden_field_tag "site_setting[telegram_chat_group_ids][]", nil
