@@ -16,9 +16,10 @@ class Schedule < ApplicationRecord
   validates :name, :cron, :worker, presence: true
 
   validate :ensure_valid_cron
-  validate :ensure_worker_defined, if: -> { worker.present? }
+  validate :ensure_worker_class_exists, if: -> { worker.present? }
 
-  after_save :run!
+  after_save :set_schedule, if: -> { ready? }
+  after_save :remove_schedule, unless: -> { ready? }
   after_destroy :remove_schedule
 
   def ready?
@@ -27,15 +28,11 @@ class Schedule < ApplicationRecord
 
   private
 
-  def remove_schedule
-    Sidekiq.remove_schedule worker
-  end
-
   def ensure_valid_cron
     errors.add(:cron) if Fugit.parse(cron).nil?
   end
 
-  def ensure_worker_defined
+  def ensure_worker_class_exists
     errors.add(:worker, I18n.t('schedules.empty_worker')) if worker.to_s.safe_constantize.nil?
   end
 end
