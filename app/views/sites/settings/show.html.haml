@@ -9,49 +9,23 @@
 = render "shared/sb-admin/page_heading", title: t("settings.telegram_notification")
 
 %h5 Feedback notification
-- if @setting.present? && @setting.persisted?
-  .card
-    .card-body.telegram-card-body
-      .row.mb-3
-        .col-md-3= "#{t('site_setting.enable_notification')}:"
-        .col-md-8
-          - if @setting.enable_notification?
-            %span.text-primary= t('site_setting.enable')
-          - else
-            %span.text-danger= t('site_setting.disable')
+= render partial: 'feedback_setting', collection: @settings.feedbacks_setting
 
-      .row.mb-3
-        .col-md-3= "#{t('site_setting.message_frequency')}:"
-        .col-md-8= @setting.message_frequency.titlecase
+%h5.mt-5 DO monthly report notification
+= render partial: 'report_setting', collection: @settings.do_reports_setting
 
-      - if @setting.immediately?
-        .row.mb-3
-          .col-md-3= "#{t('site_setting.message_template')}:"
-          .col-md-8= @setting.message_template.presence || '-'
-      - else
-        .row.mb-3
-          .col-md-3= "#{t('site_setting.digest_message_template')}:"
-          .col-md-8= @setting.digest_message_template.presence || '-'
+-# - else
+-#   .card.card-inactive
+-#     .card-body.text-center
+-#       %h4= t('site_setting.no_site_setting_yet')
+-#       %p.text-description= t('site_setting.create_site_setting_description')
 
-      .row.mb-3
-        .col-md-3= "#{t('site_setting.chat_group')}:"
-        .col-md-8= @setting.telegram_chat_groups.pluck(:title).join(", ").presence || '-'
+-#       - if TelegramBot.first.present?
+-#         %button.btn.btn-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
+-#           = t("sites.create_setting")
+-#       - else
+-#         = t('site_setting.to_enable_telegram_html', url: settings_path)
 
-      %button.btn.btn-outline-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
-        = t("site_setting.edit_setting")
-
-- else
-  .card.card-inactive
-    .card-body.text-center
-      %h4= t('site_setting.no_site_setting_yet')
-      %p.text-description= t('site_setting.create_site_setting_description')
-
-      - if TelegramBot.first.present?
-        %button.btn.btn-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
-          = t("sites.create_setting")
-      - else
-        = t('site_setting.to_enable_telegram_html', url: settings_path)
-
-%h5.my-3 DO monthly report notification
+-# 
 
 = render 'form_modal'

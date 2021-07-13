@@ -5,7 +5,8 @@ module Sites
     before_action :set_site
 
     def show
-      @setting = @site.site_setting || @site.build_site_setting
+      @setting = @site.site_settings.build
+      @settings = @site.site_settings
     end
 
     def create
