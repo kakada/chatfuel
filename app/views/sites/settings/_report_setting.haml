@@ -12,5 +12,5 @@
       .col-md-3= "#{t('site_setting.chat_group')}:"
       .col-md-8= report_setting.telegram_chat_groups.pluck(:title).join(", ").presence || '-'
 
-    %button.btn.btn-outline-primary.mt-3{"data-target" => "#form-modal", "data-toggle" => "modal", :type => "button"}
+    %button.btn.btn-outline-primary.mt-3{"data-target" => "#form-report-modal", "data-toggle" => "modal", :type => "button"}
       = t("site_setting.edit_setting")
