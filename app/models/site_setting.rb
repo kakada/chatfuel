@@ -9,6 +9,7 @@
 #  enable_notification     :boolean          default(FALSE)
 #  message_frequency       :integer(4)
 #  message_template        :text
+#  type                    :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  site_id                 :bigint(8)        not null
@@ -23,7 +24,7 @@
 #
 class SiteSetting < ApplicationRecord
   belongs_to :site
-  belongs_to :site_settingable, polymorphic: true
+  # belongs_to :site_settingable, polymorphic: true
   # site_feedback_settings
   #     has_one :site_setting, as: :site_settingable
   # site_report_settings
