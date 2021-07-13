@@ -1,0 +1,2 @@
+class SiteDoReportSetting < SiteSetting
+end
