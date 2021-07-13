@@ -7,9 +7,12 @@ telegram
   group
 
 
+
 send document to telegram
   issue filename must start with character
   timeout
+dupl c bong sokly
+  -> 
 
 Telegram.bots[:do_report].send_document chat_id:-1001546781560, document: "http://860db6b208d2.ngrok.io/sites/0212/pdf_templates/1-dfsdfsdfssadfadsfsd/preview.pdf", timeout: 50000
 
@@ -28,8 +31,31 @@ SiteSetting <- m to m -> telegram_chat_groups
   client = Telegram::Bot::Client.new(bot.token, bot.username)
   client.set_webhook(url)
 
-  SiteSetting.all.each do |setting|
+  SiteSetting.find_each do |setting|
     setting.telegram_chat_groups.each do |group|
-      client.send_message(chat_id: group.chat_id, text: "#{setting.site.code} message")
+      puts group.id
+      # client.send_message(chat_id: group.chat_id, text: "DO report for #{setting.site.code}")
     end
   end
+
+1. use the same bot
+2. select group to notify
+2. set schedule
+
+
+postpone, design schedule and load dynamic,
+  add ui
+  validation
+  test & write spec
+
+continue 115
+  update videos section
+  115 section
+  wip developer guide (some section removed)
+
+update developer guide
+  b kakada guide google data studio, playaround
+  update layout iframes
+investigate issue inconsistent filter other
+demo & deploy
+

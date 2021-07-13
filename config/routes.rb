@@ -46,7 +46,7 @@ Rails.application.routes.draw do
       end
 
       scope module: :sites do
-        resource :setting, only: [:show, :create, :update]
+        resources :settings, only: [:index, :show, :create, :update]
         resource :api_key
       end
     end
