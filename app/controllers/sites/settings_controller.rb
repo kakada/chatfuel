@@ -5,7 +5,8 @@ module Sites
     before_action :set_site
 
     def show
-      @setting = @site.site_settings.build
+      @feedback_setting = @site.site_settings.build(type: 'SiteFeedbackSetting')
+      @do_report_setting = @site.site_settings.build(type: 'SiteDoReportSetting')
       @settings = @site.site_settings
     end
 
