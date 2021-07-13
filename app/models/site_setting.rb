@@ -23,6 +23,14 @@
 #
 class SiteSetting < ApplicationRecord
   belongs_to :site
+  belongs_to :site_settingable, polymorphic: true
+  # site_feedback_settings
+  #     has_one :site_setting, as: :site_settingable
+  # site_report_settings
+  #     has_one :site_setting, as: :site_settingable
+  # site_id, site_settingable_id, site_settingable_type
+  # 1      , 1                  , 
+
   has_many :site_settings_telegram_chat_groups
   has_many :telegram_chat_groups, through: :site_settings_telegram_chat_groups
   validates :message_template, presence: true, if: -> { immediately? }

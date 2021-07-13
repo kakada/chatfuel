@@ -8,6 +8,7 @@
 
 = render "shared/sb-admin/page_heading", title: t("settings.telegram_notification")
 
+%h5 Feedback notification
 - if @setting.present? && @setting.persisted?
   .card
     .card-body.telegram-card-body
@@ -50,5 +51,7 @@
           = t("sites.create_setting")
       - else
         = t('site_setting.to_enable_telegram_html', url: settings_path)
+
+%h5.my-3 DO monthly report notification
 
 = render 'form_modal'
