@@ -1,7 +1,7 @@
 #form-report-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content
-      = simple_form_for @do_report_setting, url: site_setting_path(@site) do |f|
+      = simple_form_for @do_report_setting, url: site_setting_path(@site.id, @do_report_setting.id.to_s) do |f|
         .modal-header
           %h5#exampleModalLabel.modal-title
             DO report schedule notification
@@ -11,7 +11,8 @@
         .modal-body
           .d-flex
             %label.flex-grow-1= t('site_setting.enable_notification')
-            = f.input :enable_notification, label: false, input_html: { id: 'toggle-notification' }
+            = f.input :type, as: :hidden, input_html: { name: 'site_setting[type]' }
+            = f.input :enable_notification, label: false, input_html: { name: 'site_setting[enable_notification]', id: 'toggle-notification' }
 
           .form-group
             = hidden_field_tag "site_setting[telegram_chat_group_ids][]", nil

@@ -57,7 +57,7 @@
                       %i.fas.fa-key
 
                   %li.list-inline-item
-                    = link_to site_setting_path(site_id: site['id']), class: "btn-circle btn-sm btn-success text-decoration-none", data: {toggle: 'tooltip', title: t('sites.telegram_notification')}, style: 'background-color: #0088cc' do
+                    = link_to site_settings_path(site_id: site['id']), class: "btn-circle btn-sm btn-success text-decoration-none", data: {toggle: 'tooltip', title: t('sites.telegram_notification')}, style: 'background-color: #0088cc' do
                       %i.fab.fa-telegram-plane
 
                   %li.list-inline-item

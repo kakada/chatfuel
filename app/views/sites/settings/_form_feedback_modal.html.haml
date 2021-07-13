@@ -1,7 +1,7 @@
 #form-feedback-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content
-      = simple_form_for @feedback_setting, url: site_setting_path(@site) do |f|
+      = simple_form_for @feedback_setting, url: site_setting_path(@site.id, @feedback_setting.id.to_s) do |f|
         .modal-header
           %h5#exampleModalLabel.modal-title= t('sites.telegram_notification')
           %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
@@ -10,16 +10,17 @@
         .modal-body
           .d-flex
             %label.flex-grow-1= t('site_setting.enable_notification')
-            = f.input :enable_notification, label: false, input_html: { id: 'toggle-notification' }
+            = f.input :type, as: :hidden, input_html: { name: 'site_setting[type]' }
+            = f.input :enable_notification, label: false, input_html: { name: 'site_setting[enable_notification]', id: 'toggle-notification' }
 
-          = f.input :message_frequency, collection: SiteFeedbackSetting.message_frequencies, selected: @feedback_setting.message_frequency_before_type_cast.to_s, :label_method => lambda { |obj| "#{obj[0].titlecase}" }
+          = f.input :message_frequency, collection: SiteFeedbackSetting.message_frequencies, selected: @feedback_setting.message_frequency_before_type_cast.to_s, :label_method => lambda { |obj| "#{obj[0].titlecase}" }, input_html: { name: 'site_setting[message_frequency]' }
 
-          = f.input :message_template, wrapper_html: { class: "mb-1"}
+          = f.input :message_template, wrapper_html: { class: "mb-1"}, input_html: { name: 'site_setting[message_template]' }
           .mb-3.site_setting_message_template
             - @feedback_setting.message_variables.each do |variable|
               %small.d-inline-flex.form-text.text-muted.message-setting-variable.pointer= variable
 
-          = f.input :digest_message_template, wrapper_html: { class: "mb-1"}
+          = f.input :digest_message_template, wrapper_html: { class: "mb-1"}, input_html: { name: 'site_setting[digest_message_template]' }
           .mb-3.site_setting_digest_message_template
             - @feedback_setting.digest_message_variables.each do |variable|
               %small.d-inline-flex.form-text.text-muted.digest-message-setting-variable.pointer= variable

@@ -28,6 +28,8 @@ class SiteSetting < ApplicationRecord
   scope :feedbacks_setting, -> { where type: 'SiteFeedbackSetting' }
   scope :do_reports_setting, -> { where type: 'SiteDoReportSetting' }
 
+  validates :type, uniqueness: { scope: :site }
+
   has_many :site_settings_telegram_chat_groups
   has_many :telegram_chat_groups, through: :site_settings_telegram_chat_groups
 end
