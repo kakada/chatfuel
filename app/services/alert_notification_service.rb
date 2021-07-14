@@ -9,14 +9,14 @@ class AlertNotificationService
   end
 
   def notify_immediately
-    setting = SiteSetting.find_by(id: @setting_id, message_frequency: SiteSetting.message_frequencies[:immediately])
+    setting = SiteFeedbackSetting.find_by(id: @setting_id, message_frequency: SiteFeedbackSetting.message_frequencies[:immediately])
     return if setting.nil? || !setting.enable_notification?
 
     send_message(setting, @message)
   end
 
   def send_daily_notification
-    SiteSetting.daily.enable_notification.each do |setting|
+    SiteFeedbackSetting.daily.enable_notification.each do |setting|
       site = setting.site
       feedbacks = StepValue.joins(variable_value: :variable).where(variables: { mark_as: Variable::FEEDBACK }).where(site_id: site.id).where("DATE(step_values.created_at) = ?", Date.today - 1)
 
@@ -28,7 +28,7 @@ class AlertNotificationService
   end
 
   def send_weekly_notification
-    SiteSetting.weekly.enable_notification.each do |setting|
+    SiteFeedbackSetting.weekly.enable_notification.each do |setting|
       site = setting.site
       feedbacks = StepValue.joins(variable_value: :variable).where(variables: { mark_as: Variable::FEEDBACK }).where(site_id: site.id).where("DATE(step_values.created_at) >= ?", 1.week.ago)
 
