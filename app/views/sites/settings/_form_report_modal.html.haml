@@ -12,7 +12,7 @@
           .d-flex
             %label.flex-grow-1= t('site_setting.enable_notification')
             = f.input :type, as: :hidden, input_html: { name: 'site_setting[type]' }
-            = f.input :enable_notification, label: false, input_html: { name: 'site_setting[enable_notification]', id: 'toggle-notification' }
+            = f.input :enable_notification, label: false, input_html: { name: 'site_setting[enable_notification]', class: 'toggle-notification' }
 
           .form-group
             = hidden_field_tag "site_setting[telegram_chat_group_ids][]", nil

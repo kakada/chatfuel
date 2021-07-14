@@ -1,17 +1,11 @@
-%ol.breadcrumb
-  %li.breadcrumb-item
-    = link_to t("sidebar.sites"), sites_path
-  %li.breadcrumb-item
-    = link_to @site.name_km, site_path(@site)
-  %li.breadcrumb-item.active
-    = t('sites.telegram_notification')
-
+= render "breadcrumb"
 = render "shared/sb-admin/page_heading", title: t("settings.telegram_notification")
 
-%h5 
+%h5
   = t("settings.feedback_notification")
 - if @settings.feedbacks_setting.present?
   = render partial: 'feedback_setting', collection: @settings.feedbacks_setting
+  = render 'form_feedback_modal'
 - else
   = render partial: 'no_feedback_setting'
 
@@ -19,13 +13,6 @@
   = t 'settings.do_monthly_report'
 - if @settings.do_reports_setting.present?
   = render partial: 'report_setting', collection: @settings.do_reports_setting
+  = render 'form_report_modal'
 - else
   = render partial: 'no_do_report_setting'
-
--# - else
--#   
-
--# 
-
-= render 'form_feedback_modal'
-= render 'form_report_modal'

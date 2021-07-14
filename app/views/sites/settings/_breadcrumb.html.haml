@@ -1,0 +1,7 @@
+%ol.breadcrumb
+  %li.breadcrumb-item
+    = link_to t("sidebar.sites"), sites_path
+  %li.breadcrumb-item
+    = link_to @site.name_i18n, site_path(@site)
+  %li.breadcrumb-item.active
+    = t('sites.telegram_notification')
