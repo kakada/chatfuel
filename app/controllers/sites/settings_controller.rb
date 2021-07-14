@@ -6,12 +6,12 @@ module Sites
     before_action :set_site_setting
     
     def index
-      @feedback_setting = @settings.feedbacks_setting.first || @site.site_settings.build(type: 'SiteFeedbackSetting')
-      @do_report_setting = @settings.do_reports_setting.first || @site.site_settings.build(type: 'SiteDoReportSetting')
+      @feedback_setting = @settings.feedbacks_setting.first || @settings.build(type: 'SiteFeedbackSetting')
+      @do_report_setting = @settings.do_reports_setting.first || @settings.build(type: 'SiteDoReportSetting')
     end
 
     def create
-      @setting = @site.site_settings.build(site_setting_params)
+      @setting = @settings.build(site_setting_params)
       if @setting.save
         flash[:notice] = I18n.t("sites.succesfully_create_setting")
       else
@@ -22,7 +22,7 @@ module Sites
     end
 
     def update
-      @setting = @site.site_settings.find(params[:id])
+      @setting = @settings.find(params[:id])
 
       if @setting.update(site_setting_params)
         flash[:notice] = I18n.t("sites.succesfully_update_setting")
