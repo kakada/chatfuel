@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_061812) do
 
   create_table "schedules", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "day", null: false
+    t.string "day", null: false
     t.string "time", null: false
     t.boolean "enabled", default: false
     t.string "worker", default: ""

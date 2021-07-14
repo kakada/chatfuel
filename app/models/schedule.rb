@@ -3,7 +3,7 @@
 # Table name: schedules
 #
 #  id         :bigint(8)        not null, primary key
-#  day        :integer(4)       not null
+#  day        :string           not null
 #  enabled    :boolean          default(FALSE)
 #  name       :string           not null
 #  time       :string           not null

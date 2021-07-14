@@ -27,6 +27,7 @@ class SiteSetting < ApplicationRecord
 
   scope :feedbacks_setting, -> { where type: 'SiteFeedbackSetting' }
   scope :do_reports_setting, -> { where type: 'SiteDoReportSetting' }
+  scope :enable_notification, -> { where(enable_notification: true) }
 
   validates :type, uniqueness: { scope: :site }
 

@@ -7,6 +7,10 @@
         = f.input_field :day, min: 1, value: 1, class: "form-control d-inline-block cron-control"
         day, at 
         = f.input_field :time, type: "time", class: "form-control d-inline-block cron-control cron-time"
+
+      - if Rails.env == 'development'
+        %input#check_dev{ type: 'checkbox' }
+        %label{for: "check_dev"} This option is only available in development (testing)
       = f.input :worker
       = f.input :enabled
       = f.submit t("schedules.save"), class: "btn btn-primary"

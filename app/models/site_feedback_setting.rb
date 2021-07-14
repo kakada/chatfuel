@@ -11,7 +11,6 @@ class SiteFeedbackSetting < SiteSetting
   FEEDBACK_MESSAGE = "{{feedback_message}}"
   FEEDBACK_COUNT = "{{feedback_count}}"
 
-  scope :enable_notification, -> { where(enable_notification: true) }
 
   def message_variables
     [FEEDBACK_MESSAGE]
