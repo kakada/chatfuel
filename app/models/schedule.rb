@@ -3,19 +3,19 @@
 # Table name: schedules
 #
 #  id         :bigint(8)        not null, primary key
-#  cron       :string           not null
+#  day        :integer(4)       not null
 #  enabled    :boolean          default(FALSE)
 #  name       :string           not null
+#  time       :string           not null
 #  worker     :string           default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 class Schedule < ApplicationRecord
+  attr_reader :cron
   include Schedule::WorkerConcern
 
-  validates :name, :cron, :worker, presence: true
-
-  validate :ensure_valid_cron
+  validates :name, :worker, presence: true
   validate :ensure_worker_class_exists, if: -> { worker.present? }
 
   after_save :set_schedule, if: -> { ready? }
@@ -26,10 +26,15 @@ class Schedule < ApplicationRecord
     enabled? && worker.present?
   end
 
+  def cron_description
+    Cronex::ExpressionDescriptor.new(cron).description
+  end
+
   private
 
-  def ensure_valid_cron
-    errors.add(:cron) if Fugit.parse(cron).nil?
+  def cron
+    hour, min = time.split(":")
+    @cron = "#{min} #{hour} #{day} * *"
   end
 
   def ensure_worker_class_exists

@@ -60,6 +60,8 @@ gem 'tilt', '~> 2.0', '>= 2.0.10'
 # decorator
 gem 'draper', '~> 4.0.2'
 
+gem 'cronex', '~> 0.11.1'
+
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "rspec-rails", "~> 4.0.0.beta4"

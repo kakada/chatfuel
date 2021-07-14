@@ -1,8 +1,15 @@
 .card.shadow.mb-4
   .card-body
+    = @schedule.errors.full_messages.each do |e|
+      %span= e
     = simple_form_for @schedule do |f|
       = f.input :name
-      = f.input :cron, error: t("schedules.invalid_cron_html")
+
+      .form-group
+        %label.d-block Repeat every month on
+        = f.input_field :day, min: 1, value: 1, class: "form-control d-inline-block w-25"
+        day, at 
+        = f.input_field :time, type: 'time', class: "form-control d-inline-block w-25"
       = f.input :worker
       = f.input :enabled
       = f.submit t("schedules.save"), class: "btn btn-primary"

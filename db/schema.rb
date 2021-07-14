@@ -138,7 +138,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_061812) do
 
   create_table "schedules", force: :cascade do |t|
     t.string "name", null: false
-    t.string "cron", null: false
+    t.integer "day", null: false
+    t.string "time", null: false
     t.boolean "enabled", default: false
     t.string "worker", default: ""
     t.datetime "created_at", precision: 6, null: false

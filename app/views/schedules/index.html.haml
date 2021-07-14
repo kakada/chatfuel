@@ -18,7 +18,7 @@
             %tr
               %th{:scope => "row"}= index + 1
               %td= schedule.name
-              %td= schedule.cron
+              %td= schedule.cron_description
               %td
                 = link_to 'edit', edit_schedule_path(schedule)
                 = link_to 'delete', schedule_path(schedule), method: :delete, 'data-confirm': 'are you sure?'
