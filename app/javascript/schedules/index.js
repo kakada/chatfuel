@@ -1,10 +1,10 @@
 OWSO.SchedulesNew = (() => {
   function init() {
-    test();
+    enableManualCron();
   }
 
-  function test() {
-    $("#check_dev").change(function (e) {
+  function enableManualCron() {
+    $("#enable_manual_cron").change(function (e) {
       if (this.checked) {
         $(".cron-control").prop("type", "text");
       } else {
