@@ -2,5 +2,16 @@ en:
   schedules:
     save: Save
     cancel: Cancel
-    invalid_cron_html: Invalid cron, more detail check <a href="http://www.nncron.ru/help/EN/working/cron-format.htm" target="_blank">cron notation</a>
-    empty_worker: not exists
+    repeat: Repeat every month on
+    day: day
+    at: at
+    manual: Enable manual cron setting
+    edit_title: Edit schedule
+    new_title: New schedule
+    title: Schedules
+    name: Name
+    time: Time
+    edit: Edit
+    delete: Delete
+    confirm_msg: Are you sure?
+    enabled: Enabled

@@ -1,4 +1,4 @@
-= render "shared/sb-admin/page_heading", title: "Schedules"
+= render "shared/sb-admin/page_heading", title: t("schedules.title")
 
 .card.shadow.mb-4
   .card-body
@@ -10,8 +10,8 @@
         %thead
           %tr
             %th{:scope => "col"} #
-            %th{:scope => "col"} name
-            %th{:scope => "col"} cron
+            %th{:scope => "col"}= t "schedules.name"
+            %th{:scope => "col"}= t "schedules.time"
             %th{:scope => "col"} &nbsp;
         %tbody
           - @schedules.each_with_index do |schedule, index|
@@ -20,5 +20,5 @@
               %td= schedule.name
               %td= schedule.cron_description
               %td
-                = link_to 'edit', edit_schedule_path(schedule)
-                = link_to 'delete', schedule_path(schedule), method: :delete, 'data-confirm': 'are you sure?'
+                = link_to t("schedules.edit"), edit_schedule_path(schedule)
+                = link_to t("schedules.delete"), schedule_path(schedule), method: :delete, 'data-confirm': t("schedules.confirm_msg")
