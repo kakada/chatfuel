@@ -8,4 +8,10 @@ module Schedule::WorkerConcern
   def remove_schedule
     Sidekiq.remove_schedule(worker)
   end
+
+  private
+
+  def worker
+    'DoReportNotificationJob'
+  end
 end
