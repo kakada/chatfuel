@@ -24,8 +24,6 @@ class Schedule < ApplicationRecord
     Cronex::ExpressionDescriptor.new(cron).description
   end
 
-  private
-
   def cron
     hour, min = time.split(":")
     @cron = "#{min} #{hour} #{day} * *"
