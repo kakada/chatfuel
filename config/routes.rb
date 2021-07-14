@@ -96,7 +96,7 @@ Rails.application.routes.draw do
 
   # Telegram
   telegram_webhook TelegramWebhooksController
-  telegram_webhook TelegramDoReportWebhooksController, :do_report
+  # telegram_webhook TelegramDoReportWebhooksController, :do_report
 
   concern :api_base do
     resources :sites, param: :site_code, only: [:update]
