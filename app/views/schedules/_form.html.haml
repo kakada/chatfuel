@@ -11,7 +11,6 @@
       - if Rails.env == "development"
         %input#enable_manual_cron{ type: "checkbox" }
         %label{for: "enable_manual_cron"} Enable manual cron setting
-      = f.input :worker
       = f.input :enabled
       = f.submit t("schedules.save"), class: "btn btn-primary"
       = link_to t("schedules.cancel"), schedules_path, class: "btn btn-secondary"

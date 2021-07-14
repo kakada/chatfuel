@@ -141,7 +141,6 @@ ActiveRecord::Schema.define(version: 2021_07_13_061812) do
     t.string "day", null: false
     t.string "time", null: false
     t.boolean "enabled", default: false
-    t.string "worker", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

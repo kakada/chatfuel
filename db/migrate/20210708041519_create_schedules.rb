@@ -5,7 +5,6 @@ class CreateSchedules < ActiveRecord::Migration[6.0]
       t.string :day, null: false
       t.string :time, null: false
       t.boolean :enabled, default: false
-      t.string :worker, default: ""
 
       t.timestamps
     end
