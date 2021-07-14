@@ -35,7 +35,6 @@ gem 'pumi', github: 'radinreth/pumi', branch: 'other-districts', require: 'pumi/
 
 gem "telegram-bot", "~> 0.15.4"
 gem "sidekiq-scheduler", "~> 3.0.1"
-# https://github.com/floraison/fugit
 gem "strip_attributes", "~> 1.11.0"
 # api
 gem 'rack-cors'
@@ -60,6 +59,7 @@ gem 'tilt', '~> 2.0', '>= 2.0.10'
 # decorator
 gem 'draper', '~> 4.0.2'
 
+# Explain cron
 gem 'cronex', '~> 0.11.1'
 
 group :development, :test do

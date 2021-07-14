@@ -1,6 +1,8 @@
 class SchedulesController < ApplicationController
+  before_action :set_schedule, only: [:edit, :update, :destroy]
+
   def index
-    @schedules = Schedule.all
+    @pagy, @schedules = pagy(Schedule.order(updated_at: :desc))
   end
 
   def new
@@ -17,11 +19,9 @@ class SchedulesController < ApplicationController
   end
 
   def edit
-    @schedule = Schedule.find(params[:id])
   end
 
   def update
-    @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
       redirect_to schedules_path
     else
@@ -30,12 +30,15 @@ class SchedulesController < ApplicationController
   end
 
   def destroy
-    @schedule = Schedule.find(params[:id])
     @schedule.destroy
     redirect_to schedules_path
   end
 
   private
+
+  def set_schedule
+    @schedule = Schedule.find(params[:id])
+  end
 
   def schedule_params
     params.require(:schedule).permit(:name, :worker, :enabled, :day, :time)
