@@ -1,6 +1,7 @@
 OWSO.SchedulesNew = (() => {
   function init() {
     enableManualCron();
+    initBootstrapToggle();
   }
 
   function enableManualCron() {
@@ -12,6 +13,10 @@ OWSO.SchedulesNew = (() => {
         $(".cron-control.cron-time").prop("type", "time");
       }
     });
+  }
+
+  function initBootstrapToggle() {
+    $(".toggle-control").bootstrapToggle();
   }
 
   return { init };

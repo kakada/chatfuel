@@ -10,8 +10,8 @@
         = f.input_field :time, type: "time", class: "form-control d-inline-block cron-control cron-time"
 
       - if ENV['MANUAL_ENABLED'] == 'true'
-        %input#enable_manual_cron{ type: "checkbox" }
+        %input.toggle-control#enable_manual_cron{ type: "checkbox" }
         %label{for: "enable_manual_cron"}= t "schedules.manual"
-      = f.input :enabled, label: t("schedules.enabled")
+      = f.input :enabled, label: t("schedules.enabled"), input_html: { class: 'toggle-control' }
       = f.submit t("schedules.save"), class: "btn btn-primary"
       = link_to t("schedules.cancel"), schedules_path, class: "btn btn-secondary"
