@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     end
 
     resources :pdf_templates
-    get '/sites/:site_code/pdf_templates/:id/preview', to: 'sites/pdf_templates#show'
+    get '/sites/:site_code/pdf_templates/:id/preview', to: 'sites/pdf_templates#show', as: :site_pdf_template_preview
     resources :schedules
 
     resources :sites do
