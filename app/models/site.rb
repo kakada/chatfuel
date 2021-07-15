@@ -26,6 +26,8 @@
 class Site < ApplicationRecord
   attr_accessor :file
 
+  SITE_CODE_DIGIT_COUNT = 4
+
   # soft delete
   acts_as_paranoid
 
@@ -87,6 +89,10 @@ class Site < ApplicationRecord
 
   def pumi_province
     Pumi::Province.find_by_id(province_id) if province_id
+  end
+
+  def code_param
+    "#{site_code}-#{name}".parameterize
   end
 
   private

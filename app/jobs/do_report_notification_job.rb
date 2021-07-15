@@ -8,7 +8,7 @@ class DoReportNotificationJob < ApplicationJob
     SiteDoReportSetting.enable_notification.includes(:site).find_each do |setting|
       setting.telegram_chat_groups.each do |group|
         #client.send_message(chat_id: group.chat_id, text: "DO report for #{setting.site.code}")
-        client.send_document(chat_id: group.chat_id, document: document_url(setting.site.code))
+        client.send_document(chat_id: group.chat_id, document: document_url(setting.site.code_param))
       end
     end
   end
@@ -27,7 +27,7 @@ class DoReportNotificationJob < ApplicationJob
     @pdf_template ||= PdfTemplate.first
   end
 
-  def document_url(site_code)
-    site_pdf_template_preview_path(site_code: site_code, id: pdf_template.id, format: :pdf)
+  def document_url(site_code_param)
+    site_pdf_template_preview_url(site_code: site_code_param, id: pdf_template, format: :pdf, host: ENV["HOST_#{Rails.env}".upcase])
   end
 end

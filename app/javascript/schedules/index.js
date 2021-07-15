@@ -16,3 +16,5 @@ OWSO.SchedulesNew = (() => {
 
   return { init };
 })();
+
+OWSO.SchedulesEdit = OWSO.SchedulesNew;
