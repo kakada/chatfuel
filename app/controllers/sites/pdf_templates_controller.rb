@@ -11,7 +11,7 @@ module Sites
     before_action :set_gon
 
     def show
-      @pdf_template = PdfTemplate.find(params[:id]).decorate
+      @pdf_template = PdfTemplate.find(number_suffix(params[:id])).decorate
 
       respond_to do |format|
         format.html { render template: template_path, layout: 'pdf' }
@@ -25,8 +25,9 @@ module Sites
                   encoding: 'utf8',
                   page_size: 'A4',
                   header: { right: '[page] of [topage]' },
+                  content_type: 'application/pdf',
                   # Delay for chartjs to execute before render pdf
-                  javascript_delay: 100
+                  javascript_delay: ENV['JS_DELAY']
         end
       end
     end
@@ -42,7 +43,7 @@ module Sites
     end
 
     def pdf_name
-      "DO-report-#{DateTime.current.strftime("%Y%m%d%H%M%S")}"
+      "DO-report-#{DateTime.current.strftime("%Y%m%d%H%M%S")}".downcase
     end
 
     def default_start_date

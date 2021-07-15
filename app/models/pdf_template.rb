@@ -15,7 +15,7 @@ class PdfTemplate < ApplicationRecord
   validates :name, presence: true
   validates :lang_code, inclusion: { in: ALLOWED_LANGUAGE_CODES }
 
-  def to_param
-    "#{id}-#{name}".parameterize
+  def name_param
+    "#{name}-#{id}".parameterize.underscore
   end
 end

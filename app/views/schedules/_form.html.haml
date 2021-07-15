@@ -10,7 +10,7 @@
         = t "schedules.at" 
         = f.input_field :time, type: "time", class: "form-control d-inline-block cron-control cron-time"
 
-      - if Rails.env == "development"
+      - if ENV['MANUAL_ENABLED'] == 'true'
         %input#enable_manual_cron{ type: "checkbox" }
         %label{for: "enable_manual_cron"}= t "schedules.manual"
       = f.input :enabled, label: t("schedules.enabled")

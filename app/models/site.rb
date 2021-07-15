@@ -91,8 +91,8 @@ class Site < ApplicationRecord
     Pumi::Province.find_by_id(province_id) if province_id
   end
 
-  def code_param
-    "#{site_code}-#{name}".parameterize
+  def name_param
+    "#{name_en}-#{code}".parameterize.underscore
   end
 
   private
