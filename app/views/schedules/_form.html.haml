@@ -3,10 +3,9 @@
     = simple_form_for @schedule do |f|
       = f.input :name, label: t("schedules.name")
       .form-group
-        %label.d-block= t "schedules.repeat"
-        = f.input_field :day, type: "number", min: 1, value: 1, class: "form-control d-inline-block cron-control"
+        %label= t "schedules.repeat"
         = t "schedules.day"
-        ,
+        = f.input_field :day, type: "number", min: 1, value: 1, class: "form-control d-inline-block cron-control"
         = t "schedules.at" 
         = f.input_field :time, type: "time", class: "form-control d-inline-block cron-control cron-time"
 
