@@ -31,6 +31,7 @@ RSpec.describe PdfTemplatesController, type: :controller do
   it "PUT :update" do
     put :update, params: { id: @pdf_template.id, pdf_template: { name: 'new template'} }
     
+    @pdf_template.reload
     expect(response).to have_http_status(:found)
     expect(response).to redirect_to(@pdf_template)
   end

@@ -23,7 +23,7 @@ module Filterable
   end
 
   def params_district_code
-    district_codes = params['district_code'] || params['site_code'][0...Site::SITE_CODE_DIGIT_COUNT]
+    district_codes = params['district_code'] || params['site_code'].to_s[0...Site::SITE_CODE_DIGIT_COUNT]
     return [] unless district_codes.present?
 
     Array.wrap(district_codes).map { |code| code.split(",") }.flatten
