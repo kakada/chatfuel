@@ -45,6 +45,6 @@ class SchedulesController < ApplicationController
   end
 
   def schedule_params
-    params.require(:schedule).permit(:name, :enabled, :day, :time, pdf_template_attributes: [:id, :name, :lang_code, :content, :_destroy])
+    params.require(:schedule).permit(:name, :enabled, :day, :time, pdf_template_attributes: [:id, :content, :_destroy])
   end
 end

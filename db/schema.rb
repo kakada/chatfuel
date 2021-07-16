@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_020357) do
+ActiveRecord::Schema.define(version: 2021_07_16_103847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -104,9 +104,8 @@ ActiveRecord::Schema.define(version: 2021_07_16_020357) do
   end
 
   create_table "pdf_templates", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", default: ""
     t.text "content", default: ""
-    t.string "lang_code", default: "en"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "schedule_id", null: false

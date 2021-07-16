@@ -4,8 +4,7 @@
 #
 #  id          :bigint(8)        not null, primary key
 #  content     :text             default("")
-#  lang_code   :string           default("en")
-#  name        :string           not null
+#  name        :string           default("")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  schedule_id :bigint(8)        not null
@@ -19,14 +18,20 @@
 #  fk_rails_...  (schedule_id => schedules.id)
 #
 class PdfTemplate < ApplicationRecord
-  ALLOWED_LANGUAGE_CODES = I18n.available_locales.map(&:to_s)
-
   belongs_to :schedule
 
-  validates :name, presence: true
-  validates :lang_code, inclusion: { in: ALLOWED_LANGUAGE_CODES }
+  # name required
+  # when broadcast report through telegram,
+  # file name must start with character
+  before_save :set_name
 
   def name_param
     "#{name}-#{id}".parameterize.underscore
+  end
+
+  private
+
+  def set_name
+    "pdf template for #{schedule.name}"
   end
 end
