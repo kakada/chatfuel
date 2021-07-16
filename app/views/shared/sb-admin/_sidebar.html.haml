@@ -60,11 +60,6 @@
           %i.fas.fa-fw.fa-wrench
           %span= t('sidebar.setting')
 
-    %li.nav-item{ class: css_active_class('pdf_templates') }
-      = link_to pdf_templates_path, class: "nav-link" do
-        %i.fas.fa-fw.fa-file-pdf
-        %span= t('pdf_templates.title')
-
     %li.nav-item{ class: css_active_class('schedule') }
       = link_to schedules_path, class: "nav-link" do
         %i.fas.fa-fw.fa-calendar-alt
