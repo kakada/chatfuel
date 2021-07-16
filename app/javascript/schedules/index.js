@@ -2,6 +2,7 @@ OWSO.SchedulesNew = (() => {
   function init() {
     enableManualCron();
     initBootstrapToggle();
+    addEventToDynamicVariables();
   }
 
   function enableManualCron() {
@@ -17,6 +18,24 @@ OWSO.SchedulesNew = (() => {
 
   function initBootstrapToggle() {
     $(".toggle-control").bootstrapToggle();
+  }
+
+  function addEventToDynamicVariables() {
+    onClickMessageVariables(".dynamic-variable", ".ql-editor");
+  }
+
+  function onClickMessageVariables(selectorKlass, domId) {
+    $(selectorKlass).click((e) => {
+      e.preventDefault();
+
+      text = $(e.target).text();
+      var range = quill.getSelection(true);
+      if (range) {
+        if (range.length == 0) {
+          quill.insertText(range.index, text, "silent");
+        }
+      }
+    });
   }
 
   return { init };

@@ -33,7 +33,8 @@
           #editor-container{ style: "height: 15rem; width: 100%; " }
             = raw @pdf_template.content
         - pdf_form.object.decorate.variables.each do |variable|
-          %span.badge.badge-secondary= variable
+          %span.badge.badge-secondary.dynamic-variable
+            = variable
 
       .actions.mt-5
         = f.submit t("schedules.save"), class: "btn btn-primary"

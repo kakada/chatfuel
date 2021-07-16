@@ -43,7 +43,7 @@ $(document).on("turbolinks:load", function () {
       "#3d1466",
     ];
 
-    var quill = new Quill("#editor-container", {
+    window.quill = new Quill("#editor-container", {
       modules: {
         toolbar: [
           [{ header: [1, 2, 3, 4, 5, 6, false] }],
