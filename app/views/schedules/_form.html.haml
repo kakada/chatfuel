@@ -5,13 +5,33 @@
       .form-group
         %label= t "schedules.repeat"
         = t "schedules.day"
-        = f.input_field :day, type: "number", min: 1, value: 1, class: "form-control d-inline-block cron-control"
-        = t "schedules.at" 
-        = f.input_field :time, type: "time", class: "form-control d-inline-block cron-control cron-time"
+
+        .d-inline-block
+          = f.input_field :day, type: "number", min: 1, class: "form-control d-inline-block cron-control"
+          = f.error :day, class: 'position-absolute error-hint'
+
+        = t "schedules.at"
+
+        .d-inline-block
+          = f.input_field :time, type: "time", class: "form-control cron-control cron-time"
+          = f.error :time, class: 'position-absolute error-hint'
 
       - if ENV['MANUAL_ENABLED'] == 'true'
         %input.toggle-control#enable_manual_cron{ type: "checkbox" }
         %label{for: "enable_manual_cron"}= t "schedules.manual"
+
       = f.input :enabled, label: t("schedules.enabled"), input_html: { class: 'toggle-control' }
+
+      %h5.mt-4= t("pdf_templates.title")
+      = f.fields_for :pdf_template do |pdf_form|
+        = pdf_form.input :name
+        = pdf_form.input :lang_code, label: t("pdf_templates.language_code"), collection: PdfTemplate::ALLOWED_LANGUAGE_CODES, label_method: lambda { |lang_code| t("pdf_templates.#{lang_code}") }, include_blank: false
+
+        .form-group
+          = pdf_form.label :content
+          = pdf_form.input_field :content, as: :hidden, class: "pdf_template_content"
+          #editor-container{ style: "height: 15rem; width: 100%; " }
+            = raw @pdf_template.content
+
       = f.submit t("schedules.save"), class: "btn btn-primary"
       = link_to t("schedules.cancel"), schedules_path, class: "btn btn-secondary"

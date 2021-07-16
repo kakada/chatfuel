@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_061812) do
+ActiveRecord::Schema.define(version: 2021_07_16_020357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -109,6 +109,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_061812) do
     t.string "lang_code", default: "en"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "schedule_id", null: false
+    t.index ["schedule_id"], name: "index_pdf_templates_on_schedule_id"
   end
 
   create_table "quota", force: :cascade do |t|
@@ -399,6 +401,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_061812) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "users"
+  add_foreign_key "pdf_templates", "schedules"
   add_foreign_key "role_variables", "roles"
   add_foreign_key "role_variables", "variables"
   add_foreign_key "site_settings", "sites"

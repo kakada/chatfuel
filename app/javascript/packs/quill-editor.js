@@ -74,7 +74,9 @@ $(document).on("turbolinks:load", function () {
   if ($form) {
     $form.submit(function (e) {
       if (quill != undefined) {
-        $("#pdf_template_content").val(quill.root.innerHTML);
+        $(
+          "#pdf_template_content, #schedule_pdf_template_attributes_content"
+        ).val(quill.root.innerHTML);
       }
     });
   }
