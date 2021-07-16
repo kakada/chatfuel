@@ -21,10 +21,10 @@ OWSO.SchedulesNew = (() => {
   }
 
   function addEventToDynamicVariables() {
-    onClickMessageVariables(".dynamic-variable", ".ql-editor");
+    onClickMessageVariables(".dynamic-variable");
   }
 
-  function onClickMessageVariables(selectorKlass, domId) {
+  function onClickMessageVariables(selectorKlass) {
     $(selectorKlass).click((e) => {
       e.preventDefault();
 
