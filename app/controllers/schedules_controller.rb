@@ -8,6 +8,7 @@ class SchedulesController < ApplicationController
   def new
     @schedule = Schedule.new
     @pdf_template = @schedule.build_pdf_template
+    authorize @schedule
   end
 
   def create

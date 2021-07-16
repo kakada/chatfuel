@@ -4,7 +4,7 @@
   .card-body
     .mb-4
       - if TelegramBot.exists?
-        = link_to t('schedules.new_title'), new_schedule_path, class: "btn btn-primary"
+        = render 'new_schedule'
         = render 'schedules'
 
       - else
