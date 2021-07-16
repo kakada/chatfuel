@@ -3,9 +3,13 @@
 .card.shadow.mb-4
   .card-body
     .mb-4
-      = link_to "Create new schedule", new_schedule_path, class: "btn btn-primary"
-
       - if TelegramBot.exists?
+        = link_to t('schedules.new_title'), new_schedule_path, class: "btn btn-primary"
         = render 'schedules'
+
       - else
-        = t('site_setting.to_enable_telegram_html', url: settings_path)
+        .d-flex.justify-content-center.align-items-center.flex-column
+          %h4= t('site_setting.no_site_setting_yet')
+          %p.text-description= t('site_setting.create_site_setting_description')
+          .goto-setting
+            = t('site_setting.to_enable_telegram_html', url: settings_path)
