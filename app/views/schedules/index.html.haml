@@ -5,20 +5,7 @@
     .mb-4
       = link_to "Create new schedule", new_schedule_path, class: "btn btn-primary"
 
-    #table.table-responsive
-      %table.table
-        %thead
-          %tr
-            %th{:scope => "col"} #
-            %th{:scope => "col"}= t "schedules.name"
-            %th{:scope => "col"}= t "schedules.time"
-            %th{:scope => "col"} &nbsp;
-        %tbody
-          - @schedules.each_with_index do |schedule, index|
-            %tr
-              %th{:scope => "row"}= index + 1
-              %td= schedule.name
-              %td= schedule.cron_description
-              %td
-                = link_to t("schedules.edit"), edit_schedule_path(schedule)
-                = link_to t("schedules.delete"), schedule_path(schedule), method: :delete, 'data-confirm': t("schedules.confirm_msg")
+      - if TelegramBot.exists?
+        = render 'schedules'
+      - else
+        = t('site_setting.to_enable_telegram_html', url: settings_path)

@@ -15,3 +15,5 @@ km:
     delete: លុបចេញ
     confirm_msg: តើអ្នកប្រាកដហើយមែនទេ?
     enabled: បើកដំនើរការ
+    disabled: មិនដំនើរការ
+    status: ស្ថានភាព

@@ -1,0 +1,12 @@
+%tr
+  %th{:scope => "row"}= schedule_counter + 1
+  %td= schedule.name
+  %td= schedule.cron_description
+  %td
+    = schedule.decorate.status
+  %td
+    = link_to edit_schedule_path(schedule), class: "btn-circle btn-sm btn-warning text-decoration-none", data: {toggle: 'tooltip', title: t('shared.edit')} do
+      %i.fas.fa-edit
+    &nbsp;
+    = link_to schedule_path(schedule), class: "btn btn-circle btn-sm btn-danger text-decoration-none btn-destroy", method: :delete, data: {toggle: 'tooltip', title: t('shared.delete')}, 'data-confirm': t("schedules.confirm_msg") do
+      %i.fas.fa-trash
