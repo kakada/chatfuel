@@ -26,6 +26,7 @@ class SchedulesController < ApplicationController
   end
 
   def update
+    @pdf_template = @schedule.pdf_template
     if @schedule.update(schedule_params)
       redirect_to schedules_path
     else

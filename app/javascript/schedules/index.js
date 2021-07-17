@@ -64,4 +64,5 @@ OWSO.SchedulesNew = (() => {
 })();
 
 OWSO.SchedulesEdit = OWSO.SchedulesNew;
+OWSO.SchedulesUpdate = OWSO.SchedulesNew;
 OWSO.SchedulesCreate = OWSO.SchedulesNew;

@@ -14,7 +14,7 @@ class Schedule < ApplicationRecord
   attr_reader :cron
   include Schedule::WorkerConcern
 
-  has_one :pdf_template
+  has_one :pdf_template, dependent: :destroy
   accepts_nested_attributes_for :pdf_template, allow_destroy: true
 
   validates :name, presence: true
