@@ -8,6 +8,6 @@ en:
     enable_notification: Enable Notification
     no_site_setting_yet: No telegram notification setting yet
     create_site_setting_description: Create telegram notification setting to manage message template and alert frequency.
-    enable: 'On'
-    disable: 'Off'
+    enable: "On"
+    disable: "Off"
     to_enable_telegram_html: "To enable telegram notification, please to go <a href=%{url} class='btn btn-primary'>Setting</a>"

@@ -51,10 +51,12 @@ OWSO.SchedulesNew = (() => {
       e.preventDefault();
 
       let text = $(e.target).text();
-      let range = quill.getSelection(true);
-      if (range) {
-        if (range.length == 0) {
-          quill.insertText(range.index, text, "silent");
+      if (quill != undefined) {
+        let range = quill.getSelection(true);
+        if (range) {
+          if (range.length == 0) {
+            quill.insertText(range.index, text, "silent");
+          }
         }
       }
     });

@@ -1,6 +1,6 @@
 km:
   sites:
-    successful_create_setting: បានបង្កើតដោយជោគជ័យ
+    succesfully_create_setting: បានបង្កើតដោយជោគជ័យ
     succesfully_update_setting: បានកែតម្រូវដោយជោគជ័យ
     update_api_success: រក្សា api key ដោយជោគជ័យ
     telegram_notification: សេចក្តីជូនដំណឹងតាម Telegram

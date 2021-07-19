@@ -43,40 +43,42 @@ $(document).on("turbolinks:load", function () {
       "#3d1466",
     ];
 
-    window.quill = new Quill("#editor-container", {
-      modules: {
-        toolbar: [
-          [{ header: [1, 2, 3, 4, 5, 6, false] }],
-          [{ color: COLORS }, { background: COLORS }],
-          [{ size: [] }],
-          [
-            "bold",
-            "italic",
-            "underline",
-            "strike",
-            { script: "super" },
-            { script: "sub" },
-            "code",
-            "link",
+    if ($("#editor-container")[0] != undefined) {
+      window.quill = new Quill("#editor-container", {
+        modules: {
+          toolbar: [
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            [{ color: COLORS }, { background: COLORS }],
+            [{ size: [] }],
+            [
+              "bold",
+              "italic",
+              "underline",
+              "strike",
+              { script: "super" },
+              { script: "sub" },
+              "code",
+              "link",
+            ],
+            ["blockquote", "code-block"],
+            [{ list: "ordered" }, { list: "bullet" }],
+            [{ align: ["center", "right", "justify", false] }],
+            [{ indent: "-1" }, { indent: "+1" }],
           ],
-          ["blockquote", "code-block"],
-          [{ list: "ordered" }, { list: "bullet" }],
-          [{ align: ["center", "right", "justify", false] }],
-          [{ indent: "-1" }, { indent: "+1" }],
-        ],
-      },
-      placeholder: "",
-      theme: "snow",
-    });
+        },
+        placeholder: "",
+        theme: "snow",
+      });
+    }
   }
 
   let $form = $("form");
   if ($form) {
     $form.submit(function (e) {
-      if (quill != undefined) {
+      if (window.quill != undefined) {
         $(
           "#pdf_template_content, #schedule_pdf_template_attributes_content"
-        ).val(quill.root.innerHTML);
+        ).val(window.quill.root.innerHTML);
       }
     });
   }
