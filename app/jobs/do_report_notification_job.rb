@@ -11,6 +11,7 @@ class DoReportNotificationJob < ApplicationJob
         puts "------------------"
         puts document_url(setting.site.name_param)
         client.send_document(chat_id: group.chat_id, document: document_url(setting.site.name_param), timeout: 10000)
+        sleep(5.seconds)
       end
     end
   end
