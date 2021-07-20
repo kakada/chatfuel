@@ -16,18 +16,26 @@ module Sites
       respond_to do |format|
         format.html { render template: template_path, layout: 'pdf' }
         format.pdf do
-          render pdf: pdf_name,
+          @site.update(latest_generated_pdf_name: "#{pdf_name}.pdf")
+          render  pdf: pdf_name,
                   template: template_path,
                   layout: 'pdf',
                   orientation: 'Portrait',
                   lowquality: false,
+                  page_offset: 0,
+                  save_to_file: Rails.root.join('pdfs', "#{pdf_name}.pdf"),
+                  disable_smart_shrinking: false,
+                  zoom: 1,
+                  book: false,
+                  print_media_type: false,
                   dpi: 300,
                   encoding: 'utf8',
                   page_size: 'A4',
+                  default_protocol: 'https',
                   header: { right: '[page] of [topage]' },
                   content_type: 'application/pdf',
                   # Delay for chartjs to execute before render pdf
-                  javascript_delay: ENV['JS_DELAY']
+                  javascript_delay: ENV['JS_DELAY_IN_MILLISECONDS']
         end
       end
     end
