@@ -11,7 +11,6 @@ window.chartDataLabels = require("chartjs-plugin-datalabels");
 require("startbootstrap-sb-admin-2/js/sb-admin-2.min");
 require("toastr");
 require("select2");
-require("lightbox2");
 require("packs/social-share-button.js.erb");
 window.hljs = require("highlight.js");
 window._ = require("underscore");
