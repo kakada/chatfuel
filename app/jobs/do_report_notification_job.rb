@@ -7,16 +7,29 @@ class DoReportNotificationJob < ApplicationJob
 
     SiteDoReportSetting.enable_notification.includes(:site).find_each do |setting|
       setting.telegram_chat_groups.each do |group|
-        #client.send_message(chat_id: group.chat_id, text: "DO report for #{setting.site.code}")
-        puts "------------------"
-        puts document_url(setting.site.name_param)
-        client.send_document(chat_id: group.chat_id, document: document_url(setting.site.name_param), timeout: 10000)
-        sleep(5.seconds)
+        # request to generate pdf
+        uri = URI.parse(document_url(setting.site.name_param))
+        response = Net::HTTP.get_response(uri)
+
+        site = setting.site.reload
+        # sending by file_id, only if it's exists on telegram server
+        # sending by url of pdf is not guarantee(https://stackoverflow.com/questions/49645510/telegram-bot-send-photo-by-url-returns-bad-request-wrong-file-identifier-http)
+        # send the generated pdf to telegram (multipart/form-data)
+        `curl -v -F "chat_id=#{group.chat_id}" -F document=@/app/pdfs/#{site.latest_generated_pdf_name} https://api.telegram.org/bot#{telegram_bot.token}/sendDocument`
+        sleep(delay_in_msec)
       end
     end
   end
 
   private
+
+  def delay_in_msec
+    (ENV['JS_DELAY_IN_MILLISECONDS'].to_i + wait_in_msec).in_milliseconds
+  end
+
+  def wait_in_msec
+    2000
+  end
 
   def client
     Telegram::Bot::Client.new(token: telegram_bot.token, username: telegram_bot.username)
