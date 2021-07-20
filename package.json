@@ -23,7 +23,6 @@
     "flatpickr": "^4.6.9",
     "highlight.js": "^10.7.2",
     "jquery": "^3.5.1",
-    "lightbox2": "^2.11.3",
     "moment": "^2.26.0",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
