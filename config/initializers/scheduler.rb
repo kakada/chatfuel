@@ -1,5 +1,6 @@
 # Dynamic schedule
-# Schedule.all.each do |schedule|
-#   puts "======DO report dynamic schedule======="
-#   schedule.run!
-# end
+if defined? Schedule
+  Schedule.find_each do |schedule|
+    schedule.set_schedule
+  end
+end
