@@ -44,6 +44,8 @@ gem "telegram-bot", "~> 0.15.4"
 gem "sidekiq-scheduler", "~> 3.0.1"
 gem "strip_attributes", "~> 1.11.0"
 
+gem 'lightbox2-rails', "~> 2.8.2.1"
+
 # api
 gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
