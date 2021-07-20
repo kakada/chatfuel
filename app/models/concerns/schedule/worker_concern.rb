@@ -1,6 +1,6 @@
 module Schedule::WorkerConcern
   def set_schedule
-    Sidekiq.set_schedule(worker, { 'cron' => cron, 'class' => worker.constantize })
+    Sidekiq.set_schedule(worker, { 'cron' => cron, queue: 'default', 'class' => worker.constantize })
   rescue => error
     puts error.message
   end
