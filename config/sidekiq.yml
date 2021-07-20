@@ -1,7 +1,10 @@
 :dynamic: true
+:verbose: false
+:timeout: 10
+:concurrency: 10
 :schedule:
   quota:
-    cron: '0 0,12 * * *'
+    cron: "0 0,12 * * *"
     class: QuotaJob
     description: "Quota to broadcasting message to messenger users each day"
 
