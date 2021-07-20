@@ -261,6 +261,8 @@ GEM
       aes_key_wrap
       bindata
     jsonapi-renderer (0.2.2)
+    lightbox2-rails (2.8.2.1)
+      railties (>= 3.1)
     liquid (4.0.3)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -603,6 +605,7 @@ DEPENDENCIES
   i18n-js (~> 3.5.1)
   jbuilder (~> 2.7)
   jquery-rails (~> 4.3.5)
+  lightbox2-rails (~> 2.8.2.1)
   liquid (~> 4.0, >= 4.0.3)
   listen (~> 3.2)
   logstasher (~> 2.1.5)
