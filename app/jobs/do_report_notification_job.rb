@@ -15,21 +15,15 @@ class DoReportNotificationJob < ApplicationJob
         # sending by file_id, only if it's exists on telegram server
         # sending by url of pdf is not guarantee(https://stackoverflow.com/questions/49645510/telegram-bot-send-photo-by-url-returns-bad-request-wrong-file-identifier-http)
         # send the generated pdf to telegram (multipart/form-data)
+        puts "*" * 100
+        puts "curl -v -F \"chat_id=#{group.chat_id}\" -F document=@/app/pdfs/#{site.latest_generated_pdf_name} https://api.telegram.org/bot#{telegram_bot.token}/sendDocument"
+        puts "*" * 100
         `curl -v -F "chat_id=#{group.chat_id}" -F document=@/app/pdfs/#{site.latest_generated_pdf_name} https://api.telegram.org/bot#{telegram_bot.token}/sendDocument`
-        sleep(delay_in_msec)
       end
     end
   end
 
   private
-
-  def delay_in_msec
-    (ENV['JS_DELAY_IN_MILLISECONDS'].to_i + wait_in_msec).in_milliseconds
-  end
-
-  def wait_in_msec
-    2000
-  end
 
   def client
     Telegram::Bot::Client.new(token: telegram_bot.token, username: telegram_bot.username)
