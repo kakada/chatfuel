@@ -46,3 +46,8 @@ node_modules/
 
 # Puma need tmp/pids directory to start
 !tmp/pids/.keep
+
+pdfs/
+
+chatfuel_*.gz
+chatfuel_*.sql
