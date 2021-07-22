@@ -56,4 +56,4 @@ IDEA/
 # Ignore key for decrypting credentials
 /config/credentials/production.key
 
-pdfs/
+pdfs/*.pdf
