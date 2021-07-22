@@ -18,3 +18,4 @@ en:
     disabled: Disabled
     status: Status
     notify_with_template: Notify with template (.pdf file)
+    report_date: report for %{cur_month} (%{start_date} - %{end_date})

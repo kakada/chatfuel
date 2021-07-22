@@ -16,10 +16,12 @@ module Sites
       respond_to do |format|
         format.html { render template: template_path, layout: 'pdf' }
         format.pdf do
-          create_and_send_pdf do |pdf|
-            pdf_path = Rails.root.join('pdfs', "#{pdf_name}.pdf").to_path
-            save_to_file(pdf, pdf_path)
-            DoReportSendPdfJob.perform_later(filter_options[:district_id], pdf_path)
+          unless params[:preview].present?
+            create_and_send_pdf do |pdf|
+              pdf_path = Rails.root.join('pdfs', "#{pdf_name}.pdf").to_path
+              save_to_file(pdf, pdf_path)
+              DoReportSendPdfJob.perform_later(filter_options[:district_id], pdf_path)
+            end
           end
 
           send_data pdf, type: 'application/pdf', disposition: 'inline'
@@ -56,7 +58,15 @@ module Sites
     end
 
     def default_start_date
-      Setting.dashboard_start_date.strftime('%Y/%m/%d')
+      @start_date = schedule_date.strftime('%Y/%m/%d')
+    end
+
+    def schedule_date
+      schedule = Schedule.first
+      date_str = Date.current.strftime("%Y-%m-#{schedule.day}")
+      Date.parse(date_str).last_month
+    rescue
+      Setting.dashboard_start_date
     end
 
     def set_gon

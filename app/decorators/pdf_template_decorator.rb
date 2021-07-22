@@ -3,10 +3,10 @@ require 'liquid'
 class PdfTemplateDecorator < ApplicationDecorator
   delegate_all
 
-  def render(site)
+  def render(site, start_date)
     I18n.with_locale(:km) do
       template = Tilt::LiquidTemplate.new { content.html_safe }
-      template.render(LiquidServices::BaseLiquid.new(site))
+      template.render(LiquidServices::BaseLiquid.new(site, start_date))
     end
   end
 
@@ -22,7 +22,7 @@ class PdfTemplateDecorator < ApplicationDecorator
 
   def hashes
     return {} unless Site.exists?
-    LiquidServices::BaseLiquid.new(Site.first).to_h
+    LiquidServices::BaseLiquid.new(Site.first, Date.current).to_h
   end
 
 end

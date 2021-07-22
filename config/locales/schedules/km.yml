@@ -18,3 +18,4 @@ km:
     disabled: មិនដំនើរការ
     status: ស្ថានភាព
     notify_with_template: ជូនដំណឹងជាមួយពុម្ព (ឯកសារ .pdf)
+    report_date_html: ប្រចាំខែ%{cur_month} <small>(%{start_date} - %{end_date})</small>
