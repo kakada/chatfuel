@@ -11,12 +11,12 @@ module Sites
     before_action :set_gon
 
     def show
-      @pdf_template = PdfTemplate.find(number_suffix(params[:id])).decorate
+      @pdf_template = PdfTemplate.find(params[:id]).decorate
 
       respond_to do |format|
         format.html { render template: template_path, layout: 'pdf' }
         format.pdf do
-          generate_pdf do |pdf|
+          create_and_send_pdf do |pdf|
             pdf_path = Rails.root.join('pdfs', "#{pdf_name}.pdf").to_path
             save_to_file(pdf, pdf_path)
             DoReportSendPdfJob.perform_later(filter_options[:district_id], pdf_path)
@@ -33,7 +33,7 @@ module Sites
       File.open(path, 'wb') { |f| f << pdf }
     end
 
-    def generate_pdf &block
+    def create_and_send_pdf &block
       yield pdf
     end
 
@@ -52,7 +52,7 @@ module Sites
     end
 
     def pdf_name
-      "DO-report-#{DateTime.current.strftime("%Y%m%d%H%M%S")}".downcase
+      "DO-report-#{DateTime.current.strftime("%Y%m%d%H%M%S")}"
     end
 
     def default_start_date

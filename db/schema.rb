@@ -104,7 +104,6 @@ ActiveRecord::Schema.define(version: 2021_07_19_093901) do
   end
 
   create_table "pdf_templates", force: :cascade do |t|
-    t.string "name", default: ""
     t.text "content", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

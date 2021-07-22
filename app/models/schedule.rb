@@ -17,11 +17,10 @@ class Schedule < ApplicationRecord
   has_one :pdf_template, dependent: :destroy
   accepts_nested_attributes_for :pdf_template, allow_destroy: true
 
-  validates :name, presence: true
-  validates :day, :time, presence: true
+  validates :name, :day, :time, presence: true
 
   after_save :set_schedule, if: -> { enabled? }
-  after_save :remove_schedule, unless: -> { enabled? }
+  after_save :remove_schedule, if: -> { !enabled? }
   after_destroy :remove_schedule
 
   def cron_description
