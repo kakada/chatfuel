@@ -4,8 +4,10 @@ class PdfTemplateDecorator < ApplicationDecorator
   delegate_all
 
   def render(site)
-    template = Tilt::LiquidTemplate.new { content.html_safe }
-    template.render(LiquidServices::BaseLiquid.new(site))
+    I18n.with_locale(:km) do
+      template = Tilt::LiquidTemplate.new { content.html_safe }
+      template.render(LiquidServices::BaseLiquid.new(site))
+    end
   end
 
   def variables

@@ -1,10 +1,10 @@
 module LiquidServices
   class DateLiquid
     def to_h
-      date = Date.today
-      { 'current_day' => date.strftime("%d"),
-        'current_month' => date.strftime("%B"),
-        'current_year' => date.strftime("%Y")
+      day, month, year = I18n.l(Date.today, format: :default).split
+      { 'current_day' => day,
+        'current_month' => month,
+        'current_year' => year
       }
     end
   end
