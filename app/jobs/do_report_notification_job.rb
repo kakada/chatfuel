@@ -3,43 +3,27 @@ class DoReportNotificationJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    return if telegram_bot.nil? || pdf_template.nil?
+    return unless pdf_template.present?
 
-    SiteDoReportSetting.enable_notification.includes(:site).find_each do |setting|
-      setting.telegram_chat_groups.each do |group|
-        # request to generate pdf
-        uri = URI.parse(document_url(setting.site.name_param))
-        response = Net::HTTP.get_response(uri)
-
-        site = setting.site.reload
-        # sending by file_id, only if it's exists on telegram server
-        # sending by url of pdf is not guarantee(https://stackoverflow.com/questions/49645510/telegram-bot-send-photo-by-url-returns-bad-request-wrong-file-identifier-http)
-        # send the generated pdf to telegram (multipart/form-data)
-        puts "*" * 100
-        puts "curl -v -F \"chat_id=#{group.chat_id}\" -F document=@/app/pdfs/#{site.latest_generated_pdf_name} https://api.telegram.org/bot#{telegram_bot.token}/sendDocument"
-        puts "*" * 100
-        `curl -v -F "chat_id=#{group.chat_id}" -F document=@/app/pdfs/#{site.latest_generated_pdf_name} https://api.telegram.org/bot#{telegram_bot.token}/sendDocument`
-      end
+    settings.each do |setting|
+      uri = URI.parse(document_url(setting.site.name_param))
+      Net::HTTP.get_response(uri)
     end
   end
 
   private
 
-  def client
-    Telegram::Bot::Client.new(token: telegram_bot.token, username: telegram_bot.username)
-  end
-
-  def telegram_bot
-    @telegram_bot ||= TelegramBot.first
-  end
-
-  def pdf_template
-    @pdf_template ||= PdfTemplate.first
+  def settings
+    SiteDoReportSetting.enable_notification.includes(:site)
   end
 
   def document_url(name_param)
     url = site_pdf_template_preview_url(site_code: name_param, id: pdf_template.name_param, format: :pdf, host: ENV["HOST_#{Rails.env}".upcase])
     "#{url}?v#{version}"
+  end
+
+  def pdf_template
+    PdfTemplate.first
   end
 
   def version

@@ -16,35 +16,36 @@ module Sites
       respond_to do |format|
         format.html { render template: template_path, layout: 'pdf' }
         format.pdf do
-          @site.update(latest_generated_pdf_name: "#{pdf_name}.pdf")
-          render  pdf: pdf_name,
-                  template: template_path,
-                  layout: 'pdf',
-                  orientation: 'Portrait',
-                  lowquality: false,
-                  page_offset: 0,
-                  save_to_file: Rails.root.join('pdfs', "#{pdf_name}.pdf"),
-                  disable_smart_shrinking: false,
-                  zoom: 1,
-                  book: false,
-                  print_media_type: false,
-                  dpi: 300,
-                  encoding: 'utf8',
-                  page_size: 'A4',
-                  default_protocol: 'https',
-                  header: { right: '[page] of [topage]' },
-                  content_type: 'application/pdf',
-                  # Delay for chartjs to execute before render pdf
-                  javascript_delay: ENV['JS_DELAY_IN_MILLISECONDS']
+          generate_pdf do |pdf|
+            pdf_path = Rails.root.join('pdfs', "#{pdf_name}.pdf").to_path
+            save_to_file(pdf, pdf_path)
+            DoReportSendPdfJob.perform_later(filter_options[:district_id], pdf_path)
+          end
+
+          send_data pdf, type: 'application/pdf', disposition: 'inline'
         end
       end
+    end
+
+    private
+
+    def save_to_file(pdf, path)
+      File.open(path, 'wb') { |f| f << pdf }
+    end
+
+    def generate_pdf &block
+      yield pdf
+    end
+
+    def pdf
+      WickedPdf.new.pdf_from_string(
+        render_to_string(template_path, layout: 'pdf'),
+      )
     end
 
     def set_site
       @site = Site.find_by(code: filter_options[:district_id])
     end
-
-    private
 
     def template_path
       'sites/pdf_templates/show.html'
