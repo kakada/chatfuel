@@ -2,7 +2,7 @@ class SchedulesController < ApplicationController
   before_action :set_schedule, only: [:edit, :update, :destroy]
 
   def index
-    @pagy, @schedules = pagy(Schedule.order(updated_at: :desc))
+    @pagy, @schedules = pagy(Schedule.includes(:pdf_template).order(updated_at: :desc))
   end
 
   def new

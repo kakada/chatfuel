@@ -5,6 +5,9 @@
   %td
     = schedule.decorate.status
   %td
+    = link_to site_pdf_template_preview_url(site_code: '0202', id: schedule.pdf_template.name_param, format: :pdf), class: "btn-circle btn-sm btn-secondary text-decoration-none", target: "_blank", data: {toggle: 'tooltip', title: t('shared.preview')} do
+      %i.fas.fa-eye
+    &nbsp;
     = link_to edit_schedule_path(schedule), class: "btn-circle btn-sm btn-warning text-decoration-none", data: {toggle: 'tooltip', title: t('shared.edit')} do
       %i.fas.fa-edit
     &nbsp;
