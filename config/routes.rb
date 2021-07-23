@@ -34,7 +34,8 @@ Rails.application.routes.draw do
     end
 
     resources :pdf_templates
-    get '/sites/:site_code/pdf_templates/:id', to: 'sites/pdf_templates#show'
+    get '/sites/:site_code/pdf_templates/:id/preview', to: 'sites/pdf_templates#show', as: :site_pdf_template_preview
+    resources :schedules
 
     resources :sites do
       collection do
@@ -44,7 +45,7 @@ Rails.application.routes.draw do
       end
 
       scope module: :sites do
-        resource :setting, only: [:show, :create, :update]
+        resources :settings, only: [:index, :show, :create, :update]
         resource :api_key
       end
     end
@@ -94,6 +95,7 @@ Rails.application.routes.draw do
 
   # Telegram
   telegram_webhook TelegramWebhooksController
+
   concern :api_base do
     resources :sites, param: :site_code, only: [:update]
     get 'sites/:site_code/map', to: 'sites#map', as: :site_map, defaults: { locale: "km" }

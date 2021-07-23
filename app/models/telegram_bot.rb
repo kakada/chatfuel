@@ -10,9 +10,12 @@
 #  updated_at :datetime         not null
 #
 class TelegramBot < ApplicationRecord
+  include TelegramBot::CoreApi
   validates :token, :username, presence: { message: I18n.t("presence") }
 
   before_save :post_webhook_to_telegram
+
+  scope :enabled, -> { where(actived: true) }
 
   def post_webhook_to_telegram
     telegram_bot = Telegram::Bot::Client.new(token: token, username: username)

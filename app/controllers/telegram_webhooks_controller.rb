@@ -19,7 +19,12 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   private
     def bot_added?(message)
-      new_member = message["new_chat_member"]
-      message["group_chat_created"] || new_member.try(:[], "username") == TelegramBot.first.username
+      message["new_chat_title"] || 
+      message["group_chat_created"] || 
+      bot_exists?(message["new_chat_member"])
+    end
+
+    def bot_exists?(new_member)
+      TelegramBot.exists?(username: new_member.try(:[], "username"))
     end
 end

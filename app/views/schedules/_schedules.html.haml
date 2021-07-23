@@ -1,0 +1,12 @@
+#table.table-responsive.mt-5
+  %table.table
+    %thead
+      %tr
+        %th{:scope => "col"} #
+        %th{:scope => "col"}= t "schedules.name"
+        %th{:scope => "col"}= t "schedules.time"
+        %th{:scope => "col"}= t "schedules.status"
+        %th{:scope => "col"} &nbsp;
+    %tbody
+      = render @schedules
+        

@@ -2,6 +2,7 @@
 
 module Sites
   class PdfTemplatesController < ApplicationController
+    skip_before_action :authenticate_user_with_guisso!
     include Filterable
 
     before_action :default_start_date
@@ -15,26 +16,38 @@ module Sites
       respond_to do |format|
         format.html { render template: template_path, layout: 'pdf' }
         format.pdf do
-          render pdf: pdf_name,
-                  template: template_path,
-                  layout: 'pdf',
-                  orientation: 'Portrait',
-                  lowquality: false,
-                  dpi: 300,
-                  encoding: 'utf8',
-                  page_size: 'A4',
-                  header: { right: '[page] of [topage]' },
-                  # Delay for chartjs to execute before render pdf
-                  javascript_delay: 100
+          unless params[:preview].present?
+            create_and_send_pdf do |pdf|
+              pdf_path = Rails.root.join('pdfs', "#{pdf_name}.pdf").to_path
+              save_to_file(pdf, pdf_path)
+              DoReportSendPdfJob.perform_later(filter_options[:district_id], pdf_path)
+            end
+          end
+
+          send_data pdf, type: 'application/pdf', disposition: 'inline'
         end
       end
     end
 
-    def set_site
-      @site = Site.find_by(code: params[:site_code])
+    private
+
+    def save_to_file(pdf, path)
+      File.open(path, 'wb') { |f| f << pdf }
     end
 
-    private
+    def create_and_send_pdf &block
+      yield pdf
+    end
+
+    def pdf
+      WickedPdf.new.pdf_from_string(
+        render_to_string(template_path, layout: 'pdf'),
+      )
+    end
+
+    def set_site
+      @site = Site.find_by(code: filter_options[:district_id])
+    end
 
     def template_path
       'sites/pdf_templates/show.html'
@@ -45,7 +58,15 @@ module Sites
     end
 
     def default_start_date
-      Setting.dashboard_start_date.strftime('%Y/%m/%d')
+      @start_date = schedule_date.strftime('%Y/%m/%d')
+    end
+
+    def schedule_date
+      schedule = Schedule.first
+      date_str = Date.current.strftime("%Y-%m-#{schedule.day}")
+      Date.parse(date_str).last_month
+    rescue
+      Setting.dashboard_start_date
     end
 
     def set_gon
@@ -54,7 +75,8 @@ module Sites
         totalUserVisitByCategory: @query.total_users_visit_by_category,
         totalUserFeedback: @query.users_feedback,
         feedbackSubCategories: @query.feedback_sub_categories[@site.code],
-        accessMainService: @query.access_main_service
+        accessMainService: @query.access_main_service,
+        no_data: I18n.t("no_data"),
       })
     end
   end

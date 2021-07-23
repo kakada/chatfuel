@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_084412) do
+ActiveRecord::Schema.define(version: 2021_07_16_103847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -62,11 +62,11 @@ ActiveRecord::Schema.define(version: 2021_06_25_084412) do
   end
 
   create_table "pdf_templates", force: :cascade do |t|
-    t.string "name", null: false
     t.text "content", default: ""
-    t.string "lang_code", default: "en"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "schedule_id", null: false
+    t.index ["schedule_id"], name: "index_pdf_templates_on_schedule_id"
   end
 
   create_table "quota", force: :cascade do |t|
@@ -90,6 +90,15 @@ ActiveRecord::Schema.define(version: 2021_06_25_084412) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "day", null: false
+    t.string "time", null: false
+    t.boolean "enabled", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -125,6 +134,7 @@ ActiveRecord::Schema.define(version: 2021_06_25_084412) do
     t.bigint "site_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "type"
     t.index ["site_id"], name: "index_site_settings_on_site_id"
   end
 
@@ -340,6 +350,7 @@ ActiveRecord::Schema.define(version: 2021_06_25_084412) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "identities", "users"
+  add_foreign_key "pdf_templates", "schedules"
   add_foreign_key "role_variables", "roles"
   add_foreign_key "role_variables", "variables"
   add_foreign_key "site_settings", "sites"

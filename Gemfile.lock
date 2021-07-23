@@ -135,6 +135,9 @@ GEM
     concurrent-ruby (1.1.9)
     connection_pool (2.2.3)
     crass (1.0.6)
+    cronex (0.11.1)
+      tzinfo
+      unicode
     database_cleaner (1.8.5)
     database_cleaner-active_record (1.8.0)
       activerecord
@@ -491,9 +494,9 @@ GEM
     ssrf_filter (1.0.7)
     strip_attributes (1.11.0)
       activemodel (>= 3.0, < 7.0)
-    telegram-bot (0.14.4)
-      actionpack (>= 4.0, < 6.1)
-      activesupport (>= 4.0, < 6.1)
+    telegram-bot (0.15.4)
+      actionpack (>= 4.0, < 6.2)
+      activesupport (>= 4.0, < 6.2)
       httpclient (~> 2.7)
     temple (0.8.2)
     thor (1.1.0)
@@ -509,6 +512,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
+    unicode (0.4.4.4)
     unicode-display_width (1.7.0)
     verboice (0.7.0)
       json
@@ -555,6 +559,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave (~> 2.1)
   coderay (~> 1.1, >= 1.1.2)
+  cronex (~> 0.11.1)
   database_cleaner-active_record (~> 1.8.0)
   devise (~> 4.7.1)
   dotenv-rails (~> 2.7.5)
@@ -601,7 +606,7 @@ DEPENDENCIES
   spring (~> 2.1.0)
   spring-watcher-listen (~> 2.0.0)
   strip_attributes (~> 1.11.0)
-  telegram-bot (~> 0.14.3)
+  telegram-bot (~> 0.15.4)
   tilt (~> 2.0, >= 2.0.10)
   turbolinks (~> 5)
   tzinfo-data

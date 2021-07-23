@@ -1,6 +1,6 @@
 en:
   sites:
-    successful_create_setting: successfully created site setting
+    succesfully_create_setting: successfully created site setting
     succesfully_update_setting: successfully updated site setting
     update_api_success: Save api key successfully
     telegram_notification: Telegram Notification

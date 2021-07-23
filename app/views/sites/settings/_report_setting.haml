@@ -1,0 +1,16 @@
+.card
+  .card-body.telegram-card-body
+    .row.mb-3
+      .col-md-3= "#{t('site_setting.enable_notification')}:"
+      .col-md-8
+        - if report_setting.enable_notification?
+          %span.text-primary= t('site_setting.enable')
+        - else
+          %span.text-danger= t('site_setting.disable')
+
+    .row.mb-3
+      .col-md-3= "#{t('site_setting.chat_group')}:"
+      .col-md-8= report_setting.telegram_chat_groups.pluck(:title).join(", ").presence || '-'
+
+    %button.btn.btn-outline-primary.mt-3{"data-target" => "#form-report-modal", "data-toggle" => "modal", :type => "button"}
+      = t("site_setting.edit_setting")

@@ -6,4 +6,11 @@ class ApplicationJob < ActiveJob::Base
 
   # Most jobs are safe to ignore if the underlying records are no longer available
   # discard_on ActiveJob::DeserializationError
+  private
+
+  def log &block
+    puts "********** Begin ***********"
+    yield if block_given?
+    puts "********** end ***********"
+  end
 end

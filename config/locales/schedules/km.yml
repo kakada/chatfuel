@@ -1,0 +1,21 @@
+km:
+  schedules:
+    save: រក្សាទុក
+    cancel: ចាកចេញ
+    repeat: ធ្វើម្តងទៀតរៀងរាល់ខែ
+    day: ថ្ងៃ
+    at: នៅម៉ោង
+    manual: បើកដំណើរការកំណត់ cron ដោយដៃ (សម្រាប់ការអភិវឌ្ឍន៍ប៉ុណ្ណោះ)
+    edit_title: កែប្រែកាលបរិច្ឆេទ
+    new_title: បង្កើតកាលបរិច្ឆេទថ្មី
+    title: បរិច្ឆេទ
+    name: ឈ្មោះ
+    time: ពេលវេលា
+    edit: កែប្រែ
+    delete: លុបចេញ
+    confirm_msg: តើអ្នកប្រាកដហើយមែនទេ?
+    enabled: បើកដំនើរការ
+    disabled: មិនដំនើរការ
+    status: ស្ថានភាព
+    notify_with_template: ជូនដំណឹងជាមួយពុម្ព (ឯកសារ .pdf)
+    report_date_html: ប្រចាំខែ%{cur_month} <small>(%{start_date} - %{end_date})</small>

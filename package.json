@@ -38,6 +38,7 @@
     "serialize-javascript": "3.1.0",
     "startbootstrap-sb-admin-2": "^4.0.7",
     "svg-inline-loader": "^0.8.2",
+    "tippy.js": "^6.3.1",
     "toastr": "^2.1.4",
     "trix": "^1.2.0",
     "turbolinks": "^5.2.0",

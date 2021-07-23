@@ -39,3 +39,4 @@ require("view/chart");
 require("view/sidebar_toggle");
 require("view/users");
 require("provincial_usages");
+require("schedules/index");

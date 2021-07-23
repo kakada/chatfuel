@@ -198,6 +198,7 @@ en:
     download_template: Download template
     create_setting: Create setting
     preview_template: Preview template
+    regenerate_token: Generate token
   roles:
     site_ombudsman: Site ombudsman
     site_admin: Site admin

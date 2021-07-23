@@ -3,6 +3,59 @@ km:
     monthly: ខែ
     quarterly: ត្រីមាស
     yearly: ឆ្នាំ
+  date:
+    abbr_day_names:
+      - អា
+      - ច
+      - អ
+      - ពុ
+      - ព្រហ
+      - សុ
+      - ស
+    abbr_month_names:
+      -
+      - មករា
+      - កុម្ភៈ
+      - មិនា
+      - មេសា
+      - ឧសភា
+      - មិថុនា
+      - កក្កដា
+      - សីហា
+      - កញ្ញា
+      - តុលា
+      - វិច្ឆិកា
+      - ធ្នូ
+    day_names:
+      - អាទិត្យ
+      - ចន្ទ
+      - អង្គារ
+      - ពុធ
+      - ព្រហស្បតិ៍
+      - សុក្រ
+      - សៅរ៍
+    formats:
+      default: "%d %B %Y"
+      long: ថ្ងៃ%A ទី%e ខែ%B ឆ្នាំ%Y
+      short: "%d %b"
+    month_names:
+      -
+      - មករា
+      - កុម្ភៈ
+      - មិនា
+      - មេសា
+      - ឧសភា
+      - មិថុនា
+      - កក្កដា
+      - សីហា
+      - កញ្ញា
+      - តុលា
+      - វិច្ឆិកា
+      - ធ្នូ
+    order:
+      - :day
+      - :month
+      - :year
   datetime:
     distance_in_words:
       about_x_hours:

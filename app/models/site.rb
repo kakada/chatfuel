@@ -42,7 +42,8 @@ class Site < ApplicationRecord
   has_many :tickets
   accepts_nested_attributes_for :tickets
 
-  has_one :site_setting, dependent: :destroy
+  has_many :site_settings, dependent: :destroy
+  has_many :telegram_chat_groups, through: :site_settings
 
   # validations
   validates :name_en, presence: { message: I18n.t("presence") }

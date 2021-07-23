@@ -1,0 +1,37 @@
+.card.shadow.mb-4
+  .card-body
+    = simple_form_for @schedule do |f|
+      = f.input :enabled, label: t("schedules.enabled"), input_html: { class: 'toggle-control' }
+      = f.input :name, label: t("schedules.name")
+      .form-group
+        %label= t "schedules.repeat"
+        = t "schedules.day"
+
+        .d-inline-block
+          = f.input_field :day, type: "number", min: 1, class: "form-control d-inline-block cron-control cron-day"
+          = f.error :day, class: 'position-absolute error-hint'
+
+        = t "schedules.at"
+
+        .d-inline-block
+          = f.input_field :time, type: "time", class: "form-control cron-control cron-time"
+          = f.error :time, class: 'position-absolute error-hint'
+
+      - if ENV['MANUAL_ENABLED'] == 'true'
+        %input.toggle-control#enable_manual_cron{ type: "checkbox" }
+        %label{for: "enable_manual_cron"}= t "schedules.manual"
+        = image_tag "info.png", id: "info", style: "width: 16px; vertical-align: super;"
+
+      %h5.mt-4= t("schedules.notify_with_template")
+      = f.fields_for :pdf_template do |pdf_form|
+
+        .form-group
+          = pdf_form.input_field :content, as: :hidden, class: "pdf_template_content"
+          #editor-container{ style: "height: 15rem; width: 100%; " }
+            = raw @pdf_template.content
+        - pdf_form.object.decorate.variables.each do |variable|
+          %span.badge.badge-secondary.dynamic-variable= variable
+
+      .actions.mt-5
+        = f.submit t("schedules.save"), class: "btn btn-primary"
+        = link_to t("schedules.cancel"), schedules_path, class: "btn btn-secondary"

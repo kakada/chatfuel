@@ -1,0 +1,21 @@
+en:
+  schedules:
+    save: Save
+    cancel: Cancel
+    repeat: Repeat every month on
+    day: day
+    at: at
+    manual: Enable manual cron setting (development only)
+    edit_title: Edit schedule
+    new_title: New schedule
+    title: Schedules
+    name: Name
+    time: Time
+    edit: Edit
+    delete: Delete
+    confirm_msg: Are you sure?
+    enabled: Enabled
+    disabled: Disabled
+    status: Status
+    notify_with_template: Notify with template (.pdf file)
+    report_date: report for %{cur_month} (%{start_date} - %{end_date})

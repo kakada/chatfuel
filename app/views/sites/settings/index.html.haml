@@ -1,0 +1,18 @@
+= render "breadcrumb"
+= render "shared/sb-admin/page_heading", title: t("settings.telegram_notification")
+
+%h5
+  = t("settings.feedback_notification")
+- if @settings.feedbacks_setting.present?
+  = render partial: 'feedback_setting', collection: @settings.feedbacks_setting
+- else
+  = render partial: 'no_feedback_setting'
+= render 'form_feedback_modal'
+
+%h5.mt-5
+  = t 'settings.do_monthly_report'
+- if @settings.do_reports_setting.present?
+  = render partial: 'report_setting', collection: @settings.do_reports_setting
+- else
+  = render partial: 'no_do_report_setting'
+= render 'form_report_modal'

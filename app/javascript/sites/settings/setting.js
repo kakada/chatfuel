@@ -1,7 +1,7 @@
-OWSO.SiteSettings = (() => {
+OWSO.SitesSettingsIndex = (() => {
   return {
-    init
-  }
+    init,
+  };
 
   function init() {
     addEventToMessageVariable();
@@ -12,34 +12,41 @@ OWSO.SiteSettings = (() => {
   }
 
   function onChangeMessageFrequency() {
-    $('#site_setting_message_frequency').on('change', (e) => {
-      handleSwitchingMessageTemplate(e.currentTarget.value)
-    })
+    $("#site_feedback_setting_message_frequency").on("change", (e) => {
+      handleSwitchingMessageTemplate(e.currentTarget.value);
+    });
   }
 
   function handleSwitchingMessageTemplate(value) {
-    let selectedValue = value || $('#site_setting_message_frequency').val();
+    let selectedValue =
+      value || $("#site_feedback_setting_message_frequency").val();
 
-    if (selectedValue == '1') {
-      $('.site_setting_message_template').show();
-      $('.site_setting_digest_message_template').hide();
-      return
+    if (selectedValue == "1") {
+      $(".site_feedback_setting_message_template").show();
+      $(".site_feedback_setting_digest_message_template").hide();
+      return;
     }
 
-    $('.site_setting_message_template').hide();
-    $('.site_setting_digest_message_template').show();
+    $(".site_feedback_setting_message_template").hide();
+    $(".site_feedback_setting_digest_message_template").show();
   }
 
   function initBootstrapToggle() {
-    $('#toggle-notification').bootstrapToggle();
+    $(".toggle-notification").bootstrapToggle();
   }
 
   function addEventToMessageVariable() {
-    onClickMessageVariables('.message-setting-variable', '#site_setting_message_template');
+    onClickMessageVariables(
+      ".message-setting-variable",
+      "#site_feedback_setting_message_template"
+    );
   }
 
   function addEventToDigestMessageVariable() {
-    onClickMessageVariables('.digest-message-setting-variable', '#site_setting_digest_message_template');
+    onClickMessageVariables(
+      ".digest-message-setting-variable",
+      "#site_feedback_setting_digest_message_template"
+    );
   }
 
   function onClickMessageVariables(selectorKlass, domId) {
@@ -50,7 +57,7 @@ OWSO.SiteSettings = (() => {
     });
   }
 
-  function insertAtCursor (input, textToInsert) {
+  function insertAtCursor(input, textToInsert) {
     const value = input.value;
     const start = input.selectionStart;
     const end = input.selectionEnd;
@@ -58,7 +65,6 @@ OWSO.SiteSettings = (() => {
     input.value = value.slice(0, start) + textToInsert + value.slice(end);
     input.selectionStart = input.selectionEnd = start + textToInsert.length;
   }
-
 })();
 
-OWSO.SitesSettingsShow = OWSO.SiteSettings
+OWSO.SitesSettingsShow = OWSO.SitesSettingsIndex;

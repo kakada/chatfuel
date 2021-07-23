@@ -7,6 +7,8 @@ import { extractDonutDataset } from "../utils/donut_chart";
 import { extractScatterDataset } from "../utils/line_chart/scatter_chart";
 import { suggestedMax } from "../utils/bar_chart";
 import { labels } from "../data/donutchart/defaults";
+require("application/namespace");
+require("application/util");
 
 Chart.defaults.global.plugins.datalabels = {
   formatter: Math.round,
@@ -30,6 +32,8 @@ Chart.defaults.global.plugins.datalabels = {
 
 $(document).ready(function () {
   try {
+    OWSO.Util.chartReg();
+
     totalVisitChart();
     totalFeedbackChart();
     feedbackSubCategories();

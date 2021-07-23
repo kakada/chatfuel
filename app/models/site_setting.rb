@@ -9,6 +9,7 @@
 #  enable_notification     :boolean          default(FALSE)
 #  message_frequency       :integer(4)
 #  message_template        :text
+#  type                    :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  site_id                 :bigint(8)        not null
@@ -23,40 +24,13 @@
 #
 class SiteSetting < ApplicationRecord
   belongs_to :site
-  has_many :site_settings_telegram_chat_groups
-  has_many :telegram_chat_groups, through: :site_settings_telegram_chat_groups
-  validates :message_template, presence: true, if: -> { immediately? }
-  validates :digest_message_template, presence: true, unless: -> { immediately? }
 
-  enum message_frequency: {
-    immediately: 1,
-    daily: 2,
-    weekly: 3
-  }
-
-  FEEDBACK_MESSAGE = "{{feedback_message}}"
-  FEEDBACK_COUNT = "{{feedback_count}}"
-
+  scope :feedbacks_setting, -> { where type: 'SiteFeedbackSetting' }
+  scope :do_reports_setting, -> { where type: 'SiteDoReportSetting' }
   scope :enable_notification, -> { where(enable_notification: true) }
 
-  def message_variables
-    [FEEDBACK_MESSAGE]
-  end
+  validates :type, uniqueness: { scope: :site }
 
-  def digest_message_variables
-    [FEEDBACK_COUNT]
-  end
-
-  def notification_message(value)
-    message_template.gsub(/#{FEEDBACK_MESSAGE}/, "<b>#{value}</b>")
-  end
-
-  def notification_digest_message(value)
-    digest_message_template.to_s.gsub(/#{FEEDBACK_COUNT}/, "<b>#{value}</b>")
-  end
-
-  def message_frequency=(value)
-    value = value.to_i if value.is_a? String
-    super(value)
-  end
+  has_many :site_settings_telegram_chat_groups
+  has_many :telegram_chat_groups, through: :site_settings_telegram_chat_groups
 end
