@@ -14,7 +14,7 @@ class DoReportNotificationJob < ApplicationJob
   private
 
   def pdf_abs_url(site_code)
-    site_pdf_template_preview_url(site_code: site_code, id: pdf_template.id, format: :pdf, host: ENV["HOST_#{Rails.env}".upcase])
+    site_pdf_template_preview_url(site_code: site_code, id: pdf_template.id, format: :pdf, host: ENV['BASE_URL'])
   end
 
   def pdf_template

@@ -21,17 +21,10 @@ class TelegramBot < ApplicationRecord
     telegram_bot = Telegram::Bot::Client.new(token: token, username: username)
 
     begin
-      request = telegram_bot.set_webhook(url: telegram_webhook_url)
+      request = telegram_bot.set_webhook(url: ENV["TELEGRAM_CALLBACK_URL"])
       self.actived = request["ok"]
     rescue
       self.actived = false
     end
-  end
-
-  private
-
-  def telegram_webhook_url
-    host = ENV["HOST_#{Rails.env}".upcase]
-    "#{host}/telegram"
   end
 end

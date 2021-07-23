@@ -19,6 +19,7 @@ RSpec.describe SchedulesController, type: :controller do
 
   
   it "POST :create" do
+    Schedule.destroy_all
     expect do
       post :create, params: { schedule: { name: 'My schedule', day: '1', time: '01:00' } }
     end.to change { Schedule.count }.by 1

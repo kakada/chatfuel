@@ -7,12 +7,15 @@ class SchedulesController < ApplicationController
   end
 
   def new
-    @schedule = authorize Schedule.new
+    @schedule = Schedule.new
+    authorize @schedule
     @pdf_template = @schedule.build_pdf_template
   end
 
   def create
-    @schedule = authorize Schedule.new(schedule_params)
+    @schedule = Schedule.new(schedule_params)
+    authorize @schedule
+    
     @pdf_template = @schedule.pdf_template
     if @schedule.save
       redirect_to schedules_path
