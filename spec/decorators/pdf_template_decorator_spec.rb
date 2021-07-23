@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PdfTemplateDecorator do
-  subject { pdf_template.decorate }
+  subject { pdf_template.decorate.render(site, Date.today) }
 
   let(:pdf_template) { create(:pdf_template) }
   let(:site) { build(:site, name_en: 'kamrieng', province_id: "02") }
@@ -19,12 +19,12 @@ RSpec.describe PdfTemplateDecorator do
 
     it "updates {{site}} template" do
       pdf_template.content = "{{site.name}} {{site.province_name}}"
-      expect(subject.render(site)).to eq "kamrieng Battambang"
+      expect(subject).to include "បាត់ដំបង"
     end
 
     it "updates {{date}} template" do
       pdf_template.content = "{{date.current_day}} {{date.current_month}} {{date.current_year}}"
-      expect(subject.render(site)).to eq "05 May 2021"
+      expect(subject).to eq "05 ឧសភា 2021"
     end
 
     describe "{{chart.*}} template" do
@@ -38,17 +38,17 @@ RSpec.describe PdfTemplateDecorator do
 
       it "{{chart.summary}}" do
         pdf_template.content = "{{chart.summary}}"
-        expect(subject.render(site)).to include "Summary"
+        expect(subject).to include "Summary"
       end
 
       it "{{chart.feedback_sub_categories}}" do
         pdf_template.content = "{{chart.feedback_sub_categories}}"
-        expect(subject.render(site)).to include "Feedback"
+        expect(subject).to include "Feedback"
       end
 
       it "{{chart.service_popularity}}" do
         pdf_template.content = "{{chart.service_popularity}}"
-        expect(subject.render(site)).to include "Popular"
+        expect(subject).to include "Popular"
       end
     end
   end
