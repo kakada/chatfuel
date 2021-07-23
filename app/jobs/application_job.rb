@@ -9,8 +9,8 @@ class ApplicationJob < ActiveJob::Base
   private
 
   def log &block
-    puts "*" * 100
+    puts "********** Begin ***********"
     yield if block_given?
-    puts "*" * 100
+    puts "********** end ***********"
   end
 end
