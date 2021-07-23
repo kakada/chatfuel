@@ -1,18 +1,18 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: [:edit, :update, :destroy]
+  before_action :authorise, only: [:edit, :update, :destroy]
 
   def index
     @pagy, @schedules = pagy(Schedule.includes(:pdf_template).order(updated_at: :desc))
   end
 
   def new
-    @schedule = Schedule.new
+    @schedule = authorize Schedule.new
     @pdf_template = @schedule.build_pdf_template
-    authorize @schedule
   end
 
   def create
-    @schedule = Schedule.new(schedule_params)
+    @schedule = authorize Schedule.new(schedule_params)
     @pdf_template = @schedule.pdf_template
     if @schedule.save
       redirect_to schedules_path
@@ -40,6 +40,10 @@ class SchedulesController < ApplicationController
   end
 
   private
+
+  def authorise
+    authorize @schedule
+  end
 
   def set_schedule
     @schedule = Schedule.find(params[:id])

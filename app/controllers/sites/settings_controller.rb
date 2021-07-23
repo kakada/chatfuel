@@ -12,6 +12,8 @@ module Sites
 
     def create
       @setting = @settings.build(site_setting_params)
+      authorize @setting
+
       if @setting.save
         flash[:notice] = I18n.t("sites.succesfully_create_setting")
       else
@@ -23,6 +25,7 @@ module Sites
 
     def update
       @setting = @settings.find(params[:id])
+      authorize @setting
 
       if @setting.update(site_setting_params)
         flash[:notice] = I18n.t("sites.succesfully_update_setting")

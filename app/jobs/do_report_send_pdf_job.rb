@@ -16,6 +16,6 @@ class DoReportSendPdfJob < ApplicationJob
   private
 
   def telegram_bot
-    TelegramBot.first
+    TelegramBot.actived.first
   end
 end
