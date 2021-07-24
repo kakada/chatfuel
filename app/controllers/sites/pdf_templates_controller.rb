@@ -63,7 +63,7 @@ module Sites
     end
 
     def default_start_date
-      @start_date = schedule_date.strftime('%Y/%m/%d')
+      @start_date = (schedule_date + 1.day).strftime('%Y/%m/%d')
     end
 
     def schedule_date
