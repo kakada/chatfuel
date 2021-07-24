@@ -2,6 +2,10 @@ require 'haml'
 
 module LiquidServices
   class ChartLiquid
+    def initialize(site)
+      @site = site
+    end
+
     def to_h
       { 'summary' => summary_html,
         'feedback_sub_categories' => feedback_sub_categories_html,
@@ -19,7 +23,7 @@ module LiquidServices
     def feedback_sub_categories_html
       html = File.read("#{template_path}/feedback_sub_categories.html.haml")
       template = Tilt::HamlTemplate.new { html }
-      template.render
+      template.render(self, 'site_name' => @site.name_i18n)
     end
 
     def most_popular_service_html
