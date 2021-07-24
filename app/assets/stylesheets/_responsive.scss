@@ -20,6 +20,13 @@
   flex-wrap: nowrap;
 }
 
+.gender-options {
+  width: 78px;
+  & > .select2-container {
+    width: auto !important;
+  }
+}
+
 @media (max-width: $large-screen) {
   .form {
     flex-wrap: wrap;

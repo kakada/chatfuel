@@ -16,7 +16,7 @@ module LiquidServices
     private
 
     def site_locals
-      @site_locals ||= SiteLiquid.new(@site)
+      @site_locals ||= SiteLiquid.new(site_name, province_name)
     end
 
     def date_locals
@@ -24,7 +24,23 @@ module LiquidServices
     end
 
     def chart_locals
-      @chart_locals ||= ChartLiquid.new(@site)
+      @chart_locals ||= ChartLiquid.new(site_name)
+    end
+
+    def site_name
+      district.send(name_18n)
+    end
+
+    def province_name
+      district.province.send(name_18n)
+    end
+
+    def district
+      @site.to_pumi
+    end
+
+    def name_18n
+      "full_name_#{I18n.locale}".to_sym
     end
   end
 end

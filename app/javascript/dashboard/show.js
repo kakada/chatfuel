@@ -209,12 +209,13 @@ OWSO.DashboardShow = (() => {
     });
   }
 
+  const START_DATE = "2020/08/28";
   function renderDatetimepicker() {
     flatpickr.localize(flatpickr.l10ns[gon.locale]);
     $(".datepicker_date").flatpickr({
       dateFormat: "Y/m/d",
       mode: "range",
-      minDate: gon.start_date,
+      minDate: START_DATE,
       maxDate: "today",
       locale: {
         rangeSeparator: " - ",
