@@ -24,7 +24,7 @@ module LiquidServices
     end
 
     def chart_locals
-      @chart_locals ||= ChartLiquid.new
+      @chart_locals ||= ChartLiquid.new(@site)
     end
   end
 end
