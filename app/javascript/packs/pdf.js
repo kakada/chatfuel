@@ -191,7 +191,7 @@ function totalFeedbackChart() {
 
 function totalVisitChart() {
   try {
-    let data = extractDonutDataset(gon.totalUserVisitByCategory);
+    let data = extractDonutDataset(gon.genderInfo);
 
     new Chart("chart_total_user_visit", {
       data,

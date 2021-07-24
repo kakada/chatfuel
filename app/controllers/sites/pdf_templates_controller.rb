@@ -73,7 +73,7 @@ module Sites
       I18n.with_locale(:km) do
         @query = DashboardQuery.new(filter_options)
         gon.push({
-          totalUserVisitByCategory: @query.total_users_visit_by_category,
+          genderInfo: @query.gender_info,
           totalUserFeedback: @query.users_feedback,
           feedbackSubCategories: @query.feedback_sub_categories[@site.code],
           accessMainService: @query.access_main_service,
