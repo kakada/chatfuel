@@ -23,7 +23,7 @@ module LiquidServices
     def feedback_sub_categories_html
       html = File.read("#{template_path}/feedback_sub_categories.html.haml")
       template = Tilt::HamlTemplate.new { html }
-      template.render(self, 'site_name' => @site.name_i18n)
+      template.render(self, 'site_name' => site_name)
     end
 
     def most_popular_service_html
@@ -34,6 +34,13 @@ module LiquidServices
 
     def template_path
       'app/views/sites/pdf_templates'
+    end
+
+    private
+
+    def site_name
+      district = Pumi::District.find_by_id(@site.code)
+      district.send("full_name_#{I18n.locale}".to_sym)
     end
   end
 end
