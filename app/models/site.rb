@@ -90,6 +90,10 @@ class Site < ApplicationRecord
     Pumi::Province.find_by_id(province_id) if province_id
   end
 
+  def to_pumi
+    Pumi::District.find_by_id(code) if code.present?
+  end
+
   private
     def whitelist_format
       return true if whitelist == '*'
