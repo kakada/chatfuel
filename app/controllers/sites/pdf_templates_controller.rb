@@ -54,11 +54,16 @@ module Sites
     end
 
     def pdf_name
-      "DO-report-#{DateTime.current.strftime("%Y%m%d%H%M%S")}"
+      cur_month = format_date(@end_date, '%B')
+      "#{cur_month}-monthly-DO-report(#{format_date(@start_date)}-#{format_date(@end_date)})"
+    end
+
+    def format_date(date, format='%Y%m%d')
+      date.to_date.strftime(format)
     end
 
     def default_start_date
-      @start_date = schedule_date.strftime('%Y/%m/%d')
+      @start_date = (schedule_date + 1.day).strftime('%Y/%m/%d')
     end
 
     def schedule_date
