@@ -10,6 +10,7 @@ import { labels } from "../data/donutchart/defaults";
 require("application/namespace");
 require("application/util");
 
+Chart.defaults.global.defaultFontSize = 16;
 Chart.defaults.global.plugins.datalabels = {
   formatter: Math.round,
   backgroundColor: (context) => context.dataset.backgroundColor,
