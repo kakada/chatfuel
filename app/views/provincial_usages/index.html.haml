@@ -10,7 +10,13 @@
         %thead
           %tr
             - @provincial_usages.t_headers.each do |h|
-              %th{:scope => "col"}= h
+              %th{:scope => "col"}
+                = h[:value]
+                %span.sort
+                  = link_to sort_url_for(h[:key], 'asc'), class: ['lh-sm', active_sort(h[:key], 'asc')] do
+                    %i.fa.fa-caret-up.lh-sm
+                  = link_to sort_url_for(h[:key], 'desc'), class: ['lh-sm', active_sort(h[:key], 'desc')] do
+                    %i.fa.fa-caret-down.lh-sm
           %tr.total-row
             %td.font-weight-bold
               = t("provincial_usages.total")

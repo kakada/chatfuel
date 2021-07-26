@@ -3,9 +3,17 @@ class ProvincialUsages
     @provincial_usages = provincial_usages
   end
 
-  def sort_by_code dir = :asc
+  def sort attr, dir
+    return default_sort unless attr.present?
+
     @provincial_usages.sort do |a, b|
-      dir == :asc ? a.code <=> b.code : b.code <=> a.code
+      (dir.nil? or dir.to_sym == :asc) ? a.send(attr.to_sym).to_i <=> b.send(attr.to_sym).to_i : b.send(attr.to_sym).to_i <=> a.send(attr.to_sym).to_i
     end
+  end
+
+  private
+
+  def default_sort
+    sort(:unique_users_count, :desc)
   end
 end

@@ -1,7 +1,7 @@
 class ProvincialUsagesDecorator < Draper::CollectionDecorator
   def t_headers
     plain_headers.map do |header|
-      h.t("provincial_usages.#{header}")
+      { key: h.sort_keys[header], value: h.t("provincial_usages.#{header}") }
     end
   end
 
