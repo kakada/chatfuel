@@ -1,4 +1,7 @@
 class ProvincialUsage
+  DEFAULT_SORT_ATTR = 'visits_count'
+  DEFAULT_SORT_DIR = 'desc'
+
   def initialize(options, pro_code)
     @options = options
     @pro_code = pro_code

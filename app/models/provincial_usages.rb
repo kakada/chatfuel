@@ -8,6 +8,8 @@ class ProvincialUsages
 
     @provincial_usages.sort do |a, b|
       (dir.nil? or dir.to_sym == :asc) ? a.send(attr.to_sym).to_i <=> b.send(attr.to_sym).to_i : b.send(attr.to_sym).to_i <=> a.send(attr.to_sym).to_i
+    rescue NoMethodError => e
+      raise Exception.new("Available sortable attributes: #{e.receiver.class.instance_methods(false)}")
     end
   end
 
