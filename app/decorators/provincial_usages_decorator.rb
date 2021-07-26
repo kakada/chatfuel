@@ -5,6 +5,18 @@ class ProvincialUsagesDecorator < Draper::CollectionDecorator
     end
   end
 
+  def sum_total_visit
+    self.sum { |usage| usage.visits_count.to_i }
+  end
+
+  def sum_unique_users_count
+    self.sum { |usage| usage.unique_users_count.to_i }
+  end
+
+  def sum_service_delivered_count
+    self.sum { |usage| usage.service_delivered_count.to_i }
+  end
+
   private
 
   def plain_headers

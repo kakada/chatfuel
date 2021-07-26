@@ -11,6 +11,17 @@
           %tr
             - @provincial_usages.t_headers.each do |h|
               %th{:scope => "col"}= h
+          %tr.total-row
+            %td.font-weight-bold
+              = t("provincial_usages.total")
+            %td &nbsp;
+            %td.font-weight-bold
+              = @provincial_usages.sum_total_visit
+            %td.font-weight-bold
+              = @provincial_usages.sum_unique_users_count
+            %td.font-weight-bold
+              = @provincial_usages.sum_service_delivered_count
+            %td &nbsp;
         %tbody
           - @provincial_usages.each do |p, index|
             %tr
