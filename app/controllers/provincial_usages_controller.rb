@@ -11,13 +11,16 @@ class ProvincialUsagesController < ApplicationController
     respond_to do |format|
       format.html
       format.csv {
-        response.headers['Content-Disposition'] = "attachment; filename=\"#{file_name}.csv\""
-        render csv: @provincial_usages
+        render csv: @provincial_usages, **csv_options
       }
     end
   end
 
   private
+
+  def csv_options
+    { filename: "#{file_name}.csv", disposition: :attachment }
+  end
 
   def file_name
     "provincial_usage_from_#{@start_date}_to_#{@end_date}"
