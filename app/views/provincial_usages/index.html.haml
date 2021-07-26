@@ -12,9 +12,9 @@
             - @provincial_usages.t_headers.each do |h|
               %th{:scope => "col"}= h
         %tbody
-          - @provincial_usages.each_with_index do |p, index|
+          - @provincial_usages.each do |p, index|
             %tr
               %th{:scope => "row"}
-                = index + 1
+                = p.code
               - p.data.each do |d|
                 %td= d

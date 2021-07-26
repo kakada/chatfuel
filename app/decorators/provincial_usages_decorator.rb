@@ -8,6 +8,6 @@ class ProvincialUsagesDecorator < Draper::CollectionDecorator
   private
 
   def plain_headers
-    %w(no location visit unique delivered most_request)
+    %w(code location visit unique delivered most_request)
   end
 end

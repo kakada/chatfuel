@@ -4,6 +4,10 @@ class ProvincialUsage
     @pro_code = pro_code
   end
 
+  def code
+    @pro_code
+  end
+
   def province_name
     Pumi::Province.find_by_id(@pro_code).send("name_#{I18n.locale}".to_sym)
   end
