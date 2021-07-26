@@ -1,5 +1,5 @@
 module ProvincialUsageHelper
-  def sort_keys
+  def sortable_attributes
     {
       'visit': 'visits_count',
       'unique': 'unique_users_count',
