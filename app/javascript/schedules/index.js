@@ -3,7 +3,6 @@ import tippy from "tippy.js";
 OWSO.SchedulesNew = (() => {
   function init() {
     enableManualCron();
-    initBootstrapToggle();
     addEventToDynamicVariables();
     loadTipsy();
   }
@@ -36,10 +35,6 @@ OWSO.SchedulesNew = (() => {
         $(".cron-control.cron-time").prop("type", "time");
       }
     });
-  }
-
-  function initBootstrapToggle() {
-    $(".toggle-control").bootstrapToggle();
   }
 
   function addEventToDynamicVariables() {

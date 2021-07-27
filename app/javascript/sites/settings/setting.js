@@ -6,7 +6,6 @@ OWSO.SitesSettingsIndex = (() => {
   function init() {
     addEventToMessageVariable();
     addEventToDigestMessageVariable();
-    initBootstrapToggle();
     handleSwitchingMessageTemplate();
     onChangeMessageFrequency();
   }
@@ -29,10 +28,6 @@ OWSO.SitesSettingsIndex = (() => {
 
     $(".site_feedback_setting_message_template").hide();
     $(".site_feedback_setting_digest_message_template").show();
-  }
-
-  function initBootstrapToggle() {
-    $(".toggle-notification").bootstrapToggle();
   }
 
   function addEventToMessageVariable() {

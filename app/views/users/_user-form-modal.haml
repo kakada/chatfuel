@@ -28,9 +28,7 @@
 
           = f.input :email, label: t('users.email')
 
-          %label.switch.mt-2
-            = f.input_field :actived
-            %span.slider.round
+          = f.input_field :actived, class: 'toggle-control'
           %span= t('users.active_user')
 
         .modal-footer

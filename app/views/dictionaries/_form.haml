@@ -16,7 +16,7 @@
           .d-flex.flex-column.align-items-center.mr-5{for: role.id}
             %label.mb-0{for: role.id}= role_icon(role.name).html_safe
             %label{for: role.id}= role.name.humanize
-            %input{:type => "checkbox", :value => role.id, id: role.id, name: 'variable[role_ids][]', checked: dictionary.role_ids.include?(role.id)}
+            %input{:type => "checkbox", :value => role.id, id: role.id, name: 'variable[role_ids][]', checked: dictionary.role_ids.include?(role.id), class: "toggle-control" }
 
       %p.font-weight-bold.mt-3
         = t('dictionaries.mark_as')
