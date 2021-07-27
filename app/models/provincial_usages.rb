@@ -1,4 +1,6 @@
 class ProvincialUsages
+  attr_accessor :provincial_usages
+
   def initialize(provincial_usages)
     @provincial_usages = provincial_usages
   end
