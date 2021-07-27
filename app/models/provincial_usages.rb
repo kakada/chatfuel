@@ -6,16 +6,25 @@ class ProvincialUsages
   def sort attr, dir
     return default_sort unless attr.present?
 
-    @provincial_usages.sort do |a, b|
-      (dir.nil? or dir.to_sym == :asc) ? a.send(attr.to_sym).to_i <=> b.send(attr.to_sym).to_i : b.send(attr.to_sym).to_i <=> a.send(attr.to_sym).to_i
+    @provincial_usages.sort do |left, right|
+      left, right = [right, left] if desc?(dir)
+      left.send(attr.to_sym).to_i <=> right.send(attr.to_sym).to_i
     rescue NoMethodError => e
-      raise Exception.new("Available sortable attributes: #{e.receiver.class.instance_methods(false)}")
+      raise Exception.new err_with_suggestion(e)
     end
   end
 
   private
 
+  def err_with_suggestion e
+    "Available sortable attributes: #{e.receiver.class.instance_methods(false)}"
+  end
+
+  def desc?(dir)
+    dir.to_sym == :desc
+  end
+
   def default_sort
-    sort(:unique_users_count, :desc)
+    sort(ProvincialUsage::DEFAULT_SORT_ATTR, ProvincialUsage::DEFAULT_SORT_DIR)
   end
 end
