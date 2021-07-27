@@ -32,4 +32,8 @@ class SiteFeedbackSetting < SiteSetting
     value = value.to_i if value.is_a? String
     super(value)
   end
+
+  def self.policy_class
+    SiteSettingPolicy
+  end
 end
