@@ -1,4 +1,4 @@
 = CSV.generate("\uFEFF", encoding: 'ISO-8859-1') do |csv|
-  - csv << @provincial_usages.t_headers
-  - @provincial_usages.each_with_index do |p, index|
-    - csv << [index+1] + p.data
+  - csv << @provincial_usages.csv_headers
+  - @provincial_usages.each do |provincial, index|
+    - csv << provincial.data

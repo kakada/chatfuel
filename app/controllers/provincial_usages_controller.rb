@@ -1,5 +1,6 @@
 class ProvincialUsagesController < ApplicationController
   include Filterable
+  include Sortable
 
   before_action :default_start_date
   before_action :set_daterange
@@ -7,17 +8,25 @@ class ProvincialUsagesController < ApplicationController
   before_action :set_gon
 
   def index
-    @provincial_usages = ProvincialUsageDecorator.decorate_collection(@query.provincial_usages)
+    collection = @query.provincial_usages.sort(@sort_attr, @sort_dir)
+    @provincial_usages = ProvincialUsageDecorator.decorate_collection(collection)
+
     respond_to do |format|
       format.html
-      format.csv {
-        response.headers['Content-Disposition'] = "attachment; filename=\"#{file_name}.csv\""
-        render csv: @provincial_usages
-      }
+      format.csv { render csv: @provincial_usages, **csv_options }
     end
   end
 
   private
+
+  def set_sort
+    @sort_attr = params[:sort_attr] || ProvincialUsage::DEFAULT_SORT_ATTR
+    @sort_dir = params[:sort_dir] || ProvincialUsage::DEFAULT_SORT_DIR
+  end
+
+  def csv_options
+    { filename: "#{file_name}.csv", disposition: :attachment }
+  end
 
   def file_name
     "provincial_usage_from_#{@start_date}_to_#{@end_date}"

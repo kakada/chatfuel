@@ -4,7 +4,7 @@ RSpec.describe PdfTemplateDecorator do
   subject { pdf_template.decorate.render(site, Date.today) }
 
   let(:pdf_template) { create(:pdf_template) }
-  let(:site) { build(:site, name_en: 'kamrieng', province_id: "02") }
+  let(:site) { build(:site, name_en: 'kamrieng', code: "0212", province_id: "02") }
 
   context "#render" do
     let(:summary_html) { "Summary HTML" }

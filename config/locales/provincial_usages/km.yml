@@ -1,6 +1,6 @@
 km:
   provincial_usages:
-    "no": លេខរៀង
+    code: លេខកូដខេត្ត
     location: ខេត្ត/ក្រុង
     unique: អ្នកប្រើប្រាស់ប្លែកៗគ្នា
     visit: អ្នកប្រើប្រាស់មានចំនួនសរុប
@@ -9,3 +9,4 @@ km:
     download: ទាញយក
     csv: CSV
     image: រូបភាព(.png)
+    total: សរុប

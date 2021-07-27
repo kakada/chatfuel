@@ -311,6 +311,7 @@ ActiveRecord::Schema.define(version: 2021_07_16_103847) do
     t.string "hint", limit: 255, default: ""
     t.string "mapping_value_km", default: ""
     t.boolean "is_criteria", default: false
+    t.string "type_of", default: ""
     t.index ["variable_id"], name: "index_variable_values_on_variable_id"
   end
 

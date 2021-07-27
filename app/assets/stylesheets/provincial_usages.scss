@@ -1,0 +1,26 @@
+#provincial_usages-index {
+  .total-row {
+    background-color: #e2e2e2;
+  }
+
+  .lh-sm {
+    line-height: 12px;
+  }
+
+  .sort {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    vertical-align: middle;
+  }
+
+  .sort > a {
+    color: #e0e0e0;
+
+    &.sort__active,
+    &:hover {
+      color: #4e73df;
+    }
+  }
+}
