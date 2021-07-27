@@ -1,5 +1,5 @@
 .my-4.d-flex.flex-wrap.filter-options
-  .flex-grow-1
+  .flex-grow-0
     %ul.list-inline.platform-list
       - param = {start_date: @start_date, end_date: @end_date, province_code: params[:province_code], district_code: params[:district_code], gender: params[:gender]}
       %li.list-inline-item{class: ('active' if params[:platform].blank?)}
@@ -9,7 +9,7 @@
       %li.list-inline-item{class: get_css_active_class('chatbot')}
         = link_to t("dashboard.chatbot"), url_for(param.merge(platform: 'chatbot')), class: 'text-decoration-none'
 
-  %div
+  .flex-grow-1
     %form#q.float-right.form.d-flex{ action: url_for }
       .gender.d-flex.align-items-center
         .filter-label.mr-2
