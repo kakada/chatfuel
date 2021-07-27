@@ -12,7 +12,7 @@
           .d-flex
             %label.flex-grow-1= t('site_setting.enable_notification')
             = f.input :type, as: :hidden, input_html: { name: 'site_setting[type]' }
-            = f.input :enable_notification, label: false, input_html: { name: 'site_setting[enable_notification]', class: 'toggle-notification' }
+            = f.input :enable_notification, label: false, input_html: { name: 'site_setting[enable_notification]', class: 'toggle-control' }
 
           .form-group
             = hidden_field_tag "site_setting[telegram_chat_group_ids][]", nil
@@ -21,7 +21,7 @@
             - TelegramChatGroup.all.each_with_index do |chat_group, index|
               .d-flex.justify-content-between.align-items-center.mb-2
                 %label.form-check-label{for: dom_id(chat_group)}= chat_group.title
-                = check_box_tag "site_setting[telegram_chat_group_ids][]", chat_group.id, @do_report_setting.telegram_chat_group_ids.include?(chat_group.id), class: 'form-check-input toggle-notification', id: dom_id(chat_group)
+                = check_box_tag "site_setting[telegram_chat_group_ids][]", chat_group.id, @do_report_setting.telegram_chat_group_ids.include?(chat_group.id), class: 'form-check-input toggle-control', id: dom_id(chat_group)
 
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"}= t("shared.cancel")
