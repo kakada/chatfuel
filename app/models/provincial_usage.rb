@@ -1,4 +1,6 @@
 class ProvincialUsage
+  attr_reader :result, :pro_code
+
   DEFAULT_SORT_ATTR = 'visits_count'
   DEFAULT_SORT_DIR = 'desc'
 
@@ -7,28 +9,24 @@ class ProvincialUsage
     @pro_code = pro_code
   end
 
-  def pro_code
-    @pro_code
-  end
-
   def province_name
-    Pumi::Province.find_by_id(@pro_code).send(address_i18n)
+    Pumi::Province.find_by_id(pro_code).send(address_i18n)
   end
 
   def visits_count
-    @result[@pro_code][:visits]
+    result[pro_code][:visits]
   end
 
   def unique_users_count
-    @result[@pro_code][:uniques]
+    result[pro_code][:uniques]
   end
 
   def service_delivered_count
-    @result[@pro_code][:service_delivered]
+    result[pro_code][:service_delivered]
   end
 
   def most_request_service
-    @result[@pro_code][:most_request_services]
+    result[pro_code][:most_request_services]
 
   end
 
