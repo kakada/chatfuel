@@ -27,11 +27,10 @@ class ProvincialUsage
 
   def most_request_service
     result[pro_code][:most_request_services]
-
   end
 
   def self.fetch_and_transform(options)
-    hash = fetch(options)
+    hash = fetch(options).to_h
     transform(hash)
   end
 
