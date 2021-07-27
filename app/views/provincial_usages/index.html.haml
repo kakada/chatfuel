@@ -8,31 +8,10 @@
     #table.table-responsive
       %table.table.table-hover
         %thead
-          %tr
-            - @provincial_usages.t_headers.each do |header|
-              %th{:scope => "col"}
-                = header[:translate]
-                %span.sort
-                  - if header[:sortable_attr].present?
-                    = link_to sort_url_for(header[:sortable_attr], 'asc'), class: ['lh-sm', active_sort(header[:sortable_attr], 'asc')] do
-                      %i.fa.fa-caret-up.lh-sm
-                    = link_to sort_url_for(header[:sortable_attr], 'desc'), class: ['lh-sm', active_sort(header[:sortable_attr], 'desc')] do
-                      %i.fa.fa-caret-down.lh-sm
-          %tr.total-row
-            %td.font-weight-bold
-              = t("provincial_usages.total")
-            %td &nbsp;
-            %td.font-weight-bold
-              = @provincial_usages.sum_total_visit
-            %td.font-weight-bold
-              = @provincial_usages.sum_unique_users_count
-            %td.font-weight-bold
-              = @provincial_usages.sum_service_delivered_count
-            %td &nbsp;
+          = render 'header_row'
+          = render 'total_row'
         %tbody
-          - @provincial_usages.each do |p, index|
+          - @provincial_usages.each do |provincial, index|
             %tr
-              %th{:scope => "row"}
-                = p.code
-              - p.data.each do |d|
-                %td= d
+              - provincial.data.each do |data|
+                %td= data

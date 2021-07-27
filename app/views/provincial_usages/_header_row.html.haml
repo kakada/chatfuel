@@ -1,0 +1,10 @@
+%tr
+  - @provincial_usages.table_headers.each do |header|
+    %th{:scope => "col"}
+      = header[:col]
+      %span.sort
+        - if header[:sortable_attr].present?
+          = link_to sort_url_for(header[:sortable_attr], 'asc'), class: ['lh-sm', active_sort(header[:sortable_attr], 'asc')] do
+            %i.fa.fa-caret-up.lh-sm
+          = link_to sort_url_for(header[:sortable_attr], 'desc'), class: ['lh-sm', active_sort(header[:sortable_attr], 'desc')] do
+            %i.fa.fa-caret-down.lh-sm
