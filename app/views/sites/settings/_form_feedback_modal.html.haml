@@ -30,9 +30,9 @@
             %label= t('site_setting.chat_group')
 
             - TelegramChatGroup.all.each_with_index do |chat_group, index|
-              .form-check.ml-2
-                = check_box_tag "site_setting[telegram_chat_group_ids][]", chat_group.id, @feedback_setting.telegram_chat_group_ids.include?(chat_group.id), class: 'form-check-input', id: dom_id(chat_group)
+              .d-flex.justify-content-between.align-items-center.mb-2
                 %label.form-check-label{for: dom_id(chat_group)}= chat_group.title
+                = check_box_tag "site_setting[telegram_chat_group_ids][]", chat_group.id, @feedback_setting.telegram_chat_group_ids.include?(chat_group.id), class: 'form-check-input toggle-notification', id: dom_id(chat_group)
 
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"}= t("shared.cancel")
