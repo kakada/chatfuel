@@ -3,7 +3,7 @@ class ProvincialUsageDecorator < ApplicationDecorator
 
   def data
     [
-      code,
+      pro_code,
       province_name,
       visits_count,
       unique_users_count,

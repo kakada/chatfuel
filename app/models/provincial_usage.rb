@@ -7,12 +7,12 @@ class ProvincialUsage
     @pro_code = pro_code
   end
 
-  def code
+  def pro_code
     @pro_code
   end
 
   def province_name
-    Pumi::Province.find_by_id(@pro_code).send("address_#{I18n.locale}".to_sym)
+    Pumi::Province.find_by_id(@pro_code).send(address_i18n)
   end
 
   def visits_count
@@ -38,6 +38,10 @@ class ProvincialUsage
   end
 
   private
+
+  def address_i18n
+    "address_#{I18n.locale}".to_sym
+  end
 
   def self.transform(hash)
     hash.inject({}) do |memo, arr|
