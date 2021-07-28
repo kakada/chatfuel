@@ -6,7 +6,7 @@
     = link_to t("sites.view_detail"), "#", id: "link-trend-detail", name: "link_trend_detail", role: "link", data: { toggle: "modal", target: ".feedback_trend_#{province_id}", provinceid: province_id, callback: "loadFeedbackTrend" }
 
   - c.with(:addon) do
-    = render ChartAddonComponent.new(visibility:collection.blank?, path:"feedback-trend", formater: "feedbackTrend", canvasid: "chart_owso_feedback_trend_#{province_id}" )
+    = render_component ChartAddonComponent.new(visibility:collection.blank?, path:"feedback-trend", formater: "feedbackTrend", canvasid: "chart_owso_feedback_trend_#{province_id}" )
 
   - c.with(:body) { content_tag(:canvas, nil, id: "chart_owso_feedback_trend_#{province_id}", class: "chart_owso_feedback_trend", "data-provinceid": province_id) }
   - c.with(:hint) { t("hint.owso_feedback_trend") }
