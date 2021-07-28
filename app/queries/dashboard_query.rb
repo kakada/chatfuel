@@ -47,6 +47,7 @@ class DashboardQuery
     Session.filter(@options)
   end
 
+  # Summary > Total Visits By Type Of Service
   def total_users_visit_each_functions
     Session.filter(@options)\
             .joins(step_values: [:variable, :variable_value])\
@@ -98,11 +99,6 @@ class DashboardQuery
     return [] if variable.nil?
 
     StepValue.total_users_feedback(variable, @options)
-  end
-
-  def users_feedback
-    users_feedback_report = ::UserFeedback.new(nil, self)
-    users_feedback_report.chart_options
   end
 
   def total_users_feedback_by_gender

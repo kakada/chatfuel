@@ -101,6 +101,6 @@ class DictionariesController < ApplicationController
     end
 
     def variable_params
-      params.require(:variable).permit(:type, :name, :mark_as, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value_en, :mapping_value_km, :hint, :status, :_destroy])
+      params.require(:variable).permit(:type, :name, :mark_as, role_ids: [], values_attributes: [:id, :raw_value, :mapping_value_en, :mapping_value_km, :hint, :value_status, :_destroy])
     end
 end

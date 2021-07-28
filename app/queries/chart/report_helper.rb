@@ -57,6 +57,7 @@ module Chart::ReportHelper
     ticket_tracking_report.chart_options
   end
 
+  # Summary > Total User Feedback
   def users_feedback
     users_feedback_report = ::UserFeedback.new(nil, self)
     users_feedback_report.chart_options

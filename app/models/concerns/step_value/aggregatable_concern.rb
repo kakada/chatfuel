@@ -5,9 +5,9 @@ module StepValue::AggregatableConcern
     def self.total_users_feedback(variable, params = {})
       scope = filter(params.merge(variable_id: variable))
 
-      statuses = VariableValue.statuses
+      statuses = VariableValue.value_statuses
       default = statuses.transform_values { 0 }
-      result = scope.joins(:variable_value).group(:status).count.map do |k, v|
+      result = scope.joins(:variable_value).group(:value_status).count.map do |k, v|
         [statuses.key(k), v]
       end.to_h
 

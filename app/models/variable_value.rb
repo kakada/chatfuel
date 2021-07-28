@@ -8,9 +8,9 @@
 #  mapping_value_en  :string           default("")
 #  mapping_value_km  :string           default("")
 #  raw_value         :string           not null
-#  status            :string           default("acceptable")
 #  step_values_count :integer(4)       default(0)
 #  type_of           :string           default("")
+#  value_status      :string           default("1")
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  variable_id       :bigint(8)        not null
@@ -24,7 +24,7 @@
 #  fk_rails_...  (variable_id => variables.id)
 #
 class VariableValue < ApplicationRecord
-  enum status: { like: "0", acceptable: "1", dislike: "2" }
+  enum value_status: { like: "0", acceptable: "1", dislike: "2" }
   USER_FEEDBACK = 'user_feedback'
 
   # associations
