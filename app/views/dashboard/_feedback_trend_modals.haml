@@ -9,7 +9,7 @@
       .modal-body
         - @query.district_codes_without_other.each do |district_id|
           - if district_id[0...2] == province_id
-            = render( ChartComponent.new(name: t("welcomes.feedback_trend", name: district(district_id).send(t_name) )) ) do |c|
+            = render_component( ChartComponent.new(name: t("welcomes.feedback_trend", name: district(district_id).send(t_name) )) ) do |c|
               - c.with(:body) { content_tag(:canvas, nil, id: "chart_feedback_trend_#{district_id}", class: "chart_feedback_trend", "data-id": district_id, "data-provinceid": province_id) }
       .modal-footer
         %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button", role: "button", value: "canceled"}
