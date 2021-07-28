@@ -33,7 +33,7 @@
             .row
               -# citizen feedback
               .col-lg-6
-                = render( ChartComponent.new(name: t("welcomes.information_access_by_gender")) ) do |c|
+                = render_component( ChartComponent.new(name: t("welcomes.information_access_by_gender")) ) do |c|
                   - c.with(:body) { content_tag(:canvas, nil, id: "gender_feedback") }
                   - c.with(:hint) { t("hint.information_access_by_gender") }
               .col-lg-6
