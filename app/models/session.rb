@@ -31,8 +31,6 @@ class Session < ApplicationRecord
   has_many :step_values, dependent: :destroy
   has_many :trackings, dependent: :destroy
 
-  default_scope -> { order(updated_at: :desc) }
-
   validates :session_id, :source_id, presence: true
   validates :platform_name, inclusion: {
                               in: %w(Messenger Telegram Verboice),

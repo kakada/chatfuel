@@ -47,21 +47,12 @@ class DashboardQuery
     Session.filter(@options)
   end
 
-  def total_users_visit_by_category
-    user_visit_report = ::UserVisitEachFunction.new(nil, self)
-    user_visit_report.chart_options
-  end
-
   def total_users_visit_each_functions
-    variable = Variable.user_visit
-
-    return {}  if variable.nil?
-    
-    result = StepValue.total_users_visit(variable, @options)
-
-    return {} if result.blank?
-
-    default_chartjs_color_mapping.merge(result).transform_keys(&:humanize)
+    Session.filter(@options)\
+            .joins(step_values: [:variable, :variable_value])\
+            .where(step_values: { variable: Variable.user_visit })\
+            .group("mapping_value_#{I18n.locale}")\
+            .count
   end
 
   def users_by_genders
@@ -88,16 +79,6 @@ class DashboardQuery
       hash[variable_value.mapping_value_km] = variable_value
       hash
     end
-  end
-
-  # prevent inconsistent chartjs color
-  def default_chartjs_color_mapping
-    return {} unless user_visit.present?
-
-    default = {}
-    key = "mapping_value_#{ I18n.locale }".to_sym
-    user_visit.values.each { |val| default[val.send(key)] = 0 }
-    default
   end
 
   def ticket_tracking

@@ -67,18 +67,6 @@ class StepValue < ApplicationRecord
     joins(:variable_value).where("variable_values.id in (?)", disatisfied.ids)
   end
 
-  def self.total_users_visit_each_functions(params = {})
-    key = "mapping_value_#{ I18n.locale }".to_sym
-
-    scope = all
-    scope = scope.joins(variable_value: :variable)
-    scope = filter(scope, params)
-    scope = scope.where(variable_id: Variable.user_visit)
-    scope = scope.order(key)
-    scope = scope.group(key)
-    scope.count
-  end
-
   def self.clone_step(attr, value)
     variable = Variable.send(attr)
     variable_value = variable.values.find_or_create_by(raw_value: value)
