@@ -4,6 +4,7 @@ module Chart::ReportHelper
     ::MostRequest.new(Variable.most_request, self).chart_options
   end
 
+  # Citizen feedback > Total Feedback By Gender
   def gender_info
     ::GenderInfo.new(nil, self).chart_options
   end
