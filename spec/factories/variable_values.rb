@@ -26,7 +26,7 @@ FactoryBot.define do
     raw_value { "certify_docs" }
     mapping_value_en { "Certify Documents" }
     mapping_value_km { "បញ្ជាក់ឯកសារ" }
-    status { "1" }
+    value_status { "1" }
     association :variable
   end
 end

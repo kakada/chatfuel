@@ -28,7 +28,7 @@ RSpec.describe VariableValue, type: :model do
   it { is_expected.to have_attribute(:mapping_value_km) }
   it { is_expected.to have_attribute(:hint) }
   it { is_expected.to have_attribute(:raw_value) }
-  it { is_expected.to have_attribute(:status) }
+  it { is_expected.to have_attribute(:value_status) }
   it { is_expected.to have_attribute(:step_values_count) }
   it { is_expected.to belong_to(:variable) }
 
