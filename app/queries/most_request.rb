@@ -25,7 +25,7 @@ class MostRequest < BasicReport
     Session.filter(@query.options)\
             .joins(:step_values)\
             .where(province_id: @query.province_codes )\
-            .where(step_values: @variable.step_values)\
+            .where(step_values: { variable: @variable })\
             .group(:province_id, :district_id, :variable_value_id)\
             .count
   end
