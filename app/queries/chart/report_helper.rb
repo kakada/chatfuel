@@ -13,11 +13,9 @@ module Chart::ReportHelper
     ::AccessInfo.new(nil, self).chart_options
   end
 
+  # OWSO Information Accessed > Most Popular Service Information Requested By OWSO (scatter chart)
   def access_main_service
-    main_service = Variable.service_accessed
-    ::AccessMainService.new(main_service, self).chart_options
-  rescue
-    {}
+    ::AccessMainService.new(Variable.service_accessed, self).chart_options
   end
 
   def most_tracked_periodic
