@@ -85,11 +85,12 @@ class Session < ApplicationRecord
     platform_name == "Verboice"
   end
 
-  def self.accessed(options = {})
-    variable = Variable.find_by(is_service_accessed: true)
-
+  def self.accessed(period=:day, format="%b/%y,%Y", options={})
     scope = filter(options)
-    scope.where(step_values: variable.step_values) if variable.present?
+    scope = scope.joins(:step_values)
+    scope = scope.where(step_values: { variable: Variable.service_accessed })
+    scope = scope.group_by_period(period, :created_at, format: format)
+    scope.count
   end
 
   def reachable_period?

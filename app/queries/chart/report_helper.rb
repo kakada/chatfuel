@@ -8,6 +8,7 @@ module Chart::ReportHelper
     ::GenderInfo.new(nil, self).chart_options
   end
 
+  # OWSO Information Accessed > Information Access By :period
   def access_info
     ::AccessInfo.new(nil, self).chart_options
   end
