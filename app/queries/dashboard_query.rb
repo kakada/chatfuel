@@ -24,6 +24,7 @@ class DashboardQuery
     sessions.select("DISTINCT ON (session_id) *").reorder(:session_id, :gender)
   end
 
+  # Summary > Total Service Delivered
   def user_accessed_count
     total_users_visit_each_functions.values.sum
   end
