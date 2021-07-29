@@ -29,11 +29,12 @@ class FeedbackTrend < Feedback
     end
 
     def result_set
-      scope = StepValue.filter(@query.options, @variable.step_values)
-      scope = scope.joins(:session)
-      scope = scope.where(sessions: { province_id: @query.province_codes })
-      scope = scope.group_by_period(period, "sessions.created_at", format: "%b/%y,%Y")
-      scope = scope.group(:variable_value_id)
-      scope.count
+      Session.filter(@query.options)\
+              .joins(:step_values)\
+              .where(step_values: { variable: @variable })\
+              .where(province_id: @query.province_codes)\
+              .group_by_period(period, :created_at, format: '%b/%y,%Y')\
+              .group(:variable_value_id)\
+              .count
     end
 end

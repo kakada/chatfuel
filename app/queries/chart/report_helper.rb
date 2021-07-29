@@ -36,10 +36,7 @@ module Chart::ReportHelper
   end
 
   def feedback_trend
-    feedback = Variable.feedback
-    ::FeedbackTrend.new(feedback, self).chart_options
-  rescue
-    {}
+    ::FeedbackTrend.new(Variable.feedback, self).chart_options
   end
 
   def total_users_visit_by_category
