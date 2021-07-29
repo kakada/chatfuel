@@ -19,7 +19,7 @@ class OverallRating < Feedback
     end
 
     def named_status(status)
-      display_ratings.find_by(status: status)&.mapping_value || I18n.t(status)
+      display_ratings.find_by(value_status: status)&.mapping_value || I18n.t(status)
     end
 
     def colors_mapping
@@ -27,7 +27,7 @@ class OverallRating < Feedback
     end
 
     def satisfied
-      VariableValue.statuses.keys.reverse
+      VariableValue.value_statuses.keys.reverse
     end
     
     def mapping
@@ -37,8 +37,8 @@ class OverallRating < Feedback
       
         hash[pro_code] ||= {}
         hash[pro_code][district] ||= {}
-        prev_count = hash[pro_code][district][value.status].to_i
-        hash[pro_code][district][value.status] = (prev_count + count)
+        prev_count = hash[pro_code][district][value.value_status].to_i
+        hash[pro_code][district][value.value_status] = (prev_count + count)
       end
     end
 
@@ -48,13 +48,12 @@ class OverallRating < Feedback
     end
 
     def result_set
-      scope = StepValue.filter(@query.options, @variable.step_values)
-      scope = scope.joins(:session)
-      scope = scope.where(sessions: { province_id: @query.province_codes })
-      scope = scope.where(sessions: { district_id: @query.district_codes })
-      scope = scope.group("sessions.province_id")
-      scope = scope.group("sessions.district_id")
-      scope = scope.group(:variable_value_id)
-      scope.count
+      Session.filter(@query.options)
+              .joins(:step_values)
+              .where(step_values: { variable: @variable })
+              .where(province_id: @query.province_codes)
+              .where(district_id: @query.district_codes)
+              .group(:province_id, :district_id, :variable_value_id)
+              .count
     end
 end

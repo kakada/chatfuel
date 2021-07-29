@@ -28,11 +28,9 @@ module Chart::ReportHelper
     ::TicketTrackingByGenders.new(nil, self).chart_options
   end
 
+  # Citizen Feedback > :pro_code > Overall Rating by OWSO
   def overall_rating
-    feedback = Variable.feedback
-    ::OverallRating.new(feedback, self).chart_options
-  rescue
-    {}
+    ::OverallRating.new(Variable.feedback, self).chart_options
   end
 
   def feedback_trend
