@@ -36,6 +36,8 @@ class Session < ApplicationRecord
                               in: %w(Messenger Telegram Verboice),
                               message: I18n.t("sessions.invalid_platform_name", value: "%{value}") }
 
+  scope :with_genders, -> { where.not(gender: [nil, "", "null"]) }
+
   after_create_commit :completed!, if: :ivr?
 
   def self.create_or_return(platform_name, session_id)
