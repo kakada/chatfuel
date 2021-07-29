@@ -14,13 +14,6 @@ module StepValue::AggregatableConcern
       default.merge(result).transform_keys { |k| I18n.t(k.downcase.to_sym) }
     end
 
-    def self.users_visited_by_each_genders(params = {})
-      params = params.merge(variable_value: VariableValue.kind_of_criteria)
-      
-      scope = joins(:session).where.not(sessions: { gender: '' })
-      scope = filter(params, scope)
-    end
-
     def self.total_users_visit(variable, params = {})
       key = "mapping_value_#{ I18n.locale }".to_sym
       

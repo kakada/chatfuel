@@ -45,6 +45,7 @@ module Chart::ReportHelper
     ::UserVisitEachFunction.new(nil, self).chart_options
   end
 
+  # OWSO Information Accessed > Information Access By Gender
   def users_by_genders
     ::UserByGender.new(nil, self).chart_options
   end

@@ -56,14 +56,13 @@ class DashboardQuery
             .count
   end
 
-  def users_by_genders
-    users_gender_report = ::UserByGender.new(nil, self)
-    users_gender_report.chart_options
-  end
-
   def users_visited_by_each_genders
-    result = StepValue.users_visited_by_each_genders(@options)
-    result = result.group(:gender).count
+    result = Session.filter(@options)\
+              .joins(:step_values)\
+              .where(step_values: { variable_value: VariableValue.kind_of_criteria })\
+              .where.not(gender: '')\
+              .group(:gender)\
+              .count
 
     return {} if Variable.gender.nil?
 
