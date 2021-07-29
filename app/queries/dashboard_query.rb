@@ -81,11 +81,7 @@ class DashboardQuery
     end
   end
 
-  def ticket_tracking
-    ticket_tracking_report = ::TicketTracking.new(nil, self)
-    ticket_tracking_report.chart_options
-  end
-
+  # OWSO Information Accessed > Ticket Tracking(times)
   def number_of_tracking_tickets
     result = Tracking.filter(@options).group(:status).count
 

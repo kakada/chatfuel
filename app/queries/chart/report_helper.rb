@@ -50,9 +50,9 @@ module Chart::ReportHelper
     ::UserByGender.new(nil, self).chart_options
   end
 
+  # OWSO Information Accessed > Ticket Tracking(Times)
   def ticket_tracking
-    ticket_tracking_report = ::TicketTracking.new(nil, self)
-    ticket_tracking_report.chart_options
+    ::TicketTracking.new(nil, self).chart_options
   end
 
   # Summary > Total User Feedback
