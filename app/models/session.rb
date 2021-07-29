@@ -3,6 +3,7 @@
 # Table name: sessions
 #
 #  id                  :bigint(8)        not null, primary key
+#  engaged_at          :datetime
 #  gender              :string           default("")
 #  last_interaction_at :datetime
 #  platform_name       :string           default("")

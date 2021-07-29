@@ -24,6 +24,7 @@ module Chart::ReportHelper
     ::MostTrackedPeriodic.new(nil, self).chart_options
   end
 
+  # OWSO Information Accessed > Ticket Tracking by Gender
   def ticket_tracking_by_genders
     ::TicketTrackingByGenders.new(nil, self).chart_options
   end

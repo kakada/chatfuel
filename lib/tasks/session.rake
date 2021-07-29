@@ -99,4 +99,13 @@ namespace :session do
         end
     end
   end
+
+  desc "Copy created at to engaged at"
+  task migrate_engaged_at: :environment do
+    Session.reset_column_information
+    Session.record_timestamps = false
+    Session.update_all('engaged_at=created_at')
+  ensure
+    Session.record_timestamps = true
+  end
 end

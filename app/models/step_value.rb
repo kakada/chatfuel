@@ -50,6 +50,7 @@ class StepValue < ApplicationRecord
   after_commit :set_session_province_id,  on: [:create, :update],
                                           if: -> { variable_value.province? }
   after_commit :set_session_gender, on: [:create, :update], if: -> { variable.gender? }
+  after_save :engage_session
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
@@ -107,5 +108,9 @@ class StepValue < ApplicationRecord
       rescue => e
         Rails.logger.info("#{e.message} for #{variable_value.raw_value}")
       end
+    end
+
+    def engage_session
+      session.touch(:engaged_at) if session.present?
     end
 end
