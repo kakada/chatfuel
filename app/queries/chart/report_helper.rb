@@ -18,6 +18,7 @@ module Chart::ReportHelper
     ::AccessMainService.new(Variable.service_accessed, self).chart_options
   end
 
+  # OWSO Information Accessed > Most Popular By :period (Not related to session)
   def most_tracked_periodic
     ::MostTrackedPeriodic.new(nil, self).chart_options
   end

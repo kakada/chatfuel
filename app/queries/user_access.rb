@@ -8,13 +8,10 @@ class UserAccess < BasicReport
 
   private
 
-    # TODO: move site code to setting
     # mark_as: service_accessed( variable = owso_info )
     def accessed
-      data = Session.accessed("%b %e, %y", @query.options)
+      data = Session.accessed(:day, "%b %e, %y", @query.options)
       format(name: I18n.t("dashboard.accessed"), data: data)
-    rescue
-      nil
     end
 
     def submitted_from_synced_locations

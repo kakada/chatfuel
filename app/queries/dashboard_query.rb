@@ -117,6 +117,7 @@ class DashboardQuery
     Variable.most_request.agg_value_count(@options).values.sum
   end
 
+  # OWSO Information Accessed > User Access
   def goals
     user_access = ::UserAccess.new nil, self
     user_access.chart_options[:dataset]
