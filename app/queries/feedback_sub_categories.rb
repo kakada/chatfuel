@@ -21,7 +21,7 @@ class FeedbackSubCategories < FeedbackReport
     end
 
     def result_set
-      scope = sql.group("sessions.province_id")
+      scope = sql.group(:province_id)
       scope.count
     end
 end
