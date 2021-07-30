@@ -10,4 +10,15 @@
   .tabs-container {
     min-height: 0;
   }
+
+  .loading {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+  }
 }
