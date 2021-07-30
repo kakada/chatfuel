@@ -5,7 +5,17 @@ OWSO.ReportsIndex = (() => {
   }
 
   function autoSubmit() {
-    $.rails.fire(document.getElementById("q"), "submit");
+    let form = document.getElementById("q");
+
+    $(form)
+      .on("ajax:before", function () {
+        $(".loading").show();
+      })
+      .on("ajax:complete", function () {
+        $(".loading").hide();
+      });
+
+    $.rails.fire(form, "submit");
   }
 
   return { init };
