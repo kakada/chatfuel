@@ -58,6 +58,7 @@ module Chart::ReportHelper
     users_feedback_report.chart_options
   end
 
+  # Citizen Feedback > Feedback By Sub Categories
   def feedback_sub_categories
     categories_all.merge(categories_separate)
   end
