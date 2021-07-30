@@ -4,9 +4,6 @@
       .container
         .row
           .col-12
-            .loading{ style: "display: none" }
-              = image_tag "loading.gif", width: 32
-
             .form-row
               = f.input_field :locale, as: :hidden, name: "locale", value: I18n.locale
               -# logo
