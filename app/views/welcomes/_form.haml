@@ -1,10 +1,12 @@
 #form-query.collapse.d-lg-block
   = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3", id: "q", role: "search" } do |f|
-
     .mb-3
       .container
         .row
           .col-12
+            .loading{ style: "display: none" }
+              = image_tag "loading.gif", width: 32
+
             .form-row
               = f.input_field :locale, as: :hidden, name: "locale", value: I18n.locale
               -# logo
