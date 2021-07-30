@@ -62,7 +62,6 @@ RSpec.describe Session, type: :model do
     end
   end
 
-  #   
   describe ".create_or_return" do
     let(:session) { build(:session, :messenger, :incomplete, session_id: 1, source_id: 1) }
 
@@ -82,9 +81,9 @@ RSpec.describe Session, type: :model do
       end
     end
 
-    xcontext "completion" do
+    context "completion" do
       it "clones when starts new session" do
-        old_session = create(:session, province_id: '12', district_id: '1234', session_id: 1, source_id: 1)
+        old_session = create(:session, :messenger, province_id: '12', district_id: '1234', session_id: 1, source_id: 1)
         old_session.completed!
 
         new_session = described_class.create_or_return("Messenger", old_session.session_id)
@@ -104,24 +103,22 @@ RSpec.describe Session, type: :model do
     end
   end
 
-  xdescribe "#last_completed" do
-    let(:session) { create(:session) }
-    let!(:session1) { create(:session, :completed) }
-    let!(:session2) { create(:session) }
-    let!(:session3) { create(:session) }
+  describe "#last_completed" do
+    let!(:session1) { create(:session, :messenger, :completed, :kamrieng) }
+    let!(:session2) { create(:session, :messenger, :incomplete, session_id: 2) }
+    let!(:session3) { create(:session, :messenger, session_id: session1.session_id) }
 
     it "#last_completed" do
-      byebug
       expect(session3.last_completed).to eq(session1)
     end
   end
 
-  xdescribe "#clone" do
+  describe "#clone" do
     let!(:gender) { create(:variable, :gender) }
     let!(:district) { create(:variable, :district) }
 
     it "clones relations" do
-      old_session = create(:session, district_id: '0204', gender: 'male')
+      old_session = create(:session, :kamrieng, gender: 'male')
       old_session.completed!
 
       new_session = create(:session)

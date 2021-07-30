@@ -38,5 +38,10 @@ FactoryBot.define do
     trait :completed do
       status { 'completed' }
     end
+
+    trait :kamrieng do
+      province_id { '02' }
+      district_id { '0212' }
+    end
   end
 end
