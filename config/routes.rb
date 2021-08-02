@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|km/ do
     root "home#index"
     get :dashboard, to: "dashboard#show"
+    
+    namespace :dashboard do
+      resource :total_user, only: :show
+    end
+
     get :home, to: "home#index"
     get "welcomes/q/access-info", to: "welcomes#access_info"
     get "welcomes/q/service-tracked", to: "welcomes#service_tracked"

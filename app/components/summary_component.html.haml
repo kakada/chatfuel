@@ -1,13 +1,15 @@
 .col-xl-3.col-lg-6.mb-4
-  .card.shadow.h-100.py-2{ class: "border-left-#{@style}"}
+  .card.shadow.h-100.py-2{ class: "border-left-#{@style} #{@css_class_name}"}
     = config
+    .loading{ style: "top: 0;position: absolute;z-index: 100;display: flex;flex: 1;width: 100%;height: 100%;justify-content: center;align-items: center;background-color:rgba(255,255,255,0.85)"}
+      loading...
     .card-body.py-0.d-flex.align-items-center
       .row.no-gutters.align-items-center.flex-grow-1{ style: "z-index: 99;" }
         .col.mr-2
           .text-xs.font-weight-bold.text-uppercase.mb-1{ class: "text-#{@style}"}
             = title
           .mb-0.font-weight-bold.text-gray-800{ class: helpers.toggle_class_name("h4", desc.blank?) }
-            = @count
+            %span.data= @count
           = desc
       .col-auto.showcase-icon
         %i.fas.fa-3x.text-gray-300.d-none{ class: fa_icon }
