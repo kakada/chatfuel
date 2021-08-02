@@ -1,4 +1,4 @@
-- downloadable = @query.total_users_visit_each_functions.present?
+- downloadable = []#@query.total_users_visit_each_functions.present?
 = render_component( ChartComponent.new(name: title, downloadable: downloadable) ) do |c|
   - c.with(:config) { open_config_modal("#userVisitModal") }
   - c.with(:body) { content_tag(:canvas, nil, id: id) }

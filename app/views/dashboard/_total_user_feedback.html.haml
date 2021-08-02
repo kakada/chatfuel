@@ -1,5 +1,5 @@
 - name = t("dashboard.total_user_feedback")
-- downloadable = @query.total_users_feedback.present?
+- downloadable = []#@query.total_users_feedback.present?
 = render_component(ChartComponent.new(name: name, downloadable: downloadable)) do |c|
   - c.with(:body) { content_tag(:canvas, nil, id: id, class: "total_user_feedback") }
   - c.with(:hint) { t("hint.total_user_feedback") }

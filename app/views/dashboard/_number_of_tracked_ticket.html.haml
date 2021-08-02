@@ -1,4 +1,4 @@
-- downloadable = @query.number_of_tracking_tickets.present?
+- downloadable = []#@query.number_of_tracking_tickets.present?
 = render_component(ChartComponent.new(name: title, downloadable: downloadable)) do |c|
   - c.with(:config) { "&nbsp;" }
   - c.with(:body) { content_tag(:canvas, nil, id: id) }

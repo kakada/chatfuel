@@ -16,8 +16,17 @@ Rails.application.routes.draw do
     get :dashboard, to: "dashboard#show"
     
     namespace :dashboard do
+      # showcase
       resources :total_users, only: :index
       resources :total_users_accessed, only: :index
+      resources :total_unique_users, only: :index
+
+      # summary tab
+      resources :total_visits, only: :index
+      resources :total_feedbacks, only: :index
+
+      # information access tab
+      resources :information_access_by_genders, only: :index
     end
 
     get :home, to: "home#index"

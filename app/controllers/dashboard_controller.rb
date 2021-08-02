@@ -7,8 +7,7 @@ class DashboardController < ApplicationController
 
   def show
     @criteria = VariableValue.criteria
-    @variables = Variable.includes(:values).all
-    @query = DashboardQuery.new(filter_options)
+    # @variables ||= Variable.includes(:values).all
   end
 
   private
@@ -19,8 +18,8 @@ class DashboardController < ApplicationController
 
   def set_gon
     @query = DashboardQuery.new(filter_options)
-    gon_data = Gonify.new(@query).chart_data
-    gon.push(gon_data.merge(static_gon))
+    # gon_data = Gonify.new(@query).summary
+    gon.push(static_gon)
   end
 
   def static_gon
@@ -29,7 +28,8 @@ class DashboardController < ApplicationController
       no_data: I18n.t("no_data"),
       not_available: I18n.t(:not_available),
       start_date: @start_date,
-      end_date: @end_date
+      end_date: @end_date,
+      params: params
     }
   end
 end

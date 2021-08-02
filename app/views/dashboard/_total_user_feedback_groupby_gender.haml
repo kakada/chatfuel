@@ -1,4 +1,4 @@
-- downloadable = @query.total_users_feedback_by_gender.present?
+- downloadable = []#@query.total_users_feedback_by_gender.present?
 = render_component(ChartComponent.new(name: title, downloadable: downloadable)) do |c|
   - c.with(:body) { content_tag(:canvas, nil, id: id) }
   - c.with(:hint) { t("hint.total_user_feedback_groupby_gender") }

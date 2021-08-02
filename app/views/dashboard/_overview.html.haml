@@ -1,4 +1,4 @@
-- downloadable = @query.goals.present?
+- downloadable = []#@query.goals.present?
 = render_component( ChartComponent.new(name: title, downloadable: downloadable) ) do |c|
   - c.with(:config) { open_config_modal("#overviewModal") }
   - c.with(:body) do
