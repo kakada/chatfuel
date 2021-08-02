@@ -1,10 +1,10 @@
 %nav
   #nav-tab.nav.nav-tabs.justify-content-end{:role => "tablist"}
-    %a#nav-summary-tab.nav-item.nav-link.active{"aria-controls" => "nav-summary", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-summary", :role => "tab"}
+    %a#nav-summary-tab.nav-item.nav-link.active{"aria-controls" => "nav-summary", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-summary", :role => "tab", "data-instance": "Summary"}
       = t("welcomes.summary")
-    %a#nav-accessed-tab.nav-item.nav-link{"aria-controls" => "nav-accessed", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-accessed", :role => "tab"}
+    %a#nav-accessed-tab.nav-item.nav-link{"aria-controls" => "nav-accessed", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-accessed", :role => "tab", "data-instance": "Info"}
       = t("welcomes.access_info")
-    %a#nav-feedback-tab.nav-item.nav-link{"aria-controls" => "nav-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-feedback", :role => "tab"}
+    %a#nav-feedback-tab.nav-item.nav-link{"aria-controls" => "nav-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-feedback", :role => "tab", "data-instance": "Feedback"}
       = t("welcomes.citizen_feedback")
 
   #nav-tabContent.tab-content.pt-4
