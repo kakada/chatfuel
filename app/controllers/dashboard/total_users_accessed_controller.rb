@@ -1,8 +1,8 @@
-class Dashboard::TotalUsersController < DashboardController
+class Dashboard::TotalUsersAccessedController < DashboardController
   before_action :set_query
 
   def index
-    render json: @query.user_count
+    render json: @query.user_accessed_count
   end
 
   private

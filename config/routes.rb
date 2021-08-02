@@ -16,7 +16,8 @@ Rails.application.routes.draw do
     get :dashboard, to: "dashboard#show"
     
     namespace :dashboard do
-      resource :total_user, only: :show
+      resources :total_users, only: :index
+      resources :total_users_accessed, only: :index
     end
 
     get :home, to: "home#index"
