@@ -1,6 +1,4 @@
-- downloadable = [] #@query.users_visited_by_each_genders.present?
-
-= render_component(ChartComponent.new(name: title, downloadable: downloadable)) do |c|
+= render_component(ChartComponent.new(name: title, downloadable: [])) do |c|
   - c.with(:config) { open_config_modal("#chooseCriteria") }
   - c.with(:subheader) { subheader }
   - c.with(:hint) { t("hint.total_user_by_gender") }

@@ -11,7 +11,6 @@
           = f.input :filter, label: false, class: "form-control variable-filter", placeholder: t("dashboard.type_search")
 
           #accordionExample.accordion
-            -# Variable.includes(:values).all
             - @variables.each do |variable|
               .card
                 #headingOne.card-header.p-1

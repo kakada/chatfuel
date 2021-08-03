@@ -20,9 +20,6 @@ OWSO.DashboardShow = (() => {
 
     onLoadPopup();
     onChangePeriod();
-    // loadProvinceSubCategories();
-    // loadProvinceOverallRating();
-    // loadProvinceMostRequest();
     onTabClick();
   }
 

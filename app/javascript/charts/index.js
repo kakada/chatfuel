@@ -32,11 +32,4 @@ OWSO.Charts = {
       $("#nav-feedback-tab").data("status", status);
     },
   },
-  // render: function () {
-  //   OWSO.Util.chartReg();
-
-  //   summary.render();
-  // infoAccess.render();
-  // citizenFeedback.render();
-  // },
 };
