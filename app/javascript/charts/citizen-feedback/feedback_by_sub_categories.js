@@ -1,15 +1,15 @@
-import axios from "axios";
+import { requestService } from "../../services/requestService";
 
 export const feedbackBySubCategories = {
-  load: () => {
-    axios
-      .get("dashboard/feedback_by_sub_categories", { params: gon.params })
-      .then((result) => {
-        gon.feedbackSubCategories = result.data;
-        OWSO.DashboardShow.loadProvinceSubCategories();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  load: function () {
+    requestService
+      .get("dashboard/feedback_by_sub_categories")
+      .then((r) => this.setup(r.data))
+      .then(() => this.render())
+      .catch((err) => console.log(err));
+  },
+  setup: (data) => (gon.feedbackSubCategories = data),
+  render: () => {
+    OWSO.DashboardShow.loadProvinceSubCategories();
   },
 };

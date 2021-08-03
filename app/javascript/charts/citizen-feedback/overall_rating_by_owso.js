@@ -1,15 +1,15 @@
-import axios from "axios";
+import { requestService } from "../../services/requestService";
 
 export const overallRatingByOwso = {
-  load: () => {
-    axios
-      .get("dashboard/overall_rating_by_owso", { params: gon.params })
-      .then((result) => {
-        gon.overallRating = result.data;
-        OWSO.DashboardShow.loadProvinceOverallRating();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  load: function () {
+    requestService
+      .get("dashboard/overall_rating_by_owso")
+      .then((r) => this.setup(r.data))
+      .then(() => this.render())
+      .catch((err) => console.log(err));
+  },
+  setup: (data) => (gon.overallRating = data),
+  render: () => {
+    OWSO.DashboardShow.loadProvinceOverallRating();
   },
 };

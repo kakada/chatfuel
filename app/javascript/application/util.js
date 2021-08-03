@@ -25,6 +25,7 @@ OWSO.Util = {
           }
         });
       },
+
       afterDraw: function (chart) {
         let { datasets } = chart.data;
 
