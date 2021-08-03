@@ -17,7 +17,7 @@ class FeedbackSubCategories < FeedbackReport
 
   private
     def result_set_mapping
-      accumulate_rating_each_variable(result_set)
+      @result_set_mapping ||= accumulate_rating_each_variable(result_set)
     end
 
     def result_set
