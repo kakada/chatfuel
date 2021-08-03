@@ -1,4 +1,4 @@
-.row
+.row.showcase
   = render_component( SummaryComponent.new(style: "success", count: 0, css_class_name: 'showcase_total_users') ) do |c|
     = c.with(:title) { t("dashboard.total_users") }
     = c.with(:fa_icon) { "fa-users" }
@@ -12,11 +12,9 @@
     = c.with(:fa_icon) { "fa-user" }
     = c.with(:desc) do
       %ul.list-inline.m-0
-        -# TODO
         - if Variable.gender.present?
           = render partial: "dashboard/unique_visitors_group_by_genders", collection: @query.unique_by_genders, as: :session
 
-  -# TODO
   - most_req = @query.most_requested_service
   = render_component( SummaryComponent.new(style: "warning", count: most_req&.fetch(:key).presence || t("not_available"), css_class_name: 'showcase_most_request_services') ) do |c|
     = c.with(:config) do
