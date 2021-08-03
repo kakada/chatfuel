@@ -2,10 +2,11 @@ import { subCategoriesFeedback } from "../charts/citizen-feedback/feedback_sub_c
 import { overallFeedback } from "../charts/citizen-feedback/overall_rating_chart";
 import { mostRequest } from "../charts/owso-information-accessed/most_request_service_access_chart";
 import formater from "../data/formater";
+import Showcase from "./showcase";
 
 OWSO.DashboardShow = (() => {
   function init() {
-    OWSO.Charts.render();
+    Showcase.init();
 
     attachEventToCollapsedButton();
     attachEventToVariableFilter();
@@ -19,9 +20,28 @@ OWSO.DashboardShow = (() => {
 
     onLoadPopup();
     onChangePeriod();
-    loadProvinceSubCategories();
-    loadProvinceOverallRating();
-    loadProvinceMostRequest();
+    onTabClick();
+  }
+
+  function onTabClick() {
+    let activeTab = $('a.active[data-toggle="tab"]')[0];
+    fetchTarget(activeTab);
+
+    $('a[data-toggle="tab"]').on("shown.bs.tab", function (event) {
+      let status = $(event.target).data("status");
+      if (status == "fresh") fetchTarget(event.target);
+    });
+  }
+
+  function fetchTarget(target) {
+    try {
+      OWSO.Util.chartReg();
+      const instance = OWSO.Charts.getInstance(target);
+      instance.load();
+      instance.markStatus("loaded");
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   function loadChart(instance, element, data) {
@@ -35,7 +55,7 @@ OWSO.DashboardShow = (() => {
   function loadProvinceMostRequest() {
     $(".chart_most_requested_services").each(function (_, dom) {
       let id = $(dom).data("provinceid");
-      let data = gon.mostRequest[id];
+      let data = gon.mostRequest && gon.mostRequest[id];
       loadChart(mostRequest, dom.id, data);
     });
   }
@@ -43,7 +63,7 @@ OWSO.DashboardShow = (() => {
   function loadProvinceOverallRating() {
     $(".chart_feedback_overall_rating").each(function (_, dom) {
       let id = $(dom).data("provinceid");
-      let data = gon.overallRating[id] || {};
+      let data = gon.overallRating && gon.overallRating[id];
       loadChart(overallFeedback, dom.id, data);
     });
   }
@@ -51,7 +71,7 @@ OWSO.DashboardShow = (() => {
   function loadProvinceSubCategories() {
     $(".chart_feedback_by_categories").each(function (_, dom) {
       let id = $(dom).data("provinceid");
-      let data = gon.feedbackSubCategories[id];
+      let data = gon.feedbackSubCategories && gon.feedbackSubCategories[id];
       loadChart(subCategoriesFeedback, dom.id, data);
     });
   }
@@ -281,5 +301,8 @@ OWSO.DashboardShow = (() => {
     onChangeProvince,
     multiSelectDistricts,
     loadSubCategories,
+    loadProvinceMostRequest,
+    loadProvinceOverallRating,
+    loadProvinceSubCategories,
   };
 })();

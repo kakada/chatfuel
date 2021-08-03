@@ -1,13 +1,13 @@
-.row
-  = render_component( SummaryComponent.new(style: "success", count: @query.user_count) ) do |c|
+.row.showcase
+  = render_component( SummaryComponent.new(style: "success", count: 0, css_class_name: 'showcase_total_users') ) do |c|
     = c.with(:title) { t("dashboard.total_users") }
     = c.with(:fa_icon) { "fa-users" }
 
-  = render_component( SummaryComponent.new(style: "danger", count: @query.user_accessed_count) ) do |c|
+  = render_component( SummaryComponent.new(style: "danger", count: 0, css_class_name: 'showcase_total_user_accessed') ) do |c|
     = c.with(:title) { t("dashboard.total_users_accessed") }
     = c.with(:fa_icon) { "fa-landmark" }
   
-  = render_component( SummaryComponent.new(style: "primary", count: @query.user_unique_count) ) do |c|
+  = render_component( SummaryComponent.new(style: "primary", count: 0, css_class_name: 'showcase_total_unique_users') ) do |c|
     = c.with(:title) { t("dashboard.total_uniq_users") }
     = c.with(:fa_icon) { "fa-user" }
     = c.with(:desc) do
@@ -16,7 +16,7 @@
           = render partial: "dashboard/unique_visitors_group_by_genders", collection: @query.unique_by_genders, as: :session
 
   - most_req = @query.most_requested_service
-  = render_component( SummaryComponent.new(style: "warning", count: most_req&.fetch(:key).presence || t("not_available")) ) do |c|
+  = render_component( SummaryComponent.new(style: "warning", count: most_req&.fetch(:key).presence || t("not_available"), css_class_name: 'showcase_most_request_services') ) do |c|
     = c.with(:config) do
       - if policy(:dashboard).setting?
         = link_to "#", data: { toggle: "modal", target: "#mostRequest" } do

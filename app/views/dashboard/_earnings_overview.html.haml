@@ -1,10 +1,10 @@
 %nav
   #nav-tab.nav.nav-tabs.justify-content-end{:role => "tablist"}
-    %a#nav-summary-tab.nav-item.nav-link.active{"aria-controls" => "nav-summary", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-summary", :role => "tab"}
+    %a#nav-summary-tab.nav-item.nav-link.active{"aria-controls" => "nav-summary", "aria-selected" => "true", :href => "#nav-summary", :role => "tab", data: {toggle: "tab", instance: "Summary", status: 'fresh'}}
       = t("welcomes.summary")
-    %a#nav-accessed-tab.nav-item.nav-link{"aria-controls" => "nav-accessed", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-accessed", :role => "tab"}
+    %a#nav-accessed-tab.nav-item.nav-link{"aria-controls" => "nav-accessed", "aria-selected" => "false", :href => "#nav-accessed", :role => "tab", data: {toggle: "tab", instance: "Info", status: 'fresh'}}
       = t("welcomes.access_info")
-    %a#nav-feedback-tab.nav-item.nav-link{"aria-controls" => "nav-feedback", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-feedback", :role => "tab"}
+    %a#nav-feedback-tab.nav-item.nav-link{"aria-controls" => "nav-feedback", "aria-selected" => "false", :href => "#nav-feedback", :role => "tab", data: {toggle: "tab", instance: "Feedback", status: 'fresh'}}
       = t("welcomes.citizen_feedback")
 
   #nav-tabContent.tab-content.pt-4
@@ -25,13 +25,13 @@
           - gender_locals = { id: "total_user_gender", title: t("dashboard.total_user_gender") }
           = render partial: "dashboard/gender", locals: gender_locals
         .col-lg-6
-          - information_access_locals = { id: "chart_information_access_by_period", title: t("welcomes.information_access_by"), collection: @query.access_info }
+          - information_access_locals = { id: "chart_information_access_by_period", title: t("welcomes.information_access_by"), collection: [] }
           = render partial: "dashboard/charts/information_access", locals: information_access_locals
         .col-lg-6
           - main_services_access_locals = { id: "chart_number_access_by_main_services", title: t("welcomes.number_access_by_main_services") }
           = render partial: "dashboard/charts/main_services_access", locals: main_services_access_locals
         .col-lg-6
-          - service_tracked_locals = { id: "chart_most_service_tracked_periodically", title: t("welcomes.most_service_tracked_by_periodic"), collection: @query.most_tracked_periodic }
+          - service_tracked_locals = { id: "chart_most_service_tracked_periodically", title: t("welcomes.most_service_tracked_by_periodic"), collection: [] }
           = render partial: "dashboard/charts/service_tracked", locals: service_tracked_locals
         .col-lg-6
           - overview_locals = { id: "chart-overview", title: t("dashboard.overview") }
@@ -49,7 +49,7 @@
           - access_by_gender_locals = { id: "gender_feedback", title: t("welcomes.information_access_by_gender") }
           = render partial: "dashboard/charts/access_by_gender", locals: access_by_gender_locals
         .col-lg-6
-          - feedback_trend_locals = { id: "chart_owso_feedback_trend", title: t("welcomes.owso_feedback_trend"), collection: @query.feedback_trend }
+          - feedback_trend_locals = { id: "chart_owso_feedback_trend", title: t("welcomes.owso_feedback_trend"), collection: [] }
           = render partial: "dashboard/charts/feedback_trend", locals: feedback_trend_locals
 
         = render partial: "dashboard/feedback_sub_categories", collection: @query.province_codes_without_other, as: :province_id

@@ -14,6 +14,34 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|km/ do
     root "home#index"
     get :dashboard, to: "dashboard#show"
+    
+    namespace :dashboard do
+      # showcase
+      resources :total_users, only: :index
+      resources :total_users_accessed, only: :index
+      resources :total_unique_users, only: :index
+
+      # summary tab
+      resources :total_visits, only: :index
+      resources :total_feedbacks, only: :index
+
+      # information access tab
+      resources :most_requested_service_by_owso, only: :index
+      resources :information_access_by_genders, only: :index
+      resources :information_access_by_period, only: :index
+      resources :most_popular_by_owso, only: :index
+      resources :most_popular_by_period, only: :index
+      resources :user_access, only: :index
+      resources :ticket_tracking, only: :index
+      resources :ticket_tracking_by_gender, only: :index
+      
+      # citizen feedback
+      resources :total_feedback_by_gender, only: :index
+      resources :owso_feedback_trend_by_period, only: :index
+      resources :overall_rating_by_owso, only: :index
+      resources :feedback_by_sub_categories, only: :index
+    end
+
     get :home, to: "home#index"
     get "welcomes/q/access-info", to: "welcomes#access_info"
     get "welcomes/q/service-tracked", to: "welcomes#service_tracked"
