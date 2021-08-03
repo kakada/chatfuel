@@ -314,8 +314,6 @@ GEM
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
-    rack-mini-profiler (2.3.2)
-      rack (>= 1.2.0)
     rack-oauth2 (1.16.0)
       activesupport
       attr_required
@@ -590,7 +588,6 @@ DEPENDENCIES
   pundit (~> 1.1.0)
   pundit-matchers (~> 1.6.0)
   rack-cors
-  rack-mini-profiler (~> 2.3.2)
   rails (~> 6.0.3, >= 6.0.4)
   rails-controller-testing (~> 1.0.4)
   rails-settings-cached (~> 2.0)
