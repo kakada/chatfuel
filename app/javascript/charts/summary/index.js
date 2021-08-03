@@ -1,9 +1,7 @@
-import { totalVisits } from "./total_visits";
-import { totalFeedbacks } from "./total_feedbacks";
+import { summaries } from "./summaries";
 
 export const summary = {
   load: () => {
-    totalVisits.load();
-    totalFeedbacks.load();
+    summaries.forEach((summary) => summary.load());
   },
 };

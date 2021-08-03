@@ -1,15 +1,15 @@
-import axios from "axios";
+import { requestService } from "../../services/requestService";
 
 export const mostRequestedServiceByOwso = {
-  load: () => {
-    axios
-      .get("dashboard/most_requested_service_by_owso", { params: gon.params })
-      .then((result) => {
-        gon.mostRequest = result.data;
-        OWSO.DashboardShow.loadProvinceMostRequest();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  load: function () {
+    requestService
+      .get("dashboard/most_requested_service_by_owso")
+      .then((r) => this.setup(r.data))
+      .then(() => this.render())
+      .catch((err) => console.log(err));
+  },
+  setup: (data) => (gon.mostRequest = data),
+  render: () => {
+    OWSO.DashboardShow.loadProvinceMostRequest();
   },
 };

@@ -1,16 +1,16 @@
-import axios from "axios";
+import { requestService } from "../../services/requestService";
 import { trendingFeedback } from "./feedback_trend_chart";
 
 export const owsoFeedbackTrendByPeriod = {
-  load: () => {
-    axios
-      .get("dashboard/owso_feedback_trend_by_period", { params: gon.params })
-      .then((result) => {
-        gon.feedbackTrend = result.data;
-        trendingFeedback.render();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  load: function () {
+    requestService
+      .get("dashboard/owso_feedback_trend_by_period")
+      .then((r) => this.setup(r.data))
+      .then(() => this.render())
+      .catch((err) => console.log(err));
+  },
+  setup: (data) => (gon.feedbackTrend = data),
+  render: () => {
+    trendingFeedback.render();
   },
 };

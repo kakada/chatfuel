@@ -1,16 +1,16 @@
-import axios from "axios";
+import { requestService } from "../../services/requestService";
 import { userFeedback } from "../total_user_feedback_chart";
 
 export const totalFeedbacks = {
-  load: () => {
-    axios
-      .get("dashboard/total_feedbacks", { params: gon.params })
-      .then((result) => {
-        gon.totalUserFeedback = result.data;
-        userFeedback.render();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  load: function () {
+    requestService
+      .get("dashboard/total_feedbacks")
+      .then((r) => this.setup(r.data))
+      .then(() => this.render())
+      .catch((err) => console.log(err));
+  },
+  setup: (data) => (gon.totalUserFeedback = data),
+  render: () => {
+    userFeedback.render();
   },
 };

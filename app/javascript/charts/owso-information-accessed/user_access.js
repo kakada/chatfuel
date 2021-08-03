@@ -1,16 +1,16 @@
-import axios from "axios";
+import { requestService } from "../../services/requestService";
 import { overview } from "../../charts/overview_chart";
 
 export const userAccess = {
-  load: () => {
-    axios
-      .get("dashboard/user_access", { params: gon.params })
-      .then((result) => {
-        gon.overview = result.data;
-        overview.render();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  load: function () {
+    requestService
+      .get("dashboard/user_access")
+      .then((r) => this.setup(r.data))
+      .then(() => this.render())
+      .catch((err) => console.log(err));
+  },
+  setup: (data) => (gon.overview = data),
+  render: () => {
+    overview.render();
   },
 };

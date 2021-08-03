@@ -1,16 +1,16 @@
-import axios from "axios";
+import { requestService } from "../../services/requestService";
 import { mainServiceAccess } from "./access_main_service_chart";
 
 export const mostPopularByOwso = {
-  load: () => {
-    axios
-      .get("dashboard/most_popular_by_owso", { params: gon.params })
-      .then((result) => {
-        gon.accessMainService = result.data;
-        mainServiceAccess.render();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  load: function () {
+    requestService
+      .get("dashboard/most_popular_by_owso")
+      .then((r) => this.setup(r.data))
+      .then(() => this.render())
+      .catch((err) => console.log(err));
+  },
+  setup: (data) => (gon.accessMainService = data),
+  render: () => {
+    mainServiceAccess.render();
   },
 };

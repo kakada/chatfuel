@@ -4,23 +4,14 @@ class Gonify
   end
 
   def chart_data
-    data = {}
-    data.merge! summary
-    data.merge! dashboard_data
-    data.merge! access_info_chart
-    data.merge! citizen_feedback_chart 
-  end
-
-  def summary
-    {
-      totalUserVisitByCategory: @query.total_users_visit_by_category,
-      totalUserFeedback: @query.users_feedback
-    }
+    access_info_chart.merge(citizen_feedback_chart, dashboard_data)
   end
 
   def dashboard_data
     {
       totalUserByGender: @query.users_by_genders,
+      totalUserVisitByCategory: @query.total_users_visit_by_category,
+      totalUserFeedback: @query.users_feedback,
       totalUserFeedbackByGender: @query.total_users_feedback_by_gender,
       ticketTracking: @query.ticket_tracking,
       overview: @query.goals
