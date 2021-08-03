@@ -66,10 +66,10 @@ class BaseChart {
 
   render = (opts = {}) => {
     OWSO.Util.createOrUpdate(this.chartId, this.config(opts));
-    if (!OWSO.Util.isEmpty(this.dataset().datasets)) this.enableLoading();
+    if (!OWSO.Util.isEmpty(this.dataset().datasets)) this.enableFilter();
   };
 
-  enableLoading = () => {
+  enableFilter = () => {
     $(`#${this.chartId}`)
       .closest(".card-body")
       .prev()

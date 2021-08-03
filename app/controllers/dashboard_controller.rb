@@ -18,7 +18,6 @@ class DashboardController < ApplicationController
 
   def set_gon
     @query = DashboardQuery.new(filter_options)
-    # gon_data = Gonify.new(@query).summary
     gon.push(static_gon)
   end
 
