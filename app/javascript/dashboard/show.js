@@ -20,9 +20,9 @@ OWSO.DashboardShow = (() => {
 
     onLoadPopup();
     onChangePeriod();
-    loadProvinceSubCategories();
-    loadProvinceOverallRating();
-    loadProvinceMostRequest();
+    // loadProvinceSubCategories();
+    // loadProvinceOverallRating();
+    // loadProvinceMostRequest();
     onTabClick();
   }
 
@@ -31,7 +31,7 @@ OWSO.DashboardShow = (() => {
     fetchTarget(activeTab);
 
     $('a[data-toggle="tab"]').on("shown.bs.tab", function (event) {
-      let status = $(event).data("status");
+      let status = $(event.target).data("status");
       if (status == "fresh") fetchTarget(event.target);
     });
   }
@@ -304,5 +304,8 @@ OWSO.DashboardShow = (() => {
     onChangeProvince,
     multiSelectDistricts,
     loadSubCategories,
+    loadProvinceMostRequest,
+    loadProvinceOverallRating,
+    loadProvinceSubCategories,
   };
 })();

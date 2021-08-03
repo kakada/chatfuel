@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
 
   def show
     @criteria = VariableValue.criteria
-    # @variables ||= Variable.includes(:values).all
+    @variables ||= Variable.includes(:values).all
   end
 
   private

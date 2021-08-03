@@ -66,6 +66,15 @@ class BaseChart {
 
   render = (opts = {}) => {
     OWSO.Util.createOrUpdate(this.chartId, this.config(opts));
+    if (!OWSO.Util.isEmpty(this.dataset().datasets)) this.enableLoading();
+  };
+
+  enableLoading = () => {
+    $(`#${this.chartId}`)
+      .closest(".card-body")
+      .prev()
+      .find(".period-filter")
+      .attr("disabled", false);
   };
 }
 
