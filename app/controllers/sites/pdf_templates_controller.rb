@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Sites
-  class PdfTemplatesController < ApplicationController
+  class PdfTemplatesController < PrivateAccessController
     skip_before_action :authenticate_user_with_guisso!
     include Filterable
 
