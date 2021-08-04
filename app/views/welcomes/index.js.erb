@@ -1,10 +1,10 @@
 window.gon = JSON.parse('<%= j(@gon_data.to_json.html_safe) %>');
 $(".tab-navigation").removeClass("d-none");
+$(".nav-link[href!='<%= @active_tab %>']").data('status', 'fresh');
 $(".tabs-container").html("<%= j(render partial: "welcomes/tabs", locals: { active_tab: @active_tab }) %>");
 $("#sub_categories_modals").html("<%= j(render partial: "dashboard/sub_categories_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 $("#feedback_trend_modals").html("<%= j(render partial: "dashboard/feedback_trend_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 
 OWSO.WelcomesIndex.scrollToForm();
-OWSO.WelcomesIndex.renderChart();
 OWSO.DashboardShow.runAsPublicDashboard();
 OWSO.DashboardShow.multiSelectDistricts();
