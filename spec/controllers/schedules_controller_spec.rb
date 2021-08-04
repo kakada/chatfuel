@@ -13,6 +13,7 @@ RSpec.describe SchedulesController, type: :controller do
   end
 
   it "GET #new" do
+    @schedule.destroy
     get :new
     expect(assigns[:schedule]).to be_a_new(Schedule)
   end
