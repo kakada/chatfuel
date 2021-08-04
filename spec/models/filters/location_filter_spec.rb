@@ -30,7 +30,7 @@ RSpec.describe Filters::LocationFilter do
           @location_filter = Filters::LocationFilter.new([province], [])
         end
 
-        it { expect(@location_filter.display_name).to eq("Battambang") }
+        it { expect(@location_filter.display_name).to eq("Battambang Province") }
       end
 
       context "one district" do
@@ -40,7 +40,7 @@ RSpec.describe Filters::LocationFilter do
           @location_filter = Filters::LocationFilter.new([province], [district])
         end
 
-        it { expect(@location_filter.display_name).to eq("Kamrieng") }
+        it { expect(@location_filter.display_name).to eq("Kamrieng District") }
       end
 
       context "more than one districts" do
@@ -76,7 +76,7 @@ RSpec.describe Filters::LocationFilter do
       it "count selected provinces" do
         @location_filter = Filters::LocationFilter.new(provinces, [])
 
-        expect(@location_filter.described_name).to eq "Battambang and Kampong Chhnang"
+        expect(@location_filter.described_name).to eq "Battambang Province and Kampong Chhnang Province"
       end
     end
 
@@ -110,7 +110,7 @@ RSpec.describe Filters::LocationFilter do
           @location_filter = Filters::LocationFilter.new([province], districts)
         end
 
-        it { expect(@location_filter.described_name).to eq("Kamrieng and Rukh Kiri") }
+        it { expect(@location_filter.described_name).to eq("Kamrieng District and Rukh Kiri District") }
       end
 
     end
