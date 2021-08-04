@@ -1,9 +1,10 @@
 class FeedbackReport < GenericReport
   def sql
-    scope = StepValue.filter(@query.options, StepValue.joins(:session))
-    scope = scope.where(sessions: { province_id: @query.province_codes })
-    scope = scope.where(variable: [like, dislike])
-    scope = scope.group(:variable_id, :variable_value_id)
+    Session.filter(@query.options)\
+            .joins(:step_values)\
+            .where(step_values: { variable: [like, dislike] })\
+            .where(province_id: @query.province_codes)\
+            .group(:variable_id, :variable_value_id)
   end
 
   def colors

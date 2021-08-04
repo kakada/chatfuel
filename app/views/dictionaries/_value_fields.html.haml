@@ -19,9 +19,9 @@
           %td 😊
           %td 😞
         %tr
-          %td= f.radio_button :status, 0, checked: f.object.like?
-          %td= f.radio_button :status, 1, checked: f.object.acceptable?
-          %td= f.radio_button :status, 2, checked: f.object.dislike?
+          %td= f.radio_button :value_status, 0, checked: f.object.like?
+          %td= f.radio_button :value_status, 1, checked: f.object.acceptable?
+          %td= f.radio_button :value_status, 2, checked: f.object.dislike?
 
   %td.text-right
     - if f.object.destroyable?

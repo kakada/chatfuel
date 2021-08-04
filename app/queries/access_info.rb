@@ -5,11 +5,6 @@ class AccessInfo < BasicReport
 
   private
     def result_set
-      scope = Session.unscope(:order)
-      scope = scope.accessed(@query.options)
-      scope = scope.group_by_period(period, :created_at, format: "%b/%y,%Y")
-      scope.count
-    rescue
-      {}
+      Session.accessed(period, '%b/%y,%Y', @query.options)
     end
 end

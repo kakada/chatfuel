@@ -1,71 +1,66 @@
 module Chart::ReportHelper
+  # OWSO Information Accessed > Most Requested Service By OWSO
   def most_requested_services
-    most_request = Variable.most_request
-    most_requested_report = ::MostRequest.new(most_request, self)
-    most_requested_report.chart_options
-  rescue
-    {}
+    ::MostRequest.new(Variable.most_request, self).chart_options
   end
 
+  # Citizen feedback > Total Feedback By Gender
   def gender_info
     ::GenderInfo.new(nil, self).chart_options
   end
 
+  # OWSO Information Accessed > Information Access By :period
   def access_info
     ::AccessInfo.new(nil, self).chart_options
   end
 
+  # OWSO Information Accessed > Most Popular Service Information Requested By OWSO (scatter chart)
   def access_main_service
-    main_service = Variable.service_accessed
-    ::AccessMainService.new(main_service, self).chart_options
-  rescue
-    {}
+    ::AccessMainService.new(Variable.service_accessed, self).chart_options
   end
 
+  # OWSO Information Accessed > Most Popular By :period (Not related to session)
   def most_tracked_periodic
     ::MostTrackedPeriodic.new(nil, self).chart_options
   end
 
+  # OWSO Information Accessed > Ticket Tracking by Gender
   def ticket_tracking_by_genders
     ::TicketTrackingByGenders.new(nil, self).chart_options
   end
 
+  # Citizen Feedback > :pro_code > Overall Rating by OWSO
   def overall_rating
-    feedback = Variable.feedback
-    ::OverallRating.new(feedback, self).chart_options
-  rescue
-    {}
+    ::OverallRating.new(Variable.feedback, self).chart_options
   end
 
   def feedback_trend
-    feedback = Variable.feedback
-    ::FeedbackTrend.new(feedback, self).chart_options
-  rescue
-    {}
+    ::FeedbackTrend.new(Variable.feedback, self).chart_options
   end
 
   def total_users_visit_by_category
     ::UserVisitEachFunction.new(nil, self).chart_options
   end
 
+  # OWSO Information Accessed > Information Access By Gender
   def users_by_genders
     ::UserByGender.new(nil, self).chart_options
   end
 
+  # OWSO Information Accessed > Ticket Tracking(Times)
   def ticket_tracking
-    ticket_tracking_report = ::TicketTracking.new(nil, self)
-    ticket_tracking_report.chart_options
+    ::TicketTracking.new(nil, self).chart_options
   end
 
+  # Summary > Total User Feedback
   def users_feedback
     users_feedback_report = ::UserFeedback.new(nil, self)
     users_feedback_report.chart_options
   end
 
+  # Citizen Feedback > Feedback By Sub Categories
   def feedback_sub_categories
     categories_all.merge(categories_separate)
-  rescue
-    {}
   end
 
   private

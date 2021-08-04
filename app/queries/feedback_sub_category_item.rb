@@ -10,8 +10,8 @@ class FeedbackSubCategoryItem < FeedbackSubCategories
   private
 
     def result_set
-      scope = sql.where(sessions: { district_id: @query.district_codes })
-      scope = scope.group("sessions.district_id")
+      scope = sql.where(district_id: @query.district_codes)
+      scope = scope.group(:district_id)
       scope.count
     end
 end

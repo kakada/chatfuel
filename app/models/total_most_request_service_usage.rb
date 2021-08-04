@@ -17,14 +17,11 @@ class TotalMostRequestServiceUsage
   end
 
   def self.query
-    StepValue.filter(@options.merge(variable_options))\
-              .joins(:session)\
-              .group(:province_id, :variable_value_id)\
-              .order(:province_id, count_all: :desc)\
-              .count
-  end
-
-  def self.variable_options
-    { variable_id: Variable.most_request&.id }
+    Session.filter(@options)
+            .joins(:step_values)
+            .where(step_values: { variable: Variable.most_request })
+            .group(:province_id, :variable_value_id)
+            .order(:province_id, count_all: :desc)
+            .count
   end
 end

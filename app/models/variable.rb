@@ -69,7 +69,12 @@ class Variable < ApplicationRecord
   end
 
   def agg_value_count(options)
-    StepValue.agg_value_count(self, options)
+    Session.filter(options)
+            .joins(:step_values)
+            .where(step_values: { variable: self })
+            .order("count_all DESC")
+            .group(:variable_value_id)
+            .count
   end
 
   def criteria?

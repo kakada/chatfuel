@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_103847) do
+ActiveRecord::Schema.define(version: 2021_07_29_091739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2021_07_16_103847) do
     t.string "gender", default: ""
     t.boolean "repeated", default: false
     t.string "source_id", null: false
+    t.datetime "engaged_at", default: -> { "CURRENT_TIMESTAMP" }
   end
 
   create_table "settings", force: :cascade do |t|
@@ -303,7 +304,7 @@ ActiveRecord::Schema.define(version: 2021_07_16_103847) do
   create_table "variable_values", force: :cascade do |t|
     t.string "raw_value", null: false
     t.string "mapping_value_en", default: ""
-    t.string "status", default: "1"
+    t.string "value_status", default: "1"
     t.bigint "variable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

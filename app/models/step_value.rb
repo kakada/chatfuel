@@ -50,6 +50,7 @@ class StepValue < ApplicationRecord
   after_commit :set_session_province_id,  on: [:create, :update],
                                           if: -> { variable_value.province? }
   after_commit :set_session_gender, on: [:create, :update], if: -> { variable.gender? }
+  after_save :engage_session
 
   scope :most_recent, -> { select("DISTINCT ON (variable_id) variable_id, variable_value_id, id").order("variable_id, updated_at DESC") }
 
@@ -65,18 +66,6 @@ class StepValue < ApplicationRecord
 
     disatisfied = feedback_column.values.disatisfied
     joins(:variable_value).where("variable_values.id in (?)", disatisfied.ids)
-  end
-
-  def self.total_users_visit_each_functions(params = {})
-    key = "mapping_value_#{ I18n.locale }".to_sym
-
-    scope = all
-    scope = scope.joins(variable_value: :variable)
-    scope = filter(scope, params)
-    scope = scope.where(variable_id: Variable.user_visit)
-    scope = scope.order(key)
-    scope = scope.group(key)
-    scope.count
   end
 
   def self.clone_step(attr, value)
@@ -119,5 +108,9 @@ class StepValue < ApplicationRecord
       rescue => e
         Rails.logger.info("#{e.message} for #{variable_value.raw_value}")
       end
+    end
+
+    def engage_session
+      session.touch(:engaged_at) if session.present?
     end
 end

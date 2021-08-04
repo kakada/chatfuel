@@ -12,10 +12,10 @@ class TicketTrackingByGenders < BasicReport
   
   private
     def result_set
-      scope = Session.filter(@query.options).unscope(:order)
-      scope = scope.where.not(gender: ["", "null"])
-      scope = scope.joins(:trackings)
-      scope = scope.group(:gender)
-      scope.count
+      Session.filter(@query.options)\
+            .with_genders\
+            .joins(:trackings)\
+            .group(:gender)\
+            .count
     end
 end

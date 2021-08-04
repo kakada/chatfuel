@@ -11,10 +11,10 @@ class GenderInfo < BasicReport
   end
 
   def sql
-    scope = StepValue.filter(@query.options)
-    scope = scope.where(variable_value: VariableValue.type_of_user_feedback)
-    scope = scope.joins(:session)
-    scope = scope.group(:gender)
-    scope.count
+    Session.filter(@query.options)\
+            .joins(:step_values)\
+            .where(step_values: { variable_value: VariableValue.type_of_user_feedback })\
+            .group(:gender)\
+            .count
   end
 end

@@ -24,6 +24,7 @@ class DashboardQuery
     sessions.select("DISTINCT ON (session_id) *").reorder(:session_id, :gender)
   end
 
+  # Summary > Total Service Delivered
   def user_accessed_count
     total_users_visit_each_functions.values.sum
   end
@@ -47,31 +48,22 @@ class DashboardQuery
     Session.filter(@options)
   end
 
-  def total_users_visit_by_category
-    user_visit_report = ::UserVisitEachFunction.new(nil, self)
-    user_visit_report.chart_options
-  end
-
+  # Summary > Total Visits By Type Of Service
   def total_users_visit_each_functions
-    variable = Variable.user_visit
-
-    return {}  if variable.nil?
-    
-    result = StepValue.total_users_visit(variable, @options)
-
-    return {} if result.blank?
-
-    default_chartjs_color_mapping.merge(result).transform_keys(&:humanize)
-  end
-
-  def users_by_genders
-    users_gender_report = ::UserByGender.new(nil, self)
-    users_gender_report.chart_options
+    Session.filter(@options)\
+            .joins(step_values: [:variable, :variable_value])\
+            .where(step_values: { variable: Variable.user_visit })\
+            .group("mapping_value_#{I18n.locale}")\
+            .count
   end
 
   def users_visited_by_each_genders
-    result = StepValue.users_visited_by_each_genders(@options)
-    result = result.group(:gender).count
+    result = Session.filter(@options)\
+              .joins(:step_values)\
+              .where(step_values: { variable_value: VariableValue.kind_of_criteria })\
+              .where.not(gender: '')\
+              .group(:gender)\
+              .count
 
     return {} if Variable.gender.nil?
 
@@ -90,21 +82,7 @@ class DashboardQuery
     end
   end
 
-  # prevent inconsistent chartjs color
-  def default_chartjs_color_mapping
-    return {} unless user_visit.present?
-
-    default = {}
-    key = "mapping_value_#{ I18n.locale }".to_sym
-    user_visit.values.each { |val| default[val.send(key)] = 0 }
-    default
-  end
-
-  def ticket_tracking
-    ticket_tracking_report = ::TicketTracking.new(nil, self)
-    ticket_tracking_report.chart_options
-  end
-
+  # OWSO Information Accessed > Ticket Tracking(times)
   def number_of_tracking_tickets
     result = Tracking.filter(@options).group(:status).count
 
@@ -117,11 +95,6 @@ class DashboardQuery
     return [] if variable.nil?
 
     StepValue.total_users_feedback(variable, @options)
-  end
-
-  def users_feedback
-    users_feedback_report = ::UserFeedback.new(nil, self)
-    users_feedback_report.chart_options
   end
 
   def total_users_feedback_by_gender
@@ -141,6 +114,7 @@ class DashboardQuery
     Variable.most_request.agg_value_count(@options).values.sum
   end
 
+  # OWSO Information Accessed > User Access
   def goals
     user_access = ::UserAccess.new nil, self
     user_access.chart_options[:dataset]

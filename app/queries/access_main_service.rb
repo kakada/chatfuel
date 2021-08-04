@@ -10,10 +10,11 @@ class AccessMainService < BasicReport
   
   private
     def result_set
-      scope = StepValue.filter(@query.options, @variable.step_values)
-      scope = scope.joins(:session)
-      scope = scope.where(sessions: { province_id: @query.province_codes })
-      scope = scope.group("variable_value_id")
-      scope.count
+      Session.filter(@query.options)\
+              .joins(:step_values)\
+              .where(step_values: { variable: @variable })\
+              .where(province_id: @query.province_codes)\
+              .group(:variable_value_id)\
+              .count
     end
 end

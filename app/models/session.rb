@@ -3,6 +3,7 @@
 # Table name: sessions
 #
 #  id                  :bigint(8)        not null, primary key
+#  engaged_at          :datetime
 #  gender              :string           default("")
 #  last_interaction_at :datetime
 #  platform_name       :string           default("")
@@ -31,12 +32,12 @@ class Session < ApplicationRecord
   has_many :step_values, dependent: :destroy
   has_many :trackings, dependent: :destroy
 
-  default_scope -> { order(updated_at: :desc) }
-
   validates :session_id, :source_id, presence: true
   validates :platform_name, inclusion: {
                               in: %w(Messenger Telegram Verboice),
                               message: I18n.t("sessions.invalid_platform_name", value: "%{value}") }
+
+  scope :with_genders, -> { where.not(gender: [nil, "", "null"]) }
 
   after_create_commit :completed!, if: :ivr?
 
@@ -87,11 +88,12 @@ class Session < ApplicationRecord
     platform_name == "Verboice"
   end
 
-  def self.accessed(options = {})
-    variable = Variable.find_by(is_service_accessed: true)
-
+  def self.accessed(period=:day, format="%b/%y,%Y", options={})
     scope = filter(options)
-    scope.where(step_values: variable.step_values) if variable.present?
+    scope = scope.joins(:step_values)
+    scope = scope.where(step_values: { variable: Variable.service_accessed })
+    scope = scope.group_by_period(period, :created_at, format: format)
+    scope.count
   end
 
   def reachable_period?
