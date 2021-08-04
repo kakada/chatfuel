@@ -130,7 +130,7 @@ RSpec.describe Session, type: :model do
     end
   end
 
-  describe "set_province_id" do
+  xdescribe "set_province_id" do
     let(:session) { create(:session, district_id: "03122345") }
 
     it "extracts province_id from district_id before update" do
