@@ -38,7 +38,7 @@ class FeedbackTrend < Feedback
     end
 
     def satisfied
-      VariableValue.statuses.keys.reverse
+      VariableValue.value_statuses.keys.reverse
     end
 
     def group_result(collection)
@@ -49,17 +49,18 @@ class FeedbackTrend < Feedback
         format_duration = format_label(duration)
         hash[province_code] ||= {}
         hash[province_code][format_duration] ||= {}
-        prev_count = hash[province_code][format_duration][variable_value.status].to_i
-        hash[province_code][format_duration][variable_value.status] = (prev_count + count)
+        prev_count = hash[province_code][format_duration][variable_value.value_status].to_i
+        hash[province_code][format_duration][variable_value.value_status] = (prev_count + count)
       end
     end
 
-    def result_set
-      Session.feedback_filter(@query.options)\
+    def sql(location)
+      Session.filter(@query.options)\
               .joins(:step_values)\
               .where(step_values: { variable: @variable })\
               .where(feedback_province_id: @query.province_codes)\
               .where(feedback_district_id: @query.district_codes)\
+              .group(location)\
               .group_by_period(period, :engaged_at, format: '%b/%y,%Y')\
               .group(:variable_value_id)\
               .count
