@@ -8,6 +8,8 @@ FactoryBot.define do
     end
   end
 
+  trait :location
+
   trait :ticket_tracking do
     is_ticket_tracking { true }
   end
