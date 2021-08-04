@@ -11,6 +11,6 @@ export const owsoFeedbackTrendByPeriod = {
   },
   setup: (data) => (gon.feedbackTrend = data),
   render: () => {
-    trendingFeedback.render();
+    OWSO.DashboardShow.loadProvinceFeedbackTrend();
   },
 };
