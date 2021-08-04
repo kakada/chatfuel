@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe DashboardQuery.new do
+  let(:variable) { build(:variable) }
+  let(:step_value) { build(:step_value, variable: variable) }
+  let!(:session) { create(:session, province_id: '01', district_id: '0102', step_values: [step_value]) }
+
   it "#province_codes" do
     ENV['PILOT_PROVINCE_CODES']="01"
 
@@ -22,11 +26,10 @@ RSpec.describe DashboardQuery.new do
     end
 
     context "WITH most_request variable" do
-      let(:variable) { build(:variable) }
-
       it "returns hash that include :colors, :dataset as keys" do
         allow(Variable).to receive(:most_request).and_return(variable)
-        expect(subject.most_requested_services).to include(:colors, :dataset)
+
+        expect(subject.most_requested_services[session.province_id]).to include(:colors, :dataset)
       end
     end
   end
@@ -51,7 +54,7 @@ RSpec.describe DashboardQuery.new do
   describe "#access_main_service" do
     context "WITHOUT service_accessed variable" do
       it "returns empty hash" do
-        expect(subject.access_main_service).to eq({})
+        expect(subject.access_main_service).to include(:colors, :dataset)
       end
     end
 
@@ -89,7 +92,7 @@ RSpec.describe DashboardQuery.new do
 
       it "returns hash that include :labels, :dataset as keys" do
         allow(Variable).to receive(:feedback).and_return(variable)
-        expect(subject.feedback_trend).to include(:labels, :dataset)
+        expect(subject.feedback_trend[session.province_id]).to include(:labels, :dataset)
       end
     end
   end
@@ -106,7 +109,7 @@ RSpec.describe DashboardQuery.new do
 
       it "returns hash that include :labels, :dataset as keys" do
         allow(Variable).to receive(:feedback).and_return(variable)
-        expect(subject.overall_rating).to include(:labels, :dataset)
+        expect(subject.overall_rating[session.province_id]).to include(:labels, :dataset)
       end
     end
   end
@@ -114,7 +117,9 @@ RSpec.describe DashboardQuery.new do
   describe "#feedback_sub_categories" do
     context "WITHOUT feedback variable" do
       it "returns empty hash" do
-        expect(subject.feedback_sub_categories).to eq({})
+        Filters::PumiFilter.pilot_province_codes.each do |province_id|
+          expect(subject.feedback_sub_categories[province_id]).to eq({:dataset=>[], :labels=>[]})
+        end
       end
     end
 
