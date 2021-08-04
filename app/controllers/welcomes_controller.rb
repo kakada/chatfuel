@@ -35,7 +35,7 @@ class WelcomesController < PublicAccessController
     end
 
     def set_gon
-      @gon_data = Gonify.new(@query).chart_data
+      @gon_data = {}
       gon.push(@gon_data, true)
       @gon_data = gon.all_variables
     end
@@ -54,7 +54,8 @@ class WelcomesController < PublicAccessController
         most_tracked_label: I18n.t("welcomes.most_service_tracked_by_periodic"),
         most_requested_label: I18n.t("welcomes.most_requested_services"),
         start_date: @start_date,
-        end_date: @end_date
+        end_date: @end_date,
+        params: params
       })
     end
 end
