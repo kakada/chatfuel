@@ -2,6 +2,7 @@ class DashboardController < PrivateAccessController
   include ActionView::Helpers::NumberHelper
   include Filterable
 
+  skip_before_action :authenticate_user_with_guisso!, :check_guisso_cookie, if: :public_dashboard?
   before_action :default_start_date
   before_action :set_daterange
   before_action :set_gon

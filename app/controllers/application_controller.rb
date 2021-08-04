@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
   after_action :track_action
 
   private
+
+    def public_dashboard?
+      ENV['DASHBOARD_VIEW'].to_s.downcase == 'public'
+    end
+
     def track_action
       ahoy.track "track visitor", request.path_parameters
     end
