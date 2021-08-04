@@ -43,10 +43,6 @@ OWSO.DashboardShow = (() => {
     } catch (e) {
       console.error(e);
     }
-    // loadProvinceSubCategories();
-    // loadProvinceOverallRating();
-    // loadProvinceMostRequest();
-    // loadProvinceFeedbackTrend();
   }
 
   function loadChart(instance, element, data) {
@@ -376,10 +372,8 @@ OWSO.DashboardShow = (() => {
   }
 
   function runAsPublicDashboard() {
-    loadProvinceSubCategories();
-    loadProvinceOverallRating();
-    loadProvinceMostRequest();
-    loadProvinceFeedbackTrend();
+    Showcase.init();
+    onTabClick();
     onLoadPopup();
   }
 
@@ -391,6 +385,7 @@ OWSO.DashboardShow = (() => {
     loadProvinceMostRequest,
     loadProvinceOverallRating,
     loadProvinceSubCategories,
+    loadProvinceFeedbackTrend,
     loadFeedbackTrend,
     attachEventClickToChartDownloadButton,
     runAsPublicDashboard,
