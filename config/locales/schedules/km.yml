@@ -19,3 +19,4 @@ km:
     status: ស្ថានភាព
     notify_with_template: ជូនដំណឹងជាមួយពុម្ព (.pdf)
     report_date_html: ប្រចាំខែ%{cur_month} <small>(%{start_date} - %{end_date})</small>
+    preview_pdf: មើល PDF ជាមុន

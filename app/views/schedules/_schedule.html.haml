@@ -5,9 +5,10 @@
   %td
     = schedule.decorate.status
   %td
-    = link_to site_pdf_template_preview_path(@site.code, schedule, format: :pdf), class: "btn-circle btn-sm btn-primary text-decoration-none", data: {toggle: 'tooltip', title: t('shared.edit')}, target: '_blank' do
-      %i.fas.fa-eye
-    &nbsp;
+    - if @site.present?
+      = link_to site_pdf_template_preview_path(@site.code, schedule, format: :pdf), class: "btn-circle btn-sm btn-primary text-decoration-none", data: {toggle: 'tooltip', title: t('schedules.preview_pdf')}, target: '_blank' do
+        %i.fas.fa-eye
+      &nbsp;
     = link_to edit_schedule_path(schedule), class: "btn-circle btn-sm btn-warning text-decoration-none", data: {toggle: 'tooltip', title: t('shared.edit')} do
       %i.fas.fa-edit
     &nbsp;

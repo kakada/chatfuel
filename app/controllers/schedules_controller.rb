@@ -3,6 +3,7 @@ class SchedulesController < ApplicationController
   before_action :authorise, only: [:edit, :update, :destroy]
 
   def index
+    @site = Site.first
     @pagy, @schedules = pagy(Schedule.includes(:pdf_template).order(updated_at: :desc))
   end
 

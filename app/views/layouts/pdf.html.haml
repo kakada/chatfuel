@@ -5,6 +5,7 @@
     %meta{:charset => "utf-8"}
     %title= ENV['PDF_TITLE']
 
+    = stylesheet_link_tag "embeded_fonts"
     = wicked_pdf_stylesheet_link_tag "pdf"
     = wicked_pdf_javascript_pack_tag "pdf"
 
