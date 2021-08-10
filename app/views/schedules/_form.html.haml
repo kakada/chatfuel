@@ -27,7 +27,7 @@
 
         .form-group
           = pdf_form.input_field :content, as: :hidden, class: "pdf_template_content"
-          #editor-container{ style: "height: 15rem; width: 100%; " }
+          #editor-container
             = raw @pdf_template.content
         - pdf_form.object.decorate.variables.each do |variable|
           %span.badge.badge-secondary.dynamic-variable= variable
