@@ -4,6 +4,7 @@ $(".nav-link[href!='<%= @active_tab %>']").data('status', 'fresh');
 $(".tabs-container").html("<%= j(render partial: "welcomes/tabs", locals: { active_tab: @active_tab }) %>");
 $("#sub_categories_modals").html("<%= j(render partial: "dashboard/sub_categories_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 $("#feedback_trend_modals").html("<%= j(render partial: "dashboard/feedback_trend_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
+$(".visitor-counter").replaceWith("<%= j(render "shared/sidebar/visitor_count") %>")
 
 OWSO.WelcomesIndex.scrollToForm();
 OWSO.DashboardShow.runAsPublicDashboard();
