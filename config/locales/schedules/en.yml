@@ -19,3 +19,4 @@ en:
     status: Status
     notify_with_template: Notify with template (.pdf)
     report_date: report for %{cur_month} (%{start_date} - %{end_date})
+    preview_pdf: Preview PDF
