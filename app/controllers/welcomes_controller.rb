@@ -1,6 +1,7 @@
 class WelcomesController < PublicAccessController
   include Filterable
   before_action QueryFilter,  except: :filter
+  before_action :visitor_count
 
   def index
     respond_to do |format|
@@ -57,5 +58,9 @@ class WelcomesController < PublicAccessController
         end_date: @end_date,
         params: params
       })
+    end
+
+    def visitor_count
+      @fragment_count, @all_count = Ahoy::Visit.count_with_fragment(@start_date, @end_date)
     end
 end
