@@ -1,0 +1,5 @@
+.visitor-counter
+  - tooltip_title = t("welcomes.visitor_html", fragment_count: @fragment_count, all_count: @all_count, start_date: @start_date, end_date: @end_date)
+  %span.badge.badge-pill.badge-info{ data: { toggle: "tooltip" , html: "true", title: tooltip_title }}
+    %i.fa.fa-eye
+    = "#{human_size(@fragment_count)}/#{human_size(@all_count)}"
