@@ -53,7 +53,8 @@ class DashboardQuery
     Session.filter(@options)\
             .joins(step_values: [:variable, :variable_value])\
             .where(step_values: { variable: Variable.user_visit })\
-            .group("mapping_value_#{I18n.locale}")\
+            .group("mapping_value_#{I18n.locale}", :raw_value)\
+            .order(:raw_value)\
             .count
   end
 
