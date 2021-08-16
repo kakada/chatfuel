@@ -16,6 +16,7 @@ class ProvincialUsageDecorator < ApplicationDecorator
     return "" unless most_request_service.present?
 
     name, count, total = most_request_service
-    "#{name} (#{count}/#{total})"
+    info = "(#{count}/#{total})" if count.to_i > 0
+    [name, info].compact.join(' ')
   end
 end
