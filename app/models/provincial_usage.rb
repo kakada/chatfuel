@@ -14,19 +14,19 @@ class ProvincialUsage
   end
 
   def visits_count
-    result&.dig(pro_code, :visits).to_i
+    (result_scope && result_scope[:visits]).to_i
   end
 
   def unique_users_count
-    result&.dig(pro_code, :uniques).to_i
+    (result_scope && result_scope[:uniques]).to_i
   end
 
   def service_delivered_count
-    result&.dig(pro_code, :service_delivered).to_i
+    (result_scope && result_scope[:service_delivered]).to_i
   end
 
   def most_request_service
-    result&.dig(pro_code, :most_request_services)
+    result_scope && result_scope[:most_request_services]
   end
 
   def self.fetch_and_transform(options)
@@ -35,6 +35,10 @@ class ProvincialUsage
   end
 
   private
+
+  def result_scope
+    result[pro_code]
+  end
 
   def address_i18n
     "address_#{I18n.locale}".to_sym
