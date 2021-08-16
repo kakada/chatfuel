@@ -10,7 +10,7 @@ class ProvincialUsages
 
     @provincial_usages.sort do |left, right|
       left, right = [right, left] if desc?(dir)
-      left.send(attr.to_sym).to_i <=> right.send(attr.to_sym).to_i
+      left.send(attr.to_sym) <=> right.send(attr.to_sym)
     rescue NoMethodError => e
       raise Exception.new err_with_suggestion(e)
     end
