@@ -18,5 +18,5 @@ OWSO.ReportsIndex = (() => {
     $.rails.fire(form, "submit");
   }
 
-  return { init };
+  return { init, autoSubmit };
 })();
