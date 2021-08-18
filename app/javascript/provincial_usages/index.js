@@ -15,7 +15,6 @@ OWSO.Provincial_usagesIndex = (() => {
       e.preventDefault();
       htmlToImage
         .toPng(document.getElementById("table"), {
-          preferredFontFormat: "Nunito",
           backgroundColor: "white",
           style: { color: "black" },
         })
