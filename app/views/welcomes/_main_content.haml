@@ -1,0 +1,27 @@
+= render "welcomes/loading"
+= render "welcomes/switch_lang"
+= render "welcomes/logo_container"
+= render "welcomes/sidebar"
+= render "welcomes/article"
+= render "welcomes/header"
+= render "welcomes/form"
+
+-# modal
+= render_component( LocationModalComponent.new(component: 'province') ) do |c|
+  = c.with(:select_input) do
+    %select.province_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.name_i18n, "data-pumi-select-collection-url" => "/provinces", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-populate-on-load": "true", name: 'province_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
+      %option{value: ""}= t('dashboard.all_province')
+= render_component( LocationModalComponent.new(component: 'district') ) do |c|
+  = c.with(:select_input) do
+    %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.name_i18n, "data-pumi-select-collection-url" => "/districts?province_id=FILTER", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
+      %option{value: ""}= t('dashboard.all_district')
+
+= render "welcomes/tabs/tabs"
+= render "welcomes/footer"
+= render "welcomes/popup_modal"
+
+#sub_categories_modals
+  %span.d-none THIS IS A CONTENT OF FEEDBACK SUBCATEGORIES
+
+#feedback_trend_modals
+  %span.d-none THIS IS A CONTENT OF FEEDBACK TREND

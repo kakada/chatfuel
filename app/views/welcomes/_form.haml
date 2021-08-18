@@ -1,5 +1,5 @@
 #form-query.collapse.d-lg-block
-  = simple_form_for :q, remote: true, method: :get, html: { class: "pt-3", id: "q", role: "search" } do |f|
+  = simple_form_for :q, remote: true, url: '/', method: :get, html: { class: "pt-3", id: "q", role: "search" } do |f|
     .mb-3
       .container
         .row
@@ -19,7 +19,7 @@
                 .d-block.tooltip-province{ title: "", "data-toggle": "tooltip" }
                   #show-provinces.form-control.text-truncate{tabindex: 5, "data-toggle": "modal", "data-target" => "#provincesModal"}
                     = t("all")
-                  - province_codes = Array.wrap(params[:province_code]).select(&:present?)
+                  - province_codes = Array.wrap(@query.options[:province_id]).select(&:present?)
                   = f.input_field :provinces, as: :hidden, name: "province_code[]", class: "form-control text-truncate", value: province_codes
 
               -# districts
@@ -30,7 +30,7 @@
                 .d-block.tooltip-district{ title: "", "data-toggle": "tooltip" }
                   #show-districts.form-control.text-truncate{tabindex: 5, "data-toggle": "modal", "data-target" => "#districtsModal"} 
                     = t("all")
-                  - district_codes = Array.wrap(params[:district_code]).select(&:present?)
+                  - district_codes = Array.wrap(@query.options[:district_id]).select(&:present?)
                   = f.input_field :districts, as: :hidden, name: "district_code[]", class: "form-control text-truncate", value: district_codes
               
               .form-group.string.required.q_time_period.col-lg-3
@@ -43,18 +43,10 @@
                     = render "input_date_range"
 
               -# tab
-              = f.input :active_tab, as: :hidden
+              = f.input :active_tab, as: :hidden, input_html: { value: @active_tab }
 
               -# submit
               .form-group.col-lg-1.d-flex.align-items-center.justify-content-end
                 = f.button :button, t("welcomes.search"), class: "btn btn-primary secondary-branding-color", disabled: false, tabindex: 7, id: "btn-search", value: "submitted", data: { disable_with: "<small>#{t("loading")}</small>" }
 
--# modal
-= render_component( LocationModalComponent.new(component: 'province') ) do |c|
-  = c.with(:select_input) do
-    %select.province_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.name_i18n, "data-pumi-select-collection-url" => "/provinces", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-populate-on-load": "true", name: 'province_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
-      %option{value: ""}= t('dashboard.all_province')
-= render_component( LocationModalComponent.new(component: 'district') ) do |c|
-  = c.with(:select_input) do
-    %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.name_i18n, "data-pumi-select-collection-url" => "/districts?province_id=FILTER", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
-      %option{value: ""}= t('dashboard.all_district')
+

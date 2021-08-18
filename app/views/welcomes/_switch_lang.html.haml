@@ -3,8 +3,8 @@
     = t("language.#{I18n.locale}")
 
   .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
-    = link_to url_for(request.query_parameters.merge(locale: 'km')), id: "link-km", tabindex: 3, class: 'dropdown-item' do
+    = link_to "#", id: "link-km", tabindex: 3, class: 'lang-item dropdown-item', "data-locale": "km" do
       = t('language.km')
 
-    = link_to url_for(request.query_parameters.merge(locale: 'en')), id: "link-en", tabindex: 4,  class: 'dropdown-item' do
+    = link_to "#", id: "link-en", tabindex: 4,  class: 'lang-item dropdown-item', "data-locale": "en" do
       = t('language.en')
