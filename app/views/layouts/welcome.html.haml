@@ -13,12 +13,6 @@
   %body{ id: css_class_name, style: 'overflow-y: scroll' }
     = content_tag :a, nil, id: "link"
     #main-content.position-relative
-      = render "welcomes/loading"
-      = render "welcomes/switch_lang"
-      #logo-container.mb-5
-        .container
-          .text-center
-            = render partial: "welcomes/logo", locals: { tabindex: 1, id: "link-to-usaid-logo" }
       = yield
     
     - if Rails.env.production? && !embed
