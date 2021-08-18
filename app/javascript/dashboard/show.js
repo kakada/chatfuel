@@ -36,10 +36,12 @@ OWSO.DashboardShow = (() => {
 
   function fetchTarget(target) {
     try {
-      OWSO.Util.chartReg();
-      const instance = OWSO.Charts.getInstance(target);
-      instance.load();
-      instance.markStatus("loaded");
+      if (target != undefined) {
+        OWSO.Util.chartReg();
+        const instance = OWSO.Charts.getInstance(target);
+        instance.load();
+        instance.markStatus("loaded");
+      }
     } catch (e) {
       console.error(e);
     }
