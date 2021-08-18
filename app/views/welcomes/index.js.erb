@@ -1,11 +1,43 @@
 window.gon = JSON.parse('<%= j(@gon_data.to_json.html_safe) %>');
-$(".tab-navigation").removeClass("d-none");
-$(".nav-link[href!='<%= @active_tab %>']").data('status', 'fresh');
-$(".tabs-container").html("<%= j(render partial: "welcomes/tabs", locals: { active_tab: @active_tab }) %>");
+
+// reload content (basicall when change language)
+// $("#main-content").html("<%= j(render "welcomes/main_content") %>")
+$("#article").replaceWith('<%= j render("welcomes/article") %>');
+// $("#form-query").replaceWith('<%= j render("welcomes/form") %>');
+$(".switch-lang").replaceWith('<%= j render("welcomes/switch_lang") %>');
+$("footer").replaceWith('<%= j render("welcomes/footer") %>');
+$(".sidebar-left").replaceWith('<%= j render("welcomes/sidebar") %>');
+$("#piloting-header").replaceWith('<%= j render("welcomes/header") %>');
+$("#form-query").replaceWith('<%= j render("welcomes/form") %>');
+
+
+// load tab navigation and keep state active tab
+$(".tab-navigation").html("<%= j(render "welcomes/tabs/navigation_container") %>")
+
+// whenever form submitted, refresh sibling
+// so when sibling is clicked, it reload(ajax) the result
+$(".nav-link[href!='<%= @active_tab %>']").data("status", "fresh");
+
+$(".tabs-container").html("<%= j(render "welcomes/tabs") %>");
 $("#sub_categories_modals").html("<%= j(render partial: "dashboard/sub_categories_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 $("#feedback_trend_modals").html("<%= j(render partial: "dashboard/feedback_trend_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 $(".visitor-counter").replaceWith("<%= j(render "shared/sidebar/visitor_count") %>")
 
+// pumi.setup();
+console.log("<%= @active_tab %>")
+var options = JSON.parse('<%= j(@query.options.to_json.html_safe) %>')
+
 OWSO.WelcomesIndex.scrollToForm();
+OWSO.WelcomesIndex.onWindowScroll();
+OWSO.DashboardShow.renderDatetimepicker();
+
+OWSO.WelcomesIndex.onDistrictModalSave();
+OWSO.WelcomesIndex.onProvinceModalSave();
+
+$('.province_code').val(options.province_id);
+$(".btn-province-save").trigger("click");
+$('.district_code').val(options.district_id);
+$(".btn-district-save").trigger("click");
+
 OWSO.DashboardShow.runAsPublicDashboard();
 OWSO.DashboardShow.multiSelectDistricts();
