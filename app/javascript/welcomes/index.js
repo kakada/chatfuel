@@ -26,6 +26,16 @@ OWSO.WelcomesIndex = (() => {
     loadCookieConsent();
     onLocationKeyEnterPress();
     onLoadLocationPopup();
+    switchLang();
+  }
+
+  function switchLang() {
+    $(document).on("click", ".lang-item", function (e) {
+      e.preventDefault();
+      let currentLocale = $(this).data("locale");
+      $("#q_locale").val(currentLocale);
+      OWSO.ReportsIndex.autoSubmit();
+    });
   }
 
   function onLoadLocationPopup() {
@@ -76,10 +86,11 @@ OWSO.WelcomesIndex = (() => {
   }
 
   function onClickTabNavigation() {
-    $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
+    $(document).on("shown.bs.tab", 'a[data-toggle="tab"]', function (e) {
       var target = $(e.target);
       var active = $(target).attr("href");
       $("#q_active_tab").val(active);
+      console.log(active);
     });
   }
 
@@ -155,5 +166,11 @@ OWSO.WelcomesIndex = (() => {
     }
   }
 
-  return { init, scrollToForm };
+  return {
+    init,
+    scrollToForm,
+    onWindowScroll,
+    onDistrictModalSave,
+    onProvinceModalSave,
+  };
 })();
