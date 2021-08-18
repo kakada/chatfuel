@@ -3,7 +3,7 @@
     .row
       .col-12
         #menuContent.tab-content.pt-5
-          #summary.tab-pane.fade{"aria-labelledby" => "nav-summary-tab", :role => "tabpanel", class: toggle_class_name("active show", (active_tab.blank? || active_tab == '#summary'))}
+          #summary.tab-pane.fade{"aria-labelledby" => "nav-summary-tab", :role => "tabpanel", class: toggle_class_name("active show", (@active_tab.blank? || @active_tab == '#summary'))}
             = render "dashboard/earnings"
             .row
               .col-lg-6
@@ -11,7 +11,7 @@
               .col-lg-6
                 = render partial: "dashboard/total_user_feedback", locals: { id: "total_summary_feedback", title: t("welcomes.total_user_feedback") }
               
-          #access-information.tab-pane.fade{"aria-labelledby" => "nav-accessed-tab", :role => "tabpanel", class: toggle_class_name("active show", active_tab == '#access-information')}
+          #access-information.tab-pane.fade{"aria-labelledby" => "nav-accessed-tab", :role => "tabpanel", class: toggle_class_name("active show", @active_tab == '#access-information')}
             = render "dashboard/earnings"
             .row
               -# Information Access
@@ -28,7 +28,7 @@
                 = render partial: "dashboard/charts/service_tracked", locals: { title: t("welcomes.most_service_tracked_by_periodic"), id: "chart_most_service_tracked_periodically", collection: [] }
 
               
-          #citizen-feedback.tab-pane.fade{"aria-labelledby" => "nav-feedback-tab", :role => "tabpanel", class: toggle_class_name("active show", active_tab == '#citizen-feedback')}
+          #citizen-feedback.tab-pane.fade{"aria-labelledby" => "nav-feedback-tab", :role => "tabpanel", class: toggle_class_name("active show", @active_tab == '#citizen-feedback')}
             = render "dashboard/earnings"
             .row
               -# citizen feedback
