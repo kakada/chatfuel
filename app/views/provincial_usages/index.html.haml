@@ -9,9 +9,9 @@
       %table.table.table-hover
         %thead
           = render 'header_row'
-          = render 'total_row'
         %tbody
-          - @provincial_usages.each do |provincial, index|
+          - @provincial_usages.each_with_index do |provincial, index|
             %tr
+              %td= index + 1
               - provincial.data.each do |data|
                 %td= data
