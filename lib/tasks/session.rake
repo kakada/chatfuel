@@ -108,4 +108,35 @@ namespace :session do
   ensure
     Session.record_timestamps = true
   end
+
+  namespace :migrate_feedback_location do
+    desc "Migrate feedback location"
+    task up: :environment do
+      Session.record_timestamps = false
+      feedback_province = Variable.feedback_province
+
+      Session.joins(step_values: :variable).where(step_values: { variable: feedback_province }).limit(3).find_each do |session|
+        # puts "sessions: #{session.id}"
+        # puts "*" * 20
+        session.step_values.includes(:variable, :variable_value).find_each do |step_value|
+          puts "#{step_value.variable.name} #{step_value.variable_value.mapping_value_en}"
+          # session.feedback_province_id = session.variable_value.raw_value if session.variable.feedback_province?
+          # session.feedback_province_id = session.variable_value.raw_value if session.variable.feedback_district?
+        end
+      end
+    ensure
+      Session.record_timestamps = true
+    end
+
+    desc "Rollback feedback location"
+    task down: :environment do
+      Session.record_timestamps = false
+      
+      Session.where.not(feedback_province_id: nil).or(Session.where.not(feedback_district_id: nil)).find_each do |session|
+        session.update_columns feedback_province_id: nil, feedback_district_id: nil
+      end
+    ensure
+      Session.record_timestamps = true
+    end
+  end
 end
