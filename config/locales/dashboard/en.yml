@@ -12,7 +12,7 @@ en:
     province: Province
     show: Show
     active_user: Active User
-    total_users: Total Users
+    total_users: Total Visits
     total_users_accessed: Total Services Delivered
     total_uniq_users: Total Unique Users
     average_using_time: Average Using Time

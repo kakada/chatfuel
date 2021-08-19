@@ -1,6 +1,6 @@
 en:
   provincial_usages:
-    code: Province Code
+    rank: Rank
     location: Province/City
     unique: Total Unique Users
     visit: Total Visit
@@ -9,4 +9,3 @@ en:
     download: Download
     csv: CSV
     image: Image(.png)
-    total: Total
