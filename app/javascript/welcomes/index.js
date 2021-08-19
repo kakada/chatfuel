@@ -90,7 +90,6 @@ OWSO.WelcomesIndex = (() => {
       var target = $(e.target);
       var active = $(target).attr("href");
       $("#q_active_tab").val(active);
-      console.log(active);
     });
   }
 
