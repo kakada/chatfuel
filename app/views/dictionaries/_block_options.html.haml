@@ -17,3 +17,11 @@
 = render_component(SelectComponent.new(value: "district", name: "variable[mark_as]", checked: @variable.district?, disabled: (@district && @district&.id != @variable.id), title: @district&.name)) do
   %i.fa.fa-map-marker-alt
   %p.status-text.m-0= t("dictionaries.site_district")
+
+= render_component(SelectComponent.new(value: "feedback_province", name: "variable[mark_as]", checked: @variable.feedback_province?, disabled: (Variable.feedback_province && Variable.feedback_province&.id != @variable.id), title: Variable.feedback_province&.name)) do
+  %i.fa.fa-map-marker-alt
+  %p.status-text.m-0= t("dictionaries.feedback_province")
+
+= render_component(SelectComponent.new(value: "feedback_district", name: "variable[mark_as]", checked: @variable.feedback_district?, disabled: (Variable.feedback_district && Variable.feedback_district&.id != @variable.id), title: Variable.feedback_district&.name)) do
+  %i.fa.fa-map-marker-alt
+  %p.status-text.m-0= t("dictionaries.feedback_district")

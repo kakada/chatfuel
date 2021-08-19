@@ -4,6 +4,8 @@ km:
     permission: ការអនុញ្ញាត
     mark_as: សម្គាល់ជា
     feedback: មតិប្រតិកម្ម
+    feedback_province: មតិប្រតិកម្មខេត្ត
+    feedback_district: មតិប្រតិកម្មស្រុក
     mark_as_feedback: សម្គាល់ថាជាមតិប្រតិកម្ម
     site_district: ទីតាំងស្រុក
     site_province: ទីតាំងខេត្ត

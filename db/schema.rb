@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_29_091739) do
+ActiveRecord::Schema.define(version: 2021_08_19_094425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -117,6 +117,10 @@ ActiveRecord::Schema.define(version: 2021_07_29_091739) do
     t.boolean "repeated", default: false
     t.string "source_id", null: false
     t.datetime "engaged_at", default: -> { "CURRENT_TIMESTAMP" }
+    t.string "feedback_province_id"
+    t.string "feedback_district_id"
+    t.index ["feedback_district_id"], name: "index_sessions_on_feedback_district_id"
+    t.index ["feedback_province_id"], name: "index_sessions_on_feedback_province_id"
   end
 
   create_table "settings", force: :cascade do |t|

@@ -5,7 +5,7 @@ $color-secondary: #b7b7b7;
 .block-option {
   .block-option--item {
     position: relative;
-    width: 115px;
+    min-width: 115px;
     border: 1px solid $color-secondary;
     border-radius: 4px;
     padding: 10px;
