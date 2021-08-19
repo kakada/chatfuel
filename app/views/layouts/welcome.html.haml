@@ -17,39 +17,5 @@
     
     - if Rails.env.production? && !embed
       = render "welcomes/chatbot_short_into"
-    :javascript
-      let { dev, isEmbed } = OWSO.Util
-      if( !dev() && !isEmbed() ) {
-        if( $(".fb-customerchat").length == 0 ) {
-          var div = document.createElement('div');
-          div.className = 'fb-customerchat';
-          div.setAttribute('page_id', '#{ENV["FACEBOOK_PAGE_ID"]}');
-          div.setAttribute('ref', '');
-          div.setAttribute('theme_color', '#002f6c')
-          document.body.appendChild(div);
-        }
-        window.fbMessengerPlugins = window.fbMessengerPlugins || {
-          init: function () {
-            FB.init({
-              appId            : '#{ENV["FACEBOOK_APP_ID"]}',
-              autoLogAppEvents : true,
-              xfbml            : true,
-              version          : 'v8.0'
-            });
-          }, callable: []
-        };
-        window.fbAsyncInit = window.fbAsyncInit || function () {
-          window.fbMessengerPlugins.callable.forEach(function (item) { item(); });
-          window.fbMessengerPlugins.init();
-        };
-        setTimeout(function () {
-          (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
-        }, 0);
-      }
+    
+    = render "welcomes/fb_js_chat_script"
