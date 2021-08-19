@@ -2,20 +2,27 @@
 #
 # Table name: sessions
 #
-#  id                  :bigint(8)        not null, primary key
-#  engaged_at          :datetime
-#  gender              :string           default("")
-#  last_interaction_at :datetime
-#  platform_name       :string           default("")
-#  repeated            :boolean          default(FALSE)
-#  session_type        :string           default("")
-#  status              :integer(4)       default("incomplete")
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  district_id         :string
-#  province_id         :string
-#  session_id          :string           not null
-#  source_id           :string           not null
+#  id                   :bigint(8)        not null, primary key
+#  engaged_at           :datetime
+#  gender               :string           default("")
+#  last_interaction_at  :datetime
+#  platform_name        :string           default("")
+#  repeated             :boolean          default(FALSE)
+#  session_type         :string           default("")
+#  status               :integer(4)       default("incomplete")
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  district_id          :string
+#  feedback_district_id :string
+#  feedback_province_id :string
+#  province_id          :string
+#  session_id           :string           not null
+#  source_id            :string           not null
+#
+# Indexes
+#
+#  index_sessions_on_feedback_district_id  (feedback_district_id)
+#  index_sessions_on_feedback_province_id  (feedback_province_id)
 #
 class Session < ApplicationRecord
   include CsvConcern

@@ -27,6 +27,8 @@ RSpec.describe Session, type: :model do
   it { is_expected.to have_attribute(:province_id) }
   it { is_expected.to have_attribute(:session_id) }
   it { is_expected.to have_attribute(:source_id) }
+  it { is_expected.to have_attribute(:feedback_province_id) }
+  it { is_expected.to have_attribute(:feedback_district_id) }
   it { is_expected.to define_enum_for(:status).with_values(%i[incomplete completed]) }
 
   # Associations

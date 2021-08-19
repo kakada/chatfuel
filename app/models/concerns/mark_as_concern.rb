@@ -8,7 +8,7 @@ module MarkAsConcern
     before_save :ensure_unique_most_request, if: :is_most_request?
   end
 
-  MARK_AS_LIST = %w(gender user_visit ticket_tracking service_accessed province district)
+  MARK_AS_LIST = %w(gender user_visit ticket_tracking service_accessed province district feedback_province feedback_district)
   WHITELIST_MARK_AS = [Variable::FEEDBACK, Variable::MOST_REQUEST] + MARK_AS_LIST
 
   define_method :feedback? do self.mark_as == Variable::FEEDBACK end

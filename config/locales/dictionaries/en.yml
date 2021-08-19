@@ -4,6 +4,8 @@ en:
     permission: Permission
     mark_as: Mark As
     feedback: Feedback
+    feedback_province: Feedback province
+    feedback_district: Feedback district
     mark_as_feedback: Mark as feedback
     site_district: District
     site_province: Province
