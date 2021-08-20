@@ -117,7 +117,7 @@ namespace :session do
       feedback_unit = Variable.find_by(name: 'feedback_unit')
       sessions = Session.joins(step_values: :variable)\
                         .includes(step_values: [:variable, :variable_value])\
-                        .where(step_values: { variable: feedback_unit })\
+                        .where(step_values: { variable: feedback_unit })
 
       sessions.each do |session|
         unit_value = province_id = district_id = ""
