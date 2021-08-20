@@ -31,6 +31,7 @@ class StepValue < ApplicationRecord
   include StepValue::TrackableConcern
   include StepValue::FilterableConcern
   include StepValue::AggregatableConcern
+  include StepValue::LoggableConcern
 
   has_paper_trail
 
@@ -74,6 +75,15 @@ class StepValue < ApplicationRecord
     create variable: variable, variable_value: variable_value
   rescue
     nil
+  end
+
+  def self.delete_step(attr)
+    step = find_by variable: Variable.send(attr)
+    step.delete
+  end
+
+  def self.owsu?
+    exists? variable_value: VariableValue.find_by(raw_value: 'owsu')
   end
 
   private
