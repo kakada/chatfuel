@@ -4,6 +4,6 @@ class MigrateFeedbackLocationToSessions < ActiveRecord::Migration[6.0]
   end
 
   def down
-    Rake::Task['session:migrate_feedback_location:up'].invoke
+    Rake::Task['session:migrate_feedback_location:down'].invoke
   end
 end

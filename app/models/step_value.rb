@@ -78,8 +78,8 @@ class StepValue < ApplicationRecord
   end
 
   def self.delete_step(attr)
-    step = find_by variable: Variable.send(attr)
-    step.delete
+    step = where(variable: Variable.send(attr)).last
+    step&.delete
   end
 
   def self.owsu?
