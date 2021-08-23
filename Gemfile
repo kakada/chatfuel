@@ -80,6 +80,7 @@ group :development do
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "annotate", "~> 3.1.0"
   gem "solargraph", "~> 0.38.5"
+  gem "awesome_print", "~> 1.9.2"
 end
 
 group :test do

@@ -108,4 +108,59 @@ namespace :session do
   ensure
     Session.record_timestamps = true
   end
+
+  namespace :migrate_feedback_location do
+    desc "Migrate feedback location"
+    task up: :environment do
+      Session.record_timestamps = false
+
+      feedback_unit = Variable.find_by(name: 'feedback_unit')
+      sessions = Session.joins(step_values: :variable)\
+                        .includes(step_values: [:variable, :variable_value])\
+                        .where(step_values: { variable: feedback_unit })
+
+      sessions.each do |session|
+        unit_value = province_id = district_id = ""
+        feedback_province_id = feedback_district_id = ""
+
+        session.step_values.includes(:variable, :variable_value).order(:created_at).each do |step|
+          unit_value  = step.variable_value.mapping_value_en if step.variable == feedback_unit
+          province_id = step.variable_value.raw_value if step.variable.feedback_province?
+          district_id = step.variable_value.mapping_value_en if step.variable.feedback_district?
+
+          if unit_value == 'owsu' && province_id.present?
+            session.step_values.clone_step(:feedback_district, (province_id + VariableValue::OWSU_CODE_SUFFIX))
+          end
+        end
+
+        unit = "feedback_unit/#{unit_value}".classify.constantize.new(province_id: province_id, district_id: district_id)
+
+        session.update_columns(
+          feedback_province_id: unit.feedback_province_id,
+          feedback_district_id: unit.feedback_district_id
+        )
+      rescue
+        next
+      end
+    ensure
+      Session.record_timestamps = true
+    end
+
+    desc "Rollback feedback location"
+    task down: :environment do
+      Session.record_timestamps = false
+      
+      Session.transaction do
+        Session.where.not(feedback_province_id: nil)\
+          .or(Session.where.not(feedback_district_id: nil)).find_each do |session|
+          session.update_columns feedback_province_id: nil, feedback_district_id: nil
+          if session.step_values.owsu?
+            session.step_values.delete_step(:feedback_district)
+          end
+        end
+      end
+    ensure
+      Session.record_timestamps = true
+    end
+  end
 end
