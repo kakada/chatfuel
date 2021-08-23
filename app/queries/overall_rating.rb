@@ -51,9 +51,9 @@ class OverallRating < Feedback
       Session.filter(@query.options)
               .joins(:step_values)
               .where(step_values: { variable: @variable })
-              .where(province_id: @query.province_codes)
-              .where(district_id: @query.district_codes)
-              .group(:province_id, :district_id, :variable_value_id)
+              .where(feedback_province_id: @query.province_codes)
+              .where(feedback_district_id: @query.district_codes)
+              .group(:feedback_province_id, :feedback_district_id, :variable_value_id)
               .count
     end
 end
