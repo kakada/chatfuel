@@ -31,7 +31,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "i18n-js", "~> 3.5.1"
 gem "liquid", "~> 4.0", ">= 4.0.3"
 gem "sentry-raven", "~> 3.0"
-gem 'pumi', github: 'radinreth/pumi', branch: 'other-districts', require: 'pumi/rails'
+gem 'pumi', github: 'radinreth/pumi', branch: 'other-districts-with-owsu', require: 'pumi/rails'
 
 gem "telegram-bot", "~> 0.15.4"
 gem "sidekiq-scheduler", "~> 3.0.1"
