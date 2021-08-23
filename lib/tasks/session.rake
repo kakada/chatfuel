@@ -124,9 +124,9 @@ namespace :session do
         feedback_province_id = feedback_district_id = ""
 
         session.step_values.includes(:variable, :variable_value).order(:created_at).each do |step|
-          unit_value  = step.variable_value.raw_value if step.variable == feedback_unit
+          unit_value  = step.variable_value.mapping_value_en if step.variable == feedback_unit
           province_id = step.variable_value.raw_value if step.variable.feedback_province?
-          district_id = step.variable_value.raw_value if step.variable.feedback_district?
+          district_id = step.variable_value.mapping_value_en if step.variable.feedback_district?
 
           if unit_value == 'owsu' && province_id.present?
             session.step_values.clone_step(:feedback_district, (province_id + VariableValue::OWSU_CODE_SUFFIX))

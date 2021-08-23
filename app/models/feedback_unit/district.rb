@@ -4,21 +4,16 @@ module FeedbackUnit
       feedback_district_id.to_s[0..1]
     end
 
-    def feedback_district_id
-      mapping_districts[district_id.to_sym]
-    end
+    delegate :id, to: :district, allow_nil: true, prefix: 'feedback_district'
 
     private
 
-    def mapping_districts
-      { 
-        'bavel': '0204',
-        'komrieng': '0212',
-        'krong battambong': '0203',
-        'mong russei': '0206',
-        'other': '0200',
-        'tmor kol': '0202'
-      }
+    def district
+      Pumi::District.where(attribute => district_id).first
+    end
+
+    def attribute
+      district_id.match?(/^\d+$/) ? 'id' : 'name_en'
     end
   end
 end
