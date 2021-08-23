@@ -21,8 +21,8 @@ GIT
 
 GIT
   remote: https://github.com/radinreth/pumi.git
-  revision: e66c8bb9434f1d56130dbda9a01d60d9410885ef
-  branch: other-districts
+  revision: 14e6cfd34d25971614d9bba5a0d09aa10dda17bf
+  branch: other-districts-with-owsu
   specs:
     pumi (0.5.0)
 

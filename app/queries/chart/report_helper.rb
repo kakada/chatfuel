@@ -34,6 +34,7 @@ module Chart::ReportHelper
     ::OverallRating.new(Variable.feedback, self).chart_options
   end
 
+  # Citizen Feedback > OWSO Feedback Trend
   def feedback_trend
     ::FeedbackTrend.new(Variable.feedback, self).chart_options
   end

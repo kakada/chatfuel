@@ -3,7 +3,7 @@ class FeedbackReport < GenericReport
     Session.filter(@query.options)\
             .joins(:step_values)\
             .where(step_values: { variable: [like, dislike] })\
-            .where(province_id: @query.province_codes)\
+            .where(feedback_province_id: @query.province_codes)\
             .group(:variable_id, :variable_value_id)
   end
 
