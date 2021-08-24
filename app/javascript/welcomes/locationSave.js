@@ -16,6 +16,8 @@ const onDistrictModalSave = function () {
 
     if (districtCode.length > 0) {
       $.get("/welcomes/filter", params, function (result) {
+        // $(".tooltip-district").attr("data-original-title", "");
+        // $(".district_code").val(null).trigger("change");
         updateDistrict(result, districtCode);
       });
     } else {
@@ -45,8 +47,11 @@ const onProvinceModalSave = function () {
         updateProvince(result, provinceCode);
 
         if (provinceCode.length == 1) {
+          resetDistrict();
           pullDistricts(provinceCode);
+          console.log("reset & pull");
         } else if (provinceCode.length > 1) {
+          disableDistrict();
           resetDistrict();
         }
       });
@@ -83,11 +88,19 @@ function resetProvince() {
 }
 
 function resetDistrict() {
-  disableDistrict();
+  // disableDistrict();
+  resetDistrictDisplay();
+  resetDistrictValues();
+}
+
+function resetDistrictValues() {
   $("#q_districts").val("");
+  $(".district_code").val(null).trigger("change");
+}
+
+function resetDistrictDisplay() {
   $("#show-districts").text(gon.all);
   $(".tooltip-district").attr("data-original-title", "");
-  $(".district_code").val(null).trigger("change");
 }
 
 export { onDistrictModalSave, onProvinceModalSave };
