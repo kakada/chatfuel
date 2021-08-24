@@ -24,7 +24,7 @@
 
           - district_codes = Array.wrap(params[:district_code]).select(&:present?).join(",")
           %input#district-hidden{type: 'hidden', name: "district_code[]", value: district_codes}
-          %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.field_full_name, "data-pumi-select-collection-url" => "/pumi/districts?province_id=FILTER", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
+          %select.district_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.field_full_name, "data-pumi-select-collection-url" => "/districts?province_id=FILTER", "data-pumi-select-collection-url-filter-interpolation-key" => "FILTER", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-disabled-class" => "my-disabled-class", "data-pumi-select-disabled-target" => "#district", "data-pumi-select-id" => "district", name: 'district_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
             %option{value: ""}= t('dashboard.all_district')
 
       .modal-footer
