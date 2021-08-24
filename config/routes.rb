@@ -52,6 +52,10 @@ Rails.application.routes.draw do
     resources :tickets, only: [:index]
     resources :templates
     resources :quotas, only: [:index]
+
+    # override pumi controller
+    get "districts", to: "districts#index", format: 'json'
+
     resources :dictionaries, only: [:index, :new, :create, :edit, :update] do
       collection do
         post :set_most_request
