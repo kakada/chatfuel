@@ -67,10 +67,10 @@ class FeedbackTrend < Feedback
     end
 
     def province_sql
-      sql(:province_id)
+      sql(:feedback_province_id)
     end
 
     def district_sql
-      sql(:district_id)
+      sql(:feedback_district_id)
     end
 end
