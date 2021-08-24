@@ -29,7 +29,7 @@ class FeedbackTrend < Feedback
     end
 
     def result_set
-      Session.feedback_filter(@query.options)\
+      Session.filter(@query.options)\
               .joins(:step_values)\
               .where(step_values: { variable: @variable })\
               .where(feedback_province_id: @query.province_codes)\
