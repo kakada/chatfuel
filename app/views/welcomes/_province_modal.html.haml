@@ -1,0 +1,5 @@
+-# modal
+= render_component( LocationModalComponent.new(component: 'province') ) do |c|
+  = c.with(:select_input) do
+    %select.province_code.form-control.select{"data-pumi-select-collection-label-method" => @location_filter.name_i18n, "data-pumi-select-collection-url" => "/provinces", "data-pumi-select-collection-value-method" => "id", "data-pumi-select-populate-on-load": "true", name: 'province_code[]', 'data-pumi-select-has-hidden-value' => true, multiple: "multiple"}
+      %option{value: ""}= t('dashboard.all_province')
