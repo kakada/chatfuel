@@ -6,6 +6,7 @@
           .col-12
             .form-row
               = f.input_field :locale, as: :hidden, name: "locale", value: I18n.locale
+              = f.input_field :dirty, as: :hidden, name: "dirty", value: false
               -# logo
               .logo-inline.form-group.col-lg-3{ style: "display: none;" }
                 .d-flex.align-items-center.justify-content-start.h-100.w-100
