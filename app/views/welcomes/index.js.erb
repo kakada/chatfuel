@@ -17,28 +17,18 @@ $("#feedback_trend_modals").html("<%= j render(partial: "dashboard/feedback_tren
 
 OWSO.WelcomesIndex.scrollToForm();
 OWSO.WelcomesIndex.onWindowScroll();
-OWSO.WelcomesIndex.onDistrictModalSave();
-OWSO.WelcomesIndex.onProvinceModalSave();
 OWSO.DashboardShow.renderDatetimepicker();
 OWSO.DashboardShow.runAsPublicDashboard();
 OWSO.DashboardShow.multiSelectDistricts();
 
 var options = JSON.parse('<%= j(@query.options.to_json.html_safe) %>');
 
-$(document).on('click', '.btn-province-save', function() {
-  OWSO.WelcomesIndex.provinceClickHandler();
-});
-
-$(document).on('click', '.btn-district-save', function() {
-  OWSO.WelcomesIndex.districtClickHandler();
-});
-
 setTimeout(function() {
-  $('.province_code').val(options.province_id).trigger("change");
+  $(".province_code").val(options.province_id).trigger("change");
   $(".btn-province-save").trigger("click");
 
   setTimeout(function() {
-    $('.district_code').val(options.district_id).trigger("change");
+    $(".district_code").val(options.district_id).trigger("change");
     $(".btn-district-save").trigger("click");
   }, 1000)
 }, 2000)
