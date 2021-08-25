@@ -2,8 +2,6 @@ require("../patches/jquery");
 import {
   onDistrictModalSave,
   onProvinceModalSave,
-  fetchProvince,
-  fetchDistrict,
   districtClickHandler,
   provinceClickHandler,
 } from "./locationSave";
@@ -178,8 +176,6 @@ OWSO.WelcomesIndex = (() => {
     onWindowScroll,
     onDistrictModalSave,
     onProvinceModalSave,
-    fetchProvince,
-    fetchDistrict,
     districtClickHandler,
     provinceClickHandler,
   };
