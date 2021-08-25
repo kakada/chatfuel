@@ -4,6 +4,9 @@ window.gon = JSON.parse('<%= j(@gon_data.to_json.html_safe) %>');
   $('<%= ctx[:dom] %>').<%= ctx[:action] %>('<%= j render("#{ctx[:path]}/#{ctx[:template]}") %>');
 <% end %>
 
+$('#provincesModal').replaceWith('<%= j render("welcomes/province_modal") %>');
+$('#districtsModal').replaceWith('<%= j render("welcomes/district_modal") %>');
+pumi.setup();
 
 // whenever form submitted, refresh sibling
 // so when sibling is clicked, it reload(ajax) the result
@@ -16,8 +19,8 @@ $("#feedback_trend_modals").html("<%= j render(partial: "dashboard/feedback_tren
 
 OWSO.WelcomesIndex.scrollToForm();
 OWSO.WelcomesIndex.onWindowScroll();
-// OWSO.WelcomesIndex.onDistrictModalSave();
-// OWSO.WelcomesIndex.onProvinceModalSave();
+OWSO.WelcomesIndex.onDistrictModalSave();
+OWSO.WelcomesIndex.onProvinceModalSave();
 OWSO.DashboardShow.renderDatetimepicker();
 OWSO.DashboardShow.runAsPublicDashboard();
 OWSO.DashboardShow.multiSelectDistricts();
@@ -28,10 +31,21 @@ console.log('province_code: ', $('.province_code').val(), options.province_id);
 // if( $('.province_code').val() != options.province_id ) {
 //   $(".btn-province-save").trigger("click");
 // }
-// $('.province_code').val(options.province_id);
-$(".btn-province-save").trigger("click");
+
+$(document).on('click', '.btn-province-save', function() {
+  OWSO.WelcomesIndex.fetchProvince();
+});
+
+$(document).on('click', '.btn-district-save', function() {
+  OWSO.WelcomesIndex.districtClickHandler();
+});
 
 setTimeout(function() {
-  $('.district_code').val(options.district_id).trigger("change");
-  $(".btn-district-save").trigger("click");
-}, 1000)
+  $('.province_code').val(options.province_id).trigger("change");
+  $(".btn-province-save").trigger("click");
+
+  setTimeout(function() {
+    $('.district_code').val(options.district_id).trigger("change");
+    $(".btn-district-save").trigger("click");
+  }, 1000)
+}, 2000)
