@@ -11,7 +11,7 @@ module Pumi
     end
 
     def pilot_districts
-      ENV["PILOT_DISTRICT_CODES_FOR_#{id}"].to_s.split(",").map do |code|
+      ENV["PILOT_DISTRICT_CODES_FOR_#{id}"].to_s.split(",").reverse.map do |code|
         District.find_by_id(code)
       end
     end
