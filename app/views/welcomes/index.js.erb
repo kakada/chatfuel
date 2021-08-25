@@ -5,6 +5,12 @@ $(".loading").hide();
   $('<%= ctx[:dom] %>').<%= ctx[:action] %>('<%= j render("#{ctx[:path]}/#{ctx[:template]}") %>');
 <% end %>
 
+if( <%= @dirty %> ) {
+  $('.tabs-container').html('<%= j render("welcomes/tabs") %>');
+  $('.tab-navigation').html('<%= j render("welcomes/tabs/navigation_container") %>');
+  OWSO.WelcomesIndex.scrollToForm();
+}
+
 $('#provincesModal').replaceWith('<%= j render("welcomes/province_modal") %>');
 $('#districtsModal').replaceWith('<%= j render("welcomes/district_modal") %>');
 pumi.setup();
@@ -16,7 +22,6 @@ $(".nav-link[href!='<%= @active_tab %>']").data("status", "fresh");
 $("#sub_categories_modals").html("<%= j render(partial: "dashboard/sub_categories_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 $("#feedback_trend_modals").html("<%= j render(partial: "dashboard/feedback_trend_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 
-OWSO.WelcomesIndex.scrollToForm();
 OWSO.WelcomesIndex.onWindowScroll();
 OWSO.DashboardShow.renderDatetimepicker();
 OWSO.DashboardShow.runAsPublicDashboard();

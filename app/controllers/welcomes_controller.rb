@@ -1,7 +1,7 @@
 class WelcomesController < PublicAccessController
   include Filterable
   before_action QueryFilter,  except: :filter
-  before_action :visitor_count, :set_context
+  before_action :visitor_count, :set_context, :check_dirty_form
 
   def index
     respond_to do |format|
@@ -64,6 +64,10 @@ class WelcomesController < PublicAccessController
       @fragment_count, @all_count = Ahoy::Visit.count_with_fragment(@start_date, @end_date)
     end
 
+    def check_dirty_form
+      @dirty = params[:dirty] == 'true' || helpers.embed
+    end
+
     def set_context
       @context ||=  [ 
                       { dom: '#article', path: 'welcomes', template: 'article', action: 'replaceWith' },
@@ -72,8 +76,6 @@ class WelcomesController < PublicAccessController
                       { dom: '.sidebar-left', path: 'welcomes', template: 'sidebar', action: 'replaceWith' },
                       { dom: '#piloting-header', path: 'welcomes', template: 'header', action: 'replaceWith' },
                       { dom: '#form-query', path: 'welcomes', template: 'form', action: 'replaceWith' },
-                      { dom: '.tabs-container', path: 'welcomes', template: 'tabs', action: 'html' },
-                      { dom: '.tab-navigation', path: 'welcomes/tabs', template: 'navigation_container', action: 'html' },
                       { dom: '.visitor-counter', path: 'shared/sidebar', template: 'visitor_count', action: 'replaceWith' },
       ]
     end
