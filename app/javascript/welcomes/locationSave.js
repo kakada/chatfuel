@@ -7,13 +7,8 @@ const params = function () {
   };
 };
 
-const onDistrictModalSave = function () {
-  $(".btn-district-save").click(districtClickHandler);
-};
-
-const onProvinceModalSave = function () {
-  $(".btn-province-save").click(provinceClickHandler);
-};
+$(document).on("click", ".btn-province-save", (e) => provinceClickHandler(e));
+$(document).on("click", ".btn-district-save", (e) => districtClickHandler(e));
 
 const districtClickHandler = function (e) {
   e && e.preventDefault();
@@ -44,7 +39,8 @@ const fetchDistrict = function () {
 };
 
 const fetchProvince = function () {
-  $.get(filterUrl, params(), responseProvince);
+  let { locale, province_code } = params();
+  $.get(filterUrl, { locale, province_code }, responseProvince);
 };
 
 const responseProvince = function (result) {
@@ -100,9 +96,4 @@ const resetDistrictDisplay = function () {
   $(".tooltip-district").attr("data-original-title", "");
 };
 
-export {
-  onDistrictModalSave,
-  onProvinceModalSave,
-  districtClickHandler,
-  provinceClickHandler,
-};
+export { districtClickHandler, provinceClickHandler };

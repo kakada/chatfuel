@@ -1,10 +1,5 @@
 require("../patches/jquery");
-import {
-  onDistrictModalSave,
-  onProvinceModalSave,
-  districtClickHandler,
-  provinceClickHandler,
-} from "./locationSave";
+import { districtClickHandler, provinceClickHandler } from "./locationSave";
 
 OWSO.WelcomesIndex = (() => {
   let logoContainer, formQuery, pilotHeader;
@@ -24,8 +19,6 @@ OWSO.WelcomesIndex = (() => {
 
     onWindowScroll();
     onChangeDistrict();
-    onDistrictModalSave();
-    onProvinceModalSave();
     onClickTabNavigation();
     ssbInterceptor();
     loadCookieConsent();
@@ -174,8 +167,6 @@ OWSO.WelcomesIndex = (() => {
     init,
     scrollToForm,
     onWindowScroll,
-    onDistrictModalSave,
-    onProvinceModalSave,
     districtClickHandler,
     provinceClickHandler,
   };
