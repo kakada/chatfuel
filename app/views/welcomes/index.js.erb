@@ -15,8 +15,6 @@ $(".nav-link[href!='<%= @active_tab %>']").data("status", "fresh");
 $("#sub_categories_modals").html("<%= j render(partial: "dashboard/sub_categories_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 $("#feedback_trend_modals").html("<%= j render(partial: "dashboard/feedback_trend_modals", collection: @query.province_codes_without_other, as: :province_id) %>");
 
-// TODO: UPDATE PUMI LOCALE WHEN LANGUAGE IS CHANGED
-
 OWSO.WelcomesIndex.scrollToForm();
 OWSO.WelcomesIndex.onWindowScroll();
 OWSO.WelcomesIndex.onDistrictModalSave();
@@ -26,14 +24,9 @@ OWSO.DashboardShow.runAsPublicDashboard();
 OWSO.DashboardShow.multiSelectDistricts();
 
 var options = JSON.parse('<%= j(@query.options.to_json.html_safe) %>');
-console.log('province_code: ', $('.province_code').val(), options.province_id);
-
-// if( $('.province_code').val() != options.province_id ) {
-//   $(".btn-province-save").trigger("click");
-// }
 
 $(document).on('click', '.btn-province-save', function() {
-  OWSO.WelcomesIndex.fetchProvince();
+  OWSO.WelcomesIndex.provinceClickHandler();
 });
 
 $(document).on('click', '.btn-district-save', function() {
