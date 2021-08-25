@@ -25,6 +25,17 @@ OWSO.WelcomesIndex = (() => {
     onLocationKeyEnterPress();
     onLoadLocationPopup();
     switchLang();
+    checkDirtyForm();
+  }
+
+  function checkDirtyForm() {
+    $(document).on(
+      "change",
+      ".province_code, .district_code, .datepicker_date",
+      function () {
+        if ($(this).val() != "") $("#q_dirty").val(true);
+      }
+    );
   }
 
   function switchLang() {
