@@ -1,7 +1,7 @@
 class WelcomesController < PublicAccessController
   include Filterable
   before_action QueryFilter,  except: :filter
-  before_action :visitor_count, :set_context, :check_dirty_form
+  before_action :visitor_count, :check_dirty_form
 
   def index
     respond_to do |format|
@@ -66,17 +66,5 @@ class WelcomesController < PublicAccessController
 
     def check_dirty_form
       @dirty = params[:dirty] == 'true' || helpers.embed
-    end
-
-    def set_context
-      @context ||=  [ 
-                      { dom: '#article', path: 'welcomes', template: 'article', action: 'replaceWith' },
-                      { dom: '.switch-lang', path: 'welcomes', template: 'switch_lang', action: 'replaceWith' },
-                      { dom: 'footer', path: 'welcomes', template: 'footer', action: 'replaceWith' },
-                      { dom: '.sidebar-left', path: 'welcomes', template: 'sidebar', action: 'replaceWith' },
-                      { dom: '#piloting-header', path: 'welcomes', template: 'header', action: 'replaceWith' },
-                      { dom: '#form-query', path: 'welcomes', template: 'form', action: 'replaceWith' },
-                      { dom: '.visitor-counter', path: 'shared/sidebar', template: 'visitor_count', action: 'replaceWith' },
-      ]
     end
 end
