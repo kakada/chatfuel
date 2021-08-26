@@ -19,7 +19,7 @@ RSpec.describe Pumi::Province do
 
       it '#pilot_districts' do
         district_codes = ENV["PILOT_DISTRICT_CODES_FOR_#{province_code}"].to_s.split(',')
-        expect(province.pilot_districts.map(&:id)).to eq(district_codes)
+        expect(province.pilot_districts.map(&:id)).to eq(district_codes.reverse)
       end
     end
   end
