@@ -31,6 +31,7 @@ module WelcomeHelper
       { dom: '.sidebar-left',     template: 'welcomes/sidebar' },
       { dom: '#piloting-header',  template: 'welcomes/header' },
       { dom: '#form-query',       template: 'welcomes/form' },
+      { dom: '.main-container',   template: 'welcomes/tabs/tabs' },
       { dom: '.visitor-counter',  template: 'shared/sidebar/visitor_count' },
     ]
   end
