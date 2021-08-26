@@ -249,6 +249,9 @@ GEM
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    logstasher (2.1.5)
+      activesupport (>= 5.2)
+      request_store
     loofah (2.10.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -579,6 +582,7 @@ DEPENDENCIES
   jquery-rails (~> 4.3.5)
   liquid (~> 4.0, >= 4.0.3)
   listen (~> 3.2)
+  logstasher (~> 2.1.5)
   momentjs-rails (~> 2.20.1)
   oj (~> 3.10, >= 3.10.6)
   pagy (~> 3.5)

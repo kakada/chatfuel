@@ -1,0 +1,13 @@
+controller_enabled: true
+mailer_enabled: false
+record_enabled: false
+job_enabled: true
+view_enabled: false
+suppress_app_log: true
+log_controller_parameters: true
+development:
+  enabled: true
+  job_enabled: true
+production:
+  enabled: true
+  job_enabled: true
