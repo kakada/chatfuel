@@ -57,8 +57,8 @@ module Chatfuel
     config.view_component.render_monkey_patch_enabled = false
     # 2. views: change `render` to `render_component`
 
-    # Rotate Logstasher's log for 3 files with 1Mb each
-    config.logstasher.logger = Logger.new(Rails.root.join('log', "logstash_#{Rails.env}.log"), 3, 1.megabyte)
+    # Rotate Logstasher's log for 30 files with 1Mb each
+    config.logstasher.logger = Logger.new(Rails.root.join('log', "logstash_#{Rails.env}.log"), 30, 1.megabyte)
   end
 end
 
