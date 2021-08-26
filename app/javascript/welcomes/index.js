@@ -26,6 +26,14 @@ OWSO.WelcomesIndex = (() => {
     onLoadLocationPopup();
     switchLang();
     checkDirtyForm();
+    handleClickButtonSubmit();
+  }
+
+  function handleClickButtonSubmit() {
+    $(document).on("click", "[type=submit]", function () {
+      $(".loading").show();
+      $("#q_dirty").val(true);
+    });
   }
 
   function checkDirtyForm() {
