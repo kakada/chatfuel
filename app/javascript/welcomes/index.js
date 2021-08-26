@@ -24,7 +24,7 @@ OWSO.WelcomesIndex = (() => {
     loadCookieConsent();
     onLocationKeyEnterPress();
     onLoadLocationPopup();
-    switchLang();
+    handleSwitchLanguage();
     checkDirtyForm();
     handleClickButtonSubmit();
   }
@@ -46,7 +46,7 @@ OWSO.WelcomesIndex = (() => {
     );
   }
 
-  function switchLang() {
+  function handleSwitchLanguage() {
     $(document).on("click", ".lang-item", function (e) {
       e.preventDefault();
       let currentLocale = $(this).data("locale");
