@@ -22,4 +22,16 @@ module WelcomeHelper
   def human_size(num, units={ thousand: 'K', million: 'M' }, format: '%n%u')
     number_to_human num, units: units, format: format
   end
+
+  def js_context
+    [
+      { dom: '#article',          template: 'welcomes/article' },
+      { dom: '.switch-lang',      template: 'welcomes/switch_lang' },
+      { dom: 'footer',            template: 'welcomes/footer' },
+      { dom: '.sidebar-left',     template: 'welcomes/sidebar' },
+      { dom: '#piloting-header',  template: 'welcomes/header' },
+      { dom: '#form-query',       template: 'welcomes/form' },
+      { dom: '.visitor-counter',  template: 'shared/sidebar/visitor_count' },
+    ]
+  end
 end
