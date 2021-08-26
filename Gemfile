@@ -49,6 +49,8 @@ gem 'paper_trail', '~> 10.3', '>= 10.3.1'
 gem "view_component", require: "view_component/engine"
 gem 'gon', '~> 6.4'
 
+gem 'logstasher', '~> 2.1.5'
+
 # pdf
 gem "wicked_pdf", "~> 2.1.0"
 gem "wkhtmltopdf-binary", '~> 0.12.6.5'
