@@ -11,7 +11,7 @@ RSpec.describe DashboardQuery.new do
     ENV['PILOT_PROVINCE_CODES']="01"
     ENV['PILOT_DISTRICT_CODES_FOR_01']="0102,0103"
 
-    expect(subject.district_codes).to eq ["0102", "0103"]
+    expect(subject.district_codes).to eq ["0103", "0102"]
   end
 
   context "with most request" do
