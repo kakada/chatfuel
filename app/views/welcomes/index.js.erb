@@ -1,8 +1,8 @@
 window.gon = JSON.parse('<%= j(@gon_data.to_json.html_safe) %>');
 $(".loading").hide();
 
-<% @context.each do |ctx|%>
-  $('<%= ctx[:dom] %>').<%= ctx[:action] %>('<%= j render("#{ctx[:path]}/#{ctx[:template]}") %>');
+<% js_context.each do |ctx|%>
+  $('<%= ctx[:dom] %>').replaceWith('<%= j render("#{ctx[:template]}") %>');
 <% end %>
 
 if( <%= @dirty %> ) {
@@ -38,4 +38,3 @@ setTimeout(function() {
     $(".btn-district-save").trigger("click");
   }, 1000);
 }, 500);
-
