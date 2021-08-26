@@ -8,6 +8,6 @@ module TelegramBot::CoreApi
   private
 
   def remove_file pdf_path
-    `rm #{pdf_path}`
+    `rm '#{pdf_path}'`
   end
 end
