@@ -58,7 +58,8 @@ module Chatfuel
     # 2. views: change `render` to `render_component`
 
     # Rotate Logstasher's log for 30 files with 1Mb each
-    config.logstasher.logger = Logger.new(Rails.root.join('log', "logstash_#{Rails.env}.log"), 30, 1.megabyte)
+    logstasher_file = Rails.root.join('log', "logstash_#{Rails.env}.log")
+    config.logstasher.logger = Logger.new(logstasher_file, 30, 1.megabyte) if File.exists?(logstasher_file)
   end
 end
 
