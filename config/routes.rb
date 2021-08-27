@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => "/sidekiq"
   end
 
+  get '/:locale', to: redirect('/'), constraints: { locale: /en|km/ }
+
   scope "(:locale)", locale: /en|km/ do
     root "welcomes#index"
     get :dashboard, to: "dashboard#show"
