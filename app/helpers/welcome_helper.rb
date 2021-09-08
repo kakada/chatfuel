@@ -35,4 +35,10 @@ module WelcomeHelper
       { dom: '.visitor-counter',  template: 'shared/sidebar/visitor_count' },
     ]
   end
+
+  def google_site_verification_meta_tag
+    if ENV["SITE-VERIFICATION-ID"].present?
+      tag("meta", name: "google-site-verification", content: ENV["SITE-VERIFICATION-ID"])
+    end
+  end
 end
