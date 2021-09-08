@@ -37,8 +37,8 @@ module WelcomeHelper
   end
 
   def google_site_verification_meta_tag
-    if ENV["SITE_VERIFICATION_ID"].present?
-      tag("meta", name: "google-site-verification", content: ENV["SITE_VERIFICATION_ID"])
+    if ENV["GOOGLE_SITE_VERIFICATION_ID"].present?
+      tag("meta", name: "google-site-verification", content: ENV["GOOGLE_SITE_VERIFICATION_ID"])
     end
   end
 end
