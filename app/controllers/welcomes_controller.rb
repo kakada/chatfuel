@@ -60,8 +60,12 @@ class WelcomesController < PublicAccessController
       })
     end
 
+    def default_public_start_date
+      Setting.public_start_date.strftime('%Y/%m/%d')
+    end
+
     def visitor_count
-      @fragment_count, @all_count = Ahoy::Visit.count_with_fragment(@start_date, @end_date)
+      @fragment_count, @all_count = Ahoy::Visit.count_with_fragment(@public_start_date, @end_date)
     end
 
     def check_dirty_form

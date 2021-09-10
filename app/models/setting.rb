@@ -51,6 +51,10 @@ class Setting < RailsSettings::Base
     default_start_date
   end
 
+  def self.public_start_date
+    Date.parse(ENV['PUBLIC_START_DATE']) rescue default_start_date
+  end
+
   def self.default_start_date
     7.days.ago
   end

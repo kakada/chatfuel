@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
     def set_daterange
       @start_date = params["start_date"] || default_start_date
       @end_date = params["end_date"] || default_end_date
+      @public_start_date = params["start_date"] || default_public_start_date
     end
 
     def default_end_date
