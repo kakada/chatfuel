@@ -62,4 +62,8 @@ class Setting < RailsSettings::Base
   def self.visit_duration
     (ENV["VISIT_DURATION_MINUTE"].to_i || 30).minutes
   end
+
+  def self.analytics_valid?
+    GoogleAnalytics.valid_tracker? && Rails.env.production?
+  end
 end
