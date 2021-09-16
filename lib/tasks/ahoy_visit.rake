@@ -17,7 +17,7 @@ namespace :ahoy_visit do
         SocialProvider.where("DATE(created_at) < ?", ENV["PUBLIC_DASHBOARD_LAUNCH_DATE"]).destroy_all
         puts "Operation committed!"
       else
-        puts "No operation!"
+        puts "Do nothing"
       end
     end
   end
