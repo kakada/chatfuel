@@ -41,4 +41,8 @@ module WelcomeHelper
       tag("meta", name: "google-site-verification", content: ENV["GOOGLE_SITE_VERIFICATION_ID"])
     end
   end
+
+  def analytics_valid?
+    GoogleAnalytics.valid_tracker? && Rails.env.production?
+  end
 end
