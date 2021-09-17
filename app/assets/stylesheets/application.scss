@@ -7,6 +7,7 @@
 @import "custom/lightbox2";
 
 @import "cookieconsent/build/cookieconsent.min";
+@import "react-dates/lib/css/_datepicker";
 
 @import "startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min";
 @import "sb-admin-webfonts-override";
@@ -44,3 +45,7 @@
 @import "reports";
 @import "developer_guides";
 @import "privacy_policy";
+
+.DateInput__small {
+  width: 110px;
+}
