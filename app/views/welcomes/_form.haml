@@ -39,8 +39,9 @@
                   = t("welcomes.time_period")
                   %abbr{ title: t("required.string") } *
 
-                .welcome.date-filter__choose-option
-                  .input-group.date-group.justify-content-between
+                .welcome.date-filter__choose-optiona
+                  .date-group.justify-content-between
+                    #react-dates.form-control{ style: "padding: 3px;" }
                     = render "input_date_range"
 
               -# tab
