@@ -2,6 +2,7 @@ namespace :visitor do
   desc "Clear ahoy visitor count"
   task :remove_data_before, [:dashboard_launch_date_string] => :environment do |t, args|
     ActiveRecord::Base.transaction do
+      raise 'Date is required' if args[:dashboard_launch_date_string].blank?
       dashboard_launch_date = args[:dashboard_launch_date_string].to_date
 
       puts  "*** PLEASE CONFIRM THAT ***"
