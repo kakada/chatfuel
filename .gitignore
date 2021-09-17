@@ -57,3 +57,4 @@ IDEA/
 /config/credentials/production.key
 
 pdfs/*.pdf
+yarn.lock
