@@ -1,14 +1,13 @@
 namespace :visitor do
   desc "Clear ahoy visitor count"
-  task :remove_data_before, [:dashboard_launch_date] => :environment do |t, args|
+  task :remove_data_before, [:dashboard_launch_date_string] => :environment do |t, args|
     ActiveRecord::Base.transaction do
-      dashboard_launch_date = args[:dashboard_launch_date].to_date
-      dashboard_launch_date = dashboard_launch_date.strftime("%Y/%m/%d")
+      dashboard_launch_date = args[:dashboard_launch_date_string].to_date
 
       puts  "*** PLEASE CONFIRM THAT ***"
       print "You want to delete data from "
       print "\"Ahoy::Visit\" & \"SocialProvider\" "
-      puts  "before #{dashboard_launch_date}"
+      puts  "before #{dashboard_launch_date.strftime("%Y/%m/%d")}"
       puts  "(Please note that the operation can't be rollback)"
       print "Are you sure?(y/n): "
       confirm = $stdin.gets
