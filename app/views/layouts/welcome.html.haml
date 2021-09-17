@@ -9,6 +9,7 @@
     = csrf_meta_tags
     = csp_meta_tag
     = google_site_verification_meta_tag
+    = analytics_init if Setting.analytics_valid?
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body{ id: css_class_name, style: 'overflow-y: scroll' }
