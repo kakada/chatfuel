@@ -43,6 +43,7 @@
                   .date-group.justify-content-between
                     #react-dates.form-control{ style: "padding: 3px;" }
                     = render "input_date_range"
+                    = javascript_pack_tag("react_date")
 
               -# tab
               = f.input :active_tab, as: :hidden, input_html: { value: @active_tab }
