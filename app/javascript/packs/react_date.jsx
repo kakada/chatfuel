@@ -28,6 +28,7 @@ class ReactDate extends React.Component {
       block={true}
       small={true}
       noBorder={true}
+      anchorDirection="right"
       endDateId="endDate"
       startDateId="startDate"
       startDate={this.state.startDate}
