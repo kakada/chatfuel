@@ -7,6 +7,6 @@ class Ahoy::Visit < ApplicationRecord
   scope :duration, -> (start_date, end_date) { where("DATE(started_at) BETWEEN ? AND ?", start_date, end_date) }
 
   def self.count_with_fragment start_date, end_date
-    [duration(start_date, end_date).count, all.count]
+    [duration(start_date.to_date, end_date.to_date).count, all.count]
   end
 end
