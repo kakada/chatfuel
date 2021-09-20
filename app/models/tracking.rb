@@ -33,7 +33,7 @@ class Tracking < ApplicationRecord
     scope = scope.where(session_id: Session.where(province_id: params[:province_id])) if params[:province_id].present?
     scope = scope.where(session_id: Session.where(district_id: params[:district_id])) if params[:district_id].present?
     scope = scope.where(session_id: Session.where(platform_name: params[:platform])) if params[:platform].present?
-    scope = scope.where("DATE(tracking_datetime) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
+    scope = scope.where("DATE(tracking_datetime) BETWEEN ? AND ?", params[:start_date].to_date, params[:end_date].to_date) if params[:start_date].present? && params[:end_date].present?
     scope
   end
 end

@@ -14,7 +14,7 @@ class DashboardController < PrivateAccessController
   private
 
   def default_start_date
-    Setting.dashboard_start_date.strftime('%Y/%m/%d')
+    Setting.dashboard_start_date.strftime(default_date_format)
   end
 
   def set_gon

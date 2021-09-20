@@ -66,4 +66,8 @@ class Setting < RailsSettings::Base
   def self.analytics_valid?
     GoogleAnalytics.valid_tracker? && Rails.env.production?
   end
+  
+  def self.default_date_format
+    ENV['DEFAULT_DATE_FORMAT'] || '%d/%m/%Y'
+  end
 end

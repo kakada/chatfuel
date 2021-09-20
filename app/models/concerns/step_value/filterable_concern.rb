@@ -10,7 +10,7 @@ module StepValue::FilterableConcern
       scope = scope.where(session_id: Session.where(platform_name: params[:platform])) if params[:platform].present?
       scope = scope.where(variable_id: params[:variable_id]) if params[:variable_id].present?
       scope = scope.where(variable_value: params[:variable_value]) if params[:variable_value].present?
-      scope = scope.where("DATE(step_values.created_at) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
+      scope = scope.where("DATE(step_values.created_at) BETWEEN ? AND ?", params[:start_date].to_date, params[:end_date].to_date) if params[:start_date].present? && params[:end_date].present?
 
       scope
     end
