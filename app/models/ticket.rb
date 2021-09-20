@@ -94,7 +94,7 @@ class Ticket < ApplicationRecord
     scope = scope.where("LEFT(sites.code, 2) IN (?)", params[:province_id]) if params[:province_id].present?
     scope = scope.where("sites.code IN (?)", params[:district_id]) if params[:district_id].present?
     scope = scope.where('code LIKE ?', "%#{params[:keyword].downcase}%") if params[:keyword].present?
-    scope = scope.where("DATE(requested_date) BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
+    scope = scope.where("DATE(requested_date) BETWEEN ? AND ?", params[:start_date].to_date, params[:end_date].to_date) if params[:start_date].present? && params[:end_date].present?
     scope
   end
 
