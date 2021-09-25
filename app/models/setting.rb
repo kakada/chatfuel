@@ -58,4 +58,8 @@ class Setting < RailsSettings::Base
   def self.fb_reachable_period
     (ENV["FB_REACHABLE_DAY"] || 1).to_i
   end
+
+  def self.admin_view?
+    ENV["DASHBOARD_VIEW"].to_s == "private"
+  end
 end
