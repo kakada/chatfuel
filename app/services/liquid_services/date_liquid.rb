@@ -1,11 +1,12 @@
 module LiquidServices
   class DateLiquid
-    def initialize(start_date)
+    def initialize(start_date, end_date)
       @start_date = start_date
+      @end_date = end_date.to_date rescue Date.today
     end
 
     def to_h
-      cur_day, cur_month, cur_year = format_date(Date.today)
+      cur_day, cur_month, cur_year = format_date(@end_date)
 
       { 
         'current_day' => cur_day,
@@ -24,7 +25,7 @@ module LiquidServices
     end
 
     def cur_date
-      I18n.l(Date.today, format: :default)
+      I18n.l(@end_date, format: :default)
     end
   end
 end

@@ -1,8 +1,9 @@
 module LiquidServices
   class BaseLiquid
-    def initialize(site, start_date)
+    def initialize(site, start_date, end_date)
       @site = site
       @start_date = start_date
+      @end_date = end_date
     end
 
     def to_h
@@ -20,7 +21,7 @@ module LiquidServices
     end
 
     def date_locals
-      @date_locals ||= DateLiquid.new(@start_date)
+      @date_locals ||= DateLiquid.new(@start_date, @end_date)
     end
 
     def chart_locals
