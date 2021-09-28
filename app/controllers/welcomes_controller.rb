@@ -1,7 +1,6 @@
 class WelcomesController < PublicAccessController
   include Filterable
   before_action QueryFilter,  except: :filter
-  before_action :visitor_count, :check_dirty_form
 
   def index
     respond_to do |format|
