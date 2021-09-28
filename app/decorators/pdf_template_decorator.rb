@@ -3,10 +3,10 @@ require 'liquid'
 class PdfTemplateDecorator < ApplicationDecorator
   delegate_all
 
-  def render(site, start_date)
+  def render(site, start_date, end_date)
     I18n.with_locale(:km) do
       template = Tilt::LiquidTemplate.new { content.html_safe }
-      template.render(LiquidServices::BaseLiquid.new(site, start_date))
+      template.render(LiquidServices::BaseLiquid.new(site, start_date, end_date))
     end
   end
 
