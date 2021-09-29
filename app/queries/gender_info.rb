@@ -11,9 +11,10 @@ class GenderInfo < BasicReport
   end
 
   def sql
-    Session.filter(@query.options)\
+    Session.feedback_filter(@query.options)\
             .joins(:step_values)\
-            .where(step_values: { variable_value: VariableValue.type_of_user_feedback })\
+            # .where(step_values: { variable_value: VariableValue.type_of_user_feedback })\
+            .where(step_values: { variable: Variable.feedback })\
             .group(:gender)\
             .count
   end

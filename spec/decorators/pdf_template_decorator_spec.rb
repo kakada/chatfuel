@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe PdfTemplateDecorator do
-  subject { pdf_template.decorate.render(site, Date.today) }
+  let(:start_date) { 1.week.ago }
+  let(:end_date) { Date.today }
+  subject { pdf_template.decorate.render(site, start_date, end_date) }
 
   let(:pdf_template) { create(:pdf_template) }
   let(:site) { build(:site, name_en: 'kamrieng', code: "0212", province_id: "02") }
