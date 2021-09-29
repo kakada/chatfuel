@@ -10,7 +10,7 @@
     "@rails/webpacker": "4.2.2",
     "@taoqf/quill-image-resize-module": "^3.0.1",
     "@yaireo/tagify": "^3.6.10",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "4.3.1",
