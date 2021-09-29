@@ -1,6 +1,10 @@
 class FeedbackReport < GenericReport
   def sql
-    Session.filter(@query.options)\
+
+    puts "*" * 100
+    puts @query.options
+    puts @query.province_codes
+    Session.feedback_filter(@query.options)\
             .joins(:step_values)\
             .where(step_values: { variable: [like, dislike] })\
             .where(feedback_province_id: @query.province_codes)\

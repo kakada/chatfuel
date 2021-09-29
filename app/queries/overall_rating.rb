@@ -48,7 +48,7 @@ class OverallRating < Feedback
     end
 
     def result_set
-      Session.filter(@query.options)
+      Session.feedback_filter(@query.options)
               .joins(:step_values)
               .where(step_values: { variable: @variable })
               .where(feedback_province_id: @query.province_codes)

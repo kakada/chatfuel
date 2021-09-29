@@ -1,6 +1,6 @@
 class UserFeedback < Report
   def dataset
-    raw = Session.filter(@query.options)\
+    raw = Session.feedback_filter(@query.options)\
             .joins(step_values: [:variable, :variable_value])\
             .where(step_values: { variable: Variable.feedback })\
             .group('variable_values.value_status')\
