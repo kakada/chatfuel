@@ -34,7 +34,7 @@ class ReactDate extends React.Component {
       startDate={this.state.startDate}
       endDate={this.state.endDate}
       isOutsideRange={() => null}
-      displayFormat="MMM Do, YYYY"
+      displayFormat="Do MMM YYYY"
       onDatesChange={this.handleDateChange}
       focusedInput={this.state.focusedInput}
       onFocusChange={focusedInput => this.setState({ focusedInput })}/>
