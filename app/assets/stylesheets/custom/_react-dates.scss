@@ -1,7 +1,16 @@
 @import "../shared/variables";
 
 .DateInput__small {
-  width: 110px;
+  width: 125px;
+}
+
+.DateInput_input__small {
+  line-height: 0.1px;
+  padding-top: 6px;
+  padding-bottom: 0;
+  color: #6e707e;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .CalendarDay__selected_span {
