@@ -5,7 +5,7 @@ import { DateRangePicker } from "react-dates";
 import moment from "moment";
 
 const DEFAULT_DATE_FORMAT = "DD/MM/YYYY"
-const DATE_DISPLAY_FORMAT = "Do MMM YYYY"
+const DATE_DISPLAY_FORMAT = "D MMM YYYY"
 
 let currentLocale = $("#q_locale").val()
 moment.locale(currentLocale)
