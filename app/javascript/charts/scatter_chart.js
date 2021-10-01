@@ -42,6 +42,9 @@ class ScatterChart extends LineChart {
           backgroundColor: "#2F3559",
           color: "#FFF",
           font: { size: 10 },
+          formatter: function (value, context) {
+            return value.toLocaleString();
+          },
         },
       },
     };

@@ -36,6 +36,19 @@ class BaseChart {
         },
       },
     },
+    tooltips: {
+      enabled: true,
+      mode: "single",
+      callbacks: {
+        label: function (tooltipItems, data) {
+          return (
+            data.labels[tooltipItems.index] +
+            ": " +
+            data.datasets[0].data[tooltipItems.index].toLocaleString()
+          );
+        },
+      },
+    },
   };
 
   watermarkOption = {
