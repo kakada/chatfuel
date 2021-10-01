@@ -20,7 +20,9 @@ class BaseChart {
     },
     plugins: {
       datalabels: {
-        formatter: Math.round,
+        formatter: function (value, context) {
+          return value.toLocaleString();
+        },
         backgroundColor: (context) => context.dataset.backgroundColor,
         borderColor: "white",
         borderRadius: 100,
