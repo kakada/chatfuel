@@ -1,5 +1,5 @@
 class Dashboard::TotalUniqueUsersController < DashboardController
   def index
-    render json: @query.user_unique_count
+    render json: number_with_delimiter(@query.user_unique_count)
   end
 end

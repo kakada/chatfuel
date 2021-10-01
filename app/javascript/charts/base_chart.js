@@ -20,7 +20,9 @@ class BaseChart {
     },
     plugins: {
       datalabels: {
-        formatter: Math.round,
+        formatter: function (value, context) {
+          return value.toLocaleString();
+        },
         backgroundColor: (context) => context.dataset.backgroundColor,
         borderColor: "white",
         borderRadius: 100,
@@ -31,6 +33,19 @@ class BaseChart {
         font: {
           family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
           weight: "bold",
+        },
+      },
+    },
+    tooltips: {
+      enabled: true,
+      mode: "single",
+      callbacks: {
+        label: function (tooltipItems, data) {
+          return (
+            data.labels[tooltipItems.index] +
+            ": " +
+            data.datasets[0].data[tooltipItems.index].toLocaleString()
+          );
         },
       },
     },

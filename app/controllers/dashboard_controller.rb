@@ -1,4 +1,5 @@
 class DashboardController < ApplicationController
+  include ActionView::Helpers::NumberHelper
   include Filterable
 
   before_action :default_start_date

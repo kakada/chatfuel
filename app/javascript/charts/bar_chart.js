@@ -28,10 +28,10 @@ class BarChart extends BaseChart {
           },
           formatter: function (value, context) {
             let { dataTitles } = context.dataset;
-            if (dataTitles == undefined) return value;
+            if (dataTitles == undefined) return value.toLocaleString();
             else
               return value > 0
-                ? dataTitles[context.dataIndex] + ":" + value
+                ? dataTitles[context.dataIndex] + ":" + value.toLocaleString()
                 : gon.not_available;
           },
         },

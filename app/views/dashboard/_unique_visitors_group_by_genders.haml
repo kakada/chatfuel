@@ -4,5 +4,5 @@
       %small.text-gray-800{ data: { toggle: "tooltip"}, title: gender.mapping_value }
         = fa_icon(session.gender)
         = ": "
-        = session.gender_count
+        = number_with_delimiter(session.gender_count)
     - break
