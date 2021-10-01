@@ -13,7 +13,7 @@ class GroupBarChart extends BarChart {
       callbacks: {
         label: function (tooltipItems, data) {
           return (
-            data.labels[tooltipItems.index] +
+            data.datasets[tooltipItems.datasetIndex].label +
             ": " +
             data.datasets[tooltipItems.datasetIndex].data[
               tooltipItems.index
