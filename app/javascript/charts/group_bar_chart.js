@@ -7,6 +7,21 @@ class GroupBarChart extends BarChart {
       display: true,
       labels: { boxWidth: 12 },
     },
+    tooltips: {
+      enabled: true,
+      mode: "single",
+      callbacks: {
+        label: function (tooltipItems, data) {
+          return (
+            data.labels[tooltipItems.index] +
+            ": " +
+            data.datasets[tooltipItems.datasetIndex].data[
+              tooltipItems.index
+            ].toLocaleString()
+          );
+        },
+      },
+    },
   };
   suggestedMax = (data) => suggestedMax(data, 1.2);
   dataset = () => this.format();
