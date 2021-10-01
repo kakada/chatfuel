@@ -20,7 +20,7 @@
           .form-group
             %label=t('users.role')
 
-            .block-option.d-flex.justify-content-between
+            .block-option
               - @roles.each do |role|
                 = render_component(SelectComponent.new(value: role.id, name: "user[role_id]", checked: user.role_id == role.id)) do
                   %i.fa{ class: get_role(role.name)[:icon] }

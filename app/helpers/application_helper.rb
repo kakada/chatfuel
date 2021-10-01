@@ -73,7 +73,11 @@ module ApplicationHelper
       system_admin: { icon: 'fas fa-users-cog', color: '#4e73df' }
     }
 
-    roles[role_name.to_sym]
+    roles[role_name.to_sym] || default_role
+  end
+
+  def default_role
+    { icon: 'fas fa-user-alt', color: '#4e73df' }
   end
 
 end

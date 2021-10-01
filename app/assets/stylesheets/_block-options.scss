@@ -3,9 +3,10 @@ $color-primary: #3f51b5;
 $color-secondary: #b7b7b7;
 
 .block-option {
+  columns: 2 auto;
+
   .block-option--item {
     position: relative;
-    min-width: 115px;
     border: 1px solid $color-secondary;
     border-radius: 4px;
     padding: 10px;
