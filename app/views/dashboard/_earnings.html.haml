@@ -26,5 +26,5 @@
     = c.with(:fa_icon) { "fa-file-alt" }
     = c.with(:desc) do
       - if most_req.present?
-        %small.text-gray-800{ data: { html: "true", toggle: "tooltip", title: t("most_request_service_tooltip_html", most_req: most_req[:value], most_req_name: most_req[:key], total_req: @query.total_requested_service, total_req_name: Variable.most_request.name) } }
+        %small.text-gray-800{ data: { html: "true", toggle: "tooltip", title: t("most_request_service_tooltip_html", most_req: number_with_delimiter(most_req[:value]), most_req_name: most_req[:key], total_req: number_with_delimiter(@query.total_requested_service), total_req_name: Variable.most_request.name) } }
           = "#{number_with_delimiter(most_req[:value])}/#{number_with_delimiter(@query.total_requested_service)}"
