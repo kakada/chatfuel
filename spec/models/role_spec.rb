@@ -69,7 +69,7 @@ RSpec.describe Role, type: :model do
     it "#program_admin?" do
       role.name = "program_admin"
 
-      expect(role.program_admin?).to be_truthy
+      expect(role).to be_program_admin
     end
 
     it "#site_admin?" do
@@ -85,7 +85,7 @@ RSpec.describe Role, type: :model do
     end
 
     describe "#position_level" do
-      it "expects system_admin > site admin" do
+      it "expects system_admin > program admin" do
         expect(system_admin.position_level).to be > program_admin.position_level
       end
 
