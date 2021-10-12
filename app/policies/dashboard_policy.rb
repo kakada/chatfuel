@@ -1,6 +1,6 @@
 class DashboardPolicy < Struct.new(:user, :dashboard)
   def show?
-    user.system_admin? || user.site_admin?
+    true
   end
 
   def setting?

@@ -50,7 +50,7 @@ class User < ApplicationRecord
   belongs_to :site, optional: true
   belongs_to :role, optional: true
 
-  delegate :system_admin?, :site_admin?, :site_ombudsman?, to: :role, allow_nil: true
+  delegate :system_admin?, :site_admin?, :program_admin?, :site_ombudsman?, to: :role, allow_nil: true
   delegate :name, :position_level, :variable_names, to: :role, prefix: true, allow_nil: true
 
   def display_name

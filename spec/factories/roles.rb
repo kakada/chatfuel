@@ -18,6 +18,10 @@ FactoryBot.define do
       name { "site_admin" }
     end
 
+    trait :program_admin do
+      name { "program_admin" }
+    end
+
     trait :system_admin do
       name { "system_admin" }
     end

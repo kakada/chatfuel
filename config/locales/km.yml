@@ -205,8 +205,8 @@ km:
     regenerate_token: បង្កើត token ថ្មី
   roles:
     system_admin: រដ្ឋបាលប្រព័ន្ធ
+    program_admin: រដ្ឋបាលកម្មវិធី
     site_admin: រដ្ឋបាលការិយាល័យ
-    program_staff: បុគ្គលិកការិយាល័យ
     site_ombudsman: អ្នកអង្កេតការណ៏
   sessions:
     invalid_platform_name: "%{value} មិនមែនជាឈ្មោះ platform ត្រឹមត្រូវទេ"

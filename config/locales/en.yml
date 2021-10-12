@@ -201,8 +201,8 @@ en:
     regenerate_token: Generate token
   roles:
     system_admin: System admin
-    site_admin: Program admin
-    program_staff: Program staff
+    program_admin: Program admin
+    site_admin: Site admin
     site_ombudsman: Site ombudsman
   sessions:
     invalid_platform_name: "%{value} is not a valid platform name"

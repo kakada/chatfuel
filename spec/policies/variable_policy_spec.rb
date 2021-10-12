@@ -16,6 +16,12 @@ RSpec.describe VariablePolicy do
       it { is_expected.to forbid_action(:index) }
     end
 
+    context "being a program admin" do
+      let(:user) { build(:user, :program_admin) }
+
+      it { is_expected.to forbid_action(:index) }
+    end
+
     context "being a system admin" do
       let(:user) { build(:user, :system_admin) }
 

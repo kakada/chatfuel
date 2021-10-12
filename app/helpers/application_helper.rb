@@ -70,6 +70,7 @@ module ApplicationHelper
     roles = {
       site_ombudsman: { icon: 'fas fa-user', color: '#d23528' },
       site_admin: { icon: 'fas fa-user-friends', color: '#b620e0' },
+      program_admin: { icon: 'fas fa-user-friends', color: '#b620e0' },
       system_admin: { icon: 'fas fa-users-cog', color: '#4e73df' }
     }
 

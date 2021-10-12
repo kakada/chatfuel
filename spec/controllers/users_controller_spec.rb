@@ -5,7 +5,7 @@ RSpec.describe UsersController, type: :controller do
 
   before do
     create(:role, :site_ombudsman)
-    create(:role, :site_admin)
+    create(:role, :program_admin)
   end
 
   context "html" do
@@ -23,7 +23,7 @@ RSpec.describe UsersController, type: :controller do
         get :index, format: :json
 
         expect(response.headers["Content-Type"]).to include("application/json")
-        expect(response.body).to include("site_ombudsman", "site_admin", "system_admin")
+        expect(response.body).to include("site_ombudsman", "program_admin", "system_admin")
       end
     end
   end

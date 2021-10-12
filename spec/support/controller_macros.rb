@@ -26,6 +26,15 @@ module ControllerMacros
     end
   end
 
+  def setup_program_admin
+    before(:each) do
+      program_admin = create(:user, :program_admin)
+      allow(request.env["warden"]).to receive(:authenticate!).and_return(program_admin)
+      cookies[:guisso] = program_admin.email
+      allow(controller).to receive(:current_user).and_return(program_admin)
+    end
+  end
+
   def setup_site_ombudsman
     before(:each) do
       site_ombudsman = create(:user, :site_ombudsman)

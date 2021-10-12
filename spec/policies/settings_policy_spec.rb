@@ -21,6 +21,15 @@ RSpec.describe SettingPolicy do
     it { is_expected.to forbid_action(:telegram_bot) }
   end
 
+  context "being a program admin" do
+    let(:user) { build(:user, :program_admin) }
+
+    it { is_expected.to forbid_action(:index) }
+    it { is_expected.to forbid_action(:show) }
+    it { is_expected.to forbid_action(:help) }
+    it { is_expected.to forbid_action(:telegram_bot) }
+  end
+
   context "being a system admin" do
     let(:user) { build(:user, :system_admin) }
 
