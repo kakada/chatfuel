@@ -50,7 +50,17 @@
     }
   }
 
+  .status-text {
+    font-size: 0.9em;
+    word-spacing: 100vw;
+  }
+
+  .block-option {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
   .block-option .block-option--item {
-    width: 100%;
+    width: 110px;
   }
 }
