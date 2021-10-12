@@ -69,9 +69,9 @@ module ApplicationHelper
   def get_role(role_name)
     roles = {
       site_ombudsman: { icon: 'fas fa-user', color: '#d23528' },
-      site_admin: { icon: 'fas fa-user-friends', color: '#b620e0' },
-      program_admin: { icon: 'fas fa-user-friends', color: '#b620e0' },
-      system_admin: { icon: 'fas fa-users-cog', color: '#4e73df' }
+      site_admin: { icon: 'fas fa-user-tie', color: '#b620e0' },
+      program_admin: { icon: 'fas fa-user-tie fa-flip-horizontal', color: '#1ca716' },
+      system_admin: { icon: 'fas fa-user-cog', color: '#4e73df' }
     }
 
     roles[role_name.to_sym] || default_role
