@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def index
     @pagy, @users = pagy(User.filter(params).order(updated_at: :desc))
     authorize @users
-    @roles = Role.distinct(:name)
+    @roles = Role.distinct
 
     respond_to do |format|
       format.html
