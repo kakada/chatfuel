@@ -28,7 +28,6 @@
       %a#userDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
         %span.mr-2.d-none.d-lg-inline.text-gray-600.small
           = current_user.display_name
-          %small= "(#{current_user.role_name})"
         - avatar = current_user.avatar_url || 'default_profile.png'
         = image_tag avatar, alt: 'profile', class: 'img-profile img-thumbnail rounded-circle'
 
