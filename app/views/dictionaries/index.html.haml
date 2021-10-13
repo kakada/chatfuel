@@ -7,7 +7,7 @@
         = c.with(:action) { render "search_action" }
 
     .total-info.mb-2
-      = t("paginate_info_html", name: t("dictionaries.dictionaries"), items_range: pagy_range, collection_count: number_with_delimiter(@pagy.count))
+      = t("paginate_info_html", name: t("dictionaries.dictionaries"), items_range: pagy_range, collection_count: pagy_count)
 
     .table-responsive
       %table#dataTable.table.table-bordered.w-100
