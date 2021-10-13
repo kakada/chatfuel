@@ -54,6 +54,7 @@ en:
   feedback_dislike: Dislike
   signin: Sign in
   not_authorized: "You are not authorized to perform this action."
+  usaid_logo: USAID logo
   created:
     success: "Successfully created!"
     fail: "Failed to create!"
