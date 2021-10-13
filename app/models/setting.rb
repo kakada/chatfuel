@@ -59,7 +59,7 @@ class Setting < RailsSettings::Base
     (ENV["FB_REACHABLE_DAY"] || 1).to_i
   end
 
-  def self.admin_view?
-    ENV["DASHBOARD_VIEW"].to_s == "private"
+  def self.enabled_telegram_do_report?
+    ENV["ENABLE_TG_DO_MONTHLY_REPORT"].to_s == "true"
   end
 end

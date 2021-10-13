@@ -3,7 +3,7 @@ require 'sidekiq-scheduler'
 
 Sidekiq.configure_server do |config|
   config.on(:startup) do
-    if Setting.admin_view?
+    if Setting.enabled_telegram_do_report?
       Schedule.find_each do |schedule|
         schedule.set_schedule
       end
