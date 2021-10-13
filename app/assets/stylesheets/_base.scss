@@ -77,6 +77,12 @@ body {
   letter-spacing: normal;
 }
 
+.accordion.toggled .sidebar-brand-text1 {
+  span {
+    display: none;
+  }
+}
+
 .nowrap-space {
   white-space: nowrap;
 }
