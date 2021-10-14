@@ -18,9 +18,17 @@ class ReactDate extends React.Component {
   }
 
   handleDateChange = ({ startDate, endDate }) => {
-    if(startDate != undefined) $(".start_date").val(startDate.clone().locale("en").format(DEFAULT_DATE_FORMAT))
-    if(endDate   != undefined) $(".end_date").val(endDate.clone().locale("en").format(DEFAULT_DATE_FORMAT))
+    if(startDate != undefined) $(".start_date").val(this.plainDateFormat(startDate))
+    if(endDate   != undefined) $(".end_date").val(this.plainDateFormat(endDate))
     this.setState({ startDate, endDate })
+  }
+
+  plainDateFormat(date) {
+    return date.clone().locale("en").format(DEFAULT_DATE_FORMAT);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.endDate !== this.state.endDate) $("#q").submit()
   }
 
   render() {
