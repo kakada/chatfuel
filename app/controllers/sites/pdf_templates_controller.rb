@@ -58,12 +58,12 @@ module Sites
       "#{cur_month}-monthly-DO-report(#{format_date(@start_date)}-#{format_date(@end_date)})"
     end
 
-    def format_date(date, format='%Y%m%d')
+    def format_date(date, format='%d%m%Y')
       date.to_date.strftime(format)
     end
 
     def default_start_date
-      @start_date = (schedule_date + 1.day).strftime('%Y/%m/%d')
+      @start_date = (schedule_date + 1.day).strftime(default_date_format)
     end
 
     def schedule_date

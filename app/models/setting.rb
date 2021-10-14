@@ -62,4 +62,8 @@ class Setting < RailsSettings::Base
   def self.enabled_telegram_do_report?
     ENV["ENABLE_TG_DO_MONTHLY_REPORT"].to_s == "true"
   end
+  
+  def self.default_date_format
+    ENV['DEFAULT_DATE_FORMAT'] || '%d/%m/%Y'
+  end
 end
