@@ -5,6 +5,7 @@ import { DateRangePicker } from "react-dates";
 import moment from "moment";
 
 const DEFAULT_DATE_FORMAT = "DD/MM/YYYY"
+const DATE_DISPLAY_FORMAT = "D MMM YYYY"
 
 let currentLocale = $("#q_locale").val()
 moment.locale(currentLocale)
@@ -34,7 +35,7 @@ class ReactDate extends React.Component {
       startDate={this.state.startDate}
       endDate={this.state.endDate}
       isOutsideRange={() => null}
-      displayFormat={DEFAULT_DATE_FORMAT}
+      displayFormat={DATE_DISPLAY_FORMAT}
       onDatesChange={this.handleDateChange}
       focusedInput={this.state.focusedInput}
       onFocusChange={focusedInput => this.setState({ focusedInput })}/>
