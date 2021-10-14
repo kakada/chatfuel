@@ -17,7 +17,7 @@
           = f.input_field :time, type: "time", class: "form-control cron-control cron-time"
           = f.error :time, class: 'position-absolute error-hint'
 
-      - if ENV['SCHEDULE_MANUAL_CRON_ENABLED'] == 'true'
+      - if Rails.env.development?
         %input.toggle-control#enable_manual_cron{ type: "checkbox" }
         %label{for: "enable_manual_cron"}= t "schedules.manual"
         = image_tag "info.png", id: "info", style: "width: 16px; vertical-align: super;"
