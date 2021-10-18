@@ -22,7 +22,7 @@ class PdfTemplateDecorator < ApplicationDecorator
 
   def hashes
     return {} unless Site.exists?
-    LiquidServices::BaseLiquid.new(Site.first, Date.current).to_h
+    LiquidServices::BaseLiquid.new(Site.first, Date.current, Date.current).to_h
   end
 
 end
