@@ -36,7 +36,7 @@
       left: 0;
       right: 0;
       text-align: center;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       padding: 2px;
     }
 
@@ -50,7 +50,17 @@
     }
   }
 
+  .status-text {
+    font-size: 0.9em;
+    word-spacing: 100vw;
+  }
+
+  .block-option {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
   .block-option .block-option--item {
-    width: 151px;
+    width: 110px;
   }
 }

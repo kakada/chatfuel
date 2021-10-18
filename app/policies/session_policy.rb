@@ -1,6 +1,6 @@
 class SessionPolicy < ApplicationPolicy
   def index?
-    true
+    user.system_admin? || user.program_admin?
   end
   
   class Scope < Scope

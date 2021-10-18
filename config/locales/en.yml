@@ -200,9 +200,10 @@ en:
     preview_template: Preview template
     regenerate_token: Generate token
   roles:
-    site_ombudsman: Site ombudsman
-    site_admin: Site admin
     system_admin: System admin
+    program_admin: Program admin
+    site_admin: Site admin
+    site_ombudsman: Site ombudsman
   sessions:
     invalid_platform_name: "%{value} is not a valid platform name"
   provinces:

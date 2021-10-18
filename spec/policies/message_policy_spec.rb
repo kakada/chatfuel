@@ -24,6 +24,14 @@ RSpec.describe MessagePolicy do
     end
   end
 
+  context "being a program admin" do
+    let(:user) { build(:user, :program_admin) }
+
+    it "includes message in resolved scope" do
+      expect(resolved_scope).to include(message)
+    end
+  end
+
   context "being a system admin" do
     let(:user) { build(:user, :system_admin) }
 

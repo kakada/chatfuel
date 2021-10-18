@@ -204,9 +204,10 @@ km:
     preview_template: មើលគំរូជាមុន
     regenerate_token: បង្កើត token ថ្មី
   roles:
-    site_ombudsman: អ្នកអង្កេតការណ៏
-    site_admin: រដ្ឋបាលការិយាល័យ
     system_admin: រដ្ឋបាលប្រព័ន្ធ
+    program_admin: រដ្ឋបាលកម្មវិធី
+    site_admin: រដ្ឋបាលការិយាល័យ
+    site_ombudsman: អ្នកអង្កេតការណ៏
   sessions:
     invalid_platform_name: "%{value} មិនមែនជាឈ្មោះ platform ត្រឹមត្រូវទេ"
   provinces:

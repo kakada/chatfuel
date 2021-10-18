@@ -15,6 +15,12 @@ RSpec.describe ManifestPolicy do
     it { is_expected.to permit_action(:show) }
   end
 
+  context "being a program_admin" do
+    let(:user) { build(:user, :program_admin) }
+
+    it { is_expected.to permit_action(:show) }
+  end
+
   context "being a system admin" do
     let(:user) { build(:user, :system_admin) }
 

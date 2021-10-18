@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   private
     def user_not_authorized
       flash[:alert] = t("not_authorized")
-      redirect_to(request.referrer || root_path)
+      redirect_to(request.referrer || dashboard_path)
     end
 
     def set_raven_context

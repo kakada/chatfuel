@@ -22,6 +22,12 @@ RSpec.describe UserPolicy do
       it { is_expected.to forbid_action(:new) }
     end
 
+    context "being a program admin" do
+      let(:user) { build(:user, :program_admin) }
+
+      it { is_expected.to forbid_action(:new) }
+    end
+
     context "being a system admin" do
       let(:user) { build(:user, :system_admin) }
 
@@ -53,6 +59,40 @@ RSpec.describe UserPolicy do
         it { is_expected.to forbid_action(:create) }
       end
 
+      context "create program admin" do
+        let(:record) { build(:user, :program_admin) }
+
+        it { is_expected.to forbid_action(:create) }
+      end
+
+      context "create system admin" do
+        let(:record) { build(:user, :system_admin) }
+
+        it { is_expected.to forbid_action(:create) }
+      end
+    end
+
+    context "being a program admin" do
+      let(:user) { build(:user, :program_admin) }
+
+      context "create site_ombudsman" do
+        let(:record) { build(:user, :site_ombudsman) }
+
+        it { is_expected.to forbid_action(:create) }
+      end
+
+      context "create site admin" do
+        let(:record) { build(:user, :site_admin) }
+
+        it { is_expected.to forbid_action(:create) }
+      end
+
+      context "create program admin" do
+        let(:record) { build(:user, :program_admin) }
+
+        it { is_expected.to forbid_action(:create) }
+      end
+
       context "create system admin" do
         let(:record) { build(:user, :system_admin) }
 
@@ -74,6 +114,12 @@ RSpec.describe UserPolicy do
 
         it { is_expected.to permit_action(:create) }
       end
+
+      context "create program admin" do
+        let(:record) { build(:user, :program_admin) }
+
+        it { is_expected.to permit_action(:create) }
+      end
     end
   end
 
@@ -82,6 +128,14 @@ RSpec.describe UserPolicy do
 
     context "site admin" do
       let(:user) { create(:user, :site_admin) }
+
+      it "includes created user" do
+        expect(resolved_scope).to include(new_user)
+      end
+    end
+
+    context "program admin" do
+      let(:user) { create(:user, :program_admin) }
 
       it "includes created user" do
         expect(resolved_scope).to include(new_user)

@@ -15,7 +15,7 @@ RSpec.describe Role, type: :model do
   it { is_expected.to have_many(:variables).through(:role_variables) }
 
   describe "constants" do
-    let(:role_names) { %w(site_ombudsman site_admin system_admin) }
+    let(:role_names) { %w(site_ombudsman site_admin program_admin system_admin) }
 
     it "defines ROLE_NAMES" do
       expect(described_class::ROLE_NAMES).to eq role_names
@@ -57,12 +57,19 @@ RSpec.describe Role, type: :model do
     let(:role) { build(:role) }
     let(:system_admin) { build(:role, name: "system_admin") }
     let(:site_admin) { build(:role, name: "site_admin") }
+    let(:program_admin) { build(:role, name: "program_admin") }
     let(:site_ombudsman) { build(:role, name: "site_ombudsman") }
 
     it "#system_admin?" do
       role.name = "system_admin"
 
       expect(role.system_admin?).to be_truthy
+    end
+
+    it "#program_admin?" do
+      role.name = "program_admin"
+
+      expect(role).to be_program_admin
     end
 
     it "#site_admin?" do
@@ -78,12 +85,12 @@ RSpec.describe Role, type: :model do
     end
 
     describe "#position_level" do
-      it "expects system_admin > site admin" do
-        expect(system_admin.position_level).to be > site_admin.position_level
+      it "expects system_admin > program admin" do
+        expect(system_admin.position_level).to be > program_admin.position_level
       end
 
       it "expects site admin > site ombudsman" do
-        expect(site_admin.position_level).to be > site_ombudsman.position_level
+        expect(program_admin.position_level).to be > site_ombudsman.position_level
       end
     end
   end

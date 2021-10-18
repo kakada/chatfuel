@@ -12,6 +12,12 @@ RSpec.describe AdminPolicy do
   context "being a site admin" do
     let(:user) { build(:user, :site_admin) }
 
+    it { is_expected.to forbid_action(:show) }
+  end
+
+  context "being a program admin" do
+    let(:user) { build(:user, :program_admin) }
+
     it { is_expected.to permit_action(:show) }
   end
 
