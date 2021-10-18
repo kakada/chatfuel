@@ -27,7 +27,11 @@ class ApplicationController < ActionController::Base
     end
 
     def default_end_date
-      Date.current.strftime('%Y/%m/%d')
+      Date.current.strftime(default_date_format)
+    end
+
+    def default_date_format
+      Setting.default_date_format
     end
 
     def default_url_options

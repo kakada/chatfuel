@@ -1,0 +1,59 @@
+@import "../shared/variables";
+
+.DateRangePicker_picker {
+  z-index: 100;
+}
+
+.DateInput__small {
+  width: 110px;
+}
+
+.DateInput_input__small {
+  line-height: 0.1px;
+  padding-bottom: 0;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+}
+
+.CalendarDay__selected_span {
+  background: lighten($primary_color, 20%);
+  color: white;
+  border: 1px solid #ccc;
+}
+
+.CalendarDay__selected {
+  background: $primary_color;
+  color: white;
+  border: 1px solid #ccc;
+}
+
+.CalendarDay__selected_span:hover {
+  background: $primary_color;
+  border-color: #ccc;
+}
+
+.CalendarDay__selected:hover {
+  background: $primary_color;
+  color: white;
+  border: 1px solid #ccc;
+}
+
+.CalendarDay__hovered_span:hover,
+.CalendarDay__hovered_span {
+  background: $primary_color;
+}
+
+.DateInput_input__focused {
+  border-bottom: 2px solid $primary_color;
+}
+
+.DayPickerKeyboardShortcuts_show__bottomRight {
+  &:hover::before {
+    border-right: 33px solid $primary_color;
+  }
+
+  &::before {
+    border-right: 33px solid lighten($primary_color, 20%);
+  }
+}

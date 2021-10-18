@@ -41,6 +41,6 @@ class HomeController < ApplicationController
   private
 
     def default_start_date
-      Setting.homepage_start_date.strftime('%Y/%m/%d')
+      Setting.homepage_start_date.strftime(default_date_format)
     end
 end

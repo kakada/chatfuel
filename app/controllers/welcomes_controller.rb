@@ -27,10 +27,10 @@ class WelcomesController < ActionController::Base
     end
 
     def default_end_date
-      Date.current.strftime('%Y/%m/%d')
+      Date.current.strftime(default_date_format)
     end
 
     def default_start_date
-      Setting.dashboard_start_date.strftime('%Y/%m/%d')
+      Setting.dashboard_start_date.strftime(default_date_format)
     end
 end
