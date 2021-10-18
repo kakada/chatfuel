@@ -58,4 +58,8 @@ class Setting < RailsSettings::Base
   def self.fb_reachable_period
     (ENV["FB_REACHABLE_DAY"] || 1).to_i
   end
+
+  def self.enabled_telegram_do_report?
+    ENV["ENABLE_TG_DO_MONTHLY_REPORT"].to_s == "true"
+  end
 end
