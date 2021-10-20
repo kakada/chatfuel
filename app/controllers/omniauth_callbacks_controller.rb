@@ -13,9 +13,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user.actived? && user.role.present?
       sign_in user
 
-      next_url = request.env["omniauth.origin"] || root_path
-      next_url = root_path if next_url == new_user_session_path
-      redirect_to next_url
+      redirect_to dashboard_path
     else
       raise Forbidden, "You are not allowed to access this page."
     end
