@@ -1,8 +1,8 @@
 OWSO.DictionariesEdit = (() => {
   return {
     init,
-    onClickMarkAs
-  }
+    onClickMarkAs,
+  };
 
   function init() {
     onClickRemoveValuePair();
@@ -13,72 +13,79 @@ OWSO.DictionariesEdit = (() => {
   }
 
   function onClickMarkAs() {
-    $(document.body).on("click", ".block-option--item", function(e) {
-      e.preventDefault()
+    $(document.body).on(
+      "click",
+      ".block-option--item:not(.block-option--item-disabled)",
+      function (e) {
+        e.preventDefault();
 
-      let value = $(this).data("value")
-      let input = $(this).find("input")
-      let checked = input.prop("checked")
+        let value = $(this).data("value");
+        let input = $(this).find("input");
+        let checked = input.prop("checked");
 
-      input.prop("checked", !checked)
-      if( $(this).find('input').attr("type") == "radio" ) {
-        $(this).siblings(".block-option--item").not(this).removeClass("block-option--item-active")
-        if(value == gon.feedback_variable) $(".td-satisfied").toggleClass("invisible")
-        else $(".td-satisfied").addClass("invisible")
+        input.prop("checked", !checked);
+        if ($(this).find("input").attr("type") == "radio") {
+          $(this)
+            .siblings(".block-option--item")
+            .not(this)
+            .removeClass("block-option--item-active");
+          if (value == gon.feedback_variable)
+            $(".td-satisfied").toggleClass("invisible");
+          else $(".td-satisfied").addClass("invisible");
+        }
+
+        $(this).toggleClass("block-option--item-active");
       }
-
-      $(this).toggleClass("block-option--item-active")
-      
-    })
+    );
   }
 
   function validateTextLimit() {
-    $(".input-hint").keyup(function(){
-      let currentLength = $(this).val().length
-      let $hint = $(this).parent().next()
-      $hint.text(`${currentLength}/${this.maxLength}`)
+    $(".input-hint").keyup(function () {
+      let currentLength = $(this).val().length;
+      let $hint = $(this).parent().next();
+      $hint.text(`${currentLength}/${this.maxLength}`);
 
-      if( currentLength >= this.maxLength ) {
-        $(this).addClass("is-invalid")
+      if (currentLength >= this.maxLength) {
+        $(this).addClass("is-invalid");
 
-        return false
+        return false;
       } else {
-        $(this).removeClass("is-invalid")
+        $(this).removeClass("is-invalid");
       }
-    })
+    });
   }
 
   function initTooltip() {
-    $(".btn-circle").tooltip()
+    $(".btn-circle").tooltip();
   }
 
   function onClickAddValuePair() {
-    $('form .add_values').off('click')
-    $('form .add_values').on('click', function(event) {
+    $("form .add_values").off("click");
+    $("form .add_values").on("click", function (event) {
       appendField(this);
       event.preventDefault();
-    })
+    });
   }
 
   function appendField(dom) {
     time = new Date().getTime();
-    regexp = new RegExp($(dom).data('id'), 'g');
-    $(dom).parents('tr').before($(dom).data('fields').replace(regexp, time));
+    regexp = new RegExp($(dom).data("id"), "g");
+    $(dom).parents("tr").before($(dom).data("fields").replace(regexp, time));
   }
 
   function onClickRemoveValuePair() {
-    $(".table").on("click", ".dictionary-remove-pair", function(e) {
-      e.preventDefault()
-      var row = $(this).closest("tr")
+    $(".table").on("click", ".dictionary-remove-pair", function (e) {
+      e.preventDefault();
+      var row = $(this).closest("tr");
 
-      if( row.closest("tbody").children(".value-row").length > 1 ) {
-        row.find(".variable-destroy").val(true)
-        row.hide()
+      if (row.closest("tbody").children(".value-row").length > 1) {
+        row.find(".variable-destroy").val(true);
+        row.hide();
       } else {
-        alert("Unable to empty dictionary")
+        alert("Unable to empty dictionary");
       }
-    })
+    });
   }
 })();
 
-OWSO.DictionariesUpdate = OWSO.DictionariesEdit
+OWSO.DictionariesUpdate = OWSO.DictionariesEdit;

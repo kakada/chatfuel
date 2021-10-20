@@ -25,6 +25,7 @@
                 = render_component(SelectComponent.new(value: role.id, name: "user[role_id]", checked: user.role_id == role.id)) do
                   %i.fa{ class: get_role(role.name)[:icon] }
                   %p.status-text.m-0= t("roles.#{role.name}")
+                  %i.fa.fa-check-circle.fa-lg.check-sign
 
           = f.input :email, label: t('users.email')
 
