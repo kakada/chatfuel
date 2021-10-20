@@ -29,14 +29,7 @@
 
         %h6.mt-4.permission-title= t('dictionaries.permission')
         .permission.mb-4
-          = hidden_field_tag('variable[role_ids][]', nil)
-
-          .block-option
-            - @roles.each do |role|
-              = render_component(SelectComponent.new(value: role.id, name: "variable[role_ids][]", input_type: "checkbox", checked: f.object.role_ids.include?(role.id))) do
-                = role_icon(role.name).html_safe
-                %p.status-text.m-0= t("roles.#{role.name}")
-                %i.fa.fa-check-circle.fa-lg.check-sign
+          = render "role_options", f: f
 
         %h6.mt-4.permission-title= t('dictionaries.mark_as')
         .form-group

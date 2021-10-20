@@ -1,27 +1,34 @@
-= render_component(SelectComponent.new(value: Variable::FEEDBACK, name: "variable[mark_as]", checked: @variable.feedback?, disabled: (@feedback && @feedback&.id != @variable.id), title: @feedback&.name)) do
+= render_component(SelectComponent.new(value: Variable::FEEDBACK, name: "variable[mark_as]", input_type: "radio", checked: @variable.feedback?, disabled: (@feedback && @feedback&.id != @variable.id), title: @feedback&.name)) do
   %i.fa.fa-star-half-alt
   %p.status-text.m-0= t("dictionaries.feedback")
+  %i.fa.fa-check-circle.fa-lg.check-sign
 
-= render_component(SelectComponent.new(value: "ticket_tracking", name: "variable[mark_as]", checked: @variable.ticket_tracking?, disabled: (@ticket_tracking && @ticket_tracking&.id != @variable.id), title: @ticket_tracking&.name)) do
+= render_component(SelectComponent.new(value: "ticket_tracking", name: "variable[mark_as]", input_type: "radio", checked: @variable.ticket_tracking?, disabled: (@ticket_tracking && @ticket_tracking&.id != @variable.id), title: @ticket_tracking&.name)) do
   %i.fa.fa-ticket-alt
   %p.status-text.m-0= t("dictionaries.ticket_tracking")
+  %i.fa.fa-check-circle.fa-lg.check-sign
 
-= render_component(SelectComponent.new(value: "gender", name: "variable[mark_as]", checked: @variable.gender?, disabled: (@gender && @gender&.id != @variable.id), title: @gender&.name)) do
+= render_component(SelectComponent.new(value: "gender", name: "variable[mark_as]", input_type: "radio", checked: @variable.gender?, disabled: (@gender && @gender&.id != @variable.id), title: @gender&.name)) do
   %i.fa.fa-venus-mars
   %p.status-text.m-0= t("dictionaries.gender")
+  %i.fa.fa-check-circle.fa-lg.check-sign
 
-= render_component(SelectComponent.new(value: "province", name: "variable[mark_as]", checked: @variable.province?, disabled: (@province && @province&.id != @variable.id), title: @province&.name)) do
+= render_component(SelectComponent.new(value: "province", name: "variable[mark_as]", input_type: "radio", checked: @variable.province?, disabled: (@province && @province&.id != @variable.id), title: @province&.name)) do
   %i.fa.fa-map-marker-alt
   %p.status-text.m-0= t("dictionaries.site_province")
+  %i.fa.fa-check-circle.fa-lg.check-sign
 
-= render_component(SelectComponent.new(value: "district", name: "variable[mark_as]", checked: @variable.district?, disabled: (@district && @district&.id != @variable.id), title: @district&.name)) do
+= render_component(SelectComponent.new(value: "district", name: "variable[mark_as]", input_type: "radio", checked: @variable.district?, disabled: (@district && @district&.id != @variable.id), title: @district&.name)) do
   %i.fa.fa-map-marker-alt
   %p.status-text.m-0= t("dictionaries.site_district")
+  %i.fa.fa-check-circle.fa-lg.check-sign
 
-= render_component(SelectComponent.new(value: "feedback_province", name: "variable[mark_as]", checked: @variable.feedback_province?, disabled: (Variable.feedback_province && Variable.feedback_province&.id != @variable.id), title: Variable.feedback_province&.name)) do
+= render_component(SelectComponent.new(value: "feedback_province", name: "variable[mark_as]", input_type: "radio", checked: @variable.feedback_province?, disabled: (Variable.feedback_province && Variable.feedback_province&.id != @variable.id), title: Variable.feedback_province&.name)) do
   %i.fa.fa-star-half-alt
   %p.status-text.m-0= t("dictionaries.feedback_province")
+  %i.fa.fa-check-circle.fa-lg.check-sign
 
-= render_component(SelectComponent.new(value: "feedback_district", name: "variable[mark_as]", checked: @variable.feedback_district?, disabled: (Variable.feedback_district && Variable.feedback_district&.id != @variable.id), title: Variable.feedback_district&.name)) do
+= render_component(SelectComponent.new(value: "feedback_district", name: "variable[mark_as]", input_type: "radio", checked: @variable.feedback_district?, disabled: (Variable.feedback_district && Variable.feedback_district&.id != @variable.id), title: Variable.feedback_district&.name)) do
   %i.fa.fa-star-half-alt
   %p.status-text.m-0= t("dictionaries.feedback_district")
+  %i.fa.fa-check-circle.fa-lg.check-sign

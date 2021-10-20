@@ -77,6 +77,29 @@
   }
 }
 
+.block-option .block-option--item {
+  .check-sign {
+    color: #3e51b5;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    visibility: hidden;
+  }
+
+  &.block-option--item-active .fa {
+    visibility: visible;
+  }
+}
+
+#dictionaries-index,
+#dictionaries-create {
+  .permission .block-option--item {
+    width: 200px;
+    max-width: 200px !important;
+    font-size: 0.9em;
+  }
+}
+
 #dictionaries-edit,
 #dictionaries-update {
   table.rate td {
@@ -116,21 +139,8 @@
     border-bottom: 1px solid #dddfeb;
   }
 
-  .permission {
-    .block-option .block-option--item {
-      width: 165px;
-
-      .check-sign {
-        color: #3e51b5;
-        top: 10px;
-        right: 10px;
-        position: absolute;
-        visibility: hidden;
-      }
-
-      &.block-option--item-active .fa {
-        visibility: visible;
-      }
-    }
+  .block-option .block-option--item {
+    width: 165px;
+    font-size: 0.9em;
   }
 }

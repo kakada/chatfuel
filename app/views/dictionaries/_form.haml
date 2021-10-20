@@ -10,14 +10,9 @@
       %p.font-weight-bold.mt-3
         = t('dictionaries.permission')
 
-      .d-flex.mb-4
-        = hidden_field_tag('variable[role_ids][]', nil)
-        - @roles.each do |role|
-          .d-flex.flex-column.align-items-center.mr-5{for: role.id}
-            %label.mb-0{for: role.id}= role_icon(role.name).html_safe
-            %label{for: role.id}= role.name.humanize
-            %input{:type => "checkbox", :value => role.id, id: role.id, name: 'variable[role_ids][]', checked: dictionary.role_ids.include?(role.id), class: "toggle-control" }
-
+      .permission.d-flex.mb-4
+        = render "role_options", f: f
+        
       %p.font-weight-bold.mt-3
         = t('dictionaries.mark_as')
 
