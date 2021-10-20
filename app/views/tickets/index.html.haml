@@ -6,7 +6,7 @@
       = render_component(SearchFormComponent.new(placeholder: t('tickets.type_ticket_code'), url: tickets_path))
 
     .total-info.mb-2
-      = t("paginate_info_html", name: t("tickets.title"), items_range: pagy_range, collection_count: @pagy_count)
+      = t("paginate_info_html", name: t("tickets.title"), items_range: pagy_range, collection_count: pagy_count)
 
     .table-responsive
       %table#dataTable.table.table-bordered.w-100{:cellspacing => "0"}
