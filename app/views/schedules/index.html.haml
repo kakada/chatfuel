@@ -3,8 +3,10 @@
 .card.shadow.mb-4
   .card-body
     .mb-4
+      = render 'new_schedule'
+
       - if TelegramBot.exists?
-        = render 'new_schedule'
+        = t("paginate_info_html", name: t("users.title"), items_range: pagy_range, collection_count: pagy_count)
         = render 'schedules'
 
       - else
