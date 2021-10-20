@@ -5,6 +5,9 @@
     .mb-4
       = render_component(SearchFormComponent.new(placeholder: t('users.type_email'), url: users_path))
 
+    .total-info.mb-2
+      = t("paginate_info_html", name: t("users.title"), items_range: pagy_range, collection_count: pagy_count)
+
     .table-responsive
       %table.table.table-bordered
         %thead
