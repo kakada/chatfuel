@@ -13,6 +13,8 @@ require("toastr");
 require("select2");
 require("packs/social-share-button.js.erb");
 window.hljs = require("highlight.js");
+window._ = require("underscore");
+require("cookieconsent/build/cookieconsent.min");
 
 require("application/pumi");
 window._ = require("underscore");
