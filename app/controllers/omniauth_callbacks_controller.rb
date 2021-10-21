@@ -13,7 +13,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user.actived? && user.role.present?
       sign_in user
 
-      redirect_to dashboard_path
+      redirect_to dashboard_path, notice: I18n.t("devise.sessions.signed_in")
     else
       raise Forbidden, "You are not allowed to access this page."
     end

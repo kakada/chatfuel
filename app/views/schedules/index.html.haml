@@ -6,7 +6,7 @@
       = render 'new_schedule'
 
       - if TelegramBot.exists?
-        = t("paginate_info_html", name: t("users.title"), items_range: pagy_range, collection_count: pagy_count)
+        = t("paginate_info_html", name: t("schedules.title").downcase, items_range: pagy_range, collection_count: pagy_count)
         = render 'schedules'
 
       - else
