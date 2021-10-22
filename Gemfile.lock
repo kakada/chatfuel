@@ -490,6 +490,8 @@ GEM
     simple_form (5.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
+    sitemap_generator (6.1.2)
+      builder (~> 3.0)
     social-share-button (1.2.4)
       coffee-rails
     solargraph (0.38.6)
@@ -596,7 +598,7 @@ DEPENDENCIES
   ffaker (~> 2.13.0)
   font-awesome-rails (~> 4.7.0.5)
   gon (~> 6.4)
-  google-analytics-rails (= 1.1.1)
+  google-analytics-rails (~> 1.1.1)
   groupdate (~> 5.0.0)
   guard-rspec
   haml (~> 5.1.2)
@@ -636,6 +638,7 @@ DEPENDENCIES
   sidekiq (= 6.2.1)
   sidekiq-scheduler (~> 3.0.1)
   simple_form (~> 5.0.2)
+  sitemap_generator (~> 6.1.2)
   social-share-button (~> 1.2, >= 1.2.3)
   solargraph (~> 0.38.5)
   spring (~> 2.1.0)
