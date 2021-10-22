@@ -78,7 +78,8 @@ gem 'cronex', '~> 0.11.1'
 gem "social-share-button", "~> 1.2", ">= 1.2.3"
 gem "ahoy_matey", "~> 3.0", ">= 3.0.5"
 gem "meta-tags", "~> 2.13"
-gem "google-analytics-rails", "1.1.1"
+gem "google-analytics-rails", "~> 1.1.1"
+gem "sitemap_generator", "~> 6.1.2"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
