@@ -64,7 +64,8 @@ module Chatfuel
       'X-Frame-Options' => 'SAMEORIGIN',
       'X-XSS-Protection' => '1; mode=block',
       'X-Content-Type-Options' => 'nosniff',
-      'Referrer-Policy' => 'strict-origin-when-cross-origin'
+      'Referrer-Policy' => 'strict-origin-when-cross-origin',
+      'Permissions-Policy' => 'camera "none"; gyroscope "none"; microphone "none"; payment "none";'
     }
   end
 end
