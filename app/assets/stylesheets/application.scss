@@ -9,7 +9,8 @@
 @import "cookieconsent/build/cookieconsent.min";
 @import "react-dates/lib/css/_datepicker";
 
-@import "startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min";
+// [REMOVED] path-based vulnerability
+// @import "startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min";
 @import "sb-admin-webfonts-override";
 @import "startbootstrap-sb-admin-2/css/sb-admin-2.min";
 @import "flatpickr/dist/themes/material_blue";
