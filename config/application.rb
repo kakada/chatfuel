@@ -61,11 +61,11 @@ module Chatfuel
     logstasher_file = Rails.root.join('log', "logstash_#{Rails.env}.log")
     config.logstasher.logger = Logger.new(logstasher_file, 30, 1.megabyte) if File.exists?(logstasher_file)
     config.action_dispatch.default_headers = {
-      'X-Frame-Options' => 'SAMEORIGIN',
+      'X-Frame-Options' => 'DENY',
       'X-XSS-Protection' => '1; mode=block',
       'X-Content-Type-Options' => 'nosniff',
       'Referrer-Policy' => 'strict-origin-when-cross-origin',
-      'Permissions-Policy' => 'camera "none"; gyroscope "none"; microphone "none"; payment "none";'
+      'Permissions-Policy' => 'camera none; gyroscope none; microphone none; payment none;'
     }
   end
 end
