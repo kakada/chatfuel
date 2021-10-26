@@ -7,7 +7,7 @@
     %title= t(:title).html_safe
     = display_meta_tags SocialMetaTag.to_meta_tags
     = csrf_meta_tags
-    = csp_meta_tag
+    -# = csp_meta_tag : control by content security policy
     = favicon_link_tag
     = google_site_verification_meta_tag
     = analytics_init if Setting.analytics_valid?
