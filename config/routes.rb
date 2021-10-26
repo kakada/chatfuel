@@ -61,7 +61,8 @@ Rails.application.routes.draw do
       get 'privacy_policy',   to: 'privacy_policy#index'
       get 'developer_guides', to: 'developer_guides#index'
       get 'cookie-policy',    to: 'cookie_policy#index'
-      resources :reports, only: :index
+      # Disabled embed iframe path : to comply with USAID vulnerability guideline
+      # resources :reports, only: :index
     end
 
     # public static website
