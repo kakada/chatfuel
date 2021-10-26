@@ -6,12 +6,14 @@
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
 Rails.application.config.content_security_policy do |policy|
-  policy.default_src :self, 'localhost', "ilabsea.org"
-  policy.font_src    :self, 'localhost', "ilabsea.org", "fonts.gstatic.com", :data
-  policy.img_src     :self, 'localhost', "ilabsea.org", :data
+  policy.default_src :self, "localhost", "ilabsea.org"
+  policy.font_src    :self, "localhost", "ilabsea.org", "fonts.gstatic.com", :data
+  policy.img_src     :self, "localhost", "ilabsea.org", "www.facebook.com", :data
   # policy.object_src  :none
-  policy.script_src  :self, :unsafe_inline, "ilabsea.org", "dashboard.ow4c.info", 'localhost'
+  policy.script_src  :self, :unsafe_inline, "ilabsea.org", "dashboard.ow4c.info", "https://www.google-analytics.com", "connect.facebook.net", "facebook.com", "localhost"
   policy.style_src   :self, :unsafe_inline, "fonts.googleapis.com", "ilabsea.org", "dashboard.ow4c.info", 'localhost'
+  policy.connect_src :self, "localhost", "web.facebook.com", "https://www.google-analytics.com"
+  policy.frame_src :self, "localhost", "web.facebook.com"
   # If you are using webpack-dev-server then specify webpack-dev-server host
   # policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
 
