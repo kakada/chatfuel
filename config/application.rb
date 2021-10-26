@@ -64,8 +64,14 @@ module Chatfuel
       'X-Frame-Options' => 'DENY',
       'X-XSS-Protection' => '1; mode=block',
       'X-Content-Type-Options' => 'nosniff',
+      # 'X-Content-Security-Policy' => '', # set in config/initializers/content_security_policy.rb
+      'Access-Control-Allow-Origin' => 'https://www.facebook.com/plugins/customer_chat/SDK',
+      'Access-Control-Allow-Headers' => 'origin, content-type',
+      'Access-Control-Allow-Methods' => 'GET, OPTIONS',
+      'Access-Control-Allow-Credentials' => 'false',
+      'Strict-Transport-Security' => '',
       'Referrer-Policy' => 'strict-origin-when-cross-origin',
-      'Permissions-Policy' => 'camera none; gyroscope none; microphone none; payment none;'
+      'Permissions-Policy' => 'camera=(), gyroscope=(), microphone=(), payment=()'
     }
   end
 end
