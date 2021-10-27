@@ -3,5 +3,6 @@
 Chatfuel::Application.config.session_store( 
   :cookie_store, 
   key: '_chatfuel_session',
-  secure: Rails.env.production?
+  same_site: :none,
+  secure: true
 )
