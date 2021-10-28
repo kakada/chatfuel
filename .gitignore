@@ -58,3 +58,5 @@ IDEA/
 
 pdfs/*.pdf
 yarn.lock
+
+dev.sh
