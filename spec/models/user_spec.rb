@@ -35,6 +35,7 @@
 #  fk_rails_...  (role_id => roles.id)
 #
 require "rails_helper"
+require_relative '../support/shared/omniauth.rb'
 
 RSpec.describe User, type: :model do
   it { is_expected.to define_enum_for(:status).with_values(%i[enable disable]) }
@@ -43,7 +44,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to belong_to(:role).optional }
 
   describe ".from_omniauth" do
-    let(:auth) { { "provider": "test", "uid": 123, "info": { "email": "user@example.org" } }.with_indifferent_access }
+    include_context "shared omniauth"
 
     context "new user" do
       it "persists new user" do
@@ -51,7 +52,6 @@ RSpec.describe User, type: :model do
       end
 
       context "created" do
-        let!(:role) { create(:role, :site_ombudsman) }
         let(:user) { User.from_omniauth(auth) }
 
         specify { expect(user).to be_actived }

@@ -1,16 +1,8 @@
 require 'rails_helper'
+require_relative '../support/shared/omniauth.rb'
 
 RSpec.describe OmniauthCallbacksController do
-  let!(:role) { create(:role, :site_ombudsman) }
-  let(:auth) do
-    { 
-      provider: "instedd", 
-      uid: "https://login.instedd.org/openid/user@instedd.org",
-      info: {
-        email: "user@instedd.org"
-      }
-    }.with_indifferent_access
-  end
+  include_context "shared omniauth"
 
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
