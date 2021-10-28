@@ -51,16 +51,19 @@ Rails.application.routes.draw do
     get "welcomes/q/service-tracked", to: "welcomes#service_tracked"
     get "welcomes/q/feedback-trend", to: "welcomes#feedback_trend"
     get 'provincial-usages', to: 'provincial_usages#index'
-    get 'privacy_policy', to: 'privacy_policy#index'
 
     resources :users
     resources :tickets, only: [:index]
     resources :templates
     resources :quotas, only: [:index]
 
-    get 'developer_guides', to: 'developer_guides#index'
-    resources :reports, only: :index
-    get 'cookie-policy', to: 'cookie_policy#index'
+    scope constraints: { format: 'html' } do
+      get 'privacy_policy',   to: 'privacy_policy#index'
+      get 'developer_guides', to: 'developer_guides#index'
+      get 'cookie-policy',    to: 'cookie_policy#index'
+      # Disabled embed iframe path : to comply with USAID vulnerability guideline
+      # resources :reports, only: :index
+    end
 
     # public static website
     get "provinces", to: "provinces#index", format: "json"
