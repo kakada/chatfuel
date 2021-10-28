@@ -29,7 +29,7 @@ RUN ln -s /app/vendor/assets/fonts /usr/share/fonts
 RUN if [ -d .git ]; then git describe --always > VERSION; fi
 
 # Precompile assets
-RUN bundle exec rake assets:precompile RAILS_ENV=production LOCAL_DOMAIN=localhost PRODUCTION_DOMAIN=dashboard.ow4c.info
+RUN bundle exec rake assets:precompile RAILS_ENV=production
 
 ENV RAILS_LOG_TO_STDOUT=true
 ENV RACK_ENV=production
