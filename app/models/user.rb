@@ -64,6 +64,8 @@ class User < ApplicationRecord
     unless user.persisted?
       user.password = Devise.friendly_token
       user.confirmed_at = Time.now
+      user.actived = true
+      user.role_id = Role.ids[-1]
       user.save
       user.identities.create(provider: auth['provider'], token: auth['uid'])
     end

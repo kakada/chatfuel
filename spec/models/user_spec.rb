@@ -41,4 +41,31 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:identities).dependent(:destroy) }
   it { is_expected.to belong_to(:site).optional }
   it { is_expected.to belong_to(:role).optional }
+
+  describe ".from_omniauth" do
+    let(:auth) { { "provider": "test", "uid": 123, "info": { "email": "user@example.org" } }.with_indifferent_access }
+
+    context "new user" do
+      it "persists new user" do
+        expect { User.from_omniauth(auth) }.to change { User.count }.by 1
+      end
+
+      context "created" do
+        let!(:role) { create(:role, :site_ombudsman) }
+        let(:user) { User.from_omniauth(auth) }
+
+        specify { expect(user).to be_actived }
+        specify { expect(user.role).to eq(role) }
+      end
+    end
+
+    context "existing user" do
+      it "does not create duplicate user" do
+        expect {
+          User.from_omniauth(auth)
+          User.from_omniauth(auth)
+        }.to change { User.count }.by 1
+      end
+    end
+  end
 end
