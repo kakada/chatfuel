@@ -8,7 +8,7 @@ RSpec.describe OmniauthCallbacksController do
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
-  it "redirects to root path" do
+  it "redirects to dashboard path" do
     request.env["omniauth.auth"] = auth
 
     get :instedd
