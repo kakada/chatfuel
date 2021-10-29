@@ -11,9 +11,8 @@ RSpec.describe OmniauthCallbacksController do
   it "redirects to dashboard path" do
     request.env["omniauth.auth"] = auth
 
-    get :instedd
-
-    expect(response).to redirect_to(dashboard_path)
-    expect(flash[:notice]).to match /success/
+    expect {
+      get :instedd
+    }.to raise_error(OmniauthCallbacksController::Forbidden, "You are not allowed to access this page.")
   end
 end

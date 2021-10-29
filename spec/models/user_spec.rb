@@ -54,8 +54,8 @@ RSpec.describe User, type: :model do
       context "created" do
         let(:user) { User.from_omniauth(auth) }
 
-        specify { expect(user).to be_actived }
-        specify { expect(user.role).to eq(role) }
+        specify { expect(user).not_to be_actived }
+        specify { expect(user.role).to be_nil }
       end
     end
 

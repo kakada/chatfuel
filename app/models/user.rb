@@ -65,7 +65,7 @@ class User < ApplicationRecord
   delegate :system_admin?, :site_admin?, :program_admin?, :site_ombudsman?, to: :role, allow_nil: true
   delegate :name, :position_level, :variable_names, to: :role, prefix: true, allow_nil: true
 
-  after_create { invited! }
+  after_create { invite! rescue nil }
 
   def display_name
     email.split("@").first
