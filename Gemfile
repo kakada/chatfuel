@@ -63,6 +63,7 @@ gem 'draper', '~> 4.0.2'
 
 # Explain cron
 gem 'cronex', '~> 0.11.1'
+gem 'devise_invitable', '~> 2.0.0'
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
