@@ -65,7 +65,7 @@ class User < ApplicationRecord
   delegate :system_admin?, :site_admin?, :program_admin?, :site_ombudsman?, to: :role, allow_nil: true
   delegate :name, :position_level, :variable_names, to: :role, prefix: true, allow_nil: true
 
-  after_create { invite! rescue nil }
+  after_create :invite_user, if: :accessable?
 
   def display_name
     email.split("@").first
@@ -87,6 +87,14 @@ class User < ApplicationRecord
   end
 
   private
+
+  def invite_user
+    invite! rescue nil
+  end
+  
+  def accessable?
+    actived? && role.present?
+  end
 
   def password_required?
     false
