@@ -8,6 +8,8 @@
     .total-info.mb-2
       = t("paginate_info_html", name: t("users.title"), items_range: pagy_range, collection_count: pagy_count)
 
+    = link_to "New user", new_user_path, class: "btn btn-primary"
+
     .table-responsive
       %table.table.table-bordered
         %thead
