@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_roles, only: [:index, :new, :create]
 
   def index
     @pagy, @users = pagy(User.filter(params).order(updated_at: :desc))
     authorize @users
-    @roles = Role.distinct
 
     respond_to do |format|
       format.html
@@ -23,6 +23,16 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     authorize @user
+  end
+
+  def create
+    @user = User.new(user_params)
+    authorize @user
+    if @user.save
+      redirect_to users_path, notice: t("created.success")
+    else
+      render :new, status: :unprocessable_entity, alert: t("created.fail")
+    end
   end
 
   def update
@@ -48,7 +58,11 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def set_roles
+      @roles = Role.distinct
+    end
+
     def user_params
-      params.require(:user).permit(:role_id, :site_id, :email, :password, :password_confirmation, :avatar, :remove_avatar, :role_id, :actived)
+      params.require(:user).permit(:role_id, :email, :actived, :avatar, :remove_avatar)
     end
 end
