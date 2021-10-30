@@ -72,11 +72,16 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    user = find_or_initialize_by(email: auth['info'][:email])
-    user.confirmed_at = Time.now              unless user.confirmed_at
-    user.password     = Devise.friendly_token unless user.password
-    user.identities.build(provider: auth['provider'], token: auth['uid'])
-    user.save
+    identity = Identity.where(provider: auth['provider'], token: auth['uid']).first
+    user = identity.try(:user) || User.find_or_initialize_by(email: auth["info"][:email])
+
+    unless user.persisted?
+      user.password = Devise.friendly_token
+      user.confirmed_at = Time.now
+      user.save
+      user.identities.create(provider: auth['provider'], token: auth['uid'])
+    end
+
     user
   end
 
