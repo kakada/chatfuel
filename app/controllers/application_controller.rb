@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
   before_action :set_raven_context
 
   private
+
+    def redirect_to_guisso
+      redirect_to user_instedd_omniauth_authorize_path(signup: true, origin: request.url, user: { email: 'radin@instedd.org' }), status: :found
+    end
+
     def user_not_authorized
       flash[:alert] = t("not_authorized")
       redirect_to(request.referrer || dashboard_path)

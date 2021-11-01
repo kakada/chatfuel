@@ -43,6 +43,18 @@ RSpec.describe User, type: :model do
   it { is_expected.to belong_to(:site).optional }
   it { is_expected.to belong_to(:role).optional }
 
+  describe "invitation" do
+    let(:user) { build(:user, email: "user@example.com") }
+
+    it "invites user by email" do
+      allow(user).to receive(:accessable?).and_return(true)
+
+      expect {
+        user.save
+      }.to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
+  end
+
   describe ".from_omniauth" do
     include_context "shared omniauth"
 
