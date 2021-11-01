@@ -3,6 +3,6 @@ smtp_settings:
   address: "smtp.gmail.com"
   port: "587"
   user_name: <%= ENV['SETTINGS__SMTP__USER_NAME__DEV'] %>
-  password: <%= ENV['SETTINGS__SMTP__PASSWORD__DEV'] %>
+  password: "<%= ENV['SETTINGS__SMTP__PASSWORD__DEV'] %>"
   authentication: "plain"
   enable_starttls_auto: "true"
