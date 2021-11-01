@@ -26,6 +26,17 @@ GIT
   specs:
     pumi (0.5.0)
 
+GIT
+  remote: https://github.com/rails/activerecord-session_store.git
+  revision: 0fb99d2fcb798c4f9d8ca741a9e4d8a86ba405e0
+  specs:
+    activerecord-session_store (2.0.0)
+      actionpack (>= 5.2.4.1)
+      activerecord (>= 5.2.4.1)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 2.0.8, < 3)
+      railties (>= 5.2.4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -591,6 +602,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   active_storage_validations (~> 0.8.7)
+  activerecord-session_store!
   alto_guisso!
   alto_guisso_rails!
   annotate (~> 3.1.0)
