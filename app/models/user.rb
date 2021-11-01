@@ -85,6 +85,10 @@ class User < ApplicationRecord
     user
   end
 
+  def invite_later
+    UserInvitationJob.perform_later(id)
+  end
+
   def self.filter(params = {})
     scope = all
     scope = scope.where('email LIKE ?', "%#{params[:keyword].downcase}%") if params[:keyword].present?
