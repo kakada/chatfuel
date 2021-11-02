@@ -16,6 +16,10 @@ window.hljs = require("highlight.js");
 window._ = require("underscore");
 require("cookieconsent/build/cookieconsent.min");
 
+// https://fontawesome.com/v5.10/how-to-use/on-the-web/other-topics/security
+require("@fortawesome/fontawesome-free");
+FontAwesome.config.autoAddCss = false;
+
 require("application/pumi");
 window._ = require("underscore");
 require("./quill-editor.js");
