@@ -171,13 +171,13 @@ OWSO.DashboardShow = (() => {
   }
 
   function loading(spin) {
+    spin.css("background-color", "rgba(0,0,0,0.3)");
     spin.removeClass("d-none");
-    spin.next().css({ opacity: 0.3 });
   }
 
   function loaded(spin) {
+    spin.css("background-color", "rgba(0,0,0,1)");
     spin.addClass("d-none");
-    spin.next().css({ opacity: 1 });
   }
 
   function onLoadPopup() {
