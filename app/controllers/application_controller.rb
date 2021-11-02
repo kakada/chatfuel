@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   private
 
     def redirect_to_guisso
-      redirect_to user_instedd_omniauth_authorize_path(signup: true, origin: request.url, user: { email: 'radin@instedd.org' }), status: :found
+      redirect_to user_instedd_omniauth_authorize_path(signup: true, origin: request.url), status: :found
     end
 
     def user_not_authorized
