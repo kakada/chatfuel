@@ -10,9 +10,6 @@
     = favicon_link_tag
     = google_site_verification_meta_tag
     = analytics_init if Setting.analytics_valid?
-    -# https://fontawesome.com/v5.15/how-to-use/on-the-web/other-topics/security
-    %script{"data-auto-add-css" => "false", :src => "https://use.fontawesome.com/releases/v5.15.4/js/all.js"}
-    %link{:href => "https://use.fontawesome.com/releases/v5.15.4/css/svg-with-js.css", :rel => "stylesheet"}/
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body{ id: css_class_name, style: 'overflow-y: scroll' }
