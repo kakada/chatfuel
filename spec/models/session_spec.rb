@@ -93,7 +93,7 @@ RSpec.describe Session, type: :model do
         end
       end
 
-      context "when status incomplete" do
+      context "when the last session has incomplete status" do
         it "cannot clone" do
           expect {
             described_class.create_or_return('Messenger', session_id)
