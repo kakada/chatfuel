@@ -49,7 +49,8 @@ class Session < ApplicationRecord
   after_create_commit :completed!, if: :ivr?
 
   def self.create_or_return(platform_name, session_id)
-    session = find_or_initialize_by(platform_name: platform_name, session_id: session_id, source_id: session_id)
+    sessions = order(engaged_at: :desc)
+    session = sessions.find_or_initialize_by(platform_name: platform_name, session_id: session_id, source_id: session_id)
 
     return session.clone if session.completed?
 
