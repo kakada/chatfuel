@@ -65,34 +65,46 @@ RSpec.describe Session, type: :model do
   end
 
   describe ".create_or_return" do
-    let(:session) { build(:session, :messenger, :incomplete, session_id: 1, source_id: 1) }
+    
+    let(:session_id) { '194105222020' }
 
-    context "existence" do
-      it "create a new session if not exist" do
+    context "when session is empty" do
+      it "create a new session" do
         expect {
-          described_class.create_or_return("Messenger", session.session_id)
+          described_class.create_or_return("Messenger", session_id)
         }.to(change { Session.count })
-      end
-
-      it "returns if already created" do
-        session.save!
-
-        expect do
-          described_class.create_or_return("Messenger", session.session_id)
-        end.not_to(change { Session.count })
       end
     end
 
-    context "completion" do
-      it "clones when starts new session" do
-        old_session = create(:session, :messenger, province_id: '12', district_id: '1234', session_id: 1, source_id: 1)
-        old_session.completed!
+    context "when sessions is present" do
+      let!(:oldest_incomplete) { create(:session, :messenger, :incomplete, session_id: session_id, engaged_at: 3.day.ago) }
+      let!(:completed) { create(:session, :messenger, :completed, session_id: session_id, engaged_at: 2.day.ago) }
+      let!(:latest_incomplete) { create(:session, :messenger, :incomplete, session_id: session_id, engaged_at: 1.day.ago) }
 
-        new_session = described_class.create_or_return("Messenger", old_session.session_id)
-        new_session.reload
+      context "when the last session has completed status" do
+        it "clones when starts new session" do
+          latest_incomplete.completed!
 
-        expect(old_session.province_id).to eq(new_session.province_id)
-        expect(old_session.district_id).to eq(new_session.district_id)
+          new_session = described_class.create_or_return("Messenger", session_id)
+          new_session.reload
+
+          expect(new_session).to be_persisted
+          expect(new_session.id).to be > latest_incomplete.id
+        end
+      end
+
+      context "when the last session has incomplete status" do
+        it "cannot clone" do
+          expect {
+            described_class.create_or_return('Messenger', session_id)
+          }.not_to change { Session.count }
+        end
+
+        it "return old session" do
+          new_session = described_class.create_or_return('Messenger', session_id)
+          
+          expect(new_session).to eq latest_incomplete
+        end
       end
     end
   end
