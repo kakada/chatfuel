@@ -36,48 +36,93 @@ RSpec.describe StepValue, type: :model do
     let(:step_value) { build(:step_value, variable_value: variable_value, variable: variable) }
 
     context "when set_session_district_id" do
-      before do
-        variable_value.raw_value = '0102'
-        variable.mark_as = "district"
+      before { variable_value.raw_value = '0102' }
 
-        step_value.save
+      context "with owso's district_id" do
+        before do 
+          variable.mark_as = "district" 
+          step_value.save
+        end
+
+        it "updates session's district_id" do
+          expect(step_value.session.district_id).to eq("0102")
+          expect(step_value.session.province_id).to eq("01")
+        end
+
+        it "resets sessions's district_id" do
+          variable_value.raw_value = '0202'
+
+          step_value.save
+
+          expect(step_value.session.district_id).to eq "0202"
+          expect(step_value.session.province_id).to eq "02"
+        end
       end
 
-      it "updates session's district_id" do
-        expect(step_value.session.district_id).to eq("0102")
-        expect(step_value.session.province_id).to eq("01")
-      end
+      context "with feedback's district_id" do
+        before do 
+          variable.mark_as = "feedback_district" 
+          step_value.save
+        end
 
-      it "resets sessions's district_id" do
-        variable_value.raw_value = '0202'
+        it "updates session's feedback_district_id" do
+          expect(step_value.session.feedback_district_id).to eq("0102")
+          expect(step_value.session.feedback_province_id).to eq("01")
+        end
 
-        step_value.save
+        it "resets sessions's feedback_district_id" do
+          variable_value.raw_value = '0202'
 
-        expect(step_value.session.district_id).to eq "0202"
-        expect(step_value.session.province_id).to eq "02"
+          step_value.save
+
+          expect(step_value.session.feedback_district_id).to eq "0202"
+          expect(step_value.session.feedback_province_id).to eq "02"
+        end
       end
     end
 
     context "when set_session_province_id" do
-      before do
-        variable_value.raw_value = "01"
-        variable.mark_as = "province"
+      before {  variable_value.raw_value = "01" }
 
-        step_value.save
+      context "with owso's province_id" do
+        before do
+          variable.mark_as = "province"
+          step_value.save
+        end
+        it "updates session's province_id" do
+          expect(step_value.session.district_id).to be_nil
+          expect(step_value.session.province_id).to eq("01")
+        end
+
+        it "resets sessions's province_id" do
+          variable_value.raw_value = "02"
+
+          step_value.save
+
+          expect(step_value.session.district_id).to be_nil
+          expect(step_value.session.province_id).to eq "02"
+        end
       end
 
-      it "updates session's province_id" do
-        expect(step_value.session.district_id).to be_nil
-        expect(step_value.session.province_id).to eq("01")
-      end
+      context "with feedback's province_id" do
+        before do
+          variable.mark_as = "feedback_province"
+          step_value.save
+        end
+        
+        it "updates session's feedback_province_id" do
+          expect(step_value.session.feedback_district_id).to be_nil
+          expect(step_value.session.feedback_province_id).to eq("01")
+        end
 
-      it "resets sessions's province_id" do
-        variable_value.raw_value = "02"
+        it "resets sessions's feedback_province_id" do
+          variable_value.raw_value = "02"
 
-        step_value.save
+          step_value.save
 
-        expect(step_value.session.district_id).to be_nil
-        expect(step_value.session.province_id).to eq "02"
+          expect(step_value.session.feedback_district_id).to be_nil
+          expect(step_value.session.feedback_province_id).to eq "02"
+        end
       end
     end
 

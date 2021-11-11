@@ -1,0 +1,54 @@
+module StepValue::LocationCallbackConcern
+  extend ActiveSupport::Concern
+
+  included do
+    with_options on: [:create, :update] do
+      # owso's location
+      after_commit :set_session_district_id, if: -> { variable_value.district? }
+      after_commit :set_session_province_id, if: -> { variable_value.province? }
+      
+      # feedback's location
+      after_commit :set_session_feedback_district_id, if: -> { variable_value.feedback_district? }
+      after_commit :set_session_feedback_province_id, if: -> { variable_value.feedback_province? }
+    end
+  end
+
+  private
+
+  def update_location
+    return if session.nil?
+    session.update yield
+  end
+
+  def province_id
+    variable_value.raw_value[0, 2]
+  end
+
+  def district_id
+    variable_value.raw_value[0, 4]
+  end
+
+  def set_session_district_id
+    update_location do
+      { province_id: province_id, district_id: district_id }
+    end
+  end
+
+  def set_session_feedback_district_id
+    update_location do
+      { feedback_province_id: province_id, feedback_district_id: district_id }
+    end
+  end
+
+  def set_session_province_id
+    update_location do
+      { province_id: province_id, district_id: "" }
+    end
+  end
+
+  def set_session_feedback_province_id
+    update_location do
+      { feedback_province_id: province_id, feedback_district_id: "" }
+    end
+  end
+end
