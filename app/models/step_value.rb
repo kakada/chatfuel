@@ -100,13 +100,19 @@ class StepValue < ApplicationRecord
     def set_session_district_id
       return if session.nil?
 
-      session.update(district_id: variable_value.raw_value[0..3])
+      session.update(
+        province_id: variable_value.raw_value[0, 2],
+        district_id: variable_value.raw_value[0, 4],
+      )
     end
 
     def set_session_province_id
       return if session.nil?
 
-      session.update(province_id: variable_value.raw_value[0,2])
+      session.update!(
+        province_id: variable_value.raw_value[0, 2],
+        district_id: ""
+      )
     end
 
     def set_session_gender

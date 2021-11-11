@@ -36,13 +36,48 @@ RSpec.describe StepValue, type: :model do
     let(:step_value) { build(:step_value, variable_value: variable_value, variable: variable) }
 
     context "when set_session_district_id" do
-      it "return district_id" do
+      before do
         variable_value.raw_value = '0102'
         variable.mark_as = "district"
 
         step_value.save
+      end
 
-        expect(step_value.session.district_id).to eq('0102')
+      it "updates session's district_id" do
+        expect(step_value.session.district_id).to eq("0102")
+        expect(step_value.session.province_id).to eq("01")
+      end
+
+      it "resets sessions's district_id" do
+        variable_value.raw_value = '0202'
+
+        step_value.save
+
+        expect(step_value.session.district_id).to eq "0202"
+        expect(step_value.session.province_id).to eq "02"
+      end
+    end
+
+    context "when set_session_province_id" do
+      before do
+        variable_value.raw_value = "01"
+        variable.mark_as = "province"
+
+        step_value.save
+      end
+
+      it "updates session's province_id" do
+        expect(step_value.session.district_id).to be_nil
+        expect(step_value.session.province_id).to eq("01")
+      end
+
+      it "resets sessions's province_id" do
+        variable_value.raw_value = "02"
+
+        step_value.save
+
+        expect(step_value.session.district_id).to be_nil
+        expect(step_value.session.province_id).to eq "02"
       end
     end
 
