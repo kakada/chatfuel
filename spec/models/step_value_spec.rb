@@ -33,7 +33,8 @@ RSpec.describe StepValue, type: :model do
   describe '.after_create' do
     let(:variable) { build(:variable) }
     let(:variable_value) { build(:variable_value, variable: variable) }
-    let(:step_value) { build(:step_value, variable_value: variable_value, variable: variable) }
+    let(:session) { build(:session, province_id: "01", district_id: "0101", feedback_province_id: "01", feedback_district_id: "0101") }
+    let(:step_value) { build(:step_value, variable_value: variable_value, variable: variable, session: session) }
 
     context "when set_session_district_id" do
       before { variable_value.raw_value = '0102' }
@@ -45,8 +46,8 @@ RSpec.describe StepValue, type: :model do
         end
 
         it "updates session's district_id" do
-          expect(step_value.session.district_id).to eq("0102")
-          expect(step_value.session.province_id).to eq("01")
+          expect(session.district_id).to eq("0102")
+          expect(session.province_id).to eq("01")
         end
 
         it "resets sessions's district_id" do
@@ -54,8 +55,8 @@ RSpec.describe StepValue, type: :model do
 
           step_value.save
 
-          expect(step_value.session.district_id).to eq "0202"
-          expect(step_value.session.province_id).to eq "02"
+          expect(session.district_id).to eq "0202"
+          expect(session.province_id).to eq "02"
         end
       end
 
@@ -66,8 +67,8 @@ RSpec.describe StepValue, type: :model do
         end
 
         it "updates session's feedback_district_id" do
-          expect(step_value.session.feedback_district_id).to eq("0102")
-          expect(step_value.session.feedback_province_id).to eq("01")
+          expect(session.feedback_district_id).to eq("0102")
+          expect(session.feedback_province_id).to eq("01")
         end
 
         it "resets sessions's feedback_district_id" do
@@ -75,23 +76,24 @@ RSpec.describe StepValue, type: :model do
 
           step_value.save
 
-          expect(step_value.session.feedback_district_id).to eq "0202"
-          expect(step_value.session.feedback_province_id).to eq "02"
+          expect(session.feedback_district_id).to eq "0202"
+          expect(session.feedback_province_id).to eq "02"
         end
       end
     end
 
     context "when set_session_province_id" do
-      before {  variable_value.raw_value = "01" }
+      before { variable_value.raw_value = "01" }
 
       context "with owso's province_id" do
         before do
           variable.mark_as = "province"
           step_value.save
         end
+
         it "updates session's province_id" do
-          expect(step_value.session.district_id).to be_nil
-          expect(step_value.session.province_id).to eq("01")
+          expect(session.district_id).to eq "0101"
+          expect(session.province_id).to eq "01"
         end
 
         it "resets sessions's province_id" do
@@ -99,8 +101,8 @@ RSpec.describe StepValue, type: :model do
 
           step_value.save
 
-          expect(step_value.session.district_id).to be_nil
-          expect(step_value.session.province_id).to eq "02"
+          expect(session.district_id).to be_nil
+          expect(session.province_id).to eq "02"
         end
       end
 
@@ -111,8 +113,8 @@ RSpec.describe StepValue, type: :model do
         end
         
         it "updates session's feedback_province_id" do
-          expect(step_value.session.feedback_district_id).to be_nil
-          expect(step_value.session.feedback_province_id).to eq("01")
+          expect(session.feedback_district_id).to eq "0101"
+          expect(session.feedback_province_id).to eq "01"
         end
 
         it "resets sessions's feedback_province_id" do
@@ -120,8 +122,8 @@ RSpec.describe StepValue, type: :model do
 
           step_value.save
 
-          expect(step_value.session.feedback_district_id).to be_nil
-          expect(step_value.session.feedback_province_id).to eq "02"
+          expect(session.feedback_district_id).to be_nil
+          expect(session.feedback_province_id).to eq "02"
         end
       end
     end
@@ -133,7 +135,7 @@ RSpec.describe StepValue, type: :model do
 
         step_value.save
 
-        expect(step_value.session.gender).to eq('male')
+        expect(session.gender).to eq('male')
       end
     end
   end
