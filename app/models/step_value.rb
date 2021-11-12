@@ -32,6 +32,7 @@ class StepValue < ApplicationRecord
   include StepValue::FilterableConcern
   include StepValue::AggregatableConcern
   include StepValue::LoggableConcern
+  include StepValue::LocationCallbackConcern
 
   has_paper_trail
 
@@ -46,10 +47,7 @@ class StepValue < ApplicationRecord
   delegate :site_setting, to: :site, prefix: false, allow_nil: true
 
   after_create :push_notification, if: -> { variable_value.feedback? }
-  after_commit :set_session_district_id,  on: [:create, :update],
-                                          if: -> { variable_value.district? }
-  after_commit :set_session_province_id,  on: [:create, :update],
-                                          if: -> { variable_value.province? }
+  
   after_commit :set_session_gender, on: [:create, :update], if: -> { variable.gender? }
   after_save :engage_session
 
@@ -95,18 +93,6 @@ class StepValue < ApplicationRecord
       return unless (site_setting.present? && site_setting.message_frequency == 'immediately')
 
       AlertNotificationJob.perform_later(id)
-    end
-
-    def set_session_district_id
-      return if session.nil?
-
-      session.update(district_id: variable_value.raw_value[0..3])
-    end
-
-    def set_session_province_id
-      return if session.nil?
-
-      session.update(province_id: variable_value.raw_value[0,2])
     end
 
     def set_session_gender
