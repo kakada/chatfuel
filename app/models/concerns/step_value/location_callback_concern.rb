@@ -24,7 +24,7 @@ module StepValue::LocationCallbackConcern
 
   def set_session_province_id
     update_location do
-      { province_id: province_id, district_id: province_id == session.province_id ? session.district_id : "" }
+      { province_id: province_id, district_id: province_id == session.province_id ? session.district_id : nil }
     end
   end
 
@@ -37,7 +37,7 @@ module StepValue::LocationCallbackConcern
 
   def set_session_feedback_province_id
     update_location do
-      { feedback_province_id: province_id, feedback_district_id: feedback_province_id == session.feedback_province_id ? session.feedback_district_id : "" }
+      { feedback_province_id: province_id, feedback_district_id: feedback_province_id == session.feedback_province_id ? session.feedback_district_id : nil }
     end
   end
 
