@@ -11,7 +11,14 @@ class DistrictsController < Pumi::DistrictsController
     end
 
     def district_codes
-      Pumi::District.where(province_id: params[:province_id]).map &:id
+      all_district_codes = Pumi::District.where(province_id: params[:province_id]).map &:id
+      all_district_codes - pilot_other_districts
+    end
+
+    def pilot_other_districts
+      Pumi::Province.pilots.map do |province|
+        "#{province.id}#{VariableValue::OTHER_CODE_SUFFIX}"
+      end
     end
 
     def district_codes_without_owsu
