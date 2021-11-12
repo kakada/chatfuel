@@ -27,6 +27,7 @@ class VariableValue < ApplicationRecord
   enum value_status: { like: "0", acceptable: "1", dislike: "2" }
   USER_FEEDBACK = 'user_feedback'
   OWSU_CODE_SUFFIX = '99'
+  OTHER_CODE_SUFFIX = '00'
 
   # associations
   belongs_to :variable
