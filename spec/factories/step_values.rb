@@ -34,5 +34,24 @@ FactoryBot.define do
     message
     session
     variable
+
+    trait :district_variable do
+      association :variable, name: 'district', mark_as: 'district'
+    end
+
+    trait :district_value do
+      association :variable_value, raw_value: "0101"
+    end
+
+    trait :province_variable do
+      association :variable, name: 'province', mark_as: 'province'
+    end
+
+    trait :province_value do
+      association :variable_value, raw_value: "01"
+    end
+
+    factory :district_step, traits: [:district_variable, :district_value]
+    factory :province_step, traits: [:province_variable, :province_value]
   end
 end

@@ -85,6 +85,28 @@ RSpec.describe StepValue, type: :model do
     context "when set_session_province_id" do
       before { variable_value.raw_value = "01" }
 
+      context "when re-select different province" do
+        let(:district_step) { build(:district_step) }
+        let(:province_step) { build(:province_step) }
+        let(:new_province) { build(:variable_value, variable: province_step.variable) }
+
+        before do
+          session.step_values = [district_step, province_step]
+        end
+
+        it "contains district and province step" do
+          expect(session.step_values).to eq [district_step, province_step]
+        end
+
+        it "removes district step" do
+          province_step.update(variable_value: new_province)
+
+          session.save
+
+          expect(session.reload.step_values).to eq [province_step]
+        end
+      end
+
       context "with owso's province_id" do
         before do
           variable.mark_as = "province"
