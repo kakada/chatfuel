@@ -136,6 +136,7 @@ class Session < ApplicationRecord
       return unless Variable.district
 
       step_values.find_by(variable: Variable.district).destroy
+      step_values.update_province!(province_id)
     end
 
     def self.dump_codes
