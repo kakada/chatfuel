@@ -98,8 +98,6 @@ RSpec.describe StepValue, type: :model do
           expect(session.step_values).to eq [district_step, province_step]
         end
 
-        # TODO feedback
-
         describe "update location steps" do
           before do
             province_step.update(variable_value: new_province)
@@ -112,6 +110,35 @@ RSpec.describe StepValue, type: :model do
 
           it "updates province step" do
             expect(session.reload.step_values[0].variable_value).to eq new_province
+          end
+        end
+      end
+
+      context "when re-select different feedback province" do
+        let(:feedback_district_step) { build(:feedback_district_step) }
+        let(:feedback_province_step) { build(:feedback_province_step) }
+        let(:new_feedback_province) { build(:variable_value, variable: feedback_province_step.variable) }
+
+        before do
+          session.step_values = [feedback_district_step, feedback_province_step]
+        end
+
+        it "contains feedback district and feedback province step" do
+          expect(session.step_values).to eq [feedback_district_step, feedback_province_step]
+        end
+
+        describe "update feedback location steps" do
+          before do
+            feedback_province_step.update(variable_value: new_feedback_province)
+            session.save
+          end
+
+          it "removes feedback district step" do
+            expect(session.reload.step_values).to eq [feedback_province_step]
+          end
+
+          it "updates feedback province step" do
+            expect(session.reload.step_values[0].variable_value).to eq new_feedback_province
           end
         end
       end

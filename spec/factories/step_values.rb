@@ -39,6 +39,10 @@ FactoryBot.define do
       association :variable, name: 'district', mark_as: 'district'
     end
 
+    trait :feedback_district_variable do
+      association :variable, name: 'feedback_district', mark_as: 'feedback_district'
+    end
+
     trait :district_value do
       association :variable_value, raw_value: "0101"
     end
@@ -47,11 +51,17 @@ FactoryBot.define do
       association :variable, name: 'province', mark_as: 'province'
     end
 
+    trait :feedback_province_variable do
+      association :variable, name: 'feedback_province', mark_as: 'feedback_province'
+    end
+
     trait :province_value do
       association :variable_value, raw_value: "01"
     end
 
     factory :district_step, traits: [:district_variable, :district_value]
     factory :province_step, traits: [:province_variable, :province_value]
+    factory :feedback_district_step, traits: [:feedback_district_variable, :district_value]
+    factory :feedback_province_step, traits: [:feedback_province_variable, :province_value]
   end
 end

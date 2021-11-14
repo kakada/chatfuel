@@ -15,6 +15,10 @@ module StepValue::LocationCallbackConcern
     def self.destroy_district_id
       destroy_by( variable: Variable.district )
     end
+
+    def self.destroy_feedback_district_id
+      destroy_by( variable: Variable.feedback_district )
+    end
   end
 
   private

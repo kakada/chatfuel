@@ -48,6 +48,7 @@ class Session < ApplicationRecord
 
   after_create_commit :completed!, if: :ivr?
   before_update :update_location_step, if: :district_id_changed_to_nil?
+  before_update :update_feedback_location_step, if: :feedback_district_id_changed_to_nil?
 
   def self.create_or_return(platform_name, session_id)
     sessions = order(engaged_at: :desc)
@@ -136,6 +137,15 @@ class Session < ApplicationRecord
 
     def district_id_changed_to_nil?
       district_id_changed? && district_id.nil?
+    end
+
+    def update_feedback_location_step
+      step_values.destroy_feedback_district_id
+      step_values.update_feedback_province_id!(feedback_province_id)
+    end
+
+    def feedback_district_id_changed_to_nil?
+      feedback_district_id_changed? && feedback_district_id.nil?
     end
 
     def self.dump_codes
