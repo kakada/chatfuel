@@ -80,7 +80,8 @@ class Session < ApplicationRecord
   def last_completed(time = created_at)
     Session.completed.where(platform_name: platform_name, session_id: session_id)\
                       .where("last_interaction_at <= ?", time)\
-                      .find_by("province_id IS NOT NULL AND district_id IS NOT NULL AND gender != ''")
+                      .order(engaged_at: :desc)
+                      .find_by("province_id IS NOT NULL AND gender != ''")
   end
   alias_method :last_completed_before, :last_completed
 
