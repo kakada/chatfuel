@@ -99,14 +99,20 @@ RSpec.describe StepValue, type: :model do
         end
 
         # TODO feedback
-        it "removes district step" do
-          province_step.update(variable_value: new_province)
 
-          session.save
+        describe "update location steps" do
+          before do
+            province_step.update(variable_value: new_province)
+            session.save
+          end
 
-          step_values = session.reload.step_values
-          expect(step_values).to eq [province_step]
-          expect(step_values[0].variable_value).to eq new_province
+          it "removes district step" do
+            expect(session.reload.step_values).to eq [province_step]
+          end
+
+          it "updates province step" do
+            expect(session.reload.step_values[0].variable_value).to eq new_province
+          end
         end
       end
 
