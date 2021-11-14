@@ -47,7 +47,7 @@ class Session < ApplicationRecord
   scope :with_genders, -> { where.not(gender: [nil, "", "null"]) }
 
   after_create_commit :completed!, if: :ivr?
-  before_update :destroy_destrict_step, if: :district_id_changed_to_nil?
+  before_update :update_location_step, if: :district_id_changed_to_nil?
 
   def self.create_or_return(platform_name, session_id)
     sessions = order(engaged_at: :desc)
@@ -128,15 +128,14 @@ class Session < ApplicationRecord
   end
 
   private
-    def district_id_changed_to_nil?
-      district_id_changed? && district_id.nil?
+
+    def update_location_step
+      step_values.destroy_district_id
+      step_values.update_province_id!(province_id)
     end
 
-    def destroy_destrict_step
-      return unless Variable.district
-
-      step_values.find_by(variable: Variable.district).destroy
-      step_values.update_province!(province_id)
+    def district_id_changed_to_nil?
+      district_id_changed? && district_id.nil?
     end
 
     def self.dump_codes

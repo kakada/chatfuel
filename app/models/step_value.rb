@@ -84,7 +84,7 @@ class StepValue < ApplicationRecord
     exists? variable_value: VariableValue.find_by(raw_value: 'owsu')
   end
 
-  def self.update_province!(province_id)
+  def self.update_province_id!(province_id)
     province = Variable.province
     if province.present?
       step = find_by(variable: province)
