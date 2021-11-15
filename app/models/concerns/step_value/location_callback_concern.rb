@@ -11,6 +11,14 @@ module StepValue::LocationCallbackConcern
       after_commit :set_session_feedback_district_id, if: -> { variable_value.feedback_district? }
       after_commit :set_session_feedback_province_id, if: -> { variable_value.feedback_province? }
     end
+
+    def self.destroy_district_id
+      destroy_by( variable: Variable.district )
+    end
+
+    def self.destroy_feedback_district_id
+      destroy_by( variable: Variable.feedback_district )
+    end
   end
 
   private

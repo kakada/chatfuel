@@ -85,6 +85,64 @@ RSpec.describe StepValue, type: :model do
     context "when set_session_province_id" do
       before { variable_value.raw_value = "01" }
 
+      context "when re-select different province" do
+        let(:district_step) { build(:district_step) }
+        let(:province_step) { build(:province_step) }
+        let(:new_province) { build(:variable_value, variable: province_step.variable) }
+
+        before do
+          session.step_values = [district_step, province_step]
+        end
+
+        it "contains district and province step" do
+          expect(session.step_values).to eq [district_step, province_step]
+        end
+
+        describe "update location steps" do
+          before do
+            province_step.update(variable_value: new_province)
+            session.save
+          end
+
+          it "removes district step" do
+            expect(session.reload.step_values).to eq [province_step]
+          end
+
+          it "updates province step" do
+            expect(session.reload.step_values[0].variable_value).to eq new_province
+          end
+        end
+      end
+
+      context "when re-select different feedback province" do
+        let(:feedback_district_step) { build(:feedback_district_step) }
+        let(:feedback_province_step) { build(:feedback_province_step) }
+        let(:new_feedback_province) { build(:variable_value, variable: feedback_province_step.variable) }
+
+        before do
+          session.step_values = [feedback_district_step, feedback_province_step]
+        end
+
+        it "contains feedback district and feedback province step" do
+          expect(session.step_values).to eq [feedback_district_step, feedback_province_step]
+        end
+
+        describe "update feedback location steps" do
+          before do
+            feedback_province_step.update(variable_value: new_feedback_province)
+            session.save
+          end
+
+          it "removes feedback district step" do
+            expect(session.reload.step_values).to eq [feedback_province_step]
+          end
+
+          it "updates feedback province step" do
+            expect(session.reload.step_values[0].variable_value).to eq new_feedback_province
+          end
+        end
+      end
+
       context "with owso's province_id" do
         before do
           variable.mark_as = "province"

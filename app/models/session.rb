@@ -47,6 +47,8 @@ class Session < ApplicationRecord
   scope :with_genders, -> { where.not(gender: [nil, "", "null"]) }
 
   after_create_commit :completed!, if: :ivr?
+  before_update :update_location_step, if: :district_id_changed_to_nil?
+  before_update :update_feedback_location_step, if: :feedback_district_id_changed_to_nil?
 
   def self.create_or_return(platform_name, session_id)
     sessions = order(engaged_at: :desc)
@@ -78,7 +80,8 @@ class Session < ApplicationRecord
   def last_completed(time = created_at)
     Session.completed.where(platform_name: platform_name, session_id: session_id)\
                       .where("last_interaction_at <= ?", time)\
-                      .find_by("province_id IS NOT NULL AND district_id IS NOT NULL AND gender != ''")
+                      .order(engaged_at: :desc)
+                      .find_by("province_id IS NOT NULL AND gender != ''")
   end
   alias_method :last_completed_before, :last_completed
 
@@ -127,6 +130,24 @@ class Session < ApplicationRecord
   end
 
   private
+
+    def update_location_step
+      step_values.destroy_district_id
+      step_values.update_province_id!(province_id)
+    end
+
+    def district_id_changed_to_nil?
+      district_id_changed? && district_id.nil?
+    end
+
+    def update_feedback_location_step
+      step_values.destroy_feedback_district_id
+      step_values.update_feedback_province_id!(feedback_province_id)
+    end
+
+    def feedback_district_id_changed_to_nil?
+      feedback_district_id_changed? && feedback_district_id.nil?
+    end
 
     def self.dump_codes
       ::Filters::LocationFilter.dump_codes

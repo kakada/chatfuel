@@ -82,14 +82,26 @@ RSpec.describe Session, type: :model do
       let!(:latest_incomplete) { create(:session, :messenger, :incomplete, session_id: session_id, engaged_at: 1.day.ago) }
 
       context "when the last session has completed status" do
-        it "clones when starts new session" do
-          latest_incomplete.completed!
+        before { latest_incomplete.completed! }
 
+        it "clones when starts new session" do
           new_session = described_class.create_or_return("Messenger", session_id)
           new_session.reload
 
           expect(new_session).to be_persisted
           expect(new_session.id).to be > latest_incomplete.id
+        end
+
+        context "when district_id is nil, re-select province_id" do
+          it "clones new session" do
+            latest_incomplete.update(district_id: nil)
+
+            new_session = described_class.create_or_return("Messenger", session_id)
+
+            expect(new_session).to be_persisted
+            expect(new_session.district_id).to be_nil
+            expect(new_session.province_id).to eq latest_incomplete.province_id
+          end
         end
       end
 
