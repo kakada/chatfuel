@@ -1,0 +1,31 @@
+km:
+  devise:
+    failure:
+      invited: "អ្នកមានការអញ្ជើញដែលមិនទាន់បញ្ជាក់ សូមទទួលយកវាដើម្បីបញ្ចប់ការបង្កើតគណនីរបស់អ្នក។"
+    invitations:
+      send_instructions: "អ៊ីមែលអញ្ជើញត្រូវបានផ្ញើទៅ %{email}."
+      invitation_token_invalid: "Token ដែលផ្តល់ឱ្យមិនត្រឹមត្រូវទេ!"
+      updated: "ពាក្យសម្ងាត់របស់អ្នកត្រូវបានកំណត់ដោយជោគជ័យ។ ឥឡូវនេះអ្នកបានចូលហើយ។"
+      updated_not_active: "ពាក្យសម្ងាត់របស់អ្នកត្រូវបានកំណត់ដោយជោគជ័យ"
+      no_invitations_remaining: "គ្មានការអញ្ជើញនៅសល់ទេ"
+      invitation_removed: "ការអញ្ជើញរបស់អ្នកត្រូវបានដកចេញ"
+      new:
+        header: "ផ្ញើការអញ្ជើញ"
+        submit_button: "ផ្ញើការអញ្ជើញ"
+      edit:
+        header: "កំណត់ពាក្យសម្ងាត់របស់អ្នក"
+        submit_button: "កំណត់ពាក្យសម្ងាត់របស់ខ្ញុំ"
+    mailer:
+      invitation_instructions:
+        subject: "ការណែនាំអំពីការអញ្ជើញ"
+        hello: "ជំរាបសួរ %{email}"
+        someone_invited_you: "អ្នកត្រូវបានអញ្ជើញទៅកាន់ %{url}, អ្នកអាចទទួលយកវាតាមរយៈតំណភ្ជាប់ខាងក្រោម។"
+        accept: "ទទួលយកការអញ្ជើញ"
+        accept_until: "ការអញ្ជើញនេះនឹងផុតកំណត់នៅក្នុង %{due_date}."
+        ignore: "ប្រសិនបើអ្នកមិនចង់ទទួលយកការអញ្ជើញទេ សូមរំលងអ៊ីមែលនេះ។ គណនីរបស់អ្នកនឹងមិនត្រូវបានបង្កើតទេ រហូតទាល់តែអ្នកចូលទៅកាន់តំណខាងលើ ហើយកំណត់ពាក្យសម្ងាត់របស់អ្នក។"
+  time:
+    formats:
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"

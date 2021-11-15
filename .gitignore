@@ -58,3 +58,9 @@ IDEA/
 
 pdfs/*.pdf
 yarn.lock
+
+dev.sh
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml

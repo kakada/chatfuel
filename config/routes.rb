@@ -4,7 +4,7 @@ require "sidekiq/web"
 require_relative "whitelist"
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks", invitations: 'users/invitations' }
   guisso_for :user
 
   authenticate :user, ->(user) { user.system_admin? } do

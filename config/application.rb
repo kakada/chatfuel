@@ -67,3 +67,6 @@ Raven.configure do |config|
   config.dsn = ENV["SENTRY_DSN"]
   config.environments = ["staging", "production"]
 end
+
+ActiveRecord::SessionStore::Session.table_name = 'active_record_sessions'
+ActiveRecord::SessionStore::Session.serializer = :json

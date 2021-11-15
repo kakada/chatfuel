@@ -3,7 +3,9 @@
 .card.shadow.mb-4
   .card-body
     .mb-4
-      = render_component(SearchFormComponent.new(placeholder: t('users.type_email'), url: users_path))
+      = render_component(SearchFormComponent.new(placeholder: t('users.type_email'), url: users_path)) do |c|
+        = c.with(:action) do
+          = link_to t("users.new"), new_user_path, class: "btn btn-primary"
 
     .total-info.mb-2
       = t("paginate_info_html", name: t("users.title"), items_range: pagy_range, collection_count: pagy_count)

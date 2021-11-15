@@ -3,9 +3,19 @@
 = simple_form_for @user do |f|
   .row
     .col-md-4
-      -# #role-component
-      = f.input :role, as: :select, collection: Role.all, selected: @user.role_id, input_html: { name: "user[role_id]" }
-      = f.label :status, class: "mb-0 mt-3"
-      = f.input :status, as: :boolean, label: t(".enable"), input_html: { checked: @user.enable? }, wrapper_html: { class: "mb-3" }
-      = f.input :email, readonly: true
-  = f.submit class: "btn btn-primary"
+      = f.input :email
+      .form-group
+        %label=t('users.role')
+
+        .block-option
+          - @roles.each do |role|
+            = render_component(SelectComponent.new(value: role.id, name: "user[role_id]")) do
+              %i.fa{ class: get_role(role.name)[:icon] }
+              %p.status-text.m-0= t("roles.#{role.name}")
+              %i.fa.fa-check-circle.fa-lg.check-sign
+              
+      = f.input_field :actived, class: 'toggle-control'
+      %span= t('users.active_user')
+
+  .my-3
+    = f.submit class: "btn btn-primary"

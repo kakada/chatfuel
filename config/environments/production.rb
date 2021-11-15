@@ -64,6 +64,12 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  if Settings.smtp_settings.present?
+    config.action_mailer.default_url_options = { host: Settings.host }
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = Settings.smtp_settings.to_h
+  end
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
