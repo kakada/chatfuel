@@ -1,6 +1,7 @@
 class WelcomesController < PublicAccessController
   include Filterable
   before_action QueryFilter,  except: :filter
+  before_action :track_ahoy_visit, only: :index, if: :html?
 
   def index
     respond_to do |format|
@@ -26,6 +27,11 @@ class WelcomesController < PublicAccessController
   end
 
   private
+
+    def html?
+      request.format.html?
+    end
+
     def set_active_tab_nav
       @active_tab = params[:q][:active_tab] if params[:q]
     end
