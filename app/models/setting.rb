@@ -82,4 +82,8 @@ class Setting < RailsSettings::Base
   def self.default_date_format
     ENV['DEFAULT_DATE_FORMAT'] || '%d/%m/%Y'
   end
+
+  def self.ahoy_whitelist_cookie_domains
+    ENV['AHOY_WHITELIST_COOKIE_DOMAINS'].to_s.split(",")
+  end
 end
