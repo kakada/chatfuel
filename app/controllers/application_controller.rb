@@ -7,16 +7,12 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   before_action :set_raven_context
-  after_action :track_action
+  skip_before_action :track_ahoy_visit
 
   private
 
     def public_dashboard?
       ENV['DASHBOARD_VIEW'].to_s.downcase == 'public'
-    end
-
-    def track_action
-      ahoy.track "track visitor", request.path_parameters
     end
     
     def set_raven_context
