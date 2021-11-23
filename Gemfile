@@ -47,7 +47,8 @@ gem "strip_attributes", "~> 1.11.0"
 gem 'lightbox2-rails', "~> 2.8.2.1"
 
 # api
-gem 'rack-cors'
+gem 'rack-cors', '~> 1.1.1'
+gem 'rack-attack', '~> 6.5.0'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'oj', '~> 3.10', '>= 3.10.6'
 
