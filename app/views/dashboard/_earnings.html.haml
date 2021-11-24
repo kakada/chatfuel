@@ -11,8 +11,8 @@
     = c.with(:title) { t("dashboard.total_uniq_users") }
     = c.with(:fa_icon) { "fa-user" }
     = c.with(:desc) do
-      %ul.list-inline.m-0
-        - if Variable.gender.present?
+      - if Variable.gender.present? & @query.unique_by_genders.present?
+        %ul.list-inline.m-0
           = render partial: "dashboard/unique_visitors_group_by_genders", collection: @query.unique_by_genders, as: :session
 
   - most_req = @query.most_requested_service
