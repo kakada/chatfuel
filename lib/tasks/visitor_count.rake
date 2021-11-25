@@ -2,10 +2,10 @@ namespace :visitor_count do
   desc "rails 'visitor_count:recalculate[from{DD/MM/YYYY}, duration{in minute}]'"
   task :recalculate, [:from, :duration] => :environment do |task, args|
     puts("Start date is required") || exit if args[:from].blank?
-    puts("Duration is required") || exit if args[:duration].blank? || args[:duration].to_i > 0
+    puts("Duration is required") || exit if args[:duration].blank? || args[:duration].to_i <= 0
 
     visited = Ahoy::Visit.from(args[:from].to_date)
-    duplicate_ids = visited.duplicate_ids_within_period(duration: args[:duration])
+    duplicate_ids = visited.duplicate_ids_within_period(args[:duration])
 
     puts("No duplicate visits found") || exit if duplicate_ids.size.zero?
 
