@@ -35,7 +35,7 @@ RSpec.describe Ahoy::Visit, type: :model do
         let(:duplicate_ids_within_20_minutes) do
           described_class.\
             from(DateTime.current.beginning_of_month).\
-            duplicate_ids_within_period(duration: 20)
+            duplicate_ids_within_period(20)
         end
 
         it ".clear" do
@@ -58,7 +58,7 @@ RSpec.describe Ahoy::Visit, type: :model do
         let(:duplicate_ids_within_30_minutes) do
           described_class.\
             from(DateTime.current.beginning_of_month).\
-            duplicate_ids_within_period(duration: 30)
+            duplicate_ids_within_period(30)
         end
 
         it ".clear" do

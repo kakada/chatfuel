@@ -21,12 +21,14 @@ class Ahoy::Visit < ApplicationRecord
     scope.order(:ip, :started_at)
   end
 
-  def self.duplicate_ids_within_period(options = {})
+  def self.duplicate_ids_within_period(duration_in_minute = nil)
+    return [] if duration_in_minute.nil?
+
     deleted_ids = []
     started_ip = started_at = nil
     find_each do |visit|
       if started_ip == visit.ip
-        if visit.less_than? started_at + options[:duration].to_i.minutes
+        if visit.less_than? started_at + duration_in_minute.to_i.minutes
           deleted_ids << visit.id 
         else
           started_at = visit.started_at
