@@ -4,6 +4,7 @@ class Ahoy::Visit < ApplicationRecord
   has_many :events, class_name: "Ahoy::Event"
   belongs_to :user, optional: true
 
+  default_scope -> { order(:ip, :started_at) }
   scope :duration, -> (start_date, end_date) { where("DATE(started_at) BETWEEN ? AND ?", start_date, end_date) }
 
   def self.count_with_fragment start_date, end_date
@@ -18,7 +19,7 @@ class Ahoy::Visit < ApplicationRecord
   def self.from(started_at, ips = [])
     scope = where("started_at > ?", started_at)
     scope = where("ip in (?)", ips) if ips.present?
-    scope.order(:ip, :started_at)
+    scope
   end
 
   def self.duplicate_ids_within_period(duration_in_minute = nil)
