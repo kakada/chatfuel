@@ -1,11 +1,10 @@
 namespace :visitor_count do
   desc "rails 'visitor_count:recalculate[from{DD/MM/YYYY}, duration{in minute}]'"
   task :recalculate, [:from, :duration] => :environment do |task, args|
-    raise 'start date required' if args[:from].blank?
-    raise 'duration required' if args[:duration].blank?
+    puts("Start date is required") || exit if args[:from].blank?
+    puts("Duration is required") || exit if args[:duration].blank? || args[:duration].to_i > 0
 
-    # TODO cast datetime
-    visited = Ahoy::Visit.from(args[:from], [])
+    visited = Ahoy::Visit.from(args[:from].to_date, [])
     duplicate_ids = visited.duplicate_ids_within_period(duration: args[:duration])
 
     puts("No duplicate visits found") || exit if duplicate_ids.size.zero?
@@ -26,5 +25,7 @@ namespace :visitor_count do
     else
       puts "Do nothing"
     end
+  rescue ArgumentError => e
+    puts e.message
   end
 end
