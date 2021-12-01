@@ -103,7 +103,7 @@ class Session < ApplicationRecord
     scope = filter(options)
     scope = scope.joins(:step_values)
     scope = scope.where(step_values: { variable: Variable.service_accessed })
-    scope = scope.group_by_period(period, :created_at, format: format)
+    scope = scope.group_by_period(period, :engaged_at, format: format)
     scope.count
   end
 
