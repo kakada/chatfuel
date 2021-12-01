@@ -42,7 +42,7 @@ class FeedbackTrend < Feedback
               .where(step_values: { variable: @variable })\
               .where(feedback_province_id: @query.province_codes)\
               .where(feedback_district_id: @query.district_codes)\
-              .group_by_period(period, :created_at, format: '%b/%y,%Y')\
+              .group_by_period(period, :engaged_at, format: '%b/%y,%Y')\
               .group(:variable_value_id)\
               .count
     end
