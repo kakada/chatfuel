@@ -179,9 +179,9 @@ namespace :session do
         end
       end
 
-    rescue WrongDateFormatError
+    rescue FeedbackSession::WrongDateFormatError
       puts "Invalid date format"
-    rescue InvalidDateError
+    rescue FeedbackSession::InvalidDateError
       puts "to_date must be greater than from_date"
     ensure
       Session.record_timestamps = true

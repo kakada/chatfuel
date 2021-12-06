@@ -59,9 +59,18 @@ FactoryBot.define do
       association :variable_value, raw_value: "01"
     end
 
+    trait :feedback_variable do
+      association :variable, name: 'feedback_rating', mark_as: 'feedback'
+    end
+
+    trait :feedback_value do
+      association :variable_value, raw_value: "1"
+    end
+
     factory :district_step, traits: [:district_variable, :district_value]
     factory :province_step, traits: [:province_variable, :province_value]
     factory :feedback_district_step, traits: [:feedback_district_variable, :district_value]
     factory :feedback_province_step, traits: [:feedback_province_variable, :province_value]
+    factory :feedback_step, traits: [:feedback_variable, :feedback_value]
   end
 end
