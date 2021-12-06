@@ -1,15 +1,15 @@
 class FeedbackSession
   class FeedbackVariableRequiredError < StandardError; end
-  class WrongDateFormatError < StandardError; end
-  class InvalidDateError < StandardError; end
+  class InvalidDateFormatError < StandardError; end
+  class InvalidDateRangeError < StandardError; end
 
-  def self.missing(from_str_date, to_str_date)
-    raise FeedbackVariableRequiredError unless Variable.feedback
+  def self.missing_location(from_str_date, to_str_date)
+    raise FeedbackVariableRequiredError if Variable.feedback.nil?
 
-    from_date = from_str_date.to_date rescue (raise WrongDateFormatError)
-    to_date   = to_str_date.to_date   rescue (raise WrongDateFormatError)
+    from_date = from_str_date.to_date rescue (raise InvalidDateFormatError)
+    to_date   = to_str_date.to_date   rescue (raise InvalidDateFormatError)
 
-    raise InvalidDateError if from_date >= to_date
+    raise InvalidDateRangeError if from_date >= to_date
 
     Session.joins(:step_values)\
           .where("DATE(sessions.engaged_at) >= :from AND 
