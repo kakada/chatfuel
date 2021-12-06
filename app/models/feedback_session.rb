@@ -9,7 +9,7 @@ class FeedbackSession
     from_date = from_str_date.to_date rescue (raise InvalidDateFormatError)
     to_date   = to_str_date.to_date   rescue (raise InvalidDateFormatError)
 
-    raise InvalidDateRangeError if from_date >= to_date
+    raise InvalidDateRangeError if from_date > to_date
 
     Session.joins(:step_values)\
           .where("DATE(sessions.engaged_at) >= :from AND 

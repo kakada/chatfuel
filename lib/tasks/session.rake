@@ -166,7 +166,7 @@ namespace :session do
 
   desc "Migrate missing feedback location"
   task :migrate_missing_feedback_location, [:from_date, :to_date] => :environment do |t, args|
-    missing_feedback_location_sessions = FeedbackSession.missing(args[:from_date], args[:to_date])
+    missing_feedback_location_sessions = FeedbackSession.missing_location(args[:from_date], args[:to_date])
 
     Session.record_timestamps = false
     Session.transaction do
@@ -177,9 +177,9 @@ namespace :session do
         end
       rescue FeedbackSession::FeedbackVariableRequiredError
         puts "Feedback variable is required"
-      rescue FeedbackSession::WrongDateFormatError
+      rescue FeedbackSession::InvalidDateFormatError
         puts "Invalid date format"
-      rescue FeedbackSession::InvalidDateError
+      rescue FeedbackSession::InvalidDateRangeError
         puts "to_date must be greater than from_date"
       ensure
         Session.record_timestamps = true
