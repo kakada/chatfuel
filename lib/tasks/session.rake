@@ -163,4 +163,27 @@ namespace :session do
       Session.record_timestamps = true
     end
   end
+
+  desc "Migrate missing feedback location"
+  task :migrate_missing_feedback_location, [:from_date, :to_date] => :environment do |t, args|
+    missing_feedback_location_sessions = FeedbackSession.missing_location(args[:from_date], args[:to_date])
+
+    Session.record_timestamps = false
+    Session.transaction do
+      missing_feedback_location_sessions.find_each do |session|
+        session.step_values.each do |step|
+          step.save! if step.variable.feedback_province?
+          step.save! if step.variable.feedback_district?
+        end
+      rescue FeedbackSession::FeedbackVariableRequiredError
+        puts "Feedback variable is required"
+      rescue FeedbackSession::InvalidDateFormatError
+        puts "Invalid date format"
+      rescue FeedbackSession::InvalidDateRangeError
+        puts "to_date must be greater than from_date"
+      ensure
+        Session.record_timestamps = true
+      end
+    end
+  end
 end
