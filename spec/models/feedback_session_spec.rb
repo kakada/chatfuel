@@ -9,7 +9,7 @@ RSpec.describe FeedbackSession do
       it "raises when no feedback variable" do
         expect {
           described_class.missing(from_date, to_date)
-        }.to raise_error "feedback variable must be present"
+        }.to raise_error FeedbackSession::FeedbackVariableRequiredError
       end
     end
 

@@ -1,9 +1,10 @@
 class FeedbackSession
+  class FeedbackVariableRequiredError < StandardError; end
   class WrongDateFormatError < StandardError; end
   class InvalidDateError < StandardError; end
 
   def self.missing(from_str_date, to_str_date)
-    raise "feedback variable must be present" unless Variable.feedback
+    raise FeedbackVariableRequiredError unless Variable.feedback
 
     from_date = from_str_date.to_date rescue (raise WrongDateFormatError)
     to_date   = to_str_date.to_date   rescue (raise WrongDateFormatError)

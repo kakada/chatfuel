@@ -175,6 +175,8 @@ namespace :session do
           step.save! if step.variable.feedback_province?
           step.save! if step.variable.feedback_district?
         end
+      rescue FeedbackSession::FeedbackVariableRequiredError
+        puts "Feedback variable is required"
       rescue FeedbackSession::WrongDateFormatError
         puts "Invalid date format"
       rescue FeedbackSession::InvalidDateError
