@@ -6,7 +6,7 @@ module Chart::ReportHelper
 
   # Citizen feedback > Total Feedback By Gender
   def gender_info
-    ::GenderInfo.new(nil, self).chart_options
+    ::GenderInfo.new(Variable.feedback, self).chart_options
   end
 
   # OWSO Information Accessed > Information Access By :period
@@ -55,8 +55,7 @@ module Chart::ReportHelper
 
   # Summary > Total User Feedback
   def users_feedback
-    users_feedback_report = ::UserFeedback.new(nil, self)
-    users_feedback_report.chart_options
+    ::UserFeedback.new(Variable.feedback, self).chart_options
   end
 
   # Citizen Feedback > Feedback By Sub Categories

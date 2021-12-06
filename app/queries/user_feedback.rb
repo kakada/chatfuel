@@ -22,7 +22,7 @@ class UserFeedback < Report
     def sql
       @sql ||= Session.feedback_filter(@query.options)\
                   .joins(step_values: [:variable, :variable_value])\
-                  .where(step_values: { variable: Variable.feedback })\
+                  .where(step_values: { variable: @variable })\
                   .group('variable_values.value_status')\
                   .count('sessions.id')
     end
