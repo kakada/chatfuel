@@ -166,28 +166,25 @@ namespace :session do
 
   desc "Migrate missing feedback location"
   task :migrate_missing_feedback_location, [:from_date, :to_date] => :environment do |t, args|
-    # Api: FeedbackSession.missing(from: ..., to: ...)
-    missing_feedback_location_sessions = Session.joins(:step_values)\
-    .where("DATE(sessions.created_at) >= :from AND 
-            DATE(sessions.created_at) <= :to", from: args[:from_date], to: args[:to_date])\
-    .where("sessions.feedback_province_id IS NULL OR 
-            sessions.feedback_district_id IS NULL")\
-    .where(step_values: { variable: Variable.feedback })
-  end
+    begin
+      missing_feedback_location_sessions = FeedbackSession.missing(args[:from_date]), args[:to_date])
 
-  begin
-    Session.record_timestamps = false
-    Session.transaction do
-      missing_feedback_location_sessions.find_each do |session|
-        session.step_values.each do |step|
-          step.save! if step.variable.feedback_province?
-          step.save! if step.variable.feedback_district?
+      Session.record_timestamps = false
+      Session.transaction do
+        missing_feedback_location_sessions.find_each do |session|
+          session.step_values.each do |step|
+            step.save! if step.variable.feedback_province?
+            step.save! if step.variable.feedback_district?
+          end
         end
       end
+
+    rescue WrongDateFormatError
+      puts "Invalid date format"
+    rescue InvalidDateError
+      puts "to_date must be greater than from_date"
+    ensure
+      Session.record_timestamps = true
     end
-  rescue => e
-    puts "Exception found: #{e.message}"
-  ensure
-    Session.record_timestamps = true
   end
 end

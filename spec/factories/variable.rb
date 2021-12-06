@@ -1,6 +1,11 @@
 FactoryBot.define do
   factory :variable do
     name { FFaker::Name.unique.first_name }
+
+    trait :feedback do
+      name { "feedback" }
+      mark_as { "feedback" }
+    end
   end
 
   trait :ticket_tracking do
