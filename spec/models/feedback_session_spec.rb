@@ -20,8 +20,6 @@ RSpec.describe FeedbackSession do
 
       let!(:missing_feedback_location) { create(:session, feedback_province_id: nil, step_values: [feedback_step, feedback_province_step, feedback_district_step]) }
 
-      # before { create(:variable, :feedback) }
-
       context "with wrong date format" do
         it "raises error" do
           expect {
