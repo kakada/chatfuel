@@ -239,12 +239,21 @@ RSpec.describe Session, type: :model do
 
   describe "#sync_location!" do
     let(:session) { create(:session, province_id: '01', district_id: '0111') }
+    let(:feedback_session) { create(:session, feedback_province_id: '01', feedback_district_id: '0111') }
 
     context "when province_id changed" do
       it 'reset district_id' do
         session.update(province_id: '02')
 
         expect(session.reload.district_id).to eq ''
+      end
+    end
+
+    context "when feedback_province_id changed" do
+      it 'reset feedback_district_id' do
+        feedback_session.update(feedback_province_id: '02')
+
+        expect(feedback_session.reload.feedback_district_id).to eq ''
       end
     end
 
@@ -259,6 +268,20 @@ RSpec.describe Session, type: :model do
         session.update(district_id: nil)
 
         expect(session.reload.province_id).to eq "01"
+      end
+    end
+
+    context "when feedback_district_id changed" do
+      it "updates feedback_province_id" do
+        feedback_session.update(feedback_district_id: "0303")
+
+        expect(feedback_session.reload.feedback_province_id).to eq "03"
+      end
+
+      it "does not update feedback province when feedback district blank" do
+        feedback_session.update(feedback_district_id: nil)
+
+        expect(feedback_session.reload.feedback_province_id).to eq "01"
       end
     end
   end

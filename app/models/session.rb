@@ -55,6 +55,8 @@ class Session < ApplicationRecord
   after_create_commit :completed!, if: :ivr?
   before_update :update_province_id, if: :district_id_changed?
   before_update :reset_district_id, if: :province_id_changed?
+  before_update :update_feedback_province_id, if: :feedback_district_id_changed?
+  before_update :reset_feedback_district_id, if: :feedback_province_id_changed?
   before_update :update_location_step, if: :district_id_changed_to_nil?
   before_update :update_feedback_location_step, if: :feedback_district_id_changed_to_nil?
 
@@ -143,8 +145,16 @@ class Session < ApplicationRecord
       self.province_id = district_id[0, 2] if district_id.present?
     end
 
+    def update_feedback_province_id
+      self.feedback_province_id = feedback_district_id[0, 2] if feedback_district_id.present?
+    end
+
     def reset_district_id
       self.district_id = ''
+    end
+
+    def reset_feedback_district_id
+      self.feedback_district_id = ''
     end
 
     def update_location_step
