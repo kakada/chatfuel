@@ -40,6 +40,12 @@ class Session < ApplicationRecord
   has_many :trackings, dependent: :destroy
 
   validates :session_id, :source_id, presence: true
+  validates :province_id,
+            :feedback_province_id, format: { with: /\A[0-9]{2}\z/,
+                                              message: "only number with 2 digits allowed" }, allow_nil: true
+  validates :district_id,
+            :feedback_district_id, format: { with: /\A[0-9]{4}\z/,
+                                              message: "only number with 4 digits allowed" }, allow_nil: true
   validates :platform_name, inclusion: {
                               in: %w(Messenger Telegram Verboice),
                               message: I18n.t("sessions.invalid_platform_name", value: "%{value}") }
@@ -47,6 +53,8 @@ class Session < ApplicationRecord
   scope :with_genders, -> { where.not(gender: [nil, "", "null"]) }
 
   after_create_commit :completed!, if: :ivr?
+  before_update :update_province_id, if: :district_id_changed?
+  before_update :reset_district_id, if: :province_id_changed?
   before_update :update_location_step, if: :district_id_changed_to_nil?
   before_update :update_feedback_location_step, if: :feedback_district_id_changed_to_nil?
 
@@ -130,6 +138,14 @@ class Session < ApplicationRecord
   end
 
   private
+
+    def update_province_id
+      self.province_id = district_id[0, 2] if district_id.present?
+    end
+
+    def reset_district_id
+      self.district_id = ''
+    end
 
     def update_location_step
       step_values.destroy_district_id

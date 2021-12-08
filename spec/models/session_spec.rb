@@ -62,6 +62,87 @@ RSpec.describe Session, type: :model do
         expect(session).to be_valid  
       end
     end
+
+    context "province_id" do
+      it "can't be a charactor" do
+        session.province_id = "INVALID_ID"
+        session.valid?
+        expect(session.errors[:province_id]).to include "only number with 2 digits allowed"
+      end
+
+      it "has to be 2 digit" do
+        session.province_id = "012"
+        session.valid?
+        expect(session.errors[:province_id]).to include "only number with 2 digits allowed"
+      end
+
+      it "allows blank" do
+        session.province_id = ""
+        session.valid?
+        expect(session.errors[:province_id]).to be_blank
+      end
+    end
+
+    context "district_id" do
+      it "can't be a charactor" do
+        session.district_id = "INVALID_ID"
+        session.valid?
+        expect(session.errors[:district_id]).to include "only number with 4 digits allowed"
+      end
+
+      it "has to be 2 digit" do
+        session.district_id = "012"
+        session.valid?
+        expect(session.errors[:district_id]).to include "only number with 4 digits allowed"
+      end
+
+      it "allows blank" do
+        session.district_id = ""
+        session.valid?
+        expect(session.errors[:district_id]).to be_blank
+      end
+    end
+
+    context "feedback_province_id" do
+      it "can't be a charactor" do
+        session.feedback_province_id = "INVALID_ID"
+        session.valid?
+        expect(session.errors[:feedback_province_id]).to include "only number with 2 digits allowed"
+      end
+
+      it "has to be 2 digit" do
+        session.feedback_province_id = "012"
+        session.valid?
+        expect(session.errors[:feedback_province_id]).to include "only number with 2 digits allowed"
+      end
+
+      it "allows blank" do
+        session.feedback_province_id = ""
+        session.valid?
+        expect(session.errors[:feedback_province_id]).to be_blank
+      end
+    end
+
+    context "feedback_district_id" do
+      it "can't be a charactor" do
+        session.feedback_district_id = "INVALID_ID"
+        session.valid?
+        expect(session.errors[:feedback_district_id]).to include "only number with 4 digits allowed"
+      end
+
+      it "has to be 2 digit" do
+        session.feedback_district_id = "012"
+        session.valid?
+        expect(session.errors[:feedback_district_id]).to include "only number with 4 digits allowed"
+      end
+
+      it "allows blank" do
+        session.feedback_district_id = ""
+        session.valid?
+        expect(session.errors[:feedback_district_id]).to be_blank
+      end
+    end
+
   end
 
   describe ".create_or_return" do
@@ -153,6 +234,32 @@ RSpec.describe Session, type: :model do
       expect {
         new_session.clone
       }.to change { StepValue.count }
+    end
+  end
+
+  describe "#sync_location!" do
+    let(:session) { create(:session, province_id: '01', district_id: '0111') }
+
+    context "when province_id changed" do
+      it 'reset district_id' do
+        session.update(province_id: '02')
+
+        expect(session.reload.district_id).to eq ''
+      end
+    end
+
+    context "when district_id changed" do
+      it "updates province_id" do
+        session.update(district_id: "0303")
+
+        expect(session.reload.province_id).to eq "03"
+      end
+
+      it "does not update province when district blank" do
+        session.update(district_id: nil)
+
+        expect(session.reload.province_id).to eq "01"
+      end
     end
   end
 end
