@@ -238,14 +238,21 @@ RSpec.describe Session, type: :model do
   end
 
   describe "#sync_location!" do
-    let(:session) { create(:session, province_id: '01', district_id: '0111') }
+    let(:district_step) { create(:district_step) }
+    let(:session) { create(:session, province_id: '01', district_id: '0111', step_values: [district_step]) }
     let(:feedback_session) { create(:session, feedback_province_id: '01', feedback_district_id: '0111') }
 
-    context "when province_id changed" do
-      it 'reset district_id' do
-        session.update(province_id: '02')
+    specify { expect(session.step_values.count).to eq 1 }
 
+    context "when province_id changed" do
+      before { session.update(province_id: '02') }
+
+      it 'reset district_id' do
         expect(session.reload.district_id).to eq ''
+      end
+
+      it 'remove district from step value' do
+        expect(session.reload.step_values).not_to include district_step
       end
     end
 

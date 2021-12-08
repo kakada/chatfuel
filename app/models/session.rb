@@ -151,6 +151,7 @@ class Session < ApplicationRecord
 
     def reset_district_id
       self.district_id = ''
+      step_values.destroy_district_id
     end
 
     def reset_feedback_district_id
