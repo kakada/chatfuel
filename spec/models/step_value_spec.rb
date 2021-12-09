@@ -88,7 +88,7 @@ RSpec.describe StepValue, type: :model do
       context "when re-select different province" do
         let(:district_step) { build(:district_step) }
         let(:province_step) { build(:province_step) }
-        let(:new_province) { build(:variable_value, variable: province_step.variable) }
+        let(:new_province) { build(:variable_value, raw_value: "02", variable: province_step.variable) }
 
         before do
           session.step_values = [district_step, province_step]
@@ -117,7 +117,7 @@ RSpec.describe StepValue, type: :model do
       context "when re-select different feedback province" do
         let(:feedback_district_step) { build(:feedback_district_step) }
         let(:feedback_province_step) { build(:feedback_province_step) }
-        let(:new_feedback_province) { build(:variable_value, variable: feedback_province_step.variable) }
+        let(:new_feedback_province) { build(:variable_value, raw_value: "02", variable: feedback_province_step.variable) }
 
         before do
           session.step_values = [feedback_district_step, feedback_province_step]
