@@ -74,8 +74,8 @@ class Session < ApplicationRecord
     step_values.clone_step :gender, gender
     step_values.clone_step :province, province_id
     step_values.clone_step :district, district_id
-    step_values.clone_step :feedback_province_id, feedback_province_id
-    step_values.clone_step :feedback_district_id, feedback_district_id
+    step_values.clone_step :feedback_province, feedback_province_id
+    step_values.clone_step :feedback_district, feedback_district_id
     self
   end
 
