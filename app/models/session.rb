@@ -46,6 +46,7 @@ class Session < ApplicationRecord
   validates :district_id,
             :feedback_district_id, format: { with: /\A[0-9]{4}\z/,
                                               message: "only number with 4 digits allowed" }, allow_nil: true
+  validates :gender, inclusion: { in: %w(male female other) }
   validates :platform_name, inclusion: {
                               in: %w(Messenger Telegram Verboice),
                               message: I18n.t("sessions.invalid_platform_name", value: "%{value}") }
