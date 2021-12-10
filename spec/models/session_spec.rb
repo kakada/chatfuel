@@ -236,4 +236,14 @@ RSpec.describe Session, type: :model do
       }.to change { StepValue.count }
     end
   end
+
+  # depending on the flow designed in `chatbot_flow.yml`
+  # it has to be sync with chatfuel block as well
+  describe "#valid_chatbot_flow?" do
+    let(:chatbot) { create(:session, :messenger) }
+
+    context "when no gender" do
+
+    end
+  end
 end

@@ -27,6 +27,12 @@ FactoryBot.define do
       session.source_id = session.session_id
     end
 
+    trait :no_location do
+      district_id { nil }
+      province_id { nil }
+      last_interaction_at { nil }
+    end
+
     trait :messenger do
       platform_name { "Messenger" }
     end

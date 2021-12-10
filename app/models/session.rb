@@ -25,6 +25,8 @@
 #  index_sessions_on_feedback_province_id  (feedback_province_id)
 #
 class Session < ApplicationRecord
+  attr_reader :error_flows
+
   include CsvConcern
   include Session::FilterableConcern
 
@@ -46,13 +48,14 @@ class Session < ApplicationRecord
   validates :district_id,
             :feedback_district_id, format: { with: /\A[0-9]{4}\z/,
                                               message: "only number with 4 digits allowed" }, allow_nil: true
-  validates :gender, inclusion: { in: %w(male female other) }
+  validates :gender, inclusion: { in: %w(male female other) }, allow_blank: true
   validates :platform_name, inclusion: {
                               in: %w(Messenger Telegram Verboice),
                               message: I18n.t("sessions.invalid_platform_name", value: "%{value}") }
 
   scope :with_genders, -> { where.not(gender: [nil, "", "null"]) }
 
+  after_initialize :set_error_flows
   after_create_commit :completed!, if: :ivr?
   before_update :update_location_step, if: :district_id_changed_to_nil?
   before_update :update_feedback_location_step, if: :feedback_district_id_changed_to_nil?
@@ -136,7 +139,41 @@ class Session < ApplicationRecord
     pluck(:district_id).uniq - dump_codes
   end
 
+  def valid_chatbot_flow?
+    check_flow!
+    @error_flows.blank?
+  end
+
+  def invalid_chatbot_flow?
+    !valid_chatbot_flow?
+  end
+
   private
+
+    def check_flow!
+      chatbot_sequence_steps.each_with_index do |(session_step, value), index|
+        next if attributes[session_step.to_s].blank?
+
+        parent_key = chatbot_sequence_steps.keys[index-1]
+        @error_flows[parent_key] = "can't be blank"
+        break
+      end
+    end
+
+    def chatbot_sequence_steps
+      flow_file = Rails.root.join('chatbot_flow.yml')
+      flatten_hash( YAML.load_file(flow_file) )
+    end
+
+    def flatten_hash(param)
+      param.each_pair.reduce({}) do |a, (k, v)|
+        v.is_a?(Hash) ? a.merge({ k.to_sym => '' }, flatten_hash(v)) : a.merge(k.to_sym => v)
+      end
+    end
+
+    def set_error_flows
+      @error_flows ||= {}
+    end
 
     def update_location_step
       step_values.destroy_district_id
