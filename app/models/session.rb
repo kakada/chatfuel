@@ -74,6 +74,8 @@ class Session < ApplicationRecord
     step_values.clone_step :gender, gender
     step_values.clone_step :province, province_id
     step_values.clone_step :district, district_id
+    step_values.clone_step :feedback_province_id, feedback_province_id
+    step_values.clone_step :feedback_district_id, feedback_district_id
     self
   end
 
@@ -158,6 +160,6 @@ class Session < ApplicationRecord
     end
 
     def clone_attributes
-      %w(platform_name session_id source_id gender province_id district_id)
+      %w(platform_name session_id source_id gender province_id district_id feedback_province_id feedback_district_id)
     end
 end
