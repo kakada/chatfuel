@@ -38,6 +38,8 @@ class Session < ApplicationRecord
   # TODO: reference session
   has_many :step_values, dependent: :destroy
   has_many :trackings, dependent: :destroy
+  has_one :chatfuel_raw, primary_key: :session_id,
+                          foreign_key: :chatfuel_user_id
 
   validates :session_id, :source_id, presence: true
   validates :platform_name, inclusion: {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_01_061622) do
+ActiveRecord::Schema.define(version: 2021_12_13_023227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -44,6 +44,71 @@ ActiveRecord::Schema.define(version: 2021_11_01_061622) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "chatfuel_raw", id: false, force: :cascade do |t|
+    t.bigint "chatfuel_user_id"
+    t.string "user_gender", limit: 255
+    t.string "main_menu", limit: 255
+    t.string "owso_info", limit: 255
+    t.string "location", limit: 255
+    t.string "certify_docs", limit: 255
+    t.string "province", limit: 255
+    t.string "district", limit: 255
+    t.string "feedback_unit", limit: 255
+    t.string "feedback_rating", limit: 255
+    t.string "feedback_district", limit: 255
+    t.string "public_transport", limit: 255
+    t.string "feedback_like", limit: 255
+    t.string "main_dbs", limit: 255
+    t.string "feedback_province", limit: 255
+    t.string "feedback_dislike", limit: 255
+    t.string "main_landtitle", limit: 255
+    t.string "ticket_code", limit: 255
+    t.string "ticket_status", limit: 255
+    t.string "dbs_btn1", limit: 255
+    t.string "feedback_acceptable", limit: 255
+    t.string "dbs_btn2", limit: 255
+    t.string "landtitle_3", limit: 255
+    t.string "main_construction", limit: 255
+    t.string "main_landrefill", limit: 255
+    t.string "location_name", limit: 255
+    t.string "landtitle_2", limit: 255
+    t.string "landrefill_2", limit: 255
+    t.string "construction_1", limit: 255
+    t.string "landtitle_1", limit: 255
+    t.string "certify_docs_3", limit: 255
+    t.string "dbs_btn22", limit: 255
+    t.string "acceptable_pricing", limit: 255
+    t.string "construction_2", limit: 255
+    t.string "acceptable_delivery", limit: 255
+    t.string "like_pricing", limit: 255
+    t.string "acceptable_provide_info", limit: 255
+    t.string "acceptable_behavior", limit: 255
+    t.string "acceptable_working_hour", limit: 255
+    t.string "like_provide_info", limit: 255
+    t.string "construction_3", limit: 255
+    t.string "landrefill_1", limit: 255
+    t.string "dbs_btn1_2", limit: 255
+    t.text "feedback_message"
+    t.string "acceptable_request_form", limit: 255
+    t.string "feedback_challenge", limit: 255
+    t.string "like_behavior", limit: 255
+    t.string "like_delivery", limit: 255
+    t.string "like_request_form", limit: 255
+    t.string "dislike_pricing", limit: 255
+    t.string "like_working_hour", limit: 255
+    t.string "feedback_level", limit: 255
+    t.string "dbs_btn1_3", limit: 255
+    t.string "dislike_behavior", limit: 255
+    t.string "dislike_request_form", limit: 255
+    t.string "tracking_ticket", limit: 255
+    t.string "dislike_working_hour", limit: 255
+    t.string "location_code", limit: 255
+    t.string "dislike_delivery", limit: 255
+    t.string "feedback_q2", limit: 255
+    t.string "dislike_provide_info", limit: 255
+    t.string "feedback_q3", limit: 255
   end
 
   create_table "identities", force: :cascade do |t|
