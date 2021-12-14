@@ -8,4 +8,8 @@
 #
 class ChatfuelRaw < ApplicationRecord
   self.table_name = "chatfuel_raw"
+
+  def has_feedback_location?
+    [feedback_unit, feedback_province, feedback_district].all? &:present?
+  end
 end
