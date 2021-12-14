@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_13_023227) do
+ActiveRecord::Schema.define(version: 2021_11_01_061622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_12_13_023227) do
   end
 
   create_table "chatfuel_raw", id: false, force: :cascade do |t|
-    t.bigint "chatfuel_user_id"
+    t.string "chatfuel_user_id", limit: 255
     t.string "user_gender", limit: 255
     t.string "main_menu", limit: 255
     t.string "owso_info", limit: 255
