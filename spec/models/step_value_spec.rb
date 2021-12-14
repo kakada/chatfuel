@@ -226,4 +226,31 @@ RSpec.describe StepValue, type: :model do
       }.to change { Tracking.count }.by 1
     end
   end
+
+  describe "callback bulk update" do
+    let(:feedback_province) { build(:variable, name: 'feedback_province', mark_as: 'feedback_province') }
+    let(:bmc) { build(:variable_value, variable: feedback_province, raw_value: '01') }
+    let(:btb) { build(:variable_value, variable: feedback_province, raw_value: '02') }
+    let(:session) { create(:session) }
+
+    before do
+      session.save
+    end
+
+    it "update session's feedback province id" do
+      create(:step_value, session_id: session.id, variable: feedback_province, variable_value: bmc)
+
+      expect(session.reload.feedback_province_id).to eq(bmc.raw_value)
+    end
+
+    100.times.each do
+      it "does batch updates" do
+        step_value = build(:step_value, session_id: session.id, variable: feedback_province, variable_value: btb)
+
+        step_value.save
+
+        expect(session.reload.feedback_province_id).to eq btb.raw_value
+      end
+    end
+  end
 end
