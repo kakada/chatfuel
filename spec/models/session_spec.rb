@@ -14,6 +14,7 @@
 #  session_id          :string           not null
 #
 require 'rails_helper'
+require_relative '../support/shared/feedback_location_helper.rb'
 
 RSpec.describe Session, type: :model do
   # Attributes
@@ -153,6 +154,26 @@ RSpec.describe Session, type: :model do
       expect {
         new_session.clone
       }.to change { StepValue.count }
+    end
+  end
+
+  describe "#has_feedback_location_steps?" do
+    let(:feedback_unit) { build(:variable, :feedback_unit) }
+    let(:owso) { build(:variable_value, variable: feedback_unit, raw_value: 'owso') }
+    let(:feedback_unit_step) { build(:step_value, variable: feedback_unit, variable_value: owso) }
+    
+    let(:session) { build(:session) }
+
+    it "does not have feedback location steps" do
+      expect(session).not_to have_feedback_location_steps
+    end
+
+    it "has feedback location steps" do
+      session.step_values = [ feedback_unit_step, feedback_province_step, feedback_district_step ]
+
+      session.save
+
+      expect(session).to have_feedback_location_steps
     end
   end
 end

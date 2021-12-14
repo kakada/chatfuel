@@ -133,6 +133,18 @@ class Session < ApplicationRecord
     pluck(:district_id).uniq - dump_codes
   end
 
+  def missing_feedback_location_steps?
+    !has_feedback_location_steps?
+  end
+  
+  def has_feedback_location_steps?
+    step_variables = step_values.map(&:variable)
+    
+    step_variables.any?(&:feedback_unit?) &&
+    step_variables.any?(&:feedback_province?) &&
+    step_variables.any?(&:feedback_district?)
+  end
+  
   private
 
     def update_location_step

@@ -6,6 +6,21 @@ FactoryBot.define do
       name { "feedback" }
       mark_as { "feedback" }
     end
+
+    trait :feedback_unit do
+      name { "feedback_unit" }
+      mark_as { "feedback_unit" }
+    end
+
+    trait :feedback_province do
+      name { "feedback_province" }
+      mark_as { "feedback_province" }
+    end
+
+    trait :feedback_district do
+      name { "feedback_district" }
+      mark_as { "feedback_district" }
+    end
   end
 
   trait :ticket_tracking do
