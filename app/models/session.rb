@@ -144,6 +144,14 @@ class Session < ApplicationRecord
     step_variables.any?(&:feedback_province?) &&
     step_variables.any?(&:feedback_district?)
   end
+
+  def clone_missing_feedback_location_from_chatfuel!
+    if missing_feedback_location_steps? && chatfuel_raw.has_feedback_location?
+      step_values.clone_step :feedback_unit, chatfuel_raw.feedback_unit
+      step_values.clone_step :feedback_province, chatfuel_raw.feedback_province
+      step_values.clone_step :feedback_district, chatfuel_raw.feedback_district
+    end
+  end
   
   private
 

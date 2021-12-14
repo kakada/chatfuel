@@ -158,10 +158,6 @@ RSpec.describe Session, type: :model do
   end
 
   describe "#has_feedback_location_steps?" do
-    let(:feedback_unit) { build(:variable, :feedback_unit) }
-    let(:owso) { build(:variable_value, variable: feedback_unit, raw_value: 'owso') }
-    let(:feedback_unit_step) { build(:step_value, variable: feedback_unit, variable_value: owso) }
-    
     let(:session) { build(:session) }
 
     it "does not have feedback location steps" do
@@ -174,6 +170,30 @@ RSpec.describe Session, type: :model do
       session.save
 
       expect(session).to have_feedback_location_steps
+    end
+  end
+
+  describe "#clone_missing_feedback_location_from_chatfuel!" do
+
+    let!(:chatfuel_raw) { create(:chatfuel_raw, chatfuel_user_id: 1, feedback_unit: 'owso', feedback_province: '01', feedback_district: '0102') }
+    let(:session) { create(:session, session_id: 1) }
+
+    before do
+      feedback_unit.save
+      feedback_province.save
+      feedback_district.save
+    end
+
+    it "clones feedback location" do
+      expect {
+        session.clone_missing_feedback_location_from_chatfuel!
+      }.to change { StepValue.count }.by 3
+      
+      expect(session.reload.step_values).to include(
+        an_object_having_attributes(variable_id: feedback_unit.id),
+        an_object_having_attributes(variable_id: feedback_province.id),
+        an_object_having_attributes(variable_id: feedback_district.id)
+      )
     end
   end
 end
