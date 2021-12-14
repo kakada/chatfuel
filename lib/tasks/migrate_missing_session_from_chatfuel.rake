@@ -15,8 +15,6 @@ namespace :chatfuel do
     Session.record_timestamps = false
 
     result.each do |session|
-      next if session.has_feedback_location_steps?
-
       unless session.clone_missing_feedback_location_from_chatfuel!
         unclone_sessions << session.id
       end

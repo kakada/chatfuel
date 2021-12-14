@@ -10,6 +10,7 @@ services:
     image: postgres:12.2
     volumes:
       - db:/var/lib/postgresql/data
+      - ./chatfuel_raw.csv:/var/lib/postgresql/data/chatfuel_raw.csv
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
 
