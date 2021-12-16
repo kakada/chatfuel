@@ -19,7 +19,7 @@ In order to download chatfuel raw session data go to
 4. Correct data using vlookup
 5. Export the corrected sessions into the root project directory
 6. Run rake task (see in scripts section) to check and clone appropriate step value,
-   by default, it is expected to there is a file name `corrected-data.csv` if not, you have to explicityly provide the corrected csv file, otherwise it raises an error.
+   by default, it is expected to a file named `corrected-data.csv` if not, you have to explicitly provide the corrected csv file, otherwise it raises an error.
 
 ## Thing to keep in mind when correcting the data
 
