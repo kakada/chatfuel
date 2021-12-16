@@ -13,7 +13,7 @@ namespace :chatfuel do
   desc 'Migrate missing session from chatfuel raw data'
   task :migrate_missing_from_raw_data, [:csv_path] => :ensure_feedback_unit do |t, args|
     sessions_csv = Rails.root.join(args[:csv_path].presence || 'corrected_data.csv')
-    raise(StandardError, "#{sessions_csv.to_path} does not exist") unless File.exists?(sessions_csv)
+    abort "#{sessions_csv.to_path} does not exist" unless File.exists?(sessions_csv)
 
     logs = {}
 
