@@ -33,7 +33,7 @@ class OverallRating < Feedback
     def mapping
       result_set.each_with_object({}) do |(key, count), hash|
         pro_code, district, value = find_objects_by(key)
-        district = district.send("name_#{I18n.locale}".to_sym)
+        district = district.send("name_#{I18n.locale}".to_sym) rescue 'n/a'
       
         hash[pro_code] ||= {}
         hash[pro_code][district] ||= {}
@@ -51,8 +51,6 @@ class OverallRating < Feedback
       Session.feedback_filter(@query.options)
               .joins(:step_values)
               .where(step_values: { variable: @variable })
-              .where(feedback_province_id: @query.province_codes)
-              .where(feedback_district_id: @query.district_codes)
               .group(:feedback_province_id, :feedback_district_id, :variable_value_id)
               .count
     end

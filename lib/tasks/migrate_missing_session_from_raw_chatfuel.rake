@@ -17,6 +17,7 @@ namespace :chatfuel do
 
     logs = {}
 
+    Session.record_timestamps = false
     StepValue.transaction do
       ::CSV.foreach(sessions_csv) do |row|
         id, session_id, feedback_unit, feedback_province, feedback_district = row
@@ -29,6 +30,7 @@ namespace :chatfuel do
         end
       end
     end
+    Session.record_timestamps = true
 
     puts "clone logs: "
     puts logs.inspect
