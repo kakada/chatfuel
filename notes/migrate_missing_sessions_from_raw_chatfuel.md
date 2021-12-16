@@ -17,8 +17,9 @@ In order to download chatfuel raw session data go to
 2. Import raw chatfuel data into a [google spreadsheet](https://docs.google.com/spreadsheets/d/1hXPUAIhfPHOf7c2HiiUpLhm17wn0YKdVLwK1lEnxozU/edit#gid=0)
 3. Next, dump sessions data(see in scripts section) from database and import into the same spreadsheet in different tab
 4. Correct data using vlookup
-5. Export the corrected sessions
-6. Run rake task (see in scripts section) to check and clone appropriate step value
+5. Export the corrected sessions into the root project directory
+6. Run rake task (see in scripts section) to check and clone appropriate step value,
+   by default, it is expected to there is a file name `corrected-data.csv` if not, you have to explicityly provide the corrected csv file, otherwise it raises an error.
 
 ## Thing to keep in mind when correcting the data
 
@@ -69,5 +70,7 @@ SELECT s.id, s.session_id,
 2. After corrected sessions, run the following to migrate the missing step values that are missing
 
 ```
-rails chatfuel:migrate_missing_from_raw_data
+rails chatfuel:migrate_missing_from_raw_data # expected to have corrected-data.csv in root directory
+or
+rails chatfuel:migrate_missing_from_raw_data['path/to/corrected-data.csv']
 ```
