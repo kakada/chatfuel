@@ -33,7 +33,7 @@ class OverallRating < Feedback
     def mapping
       result_set.each_with_object({}) do |(key, count), hash|
         pro_code, district, value = find_objects_by(key)
-        district = district.send("name_#{I18n.locale}".to_sym) rescue 'n/a'
+        district = district.send("name_#{I18n.locale}".to_sym) rescue 'N/A'
       
         hash[pro_code] ||= {}
         hash[pro_code][district] ||= {}
