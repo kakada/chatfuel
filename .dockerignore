@@ -51,3 +51,4 @@ pdfs/*.pdf
 
 chatfuel_*.gz
 chatfuel_*.sql
+*.csv
