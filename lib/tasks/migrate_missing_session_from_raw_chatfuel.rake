@@ -33,6 +33,6 @@ namespace :chatfuel do
     Session.record_timestamps = true
 
     puts "clone logs: "
-    puts logs.inspect
+    puts logs.keys.inspect
   end
 end
