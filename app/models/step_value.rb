@@ -123,6 +123,6 @@ class StepValue < ApplicationRecord
     end
 
     def engage_session
-      session.touch(:engaged_at) if session.present?
+      session.touch(:engaged_at) if session.present? && ENV['ENGAGED_AT_TIMSTAMPS'] == 'enabled'
     end
 end

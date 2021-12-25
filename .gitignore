@@ -48,6 +48,7 @@ app/assets/javascripts/i18n/
 public/javascripts/
 chatfuel_*.gz
 chatfuel_*.sql
+*.csv
 
 app/assets/javascripts/i18n/
 public/javascripts/
