@@ -2,7 +2,7 @@ class MostRequest < BasicReport
   def chart_options
     result_set.each_with_object({}) do |(key, count), hash|
       pro_code, district, variable_value = find_objects_by(key)
-      district_name = district.send("name_#{I18n.locale}".to_sym) rescue I18n.t('not_available')
+      district_name = district.send("name_#{I18n.locale}".to_sym) rescue next
     
       hash[pro_code] ||= {}
       hash[pro_code][:colors] ||= Color.generate
