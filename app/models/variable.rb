@@ -97,6 +97,10 @@ class Variable < ApplicationRecord
     values.map &:raw_value
   end
 
+  def self.service_accessed
+    find_by(is_service_accessed: true)
+  end
+
   private
     def validate_unique_raw_value
       validate_uniqueness_of_in_memory(values, %i[raw_value], I18n.t("variable.already_taken"))
