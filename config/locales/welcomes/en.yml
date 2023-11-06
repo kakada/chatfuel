@@ -35,3 +35,4 @@ en:
     visitor_html: |
       %{fragment_count}: Number of visitors from %{start_date} to %{end_date} <br />
       %{all_count}: Total number of all visitors
+    copyrights: "&copy; 2020 ONE WINDOW FOR CITIZENS PROJECT ALL RIGHTS RESERVED."

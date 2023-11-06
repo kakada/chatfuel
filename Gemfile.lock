@@ -20,9 +20,9 @@ GIT
       ruby-openid
 
 GIT
-  remote: https://github.com/radinreth/pumi.git
-  revision: 14e6cfd34d25971614d9bba5a0d09aa10dda17bf
-  branch: other-districts-with-owsu
+  remote: https://github.com/kakada/pumi.git
+  revision: d9cadcdd0dbb840005e369282f805bad0f8e81db
+  branch: custom-districts
   specs:
     pumi (0.5.0)
 
