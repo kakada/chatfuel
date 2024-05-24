@@ -15,6 +15,27 @@ RSpec.describe Api::V1::ChatbotsController, type: :controller do
         .and change { VariableValue.count }.by(1)
         .and change { Session.count }.by(1)
       end
+
+      describe "bulk update" do
+        let(:feedback_province) { create(:variable, name: 'feedback_province', mark_as: 'feedback_province') }
+        let(:session) { create(:session, session_id: 123) }
+
+        before do
+          session.update(feedback_province_id: "01")
+        end
+
+        it "#feedback_province_id" do
+          expect(session.reload.feedback_province_id).to eq "01"
+        end
+
+        100.times.each do
+          it "creates many records" do
+            post :create, params: { messenger_user_id: 123, name: feedback_province.name, value: "02" }
+
+            expect(assigns(:session).feedback_province_id).to eq "02"
+          end
+        end
+      end
     end
 
     describe "PUT :mark_as_completed" do
