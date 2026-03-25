@@ -25,6 +25,8 @@ capybara-*.html
 coverage
 log
 tmp/**
+spec/**
+test/**
 db/*.sqlite3
 db/*.sqlite3-journal
 public/system
@@ -48,6 +50,11 @@ node_modules/
 !tmp/pids/.keep
 
 pdfs/*.pdf
+
+# Editor / CI
+.vscode/
+.idea/
+.github/
 
 chatfuel_*.gz
 chatfuel_*.sql
