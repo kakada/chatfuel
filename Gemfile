@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source "https://rubygems.org"
-ruby "2.6.5"
+ruby "2.6.10"
 
 gem 'rails', '~> 6.0.3', '>= 6.0.4'
 gem "pg", ">= 0.18", "< 2.0"
@@ -38,7 +38,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "i18n-js", "~> 3.5.1"
 gem "liquid", "~> 4.0", ">= 4.0.3"
 gem "sentry-raven", "~> 3.0"
-gem 'pumi', github: 'radinreth/pumi', branch: 'other-districts-with-owsu', require: 'pumi/rails'
+gem 'pumi', github: 'kakada/pumi', branch: 'custom-districts', require: 'pumi/rails'
 
 gem "telegram-bot", "~> 0.15.4"
 gem "sidekiq-scheduler", "~> 3.0.1"
